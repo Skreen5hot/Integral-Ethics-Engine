@@ -19,14 +19,14 @@ import { config } from './config.js';
  */
 function generateManifest() {
   const manifest = {
-    name: config.isDev ? 'Agentic App (Dev)' : 'Agentic Project Template',
-    short_name: config.isDev ? 'Agentic (Dev)' : 'Agentic App',
-    description: 'Progressive Web App template for agentic development with offline-first architecture and user-owned data',
+    name: config.isDev ? 'Integral Ethics Engine (Dev)' : 'Integral Ethics Engine',
+    short_name: config.isDev ? 'IEE (Dev)' : 'IEE',
+    description: 'Multi-perspectival moral reasoning system honoring twelve archetypal worldviews with complete transparency and non-commodifiable ethical integrity',
     start_url: config.basePath,
     scope: config.basePath,
     display: 'standalone',
     background_color: '#ffffff',
-    theme_color: config.isDev ? '#ffc107' : '#4a90e2', // Yellow for dev, blue for prod
+    theme_color: config.isDev ? '#ffc107' : '#2c5aa0', // Yellow for dev, blue for prod
     orientation: 'any',
     icons: [
       {
@@ -182,7 +182,7 @@ function initPWA() {
     themeColorMeta.name = 'theme-color';
     document.head.appendChild(themeColorMeta);
   }
-  themeColorMeta.content = config.isDev ? '#ffc107' : '#4a90e2';
+  themeColorMeta.content = config.isDev ? '#ffc107' : '#2c5aa0';
 }
 
 // Initialize when DOM is ready

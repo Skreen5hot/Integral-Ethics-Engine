@@ -1,0 +1,186 @@
+@prefix : <http://ontology-of-freedom.org/iee#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# ============================================================================
+# Realism Worldview - Value Hierarchy
+# ============================================================================
+#
+# Philosophical Foundation:
+# - Reality exists independently of mind/perception
+# - Truth is correspondence to mind-independent reality
+# - Epistemology: Scientific realism, rational inquiry
+# - Values grounded in objective truth and natural law
+#
+# This ontology uses BFO/CCO patterns to formally model how realist
+# metaphysics grounds specific value hierarchies.
+# ============================================================================
+
+:Realism a :Worldview ;
+    :name "realism" ;
+    :foundation "reality_itself" ;
+    :primacy "mind_independent_reality" ;
+    :epistemology "scientific_realism" ;
+    :cluster :MaterialEmpirical ;
+    rdfs:comment "Worldview grounding value in correspondence to objective reality." .
+
+# Terminal Values - Highest goods in realist framework
+:ObjectiveTruth a :TerminalValue ;
+    :groundedIn :Realism ;
+    :definedAs :CorrespondenceToReality ;
+    :mindindependent true ;
+    rdfs:comment "Truth as correspondence to mind-independent reality is the highest epistemic value." .
+
+:NaturalLaw a :TerminalValue ;
+    :groundedIn :Realism ;
+    :assumes :BuiltInNormativity ;
+    :discoveredBy :ScientificInvestigation, :PhilosophicalInquiry ;
+    rdfs:comment "Natural law reflects objective normative structure of reality." .
+
+:CorrespondenceToReality a :TerminalValue ;
+    :groundedIn :Realism ;
+    :manifestsAs :FactualAccuracy, :OntologicalFidelity ;
+    rdfs:comment "Fidelity to how things really are, independent of beliefs or preferences." .
+
+# Constitutive Values - Essential components of terminal values
+:FactualAccuracy a :ConstitutiveValue ;
+    :constitutes :ObjectiveTruth ;
+    :requires :EvidentialSupport ;
+    rdfs:comment "Accuracy of claims about matters of fact." .
+
+:OntologicalFidelity a :ConstitutiveValue ;
+    :constitutes :CorrespondenceToReality ;
+    :respects :RealityAsItIs ;
+    rdfs:comment "Respecting the actual structure of reality rather than imposing subjective frameworks." .
+
+:RealistEpistemology a :ConstitutiveValue ;
+    :constitutes :ObjectiveTruth ;
+    :methods :Observation, :LogicalInference, :ScientificMethod ;
+    rdfs:comment "Epistemic methods that track mind-independent reality." .
+
+:RationalConsistency a :ConstitutiveValue ;
+    :constitutes :ObjectiveTruth ;
+    :requires :LogicalCoherence ;
+    rdfs:comment "Beliefs must be internally consistent to correspond to unified reality." .
+
+# Instrumental Values - Means to terminal values
+:ScientificInvestigation a :InstrumentalValue ;
+    :servesValue :ObjectiveTruth, :NaturalLaw ;
+    :method :EmpiricalTesting, :TheoryFormation ;
+    rdfs:comment "Science as method for discovering objective truths about reality." .
+
+:EmpiricalVerification a :InstrumentalValue ;
+    :servesValue :FactualAccuracy ;
+    :requires :ObservationalEvidence ;
+    rdfs:comment "Verification against empirical evidence to ensure correspondence to reality." .
+
+:LogicalInference a :InstrumentalValue ;
+    :servesValue :RationalConsistency, :ObjectiveTruth ;
+    :preserves :Truth ;
+    rdfs:comment "Valid logical inference preserves truth from premises to conclusions." .
+
+:CriticalScrutiny a :InstrumentalValue ;
+    :servesValue :ObjectiveTruth ;
+    :opposes :Dogmatism, :WishfulThinking ;
+    rdfs:comment "Subjecting claims to critical examination to eliminate error." .
+
+# Subordinated Values - De-prioritized in realist framework
+:Subjectivism a :SubordinatedValue ;
+    :subordinatedIn :Realism ;
+    :problematic true ;
+    :reason "Truth cannot vary by perspective if reality is objective" ;
+    rdfs:comment "Realism rejects the idea that truth is perspective-dependent." .
+
+:Relativism a :SubordinatedValue ;
+    :subordinatedIn :Realism ;
+    :selfrefuting true ;
+    rdfs:comment "Relativism contradicts realist commitment to objective truth." .
+
+:SocialConstruction a :SubordinatedValue ;
+    :subordinatedIn :Realism ;
+    :limitedDomain :ConventionalCategories ;
+    rdfs:comment "While social practices are constructed, natural kinds and laws are not." .
+
+:SubjectivePreference a :SubordinatedValue ;
+    :subordinatedIn :Realism ;
+    :irrelevantToTruth true ;
+    rdfs:comment "What we prefer or wish to be true doesn't affect what is objectively true." .
+
+# ============================================================================
+# BFO/CCO Grounding Patterns
+# ============================================================================
+
+# Continuants (BFO pattern) - Things that persist through time
+:MindindependentReality a bfo:0000004 ;  # independent continuant
+    :existsIndependentlyOf :Minds, :Beliefs, :Perceptions ;
+    rdfs:comment "Reality exists whether or not anyone thinks about it." .
+
+# Processes that realize values
+:ScientificDiscovery a bfo:0000015 ;  # process
+    :realizes :KnowledgeOfNaturalLaw ;
+    :hasParticipant :Scientist ;
+    :produces :ObjectiveKnowledge ;
+    rdfs:comment "Process of discovering objective facts about reality." .
+
+:VerificationAgainstReality a bfo:0000015 ;  # process
+    :compares :Belief, :RealityItself ;
+    :establishes :CorrespondenceOrFalsity ;
+    rdfs:comment "Process of checking whether beliefs correspond to reality." .
+
+# Information Content Entities (CCO pattern)
+:ObjectiveFact a cco:InformationContentEntity ;
+    :correspondsTo :RealState ;
+    :mindindependent true ;
+    rdfs:comment "Fact about reality that holds regardless of beliefs." .
+
+:TruthBearer a cco:InformationContentEntity ;
+    :canBe :TrueOrFalse ;
+    :truthMaker :RealityItself ;
+    rdfs:comment "Proposition or belief that has truth value based on correspondence to reality." .
+
+# ============================================================================
+# Evaluation Criteria for Realism
+# ============================================================================
+
+:RealistEvaluationCriteria a :EvaluationFramework ;
+    :prioritizes :ObjectiveTruth, :NaturalLaw, :CorrespondenceToReality ;
+    :evaluatesBy :FactualCorrectness, :ConsistencyWithReality ;
+    :subordinates :SubjectiveOpinion, :SocialConvention, :Preference ;
+    rdfs:comment "Criteria for evaluating claims and actions from realist perspective." .
+
+:FactualCorrectness a :EvaluationDimension ;
+    :measuresCorrespondenceTo :ActualFacts ;
+    :requiresEvidence true ;
+    rdfs:comment "Evaluate based on whether claims accurately represent reality." .
+
+:ConsistencyWithReality a :EvaluationDimension ;
+    :checks :WhetherActionAccordsWithNaturalLaw ;
+    :respectsObjectiveConstraints true ;
+    rdfs:comment "Actions evaluated by whether they respect objective constraints of reality." .
+
+:TruthTracking a :EvaluationDimension ;
+    :favors :MethodsReliablyLeadingToTruth ;
+    :opposes :BiasedReasoning, :WishfulThinking ;
+    rdfs:comment "Value methods and practices that reliably track objective truth." .
+
+# ============================================================================
+# Relationship to Materialism
+# ============================================================================
+
+:Realism :relatedTo :Materialism ;
+    :similarity "Both value objective, mind-independent reality" ;
+    :difference "Realism doesn't require reality to be exclusively material" ;
+    rdfs:comment "Realism and materialism both in material-empirical cluster but distinct." .
+
+# Realism can be materialist or non-materialist
+:MaterialistRealism a :RealistSubtype ;
+    :combines :Realism, :Materialism ;
+    :claims "Only material reality exists objectively" .
+
+:NonMaterialistRealism a :RealistSubtype ;
+    :combines :Realism, :OpposesToMaterialism ;
+    :allows :AbstractEntities, :MentalProperties ;
+    rdfs:comment "Reality is objective but not exclusively material (e.g., Platonic realism)." .

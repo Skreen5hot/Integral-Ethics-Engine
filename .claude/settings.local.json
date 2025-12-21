@@ -27,7 +27,9 @@
       "Bash(git rm:*)",
       "Bash(npm install:*)",
       "Bash(node --test:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(dir:*)",
+      "Bash(node examples/basic-usage.js:*)"
     ]
   }
 }

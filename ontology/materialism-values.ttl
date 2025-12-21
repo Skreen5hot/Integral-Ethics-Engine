@@ -1,0 +1,149 @@
+@prefix : <http://ontology-of-freedom.org/iee#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# ============================================================================
+# Materialism Worldview - Value Hierarchy
+# ============================================================================
+#
+# Philosophical Foundation:
+# - Reality is fundamentally material/physical
+# - Consciousness and mental states reduce to physical processes
+# - Epistemology: Empirical observation and measurement
+# - Values grounded in physical wellbeing and empirical truth
+#
+# This ontology uses BFO/CCO patterns to formally model how materialist
+# metaphysics grounds specific value hierarchies.
+# ============================================================================
+
+:Materialism a :Worldview ;
+    :name "materialism" ;
+    :foundation "matter" ;
+    :primacy "physical_reality" ;
+    :epistemology "empirical_observation" ;
+    :cluster :MaterialEmpirical ;
+    rdfs:comment "Worldview grounding value in physical reality and empirical verification." .
+
+# Terminal Values - Highest goods in materialist framework
+:PhysicalWellbeing a :TerminalValue ;
+    :groundedIn :Materialism ;
+    :manifestsAs :Health, :BodilyComfort, :MaterialSecurity ;
+    rdfs:comment "Physical wellbeing is terminal because materialism grounds all value in physical states." .
+
+:EmpiricalTruth a :TerminalValue ;
+    :groundedIn :Materialism ;
+    :validatedBy :MeasurementProcess, :VerificationProcess ;
+    rdfs:comment "Truth corresponds to empirically verifiable facts about material reality." .
+
+:MaterialSecurity a :TerminalValue ;
+    :groundedIn :Materialism ;
+    :includes :Shelter, :Food, :PhysicalSafety ;
+    rdfs:comment "Security of material conditions enabling physical survival and wellbeing." .
+
+# Constitutive Values - Essential components of terminal values
+:Health a :ConstitutiveValue ;
+    :constitutes :PhysicalWellbeing ;
+    :measuredBy :PhysiologicalMetrics ;
+    rdfs:comment "Bodily health as measurable physiological functioning." .
+
+:BodilyComfort a :ConstitutiveValue ;
+    :constitutes :PhysicalWellbeing ;
+    :manifestsAs :AbsenceOfPain, :PleasurableSensation ;
+    rdfs:comment "Physical comfort and absence of suffering." .
+
+:SensoryFunction a :ConstitutiveValue ;
+    :constitutes :PhysicalWellbeing ;
+    :includes :Vision, :Hearing, :Touch, :Proprioception ;
+    rdfs:comment "Proper functioning of sensory apparatuses." .
+
+# Instrumental Values - Means to terminal values
+:Technology a :InstrumentalValue ;
+    :servesValue :PhysicalWellbeing, :MaterialSecurity ;
+    :manifestsAs :MedicalTechnology, :Engineering, :Tools ;
+    rdfs:comment "Technology as means to enhance physical wellbeing and security." .
+
+:Medicine a :InstrumentalValue ;
+    :servesValue :Health, :PhysicalWellbeing ;
+    :groundedIn :EmpiricalTruth ;
+    rdfs:comment "Medical science grounded in empirical knowledge of physical body." .
+
+:Engineering a :InstrumentalValue ;
+    :servesValue :MaterialSecurity, :BodilyComfort ;
+    :manifestsAs :Infrastructure, :Shelter, :Tools ;
+    rdfs:comment "Engineering provides material infrastructure for wellbeing." .
+
+:Measurement a :InstrumentalValue ;
+    :servesValue :EmpiricalTruth ;
+    :manifestsAs :Instrumentation, :Quantification ;
+    rdfs:comment "Measurement enables empirical verification of material facts." .
+
+# Subordinated Values - De-prioritized in materialist framework
+:Consciousness a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :reducedTo :PhysicalProcess ;
+    rdfs:comment "Consciousness treated as epiphenomenal or reducible to brain states." .
+
+:Meaning a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :subjective true ;
+    rdfs:comment "Meaning is subjective projection, not objectively real." .
+
+:Spirituality a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :illusory true ;
+    rdfs:comment "Spiritual claims lack empirical grounding, treated as illusion or social construct." .
+
+:Beauty a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :reducedTo :SensoryStimulation ;
+    rdfs:comment "Aesthetic experience reduces to pleasant sensory stimulation." .
+
+# ============================================================================
+# BFO/CCO Grounding Patterns
+# ============================================================================
+
+# Quality Substrates (BFO pattern)
+:PhysicalHealth a bfo:0000019 ;  # quality
+    bfo:0000052 :Person ;  # inheres_in
+    :hasSpecifiedValue :HealthLevel ;
+    rdfs:comment "Health as quality substrate inhering in person." .
+
+# Processes that realize values
+:MeasurementProcess a bfo:0000015 ;  # process
+    :realizes :EmpiricalVerification ;
+    :hasParticipant :Scientist, :Instrument ;
+    rdfs:comment "Process of empirical measurement realizing value of empirical truth." .
+
+:VerificationProcess a bfo:0000015 ;  # process
+    :validates :EmpiricalClaim ;
+    :produces :VerifiedKnowledge ;
+    rdfs:comment "Verification process establishing empirical truth." .
+
+# Information Content Entities (CCO pattern)
+:EmpiricalClaim a cco:InformationContentEntity ;
+    :requiresVerification :EmpiricalEvidence ;
+    :aboutPhysicalReality true ;
+    rdfs:comment "Claims about material reality requiring empirical verification." .
+
+# ============================================================================
+# Evaluation Criteria for Materialism
+# ============================================================================
+
+:MaterialistEvaluationCriteria a :EvaluationFramework ;
+    :prioritizes :PhysicalWellbeing, :EmpiricalTruth, :MaterialSecurity ;
+    :evaluatesBy :PhysicalConsequences, :EmpiricalVerifiability ;
+    :subordinates :SubjectiveExperience, :Meaning, :Spirituality ;
+    rdfs:comment "Criteria for evaluating actions from materialist perspective." .
+
+:PhysicalConsequences a :EvaluationDimension ;
+    :measures :ImpactOnPhysicalWellbeing ;
+    :quantifiable true ;
+    rdfs:comment "Evaluate based on measurable physical consequences." .
+
+:EmpiricalVerifiability a :EvaluationDimension ;
+    :requires :ObservationalEvidence ;
+    :rejectsUnverifiableClaims true ;
+    rdfs:comment "Truth claims must be empirically verifiable to have value." .

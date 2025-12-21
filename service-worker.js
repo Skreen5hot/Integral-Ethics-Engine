@@ -251,7 +251,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification('Agentic App', options)
+    self.registration.showNotification('Integral Ethics Engine', options)
   );
 });
 

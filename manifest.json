@@ -1,11 +1,11 @@
 {
-  "name": "Agentic Project Template",
-  "short_name": "Agentic App",
-  "description": "Progressive Web App template for agentic development with offline-first architecture and user-owned data",
+  "name": "Integral Ethics Engine",
+  "short_name": "IEE",
+  "description": "Multi-perspectival moral reasoning system honoring twelve archetypal worldviews with complete transparency and non-commodifiable ethical integrity",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4a90e2",
+  "theme_color": "#2c5aa0",
   "orientation": "any",
   "icons": [
     {

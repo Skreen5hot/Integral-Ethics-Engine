@@ -110,21 +110,91 @@ jobs:
         run: |
           mkdir -p _site
 
-          echo "📦 Building multi-environment deployment"
+          echo "📦 Building multi-environment deployment for Integral Ethics Engine"
           echo "  - Main branch → / (root)"
           echo "  - Dev branch → /dev/"
 
           # Deploy main branch (current checkout) to root
-          echo "Deploying main gitDataPOC to root..."
-          cp -r gitDataPOC/* _site/
+          echo "Deploying main IEE to root..."
+
+          # Copy core application files
+          cp -r src _site/
+          cp -r ontology _site/
+          cp -r examples _site/
+          cp manifest.json _site/
+          cp service-worker.js _site/
+          cp offline.html _site/
+
+          # Copy any index.html if it exists, otherwise create one
+          if [ -f index.html ]; then
+            cp index.html _site/
+          else
+            echo "Creating default index.html..."
+            cat > _site/index.html << 'INDEXEOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Integral Ethics Engine</title>
+            <link rel="manifest" href="manifest.json">
+            <meta name="theme-color" content="#2c5aa0">
+            <style>
+              body { font-family: system-ui; max-width: 800px; margin: 50px auto; padding: 20px; }
+              h1 { color: #2c5aa0; }
+              code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
+            </style>
+          </head>
+          <body>
+            <h1>Integral Ethics Engine</h1>
+            <p>Multi-perspectival moral reasoning system based on twelve archetypal worldviews.</p>
+            <h2>Available Resources</h2>
+            <ul>
+              <li><a href="examples/basic-usage.js">Basic Usage Example</a></li>
+              <li><a href="FOUNDATION_COMPLETE.md">Foundation Documentation</a></li>
+              <li><a href="TEST_RESULTS.md">Test Results</a></li>
+            </ul>
+            <script type="module" src="src/manifest-generator.js"></script>
+          </body>
+          </html>
+          INDEXEOF
+          fi
 
           # Fetch and deploy dev branch to /dev/
-          git fetch origin dev
-          git checkout origin/dev
+          git fetch origin dev || echo "Dev branch not yet created"
 
-          echo "Deploying dev gitDataPOC to /dev/..."
-          mkdir -p _site/dev
-          cp -r gitDataPOC/* _site/dev/
+          if git rev-parse --verify origin/dev >/dev/null 2>&1; then
+            git checkout origin/dev
+
+            echo "Deploying dev IEE to /dev/..."
+            mkdir -p _site/dev
+
+            # Copy dev version
+            cp -r src _site/dev/
+            cp -r ontology _site/dev/
+            cp -r examples _site/dev/
+            cp manifest.json _site/dev/
+            cp service-worker.js _site/dev/
+            cp offline.html _site/dev/
+
+            if [ -f index.html ]; then
+              cp index.html _site/dev/
+            fi
+          else
+            echo "Dev branch does not exist yet, skipping dev deployment"
+            mkdir -p _site/dev
+            cat > _site/dev/index.html << 'DEVEOF'
+          <!DOCTYPE html>
+          <html>
+          <head><title>Dev Environment - Coming Soon</title></head>
+          <body>
+            <h1>Development Environment</h1>
+            <p>The dev branch has not been created yet. Create it to enable dev environment.</p>
+            <p><a href="/">Return to Production</a></p>
+          </body>
+          </html>
+          DEVEOF
+          fi
 
           # Add base tag to dev index.html for proper path resolution
           REPO_NAME="${{ github.repository }}"
@@ -147,13 +217,13 @@ jobs:
           <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Available Environments</title>
+            <title>IEE Environments</title>
             <style>
               body { font-family: system-ui; max-width: 600px; margin: 100px auto; padding: 20px; }
-              h1 { color: #333; }
+              h1 { color: #2c5aa0; }
               ul { list-style: none; padding: 0; }
               li { margin: 15px 0; }
-              a { display: block; padding: 15px; background: #f5f5f5; border-radius: 8px; text-decoration: none; color: #0066cc; transition: background 0.2s; }
+              a { display: block; padding: 15px; background: #f5f5f5; border-radius: 8px; text-decoration: none; color: #2c5aa0; transition: background 0.2s; }
               a:hover { background: #e0e0e0; }
               .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; margin-left: 10px; }
               .prod { background: #28a745; color: white; }
@@ -161,7 +231,8 @@ jobs:
             </style>
           </head>
           <body>
-            <h1>🔐 GitData POC Environments</h1>
+            <h1>🎯 Integral Ethics Engine Environments</h1>
+            <p>Multi-perspectival moral reasoning system</p>
             <ul>
               <li>
                 <a href="/">
