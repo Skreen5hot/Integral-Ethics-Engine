@@ -1,0 +1,666 @@
+@prefix : <http://ontology-of-freedom.org/iee#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-core: <https://fandaws.com/ontology/bfo/valuenet-core#> .
+@prefix vn-schwartz: <https://fandaws.com/ontology/bfo/valuenet-schwartz-values#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Sensationalism Worldview - Value Hierarchy
+# ============================================================================
+#
+# Philosophical Foundation:
+# - Reality is fundamentally qualitative sensory experience
+# - Knowledge derives from immediate felt qualities (qualia)
+# - Epistemology: Direct sensory intuition, phenomenal immediacy
+# - Values grounded in experiential richness and aesthetic beauty
+#
+# Primary Sources:
+# - Hume, D. (1739-40). A Treatise of Human Nature. Oxford University Press.
+# - Berkeley, G. (1710). A Treatise Concerning the Principles of Human Knowledge.
+# - Condillac, É. B. de. (1754). Treatise on Sensations (Traité des sensations).
+# - Mach, E. (1886). The Analysis of Sensations and the Relation of the Physical to the Psychical.
+# - James, W. (1890). The Principles of Psychology. Henry Holt and Company.
+#
+# Contemporary Empirical Research:
+# - Chatterjee, A. (2011). Neuroaesthetics: A Coming of Age Story. Journal of Cognitive Neuroscience, 23(1), 53-62.
+# - Kahneman, D., Wakker, P. P., & Sarin, R. (1997). Back to Bentham? Explorations of experienced utility. Quarterly Journal of Economics, 112(2), 375-406.
+# - Goldstone, R. L. (1998). Perceptual Learning. Annual Review of Psychology, 49, 585-612.
+# - Nadal, M., & Pearce, M. T. (2011). The Copenhagen Neuroaesthetics Conference. Brain and Cognition, 76(1), 1-4.
+# - Leder, H., et al. (2004). A model of aesthetic appreciation and aesthetic judgments. British Journal of Psychology, 95(4), 489-508.
+#
+# Key Distinction from Materialism:
+# - Materialism: Physical substrate is real, experience is derivative
+# - Sensationalism: Experience/sensation is real, physical substrate inferred
+#
+# Key Distinction from Phenomenalism:
+# - Phenomenalism: Focuses on validity of appearances (epistemic)
+# - Sensationalism: Focuses on quality of sensations (axiological)
+#
+# Key Distinction from Rationalism:
+# - Rationalism: Abstract logical relations are fundamental
+# - Sensationalism: Immediate sensory impressions are fundamental
+#   (Hume's distinction: impressions have greater vivacity than ideas)
+#
+# This ontology uses BFO/CCO patterns and integrates with ValueNet to
+# model how sensationalist metaphysics grounds specific value hierarchies
+# and maps to value dispositions.
+#
+# ============================================================================
+# BIBLIOGRAPHIC CITATIONS
+# ============================================================================
+#
+# Primary Philosophical Sources:
+# - Hume, D. (1739-40). A Treatise of Human Nature. Book I: Of the Understanding. Oxford University Press (2000 ed.).
+# - Berkeley, G. (1710). A Treatise Concerning the Principles of Human Knowledge. Aaron Rhames.
+# - Condillac, É. B. de. (1754). Treatise on Sensations (Traité des sensations). Trans. Geraldine Carr. Los Angeles: University of Southern California (1930).
+# - Mach, E. (1886). The Analysis of Sensations and the Relation of the Physical to the Psychical. Trans. C. M. Williams. Chicago: Open Court (1914).
+# - James, W. (1890). The Principles of Psychology. Vol. 1-2. Henry Holt and Company.
+# - Mill, J. S. (1865). An Examination of Sir William Hamilton's Philosophy. Longmans, Green.
+#
+# Empirical Research - Neuroaesthetics:
+# - Chatterjee, A. (2011). Neuroaesthetics: A Coming of Age Story. Journal of Cognitive Neuroscience, 23(1), 53-62.
+# - Nadal, M., & Pearce, M. T. (2011). The Copenhagen Neuroaesthetics Conference: Prospects and pitfalls for an emerging field. Brain and Cognition, 76(1), 1-4.
+# - Leder, H., Belke, B., Oeberst, A., & Augustin, D. (2004). A model of aesthetic appreciation and aesthetic judgments. British Journal of Psychology, 95(4), 489-508.
+# - Vessel, E. A., Starr, G. G., & Rubin, N. (2012). The brain on art: intense aesthetic experience activates the default mode network. Frontiers in Human Neuroscience, 6, 66.
+#
+# Empirical Research - Hedonic Psychology:
+# - Kahneman, D., Wakker, P. P., & Sarin, R. (1997). Back to Bentham? Explorations of experienced utility. Quarterly Journal of Economics, 112(2), 375-406.
+# - Kahneman, D., Fredrickson, B. L., Schreiber, C. A., & Redelmeier, D. A. (1993). When More Pain Is Preferred to Less: Adding a Better End. Psychological Science, 4(6), 401-405.
+# - Fredrickson, B. L., & Kahneman, D. (1993). Duration neglect in retrospective evaluations of affective episodes. Journal of Personality and Social Psychology, 65(1), 45-55.
+#
+# Empirical Research - Perceptual Learning:
+# - Goldstone, R. L. (1998). Perceptual Learning. Annual Review of Psychology, 49, 585-612.
+# - Gibson, E. J. (1969). Principles of Perceptual Learning and Development. Appleton-Century-Crofts.
+# - Fahle, M., & Poggio, T. (Eds.). (2002). Perceptual Learning. MIT Press.
+# ============================================================================
+
+# ============================================================================
+# WORLDVIEW DEFINITION
+# ============================================================================
+
+:Sensationalism a :Worldview ;
+    :name "sensationalism" ;
+    :foundation "sensory_experience" ;
+    :primacy "qualitative_immediacy" ;
+    :epistemology "direct_sensory_intuition" ;
+    :cluster :MaterialEmpirical ;
+    dcterms:source "Hume (1739), Berkeley (1710), Condillac (1754)" ;
+    rdfs:comment "Worldview grounding value in immediate sensory experience and qualitative richness." ;
+    skos:definition "The metaphysical position that reality is constituted by sensory experiences and their qualitative properties, and that value derives from experiential intensity and aesthetic quality. 'Esse est percipi' (Berkeley): to be is to be perceived." .
+
+# ============================================================================
+# TERMINAL VALUES - Highest Goods in Sensationalist Framework
+# ============================================================================
+
+:SensoryExperience a :TerminalValue ;
+    :groundedIn :Sensationalism ;
+    :primacy "ultimate" ;
+    :manifestsAs :PleasurableSensation, :AestheticEncounter, :SensoryRichness ;
+    dcterms:source "Hume (1739) Book I, Part I: 'All our simple ideas in their first appearance are derived from simple impressions, which are correspondent to them, and which they exactly represent.'" ;
+    :empiricalEvidence "Chatterjee (2011): Neural correlates of aesthetic experience involve ventral striatum (reward) and medial orbitofrontal cortex (valuation)" ;
+    rdfs:comment "Sensory experience is the terminal good because sensationalism grounds all reality in immediate felt qualities (Hume's 'impressions')." ;
+    skos:definition "The richness and intensity of immediate sensory encounters, valued as the fundamental good from which all other values derive." .
+
+:AestheticPleasure a :TerminalValue ;
+    :groundedIn :Sensationalism ;
+    :manifestsAs :BeautyExperience, :HarmonicSensation, :ArtisticEncounter ;
+    :requires :SensoryRefinement, :AestheticCultivation ;
+    dcterms:source "Hume, D. (1757). Of the Standard of Taste. In Essays, Moral, Political, and Literary." ;
+    :empiricalEvidence "Leder et al. (2004): Aesthetic appreciation involves perceptual analysis, implicit memory integration, explicit classification, and cognitive mastery stages." ;
+    rdfs:comment "Aesthetic pleasure combines sensory intensity with harmonic form, representing cultivated sensationalism. Hume's 'delicacy of taste' requires both natural sensitivity and practice." ;
+    skos:definition "The experience of beauty through refined sensory perception, valued as a higher form of experiential quality." .
+
+:ExperientialIntensity a :TerminalValue ;
+    :groundedIn :Sensationalism ;
+    :measuredBy :QualitativeDensity, :SensoryVividness ;
+    :manifestsAs :RichExperience, :HeightenedAwareness ;
+    dcterms:source "Hume (1739) Book I, Part I, Section I: 'Those perceptions, which enter with most force and violence, we may name impressions... By ideas I mean the faint images of these in thinking and reasoning.'" ;
+    :empiricalEvidence "Kahneman et al. (1993): Peak-end rule demonstrates that intensity of experience dominates duration in retrospective evaluations" ;
+    rdfs:comment "Not mere quantity of sensation, but qualitative intensity and vividness of experience. Hume's 'force and vivacity' distinguish impressions from ideas." ;
+    skos:definition "The degree of qualitative richness and vividness in sensory experience, independent of duration or quantity." .
+
+# ============================================================================
+# CONSTITUTIVE VALUES - Essential Components of Terminal Values
+# ============================================================================
+
+:PleasurableSensation a :ConstitutiveValue ;
+    :constitutes :SensoryExperience ;
+    :manifestsAs :HedonicFeeling, :AgreeableQuality ;
+    :measuredBy :PleasureIntensity ;
+    dcterms:source "Hume (1739) Book II: 'Pleasure and pain are not only necessary attendants of beauty and deformity, but constitute their very essence.'" ;
+    :empiricalEvidence "Kahneman et al. (1997): Experienced utility (moment-to-moment hedonic states) distinct from decision utility. Sensationalism prioritizes experienced utility." ;
+    :psychologicalPhenomenon :PeakEndRule, :HedonicAdaptation ;
+    rdfs:comment "Pleasure as immediate hedonic quality of sensation (Hume's 'impressions of pleasure'), not as utility or consequence." .
+
+:SensoryRichness a :ConstitutiveValue ;
+    :constitutes :SensoryExperience ;
+    :manifestsAs :ComplexQualia, :LayeredExperience ;
+    :includes :VisualRichness, :AuditoryDepth, :TactileComplexity, :GustatoryNuance, :OlfactorySubtlety ;
+    dcterms:source "James (1890) Vol. 1, Ch. VII: 'The baby, assailed by eyes, ears, nose, skin, and entrails at once, feels it all as one great blooming, buzzing confusion.'" ;
+    :empiricalEvidence "Goldstone (1998): Perceptual learning involves differentiation (detecting new features) and unitization (forming new perceptual units)" ;
+    rdfs:comment "Complexity and multi-layered quality of sensory experience. Refined through perceptual learning (Goldstone 1998)." .
+
+:AestheticRefinement a :ConstitutiveValue ;
+    :constitutes :AestheticPleasure ;
+    :requires :CultivatedTaste, :SensoryEducation ;
+    :manifestsAs :DiscriminatingPerception ;
+    dcterms:source "Hume (1757) 'Of the Standard of Taste': 'Strong sense, united to delicate sentiment, improved by practice, perfected by comparison, and cleared of all prejudice, can alone entitle critics to this valuable character.'" ;
+    :empiricalEvidence "Goldstone (1998): Wine experts show enhanced discrimination in gustatory and olfactory dimensions through perceptual learning" ;
+    rdfs:comment "Capacity to perceive subtle aesthetic qualities through refined sensory faculties. Hume's 'delicacy of taste' emerges from practice and comparison." .
+
+:SensoryClarity a :ConstitutiveValue ;
+    :constitutes :ExperientialIntensity ;
+    :manifestsAs :VividPerception, :UncloudedAwareness ;
+    :opposedTo :SensoryDullness, :NumbedPerception ;
+    dcterms:source "Hume (1739) Book I, Part I, Section I: Impressions have greater 'force and vivacity' than ideas" ;
+    :empiricalEvidence "Attention enhances sensory processing: Kastner & Ungerleider (2000). Mechanisms of visual attention in the human cortex. Annual Review of Neuroscience, 23, 315-341." ;
+    rdfs:comment "Clarity and vividness of sensory perception, heightened awareness. Cultivated through attentional focus." .
+
+# ============================================================================
+# INSTRUMENTAL VALUES - Means to Terminal Values
+# ============================================================================
+
+:Art a :InstrumentalValue ;
+    :servesValue :AestheticPleasure, :SensoryRichness ;
+    :manifestsAs :VisualArt, :Music, :Dance, :Poetry, :Sculpture ;
+    :purpose "Creates opportunities for refined sensory experience" ;
+    dcterms:source "Kant, I. (1790). Critique of Judgment. Trans. Werner Pluhar. Hackett (1987)." ;
+    :empiricalEvidence "Vessel et al. (2012): Intensely aesthetic experiences activate default mode network, suggesting personal relevance and self-referential processing" ;
+    rdfs:comment "Art as primary instrument for cultivating aesthetic sensory experience. Provides structured opportunities for refined perception." .
+
+:SensoryCultivation a :InstrumentalValue ;
+    :servesValue :AestheticRefinement, :SensoryClarity ;
+    :manifestsAs :TasteEducation, :PerceptualTraining ;
+    :includes :WineAppreciation, :MusicTraining, :ArtEducation, :CulinaryRefinement ;
+    dcterms:source "Hume (1757): 'Nothing tends further to encrease and improve this talent, than practice in a particular art, and the frequent survey or contemplation of a particular species of beauty.'" ;
+    :empiricalEvidence "Goldstone (1998): Perceptual learning shows specificity to trained stimuli and transfer to similar domains" ;
+    rdfs:comment "Practices that refine and heighten sensory discrimination. Empirically validated through perceptual learning research." .
+
+:Aesthetics a :InstrumentalValue ;
+    :servesValue :AestheticPleasure, :ExperientialIntensity ;
+    :manifestsAs :BeautyTheory, :ArtisticPrinciples ;
+    dcterms:source "Burke, E. (1757). A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful." ;
+    rdfs:comment "Study of aesthetic principles to guide sensory cultivation. Subordinate to direct experience but useful for systematic refinement." .
+
+:SensoryEnvironment a :InstrumentalValue ;
+    :servesValue :SensoryExperience, :ExperientialIntensity ;
+    :manifestsAs :BeautifulSpaces, :PleasantSoundscapes, :AgreeableAromas ;
+    :purpose "Optimizes environmental conditions for rich sensory experience" ;
+    :empiricalEvidence "Environmental psychology: Ulrich et al. (1991). Stress recovery during exposure to natural and urban environments. Journal of Environmental Psychology, 11(3), 201-230." ;
+    rdfs:comment "Cultivation of physical environments to maximize experiential quality. Empirically supported by environmental psychology." .
+
+# ============================================================================
+# SUBORDINATED VALUES - De-prioritized in Sensationalist Framework
+# ============================================================================
+
+:AbstractReasoning a :SubordinatedValue ;
+    :subordinatedIn :Sensationalism ;
+    :status "derived_from_impressions" ;
+    :salience "very_low" ;
+    dcterms:source "Hume (1739) Book I, Part III: 'All our reasonings concerning matters of fact are founded on a species of Analogy, which leads us to expect from any cause the same events, which we have observed to result from similar causes.'" ;
+    :philosophicalNote "Sensationalism does NOT reduce concepts to mere words (that is nominalism). Rather, abstract ideas are derivative from sensory impressions via association (Hume's principles: resemblance, contiguity, causation). Condillac (1754) demonstrates genetic derivation: all faculties emerge from sensation through transformation." ;
+    rdfs:comment "Abstract concepts derived from sensory impressions through association (Hume). Logic valued only insofar as it enhances or guides sensory experience. Not ontologically reduced to verbal sensations (that conflates sensationalism with nominalism), but genetically derived from impressions." ;
+    skos:definition "Logical and abstract reasoning valued only insofar as it enhances sensory experience, not as independent truth. All abstract ideas traceable to original sensory impressions." .
+
+:MoralPrinciples a :SubordinatedValue ;
+    :subordinatedIn :Sensationalism ;
+    :reducedTo :MoralSentiments ;
+    :salience "low" ;
+    dcterms:source "Hume (1751). An Enquiry Concerning the Principles of Morals: 'Morality is more properly felt than judg'd of.'" ;
+    :distinguishedFrom "Rationalist ethics (Kant) which grounds morality in pure practical reason. Sensationalist ethics grounded in moral sentiments (sympathy, approval/disapproval)." ;
+    :valuenetNote "MoralPrinciples maps differently across worldviews: Rationalism → UniversalismDisposition (universal rational principles). Sensationalism → BenevolenceDisposition (sympathetic feeling)." ;
+    rdfs:comment "Moral principles subordinated to felt emotional qualities; ethics becomes aesthetics of feeling (Hume's moral sentiments). Morality grounded in sympathy and approval/disapproval (feelings), not abstract rational principles." ;
+    skos:definition "Moral claims valued for their emotional/aesthetic quality (sympathy, approbation) rather than rational justification." .
+
+:MaterialSubstrate a :SubordinatedValue ;
+    :subordinatedIn :Sensationalism ;
+    :status "inferred_not_given" ;
+    :salience "very_low" ;
+    dcterms:source "Berkeley (1710) Part I, §3: 'Esse est percipi' - to be is to be perceived. Material objects are collections of sensory ideas." ;
+    :empiricalAnalogy "Modern physics (quantum mechanics) shows observation affects measured properties, resonating with sensationalist primacy of experience over substrate." ;
+    rdfs:comment "Physical substrate inferred from sensations but not directly experienced; secondary to qualitative experience. Berkeley's idealism: material objects are 'permanent possibilities of sensation' (Mill 1865)." ;
+    skos:definition "Material objects treated as useful constructs from sensation patterns, not as independently real substrates." .
+
+:UtilitarianConsequences a :SubordinatedValue ;
+    :subordinatedIn :Sensationalism ;
+    :instrumentalizedFor :HedonicExperience ;
+    :salience "low" ;
+    dcterms:source "Contrasts with Bentham's utilitarian calculus. Sensationalism values experienced utility (Kahneman 1997) over calculated aggregate utility." ;
+    :empiricalEvidence "Kahneman et al. (1997): Decision utility (predicted/calculated) often diverges from experienced utility (actual hedonic states). Sensationalism prioritizes experienced utility." ;
+    rdfs:comment "Practical utility subordinated to immediate experiential quality; consequences valued only for their felt qualities. Rejects abstract utility calculation in favor of direct hedonic experience." ;
+    skos:definition "Future consequences valued only as anticipated sensory experiences, not as abstract utilities." .
+
+# ============================================================================
+# BFO/CCO GROUNDING PATTERNS
+# ============================================================================
+
+# Sensory Quality Substrates (BFO pattern)
+:HedonicQuality a bfo:0000019 ;  # quality
+    bfo:0000052 :SensoryExperience ;  # inheres_in
+    :hasSpecifiedValue :PleasureIntensity ;
+    dcterms:source "Kahneman et al. (1997): Hedonic quality as directly experienced utility" ;
+    rdfs:label "Hedonic Quality" ;
+    rdfs:comment "Pleasure as quality substrate inhering in sensory experiences. Empirically measurable via experience sampling methods." .
+
+:AestheticQuality a bfo:0000019 ;  # quality
+    bfo:0000052 :AestheticObject ;  # inheres_in
+    :hasSpecifiedValue :BeautyDegree ;
+    :perceived_through :RefinedSensoryFaculty ;
+    dcterms:source "Leder et al. (2004): Aesthetic quality emerges from multi-stage processing" ;
+    rdfs:label "Aesthetic Quality" ;
+    rdfs:comment "Beauty as quality substrate inhering in aesthetic objects/experiences. Requires perceptual analysis and cognitive mastery stages." .
+
+:SensoryVividness a bfo:0000019 ;  # quality
+    bfo:0000052 :Perception ;  # inheres_in
+    :hasSpecifiedValue :VividnessLevel ;
+    :increases_through :Attention, :Cultivation ;
+    dcterms:source "Hume (1739): Vividness distinguishes impressions from ideas" ;
+    rdfs:label "Sensory Vividness" ;
+    rdfs:comment "Vividness as quality of perceptual experience. Hume's 'force and vivacity' as defining feature of impressions." .
+
+# BFO Dispositions (Realizable Entities)
+:SensoryDiscriminationDisposition a bfo:0000016 ;  # disposition
+    bfo:0000052 :Perceiver ;  # inheres_in
+    :cultivated_through :SensoryCultivationProcess ;
+    dcterms:source "Goldstone (1998): Perceptual learning enhances discrimination ability" ;
+    rdfs:label "Sensory Discrimination Disposition" ;
+    rdfs:comment "Disposition to perceive subtle differences in sensory qualities. Enhanced through perceptual learning." .
+
+:AestheticAppreciationDisposition a bfo:0000016 ;  # disposition
+    bfo:0000052 :Perceiver ;  # inheres_in
+    :requires :AestheticRefinement ;
+    dcterms:source "Hume (1757): 'Delicacy of taste' as cultivated disposition" ;
+    rdfs:label "Aesthetic Appreciation Disposition" ;
+    rdfs:comment "Disposition to appreciate beauty and aesthetic harmony. Cultivated through practice and comparison (Hume)." .
+
+:PleasureDisposition a bfo:0000016 ;  # disposition
+    bfo:0000052 :Perceiver ;  # inheres_in
+    :manifestsAs :HedonicResponse ;
+    dcterms:source "Kahneman et al. (1997): Individual differences in hedonic response patterns" ;
+    rdfs:label "Pleasure Disposition" ;
+    rdfs:comment "Disposition to experience pleasure from sensory stimuli. Subject to hedonic adaptation and peak-end effects." .
+
+:RefinementDisposition a bfo:0000016 ;  # disposition
+    bfo:0000052 :Perceiver ;  # inheres_in
+    :developed_through :Practice, :Education ;
+    dcterms:source "Hume (1757): Refinement through 'practice, perfected by comparison'" ;
+    rdfs:label "Refinement Disposition" ;
+    rdfs:comment "Disposition toward increasingly subtle and discriminating aesthetic perception." .
+
+# Processes that realize sensationalist values (BFO:Process)
+:AestheticEncounter a bfo:0000015 ;  # process
+    bfo:0000055 :AestheticAppreciationDisposition ;  # realizes (BFO relation)
+    bfo:0000057 :Perceiver ;  # has_participant
+    bfo:0000057 :AestheticObject ;  # has_participant
+    :produces :AestheticExperience ;
+    dcterms:source "Leder et al. (2004): Multi-stage model of aesthetic processing" ;
+    rdfs:label "Aesthetic Encounter" ;
+    rdfs:comment "Process of aesthetic appreciation realizing aesthetic value disposition. Involves perceptual analysis, memory integration, classification, and cognitive mastery stages." .
+
+:SensoryCultivationProcess a bfo:0000015 ;  # process
+    bfo:0000055 :RefinementDisposition ;  # realizes (BFO relation)
+    bfo:0000057 :Student ;  # has_participant
+    bfo:0000057 :Teacher ;  # has_participant
+    :improves :SensoryDiscrimination ;
+    :temporallyExtendedOver :TrainingPeriod ;
+    dcterms:source "Goldstone (1998): Perceptual learning requires repeated exposure and feedback" ;
+    rdfs:label "Sensory Cultivation Process" ;
+    rdfs:comment "Process of training sensory faculties to greater discrimination and refinement. Empirically validated perceptual learning process." .
+
+:HedonicExperienceProcess a bfo:0000015 ;  # process
+    bfo:0000055 :PleasureDisposition ;  # realizes (BFO relation)
+    bfo:0000057 :Experiencer ;  # has_participant
+    :produces :PleasurableState ;
+    dcterms:source "Kahneman et al. (1993): Hedonic experience shows peak-end rule pattern" ;
+    rdfs:label "Hedonic Experience Process" ;
+    rdfs:comment "Process of pleasurable sensory experience. Retrospective evaluation dominated by peak intensity and end state." .
+
+# Information Content Entities (CCO pattern)
+:AestheticTheory a cco:InformationContentEntity ;
+    :describes :BeautyPrinciples ;
+    :guides :SensoryCultivation ;
+    :subordinate_to :DirectExperience ;
+    dcterms:source "Burke (1757), Kant (1790): Systematic aesthetic theory" ;
+    rdfs:label "Aesthetic Theory" ;
+    rdfs:comment "Theoretical knowledge about beauty, subordinate to direct aesthetic experience but useful for guiding cultivation." .
+
+# ============================================================================
+# HUME'S ASSOCIATION PRINCIPLES - Core Sensationalist Epistemology
+# ============================================================================
+
+:AssociationOfIdeas a owl:Class ;
+    rdfs:subClassOf :CognitiveProcess ;
+    dcterms:source "Hume (1739) Book I, Part I, Section IV: 'The qualities, from which this association arises, and by which the mind is after this manner convey'd from one idea to another, are three, viz. RESEMBLANCE, CONTIGUITY in time or place, and CAUSE and EFFECT.'" ;
+    rdfs:label "Association of Ideas" ;
+    skos:definition "Hume's three principles by which simple impressions combine to form complex ideas: Resemblance, Contiguity, and Cause-Effect." ;
+    :principles :Resemblance, :Contiguity, :CauseEffect .
+
+:Resemblance a :AssociationPrinciple ;
+    dcterms:source "Hume (1739) Book I, Part I, Section IV" ;
+    skos:definition "Principle of association: ideas that resemble each other naturally suggest each other. Example: portrait leads mind to original person." ;
+    :empiricalAnalogy "Modern prototype theory (Rosch 1975): categorization based on resemblance to prototypes" .
+
+:Contiguity a :AssociationPrinciple ;
+    dcterms:source "Hume (1739) Book I, Part I, Section IV" ;
+    skos:definition "Principle of association: ideas contiguous in space or time naturally suggest each other. Example: mention of room in building suggests adjoining rooms." ;
+    :empiricalAnalogy "Classical conditioning (Pavlov): association by temporal contiguity" .
+
+:CauseEffect a :AssociationPrinciple ;
+    dcterms:source "Hume (1739) Book I, Part III: 'All reasonings concerning matter of fact seem to be founded on the relation of Cause and Effect.'" ;
+    skos:definition "Principle of association: ideas related as cause-effect naturally suggest each other. Example: thought of wound suggests pain. Note: Hume argues causation is ultimately reducible to constant conjunction (contiguity + repetition)." ;
+    :empiricalAnalogy "Causal learning research (Shanks 2010): humans track statistical contingencies" .
+
+:Impression a owl:Class ;
+    rdfs:subClassOf :MentalContent ;
+    dcterms:source "Hume (1739) Book I, Part I, Section I: 'By the term impression, then, I mean all our more lively perceptions, when we hear, or see, or feel, or love, or hate, or desire, or will.'" ;
+    :hasQuality :Vividness ;
+    :vividnessLevel "high" ;
+    rdfs:label "Impression (Hume)" ;
+    skos:definition "Immediate, vivid sensory or emotional experience. Distinguished from ideas by greater force and vivacity." ;
+    :subtypes :ImpressionOfSensation, :ImpressionOfReflection .
+
+:Idea a owl:Class ;
+    rdfs:subClassOf :MentalContent ;
+    dcterms:source "Hume (1739) Book I, Part I, Section I: 'By ideas I mean the faint images of these [impressions] in thinking and reasoning.'" ;
+    :hasQuality :Faintness ;
+    :vividnessLevel "low" ;
+    :derivedFrom :Impression ;
+    rdfs:label "Idea (Hume)" ;
+    skos:definition "Faint copy of impression in thought or reasoning. Less vivid than original impression." .
+
+# ============================================================================
+# AESTHETIC CATEGORIES - Sensationalist Aesthetics
+# ============================================================================
+
+:Beautiful a :AestheticCategory ;
+    dcterms:source "Burke (1757): Beauty produces love/positive inclination; characterized by smoothness, delicacy, gradual variation" ;
+    :sensoryQualities :Smoothness, :Delicacy, :GradualVariation ;
+    :emotionalResponse :Love, :Tenderness ;
+    rdfs:label "Beautiful" ;
+    skos:definition "Aesthetic category characterized by harmonious, smooth, delicate sensory qualities producing tender affection." .
+
+:Sublime a :AestheticCategory ;
+    dcterms:source "Burke (1757): Sublime produces awe/terror; characterized by vastness, obscurity, power. Kant (1790): Sublime involves inadequacy of imagination to comprehend magnitude/power." ;
+    :sensoryQualities :Vastness, :Obscurity, :Power, :Infinity ;
+    :emotionalResponse :Awe, :Terror, :Astonishment ;
+    rdfs:label "Sublime" ;
+    skos:definition "Aesthetic category characterized by overwhelming vastness or power producing awe and astonishment." .
+
+:Elegant a :AestheticCategory ;
+    dcterms:source "Hume (1757): Elegance combines simplicity with refinement" ;
+    :sensoryQualities :Simplicity, :Refinement, :Proportion ;
+    :emotionalResponse :Admiration, :Satisfaction ;
+    rdfs:label "Elegant" ;
+    skos:definition "Aesthetic category characterized by refined simplicity and harmonious proportion." .
+
+# ============================================================================
+# EXPANDED SENSORY MODALITY HIERARCHY
+# ============================================================================
+
+:SensoryModality a owl:Class ;
+    rdfs:label "Sensory Modality" ;
+    skos:definition "Distinct channels of sensory experience, each providing unique qualitative dimensions." ;
+    dcterms:source "James (1890) Vol. 2, Ch. XVII: 'The Five Senses'" .
+
+:Vision a :SensoryModality ;
+    :qualitativeDimensions :Color, :Brightness, :Shape, :Motion, :Depth ;
+    :receptorType "photoreceptors (rods and cones)" ;
+    dcterms:source "James (1890): Vision provides spatial extension most directly" ;
+    skos:definition "Visual sensory modality providing color, form, and spatial information." .
+
+:Audition a :SensoryModality ;
+    :qualitativeDimensions :Pitch, :Loudness, :Timbre, :Rhythm, :Harmony ;
+    :receptorType "hair cells in cochlea" ;
+    dcterms:source "Helmholtz, H. (1863). On the Sensations of Tone" ;
+    skos:definition "Auditory sensory modality providing temporal patterns and harmonic structure." .
+
+:Touch a :SensoryModality ;
+    :qualitativeDimensions :Pressure, :Temperature, :Texture, :Pain, :Vibration ;
+    :receptorType "mechanoreceptors, thermoreceptors, nociceptors" ;
+    dcterms:source "James (1890): Touch combines multiple sub-modalities" ;
+    skos:definition "Tactile sensory modality providing information about physical contact and surface properties." .
+
+:Taste a :SensoryModality ;
+    :qualitativeDimensions :Sweet, :Sour, :Salty, :Bitter, :Umami ;
+    :receptorType "taste receptor cells on tongue" ;
+    dcterms:source "Condillac (1754): Taste provides direct pleasure/displeasure" ;
+    skos:definition "Gustatory sensory modality providing chemical information about consumed substances." .
+
+:Smell a :SensoryModality ;
+    :qualitativeDimensions :Floral, :Fruity, :Spicy, :Resinous, :Burnt, :Putrid ;
+    :receptorType "olfactory receptor neurons" ;
+    dcterms:source "Condillac (1754): Smell particularly connected to memory and emotion" ;
+    skos:definition "Olfactory sensory modality providing chemical information about airborne substances." .
+
+:Proprioception a :SensoryModality ;
+    :qualitativeDimensions :BodyPosition, :Movement, :Force, :Effort ;
+    :receptorType "muscle spindles, Golgi tendon organs, joint receptors" ;
+    dcterms:source "Sherrington, C. S. (1906). The Integrative Action of the Nervous System" ;
+    skos:definition "Proprioceptive modality providing information about body position and movement." .
+
+# ============================================================================
+# EVALUATION CRITERIA FOR SENSATIONALISM
+# ============================================================================
+
+:SensationalistEvaluationCriteria a :EvaluationFramework ;
+    :prioritizes :SensoryExperience, :AestheticPleasure, :ExperientialIntensity ;
+    :evaluatesBy :QualitativeRichness, :HedonicValue, :AestheticQuality ;
+    :subordinates :AbstractReasoning, :UtilitarianConsequences, :MoralPrinciples ;
+    dcterms:source "Synthesized from Hume (1739), Berkeley (1710), Condillac (1754)" ;
+    rdfs:comment "Criteria for evaluating actions from sensationalist perspective." .
+
+:QualitativeRichness a :EvaluationDimension ;
+    :measures :ExperientialComplexity ;
+    :values :LayeredSensations, :SubtleNuances ;
+    :empiricalEvidence "Goldstone (1998): Experts perceive richer qualitative structure" ;
+    rdfs:comment "Evaluate based on richness and complexity of sensory experience." .
+
+:HedonicValue a :EvaluationDimension ;
+    :measures :PleasureIntensity ;
+    :immediate true ;
+    :notReduced_to :UtilityCalculation ;
+    :empiricalEvidence "Kahneman et al. (1997): Experienced utility distinct from decision utility" ;
+    rdfs:comment "Evaluate based on immediate felt pleasure, not calculated utility." .
+
+:AestheticQualityDimension a :EvaluationDimension ;
+    :measures :BeautyDegree ;
+    :requires :RefinedPerception ;
+    :includes :Harmony, :Proportion, :Elegance ;
+    dcterms:source "Hume (1757): Beauty requires delicacy of taste to perceive" ;
+    rdfs:comment "Evaluate based on aesthetic beauty and harmonic form." .
+
+# ============================================================================
+# VALUENET INTEGRATION - DISPOSITION MAPPINGS
+# ============================================================================
+# These mappings connect sensationalist values to ValueNet's BFO-aligned
+# value disposition ontology (Schwartz's 10 basic human values)
+# ============================================================================
+
+# Mapping: SensoryExperience → ValueNet Dispositions
+:SensoryExperience
+    :realizableAs vn-schwartz:HedonismDisposition ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :salience "very_high" ;
+    :grounding "Sensory experience maps directly to hedonism (pleasure-seeking) and stimulation (novelty/excitement in experience)." ;
+    :empiricalJustification "Schwartz (1992): Hedonism values (pleasure, enjoying life) empirically distinct from other value types. Sensationalism provides metaphysical grounding for hedonic values." ;
+    rdfs:comment "Primary mapping: Sensationalism's core value realizes through hedonic and stimulation dispositions." .
+
+# Mapping: AestheticPleasure → ValueNet Dispositions
+:AestheticPleasure
+    :realizableAs vn-schwartz:HedonismDisposition ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :salience "very_high" ;
+    :grounding "Aesthetic pleasure combines hedonic quality with self-directed cultivation of taste and refinement." ;
+    :empiricalJustification "Schwartz (1992): Self-direction (creativity, curiosity, choosing own goals) supports autonomous aesthetic development. Hedonism provides hedonic substrate." ;
+    rdfs:comment "Aesthetic appreciation requires both pleasure-seeking and autonomous taste development." .
+
+# Mapping: ExperientialIntensity → ValueNet Dispositions
+:ExperientialIntensity
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :realizableAs vn-schwartz:HedonismDisposition ;
+    :salience "high" ;
+    :grounding "Intensity of experience maps to seeking excitement, novelty, and vivid sensations." ;
+    :empiricalJustification "Schwartz (1992): Stimulation values (daring, varied life, exciting life) seek intense arousal and novelty." ;
+    rdfs:comment "Heightened experiential intensity through novel and stimulating encounters." .
+
+# Mapping: Art → ValueNet Dispositions
+:Art
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :salience "high" ;
+    :grounding "Artistic creation and appreciation involve autonomous creative expression and novel aesthetic experiences." ;
+    :empiricalJustification "Schwartz (1992): Self-direction includes creativity; stimulation includes variety and challenge." ;
+    rdfs:comment "Art as means to self-directed aesthetic cultivation and stimulating experience." .
+
+# Subordinated values with low salience
+:AbstractReasoning
+    :weaklyRelatedTo vn-schwartz:AchievementDisposition ;
+    :salience "very_low" ;
+    :grounding "Abstract reasoning subordinated; valued only as verbal aesthetic or intellectual stimulation, not as truth-seeking achievement." ;
+    :empiricalJustification "From sensationalist perspective, intellectual achievement valued only for stimulation or elegance (aesthetic), not for competence per se." ;
+    rdfs:comment "Intellectual achievement de-emphasized in favor of immediate experience." .
+
+:MoralPrinciples
+    :weaklyRelatedTo vn-schwartz:BenevolenceDisposition ;  # NOT Conformity/Tradition
+    :incompatibleWith vn-schwartz:ConformityDisposition ;
+    :incompatibleWith vn-schwartz:TraditionDisposition ;
+    :salience "low" ;
+    :grounding "Moral principles in sensationalism ground in sympathetic feeling (Hume's moral sentiments), not social conformity or tradition. Maps to benevolence (caring for close others) via sympathy, but low salience overall." ;
+    :valuenetNote "Key distinction: Rationalist morality → UniversalismDisposition (universal rational principles). Sensationalist morality → BenevolenceDisposition (sympathetic feelings). Both 'moral' but different metaphysical grounds." ;
+    :empiricalJustification "Schwartz (1992): Benevolence (helpful, honest, forgiving) grounded in affective concern for others. Distinct from Conformity/Tradition which emphasize social norms over feeling." ;
+    rdfs:comment "Moral value grounded in sympathetic feelings (benevolence), not abstract principles (universalism) or social conformity. Hume's 'morality is more properly felt than judg'd of.'" .
+
+:UtilitarianConsequences
+    :weaklyRelatedTo vn-schwartz:AchievementDisposition ;
+    :weaklyRelatedTo vn-schwartz:PowerDisposition ;
+    :salience "low" ;
+    :grounding "Practical achievement and power de-emphasized; valued only for their contribution to immediate experience." ;
+    :empiricalJustification "Sensationalism rejects abstract utility calculation (decision utility) in favor of experienced utility (Kahneman 1997)." ;
+    rdfs:comment "Utility and effectiveness subordinated to experiential quality." .
+
+# ============================================================================
+# SENSATIONALISM-SPECIFIC CONCEPTS
+# ============================================================================
+
+:Qualia a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    dcterms:source "James (1890): Raw feels; Nagel (1974) 'What is it like to be a bat?'; Chalmers (1996) The Conscious Mind" ;
+    rdfs:label "Qualia" ;
+    skos:definition "The intrinsic, subjective, qualitative properties of sensory experiences (e.g., the redness of red, the painfulness of pain)." ;
+    :philosophicalNote "Modeling qualia as BFO:Quality is philosophically contentious. Alternative: model as qualities of perceptual processes rather than continuants. Trade-off: ontological clarity vs. phenomenological accuracy." ;
+    rdfs:comment "Fundamental ontological category for sensationalism - irreducible felt qualities." .
+
+:AestheticObject a owl:Class ;
+    rdfs:subClassOf bfo:0000030 ;  # object
+    rdfs:label "Aesthetic Object" ;
+    skos:definition "Object valued primarily for its capacity to produce aesthetic experience." ;
+    :hasQuality :AestheticQuality ;
+    :appreciated_through :RefinedPerception ;
+    dcterms:source "Kant (1790): Objects of aesthetic judgment" .
+
+# ============================================================================
+# USAGE EXAMPLES AND PATTERNS
+# ============================================================================
+
+# Example 1: Evaluating wine tasting from sensationalist perspective
+:WineTastingScenario a :Scenario ;
+    :action "taste_fine_wine" ;
+    :context [
+        :aesthetic true ;
+        :sensory true ;
+        :cultivated true ;
+        :immediate_experience true
+    ] ;
+    :sensationalistEvaluation [
+        :judgment "highly_good" ;
+        :reasoning "Wine tasting realizes core sensationalist values: refined sensory experience (gustatory and olfactory richness), aesthetic pleasure (harmony of flavors), cultivated taste (perceptual learning)" ;
+        :relevantValues :SensoryExperience, :AestheticPleasure, :SensoryCultivation ;
+        :empiricalSupport "Goldstone (1998): Wine experts show enhanced perceptual discrimination through training" ;
+        :confidence 0.95
+    ] .
+
+# Example 2: Evaluating mathematical proof from sensationalist perspective
+:MathematicalProofScenario a :Scenario ;
+    :action "prove_theorem" ;
+    :context [
+        :abstract true ;
+        :logical true ;
+        :non_sensory true
+    ] ;
+    :sensationalistEvaluation [
+        :judgment "neutral_to_low" ;
+        :reasoning "Mathematical reasoning is abstract, lacks immediate sensory quality; valued only if experienced as elegant (aesthetic) or intellectually stimulating (novel ideas). Abstract concepts derivative from impressions via association, but mathematical abstraction highly remote from original sensory source." ;
+        :relevantValues :AbstractReasoning ;
+        :note "AbstractReasoning is subordinated in sensationalism" ;
+        :conditionalValue "Positive IF proof has aesthetic elegance or provides intellectual stimulation" ;
+        :conflicts "Abstract logic vs. immediate sensory experience" ;
+        :confidence 0.7
+    ] .
+
+# Example 3: Evaluating charitable donation from sensationalist perspective
+:CharitableDonationScenario a :Scenario ;
+    :action "donate_to_charity" ;
+    :context [
+        :moral true ;
+        :abstract_consequences true ;
+        :emotional_feeling true
+    ] ;
+    :sensationalistEvaluation [
+        :judgment "neutral_to_positive" ;
+        :reasoning "Valued primarily for warm emotional feeling (sensory quality of sympathetic pleasure), not for abstract moral duty or calculated utility. Hume's moral sentiments: morality grounded in feelings of approbation and sympathy." ;
+        :relevantValues :PleasurableSensation, :MoralPrinciples ;
+        :note "PleasurableSensation: emotional warmth via sympathy; MoralPrinciples: subordinated to feeling" ;
+        :empiricalSupport "Hume (1751): Moral approval is a pleasant sentiment arising from sympathy" ;
+        :confidence 0.6
+    ] .
+
+# ============================================================================
+# METAPHYSICAL COMMITMENTS
+# ============================================================================
+
+:SensationalistMetaphysics a :MetaphysicalPosition ;
+    :claims [
+        :ontologicalPrimacy "sensory experience" ;
+        :realityConstituents :Qualia, :SensoryExperiences ;
+        :epistemicAccess "immediate felt quality" ;
+        :inferredNotGiven :MaterialSubstrate, :AbstractEntities ;
+        :valueGrounding "experiential richness and aesthetic harmony"
+    ] ;
+    :distinguishedFrom [
+        :materialism "Material substrate primary (sensationalism: experience primary)" ;
+        :phenomenalism "Validity of appearances (sensationalism: quality of sensations)" ;
+        :realism "Mind-independent objects (sensationalism: experiences fundamental)" ;
+        :rationalism "Abstract logical relations fundamental (sensationalism: sensory impressions fundamental)"
+    ] ;
+    dcterms:source "Hume (1739), Berkeley (1710), Condillac (1754), Mach (1886)" .
+
+# ============================================================================
+# INTEGRATION WITH OTHER WORLDVIEWS
+# ============================================================================
+
+:SensationalismRealismTension a :WorldviewConflict ;
+    :between :Sensationalism, :Realism ;
+    :issue "Subjective experience vs. objective reality" ;
+    :sensationalismClaim "Only immediate sensory qualities are real (Berkeley: esse est percipi)" ;
+    :realismClaim "Mind-independent objects exist and ground experience" ;
+    :integrationStrategy "Acknowledge both: experience provides epistemic access to reality, reality provides content for experience. Pragmatic compromise: treat physical objects as 'permanent possibilities of sensation' (Mill 1865)." .
+
+:SensationalismRationalismTension a :WorldviewConflict ;
+    :between :Sensationalism, :Rationalism ;
+    :issue "Immediate experience vs. logical system" ;
+    :sensationalismClaim "Immediate felt quality is ultimate (Hume: impressions have primacy)" ;
+    :rationalismClaim "Logical coherence is ultimate (Descartes, Leibniz)" ;
+    :integrationStrategy "Balance: use logic to understand experience (provide structure), use experience to ground abstractions (provide content). Context matters: Art favors sensationalism, mathematics favors rationalism. Synthesis possible: aesthetic logic, experiential mathematics (visual proofs)." ;
+    dcterms:source "Complementary pair in Integral worldview framework" .
+
+:SensationalismMaterialismAlignment a :WorldviewAlignment ;
+    :between :Sensationalism, :Materialism ;
+    :sharedCluster :MaterialEmpirical ;
+    :commonGround "Both ground knowledge in empirical data, though disagree on what is fundamental (matter vs. experience)" ;
+    :complementary "Sensationalism provides qualitative/experiential side of material reality, materialism provides causal/structural side" ;
+    :empiricalConvergence "Modern neuroscience bridges: neural correlates of conscious experience (Chatterjee 2011)" .

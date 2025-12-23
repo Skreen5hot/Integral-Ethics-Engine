@@ -1,0 +1,1145 @@
+@prefix : <http://ontology-of-freedom.org/iee#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ============================================================================
+# Domain Contextualization Ontology - BFO 2020 Compliant
+# ============================================================================
+#
+# Purpose: Models how different life domains appropriately weight worldview
+# relevance to prevent absurd applications while respecting worldview plurality.
+#
+# Philosophical Foundation:
+# This ontology addresses the critical insight that not all worldviews are
+# equally appropriate in all contexts. Domain-specific contextualization
+# prevents:
+# 1. Absurd applications (e.g., spiritualism dominating surgery technique)
+# 2. Hidden elimination of worldviews (domain weighting ≠ universal rejection)
+# 3. Context-blind moral reasoning (different domains have different purposes)
+# 4. False universalism (pretending all contexts are equivalent)
+#
+# Key Philosophical Sources:
+# - Gould, S. J. (1997). Non-Overlapping Magisteria (NOMA): Science and religion
+#   address different domains with different methods and purposes.
+# - Walzer, M. (1983). Spheres of Justice: Different goods distributed by
+#   different principles in different spheres (health, education, love, etc.)
+# - MacIntyre, A. (1981). After Virtue: Social practices have internal goods
+#   that determine appropriate virtues and standards.
+# - Habermas, J. (1984). Theory of Communicative Action: Different action types
+#   (instrumental, strategic, communicative) appropriate in different domains.
+#
+# Empirical Foundation:
+# - Hedlund-de Witt, A. (2012). Exploring worldviews and their relationships
+#   to sustainable lifestyles: Domain-appropriate worldviews predict behavior.
+# - Tetlock, P. E. (2003). Thinking the unthinkable: Sacred values and taboo
+#   cognitions. Domain violations trigger moral outrage.
+# - Fiske, A. P., & Tetlock, P. E. (1997). Taboo trade-offs: Reactions to
+#   transactions that transgress spheres of justice.
+# - Rest, J. R. (1986). Moral Development: Moral reasoning shows domain-specific
+#   variation (personal vs. conventional vs. universal domains).
+#
+# ============================================================================
+# BIBLIOGRAPHIC CITATIONS
+# ============================================================================
+#
+# Domain Theory - Philosophy:
+# - Gould, S. J. (1997). Rocks of Ages: Science and Religion in the Fullness of Life. Ballantine Books.
+# - Walzer, M. (1983). Spheres of Justice: A Defense of Pluralism and Equality. Basic Books.
+# - MacIntyre, A. (1981/2007). After Virtue: A Study in Moral Theory (3rd ed.). University of Notre Dame Press.
+# - Habermas, J. (1984). The Theory of Communicative Action, Volume 1: Reason and the Rationalization of Society. Beacon Press.
+# - Taylor, C. (1989). Sources of the Self: The Making of the Modern Identity. Harvard University Press.
+#
+# Domain Theory - Social Science:
+# - Fiske, A. P. (1992). The four elementary forms of sociality: Framework for a unified theory of social relations. Psychological Review, 99(4), 689-723.
+# - Turiel, E. (1983). The Development of Social Knowledge: Morality and Convention. Cambridge University Press.
+# - Nucci, L. P. (2001). Education in the Moral Domain. Cambridge University Press.
+#
+# Sacred Values and Domain Violations:
+# - Tetlock, P. E. (2003). Thinking the unthinkable: Sacred values and taboo cognitions. Trends in Cognitive Sciences, 7(7), 320-324.
+# - Fiske, A. P., & Tetlock, P. E. (1997). Taboo trade-offs: Reactions to transactions that transgress spheres of justice. Political Psychology, 18(2), 255-297.
+# - Baron, J., & Spranca, M. (1997). Protected values. Organizational Behavior and Human Decision Processes, 70(1), 1-16.
+# - Tetlock, P. E., Kristel, O. V., Elson, S. B., Green, M. C., & Lerner, J. S. (2000). The psychology of the unthinkable. Journal of Personality and Social Psychology, 78(5), 853-870.
+#
+# Domain-Specific Moral Reasoning:
+# - Rest, J. R. (1986). Moral Development: Advances in Research and Theory. Praeger.
+# - Turiel, E. (2002). The culture of morality: Social development, context, and conflict. Cambridge University Press.
+# - Smetana, J. G. (2006). Social-cognitive domain theory: Consistencies and variations in children's moral and social judgments. In M. Killen & J. G. Smetana (Eds.), Handbook of Moral Development (pp. 119-153). Lawrence Erlbaum.
+#
+# Worldview-Domain Fit:
+# - Hedlund-de Witt, A. (2012). Exploring worldviews and their relationships to sustainable lifestyles: Towards a new conceptual and methodological approach. Ecological Economics, 84, 74-83.
+# - Hedlund-de Witt, A., de Boer, J., & Boersema, J. J. (2014). Exploring inner and outer worlds: A quantitative study of worldviews. Journal of Environmental Psychology, 37, 40-54.
+# - Van Egmond, M., & De Vries, B. (2011). Sustainability: The search for the integral worldview. Futures, 43(8), 853-867.
+#
+# Medical Domain - Philosophy & Ethics:
+# - Pellegrino, E. D., & Thomasma, D. C. (1981). A Philosophical Basis of Medical Practice. Oxford University Press.
+# - Beauchamp, T. L., & Childress, J. F. (2019). Principles of Biomedical Ethics (8th ed.). Oxford University Press.
+# - Engelhardt, H. T., Jr. (1996). The Foundations of Bioethics (2nd ed.). Oxford University Press.
+#
+# Education Domain - Philosophy:
+# - Dewey, J. (1916/1997). Democracy and Education. Free Press.
+# - Noddings, N. (2013). Caring: A Relational Approach to Ethics and Moral Education (2nd ed.). University of California Press.
+# - Nussbaum, M. C. (1997). Cultivating Humanity: A Classical Defense of Reform in Liberal Education. Harvard University Press.
+#
+# Spiritual Formation - Theology:
+# - Willard, D. (1988). The Spirit of the Disciplines: Understanding How God Changes Lives. HarperOne.
+# - Foster, R. J. (1978). Celebration of Discipline: The Path to Spiritual Growth. HarperOne.
+# - Merton, T. (1961). New Seeds of Contemplation. New Directions.
+# - Palmer, P. J. (2000). Let Your Life Speak: Listening for the Voice of Vocation. Jossey-Bass.
+#
+# Environmental Ethics:
+# - Leopold, A. (1949). A Sand County Almanac. Oxford University Press.
+# - Naess, A. (1973). The shallow and the deep, long-range ecology movement. Inquiry, 16(1-4), 95-100.
+# - Rolston, H., III. (1988). Environmental Ethics: Duties to and Values in the Natural World. Temple University Press.
+# - Taylor, P. W. (1986). Respect for Nature: A Theory of Environmental Ethics. Princeton University Press.
+#
+# Business Ethics:
+# - Solomon, R. C. (1992). Ethics and Excellence: Cooperation and Integrity in Business. Oxford University Press.
+# - Freeman, R. E. (1984). Strategic Management: A Stakeholder Approach. Pitman.
+# - Hartman, E. M. (1996). Organizational Ethics and the Good Life. Oxford University Press.
+#
+# ============================================================================
+
+# ============================================================================
+# CORE ONTOLOGY: DOMAIN STRUCTURE
+# ============================================================================
+
+:Domain a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # generically dependent continuant (ICE)
+    dcterms:source "Walzer (1983): Domains as 'spheres of justice' with distinct distributive principles. MacIntyre (1981): Social practices with internal goods." ;
+    rdfs:label "Domain of Human Activity" ;
+    skos:definition "An information content entity representing a sphere of human activity characterized by distinctive purposes, practices, goods, and appropriate standards of evaluation." ;
+    :hasProperty :DomainPurpose, :DomainPractices, :InternalGoods, :AppropriateCriteria ;
+    :hasWorldviewWeightProfile :WorldviewWeightProfile ;
+    rdfs:comment "Domains are not physical regions but conceptual spheres defined by purposes and practices. Different domains appropriately weight worldviews differently based on their purposes." .
+
+:WorldviewWeightProfile a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    dcterms:source "Original IEE contribution: Systematic domain-worldview weighting prevents hidden elimination while enabling context-appropriateness" ;
+    rdfs:label "Worldview Weight Profile" ;
+    skos:definition "An ICE specifying the salience weight [0.0-1.0] for each worldview within a particular domain, based on alignment between worldview foundations and domain purposes." ;
+    :hasProperty :WorldviewWeights ;
+    :weightRange "0.0 (minimally relevant) to 1.0 (maximally relevant)" ;
+    :interpretation [
+        :high "0.8-1.0: Worldview highly relevant; core to domain purpose" ;
+        :moderate "0.5-0.7: Worldview moderately relevant; supporting role" ;
+        :low "0.3-0.4: Worldview weakly relevant; peripheral considerations" ;
+        :minimal "0.0-0.2: Worldview minimally relevant; usually not applicable"
+    ] ;
+    rdfs:comment "Weights reflect domain appropriateness, NOT universal truth. A worldview with 0.3 weight in Domain X may have 0.9 weight in Domain Y." .
+
+:WorldviewWeight a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    rdfs:label "Worldview Weight" ;
+    skos:definition "A quality specifying the degree of relevance [0.0-1.0] of a particular worldview within a specific domain." ;
+    :inheres_in :WorldviewWeightProfile ;
+    :hasWorldview :Worldview ;
+    :hasWeightValue xsd:decimal ;
+    rdfs:comment "Individual worldview-weight pair within a profile." .
+
+:DomainContextualizationProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Step 4 of value-conflict-resolution.ttl: Domain contextualization process" ;
+    rdfs:label "Domain Contextualization Process" ;
+    skos:definition "A BFO process of applying domain-specific worldview weights to adjust salience of competing value judgments based on domain appropriateness." ;
+    bfo:0000057 :Agent ;  # has_participant
+    cco:has_input :ValueJudgment, :Domain ;
+    cco:has_output :ContextualizedValueJudgment ;
+    :realizesStrategy :DomainContextualization ;  # from worldview-relationships.ttl
+    :usedInStep :Step4_Contextualize ;  # from value-conflict-resolution.ttl
+    rdfs:comment "This process implements Step 4 of the 7-step integration procedure by retrieving and applying domain-specific worldview weights." .
+
+:ContextualizedValueJudgment a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Contextualized Value Judgment" ;
+    skos:definition "A value judgment whose worldview sources have been weighted according to domain appropriateness." ;
+    :generatedBy :DomainContextualizationProcess ;
+    :derivedFrom :ValueJudgment, :WorldviewWeightProfile ;
+    rdfs:comment "Output of domain contextualization; input to synthesis or prioritization steps." .
+
+# ============================================================================
+# DOMAIN 1: HEALTHCARE
+# ============================================================================
+
+:Healthcare a :Domain ;
+    dcterms:source "Pellegrino & Thomasma (1981): Medicine's internal good is healing. Beauchamp & Childress (2019): Four principles of biomedical ethics." ;
+    rdfs:label "Healthcare Domain" ;
+    skos:definition "The domain of activities aimed at preventing, diagnosing, treating, and curing physical and mental illness and promoting bodily health." ;
+    :domainPurpose "Physical and mental health restoration and maintenance" ;
+    :internalGoods "Healing, pain relief, function restoration, life extension (when meaningful), patient autonomy" ;
+    :primaryPractices "Diagnosis, treatment, surgery, medication, therapy, preventive care, palliative care" ;
+    :appropriateCriteria "Clinical efficacy, patient safety, evidence-based practice, informed consent, beneficence, non-maleficence" ;
+    :hasWorldviewWeightProfile :HealthcareWeightProfile ;
+    :empiricalSupport [
+        :study1 "Pellegrino & Thomasma (1981): Medicine as practice oriented toward physical healing" ;
+        :study2 "Beauchamp & Childress (2019): Principlism in bioethics emphasizes autonomy, beneficence, non-maleficence, justice" ;
+        :study3 "Engelhardt (1996): Secular bioethics must rely on shared material understanding of body/disease"
+    ] ;
+    rdfs:comment "Healthcare's primary focus on physical bodies and empirical effectiveness means materialism and realism have high relevance. But spiritual/psychological dimensions remain moderately relevant for holistic care." .
+
+:HealthcareWeightProfile a :WorldviewWeightProfile ;
+    rdfs:label "Healthcare Worldview Weight Profile" ;
+
+    # High relevance (0.8-1.0): Core to healthcare purpose
+    :worldviewWeight [
+        :worldview :Materialism ;
+        :weight 0.9 ;
+        :rationale "Physical body is primary object of medical intervention; materialist understanding of physiology/pathology essential for clinical efficacy" ;
+        :evidence "Modern medicine's success built on materialist physiology and pharmacology"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Realism ;
+        :weight 0.9 ;
+        :rationale "Objective disease entities and evidence-based practice require realist epistemology; treatments must work independent of subjective belief" ;
+        :evidence "Randomized controlled trials assume objective treatment effects (realism)"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Monadism ;
+        :weight 0.85 ;
+        :rationale "Patient autonomy central to bioethics; informed consent respects individual's unique perspective and irreplaceable life" ;
+        :evidence "Beauchamp & Childress (2019): Autonomy is first principle of biomedical ethics"
+    ] ;
+
+    # Moderate relevance (0.5-0.7): Supporting role
+    :worldviewWeight [
+        :worldview :Psychism ;
+        :weight 0.65 ;
+        :rationale "Mental health is health; psychological factors affect physical outcomes (psychosomatic medicine); depth psychology informs therapy" ;
+        :evidence "Biopsychosocial model (Engel 1977) integrates psychological dimensions"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Sensationalism ;
+        :weight 0.6 ;
+        :rationale "Pain and suffering are immediate sensory experiences with moral weight; patient's subjective experience matters for quality of life" ;
+        :evidence "Pain management and quality-of-life measures prioritize experiential dimensions"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Pneumatism ;
+        :weight 0.5 ;
+        :rationale "Holistic care recognizes spiritual vitality as health factor; sacred dimension of healing for many patients" ;
+        :evidence "Chaplaincy services and spiritual care increasingly recognized in hospitals"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Spiritualism ;
+        :weight 0.45 ;
+        :rationale "For many patients, spiritual beliefs affect treatment decisions (refusal of blood transfusion, end-of-life care); respect required" ;
+        :evidence "Religious exemptions and spiritual care protocols in medical ethics"
+    ] ;
+
+    # Low relevance (0.3-0.4): Peripheral
+    :worldviewWeight [
+        :worldview :Idealism ;
+        :weight 0.4 ;
+        :rationale "Patient's meaning-making and narrative identity relevant in long-term illness and chronic care" ;
+        :evidence "Narrative medicine (Charon 2006) incorporates patient's life story"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Rationalism ;
+        :weight 0.4 ;
+        :rationale "Systematic diagnostic reasoning and clinical algorithms use logical coherence" ;
+        :evidence "Clinical decision support systems and diagnostic protocols"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Phenomenalism ;
+        :weight 0.35 ;
+        :rationale "Patient's phenomenological experience of illness informs diagnosis and treatment goals" ;
+        :evidence "Patient-reported outcomes and phenomenological research in nursing"
+    ] ;
+
+    # Minimal relevance (0.0-0.2): Usually not applicable
+    :worldviewWeight [
+        :worldview :Mathematism ;
+        :weight 0.3 ;
+        :rationale "Biostatistics and epidemiology use mathematical models, but formal beauty is not clinical criterion" ;
+        :evidence "Evidence-based medicine uses statistics instrumentally, not as ultimate value"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Dynamism ;
+        :weight 0.35 ;
+        :rationale "Growth and transformation relevant in rehabilitation and recovery processes" ;
+        :evidence "Rehabilitation medicine focuses on functional restoration and adaptation"
+    ] ;
+
+    :criticalNote "High materialist/realist weights do NOT mean spiritualism is FALSE, only that physical healing is healthcare's primary purpose. Spiritual care remains important for holistic treatment." ;
+    rdfs:comment "Healthcare weights reflect domain purpose (physical healing), not universal truth claims about reality." .
+
+# ============================================================================
+# DOMAIN 2: SPIRITUAL FORMATION
+# ============================================================================
+
+:SpiritualFormation a :Domain ;
+    dcterms:source "Willard (1988): Spiritual formation as transformation into Christlikeness. Foster (1978): Spiritual disciplines. Palmer (2000): Vocation as listening to divine call." ;
+    rdfs:label "Spiritual Formation Domain" ;
+    skos:definition "The domain of practices aimed at deepening relationship with the divine, transcendent growth, and spiritual maturity." ;
+    :domainPurpose "Spiritual maturity, divine relationship, transcendent awareness, sacred transformation" ;
+    :internalGoods "Holiness, contemplation, divine union, spiritual wisdom, compassion, humility, sacred presence" ;
+    :primaryPractices "Prayer, meditation, worship, scripture study, fasting, solitude, service, confession, spiritual direction" ;
+    :appropriateCriteria "Spiritual depth, divine alignment, transformation of character, fruits of the spirit, contemplative capacity" ;
+    :hasWorldviewWeightProfile :SpiritualFormationWeightProfile ;
+    :empiricalSupport [
+        :study1 "Willard (1988): Spiritual formation requires cultivation of spiritual disciplines" ;
+        :study2 "Foster (1978): Inward, outward, and corporate disciplines for spiritual growth" ;
+        :study3 "Merton (1961): Contemplative practice as path to union with God"
+    ] ;
+    rdfs:comment "Spiritual formation's transcendent purpose means spiritualism, idealism, and pneumatism have high relevance. Materialism is subordinated but not eliminated (embodied practices matter)." .
+
+:SpiritualFormationWeightProfile a :WorldviewWeightProfile ;
+    rdfs:label "Spiritual Formation Worldview Weight Profile" ;
+
+    # High relevance (0.8-1.0): Core to spiritual formation
+    :worldviewWeight [
+        :worldview :Spiritualism ;
+        :weight 0.95 ;
+        :rationale "Transcendent relationship with divine is THE purpose; revealed truth and sacred tradition guide formation" ;
+        :evidence "All major religious traditions prioritize transcendent relationship and divine will"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Idealism ;
+        :weight 0.9 ;
+        :rationale "Consciousness development and meaning-making central to spiritual growth; ideas and beliefs shape spiritual life" ;
+        :evidence "Bildung (spiritual-intellectual formation) tradition in Christianity and Buddhism"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Pneumatism ;
+        :weight 0.9 ;
+        :rationale "Immanent divine presence pervades practices; Spirit/pneuma animates spiritual life and guides transformation" ;
+        :evidence "Charismatic and contemplative traditions emphasize indwelling Spirit"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Dynamism ;
+        :weight 0.8 ;
+        :rationale "Spiritual formation is inherently dynamic; growth, transformation, and ongoing conversion essential" ;
+        :evidence "Developmental stage models in spiritual formation (Fowler, Wilber, Cook-Greuter)"
+    ] ;
+
+    # Moderate relevance (0.5-0.7): Supporting role
+    :worldviewWeight [
+        :worldview :Psychism ;
+        :weight 0.75 ;
+        :rationale "Psychological depth and shadow integration necessary for authentic spiritual growth; self-knowledge prevents spiritual bypassing" ;
+        :evidence "Jung's integration of psychology and spirituality; spiritual direction addresses psychological blocks"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Monadism ;
+        :weight 0.7 ;
+        :rationale "Individual uniqueness means each person's spiritual path is distinctive; authentic vocation requires self-knowledge" ;
+        :evidence "Palmer (2000): 'Let your life speak' - listening for unique calling"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Rationalism ;
+        :weight 0.6 ;
+        :rationale "Systematic theology and doctrinal coherence matter; reason serves faith (fides quaerens intellectum)" ;
+        :evidence "Scholastic tradition, systematic theology, Anselm's 'faith seeking understanding'"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Mathematism ;
+        :weight 0.55 ;
+        :rationale "Sacred geometry and numerical symbolism in mystical traditions; divine order reflected in proportion" ;
+        :evidence "Sacred architecture (cathedrals), mandala symbolism, Pythagorean mysticism"
+    ] ;
+
+    # Low relevance (0.3-0.4): Peripheral
+    :worldviewWeight [
+        :worldview :Sensationalism ;
+        :weight 0.45 ;
+        :rationale "Aesthetic beauty in worship and sacred art can facilitate spiritual experience; but immediacy can distract from transcendence" ;
+        :evidence "Liturgical beauty and iconography in Orthodox and Catholic traditions"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Realism ;
+        :weight 0.4 ;
+        :rationale "Objective moral truths provide stability; but spiritual formation transcends purely objective frameworks" ;
+        :evidence "Natural law tradition provides objective moral foundation"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Phenomenalism ;
+        :weight 0.4 ;
+        :rationale "Phenomenological description of spiritual experience has value; but validity depends on transcendent reference" ;
+        :evidence "William James' *Varieties of Religious Experience* uses phenomenological method"
+    ] ;
+
+    # Minimal relevance (0.0-0.2): Usually subordinated
+    :worldviewWeight [
+        :worldview :Materialism ;
+        :weight 0.3 ;
+        :rationale "Physical disciplines (fasting, posture, liturgical movement) are important embodied practices, but material is not primary focus" ;
+        :evidence "Ascetic practices and embodied spirituality (yoga, liturgical dance)"
+    ] ;
+
+    :criticalNote "Low materialist weight does NOT mean body is unimportant (incarnational theology!), only that spiritual formation's purpose is transcendent relationship, not physical outcomes." ;
+    rdfs:comment "Spiritual formation weights reflect transcendent purpose. Materialism subordinated but embodied practices still valued." .
+
+# ============================================================================
+# DOMAIN 3: EDUCATION
+# ============================================================================
+
+:Education a :Domain ;
+    dcterms:source "Dewey (1916): Education as growth and democratic participation. Noddings (2013): Caring relation in education. Nussbaum (1997): Cultivating humanity through liberal arts." ;
+    rdfs:label "Education Domain" ;
+    skos:definition "The domain of practices aimed at developing knowledge, skills, character, and capacities for thought, citizenship, and flourishing." ;
+    :domainPurpose "Intellectual development, character formation, critical thinking, democratic citizenship, human flourishing" ;
+    :internalGoods "Understanding, wisdom, curiosity, critical thought, creativity, moral character, civic virtue" ;
+    :primaryPractices "Teaching, learning, mentoring, inquiry, dialogue, assessment, curriculum design, modeling" ;
+    :appropriateCriteria "Learning outcomes, intellectual growth, character development, civic preparation, critical thinking capacity" ;
+    :hasWorldviewWeightProfile :EducationWeightProfile ;
+    :empiricalSupport [
+        :study1 "Dewey (1916): Education as reconstruction of experience for growth and democratic life" ;
+        :study2 "Noddings (2013): Caring relationships are foundation of educational success" ;
+        :study3 "Nussbaum (1997): Liberal education cultivates critical thinking and empathy"
+    ] ;
+    rdfs:comment "Education's focus on consciousness development and growth means idealism, rationalism, and dynamism have high relevance. Balance needed between objective knowledge and individual development." .
+
+:EducationWeightProfile a :WorldviewWeightProfile ;
+    rdfs:label "Education Worldview Weight Profile" ;
+
+    # High relevance (0.8-1.0): Core to educational purpose
+    :worldviewWeight [
+        :worldview :Idealism ;
+        :weight 0.9 ;
+        :rationale "Education is fundamentally about consciousness development, meaning-making, and ideas shaping reality; Bildung tradition" ;
+        :evidence "Liberal arts tradition emphasizes cultivation of mind and character (Bildung)"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Rationalism ;
+        :weight 0.85 ;
+        :rationale "Logical coherence, systematic reasoning, and universal principles central to intellectual development and critical thinking" ;
+        :evidence "Logic, mathematics, and scientific reasoning core to curriculum"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Dynamism ;
+        :weight 0.85 ;
+        :rationale "Learning is inherently developmental; growth mindset and transformation central to educational philosophy" ;
+        :evidence "Dewey (1916): Education as growth. Piaget's developmental stages. Growth mindset (Dweck)"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Monadism ;
+        :weight 0.8 ;
+        :rationale "Each student is unique individual with distinctive talents, learning styles, and developmental trajectory" ;
+        :evidence "Individualized education plans, multiple intelligences (Gardner), personalized learning"
+    ] ;
+
+    # Moderate relevance (0.5-0.7): Supporting role
+    :worldviewWeight [
+        :worldview :Realism ;
+        :weight 0.7 ;
+        :rationale "Objective knowledge and truth exist to be learned; science education requires realist epistemology" ;
+        :evidence "STEM education assumes objective natural laws and empirical facts"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Psychism ;
+        :weight 0.65 ;
+        :rationale "Emotional intelligence, self-awareness, and psychological health affect learning; socio-emotional learning important" ;
+        :evidence "Social-emotional learning (SEL) curricula and trauma-informed teaching"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Mathematism ;
+        :weight 0.65 ;
+        :rationale "Mathematical reasoning and formal structures central to intellectual development; beauty of mathematical truth" ;
+        :evidence "Mathematics as core subject; problem-solving and logical structure training"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Sensationalism ;
+        :weight 0.6 ;
+        :rationale "Experiential learning and hands-on experience facilitate understanding; aesthetic education important" ;
+        :evidence "Experiential education (Kolb), arts education, laboratory science"
+    ] ;
+
+    # Low relevance (0.3-0.4): Peripheral
+    :worldviewWeight [
+        :worldview :Materialism ;
+        :weight 0.5 ;
+        :rationale "Physical resources and embodied cognition matter, but education's purpose is intellectual/character development beyond material" ;
+        :evidence "School facilities and nutrition programs support learning but aren't primary purpose"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Pneumatism ;
+        :weight 0.45 ;
+        :rationale "Holistic education recognizes spiritual dimension; some educational philosophies emphasize soul cultivation" ;
+        :evidence "Waldorf education and contemplative pedagogy include spiritual dimensions"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Spiritualism ;
+        :weight 0.4 ;
+        :rationale "Religious education in faith-based schools; moral education often has spiritual grounding; but secular education minimizes" ;
+        :evidence "Faith-based schools integrate spiritual formation; public schools separate church and state"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Phenomenalism ;
+        :weight 0.45 ;
+        :rationale "Student's subjective experience and perspective-taking important for engaged learning" ;
+        :evidence "Constructivist pedagogy values student's prior knowledge and experience"
+    ] ;
+
+    :criticalNote "Education weights balance objective knowledge (realism, rationalism) with individual development (monadism, dynamism, idealism). Context varies: faith-based schools weight spiritualism higher." ;
+    rdfs:comment "Education domain emphasizes consciousness development (idealism) and growth (dynamism) while maintaining commitment to objective knowledge (realism, rationalism)." .
+
+# ============================================================================
+# DOMAIN 4: VOCATIONAL CHOICE (CAREER/CALLING)
+# ============================================================================
+
+:VocationalChoice a :Domain ;
+    dcterms:source "Palmer (2000): Vocation as listening for voice of true self. Buechner: 'Where deep gladness meets world's deep need.' Weber: Calling (Beruf) as Protestant work ethic." ;
+    rdfs:label "Vocational Choice Domain" ;
+    skos:definition "The domain of decisions about life work, career path, and calling - how one contributes to world through work." ;
+    :domainPurpose "Authentic self-expression through work, meaningful contribution, alignment of gifts with world needs, fulfillment" ;
+    :internalGoods "Meaningful work, self-expression, contribution to common good, using gifts, economic security, excellence in craft" ;
+    :primaryPractices "Discernment, self-reflection, exploration, skill development, mentorship, risk-taking, persistence" ;
+    :appropriateCriteria "Authentic alignment with self, meaningful contribution, sustainable livelihood, personal fulfillment, social value" ;
+    :hasWorldviewWeightProfile :VocationalChoiceWeightProfile ;
+    :empiricalSupport [
+        :study1 "Palmer (2000): Vocation requires listening to inner voice (monadism) and responding to world's need" ;
+        :study2 "Dik & Duffy (2009): Calling predicts career satisfaction and life meaning" ;
+        :study3 "Wrzesniewski et al. (1997): Job vs. career vs. calling orientations predict wellbeing"
+    ] ;
+    rdfs:comment "Vocational choice emphasizes individual uniqueness (monadism), growth/transformation (dynamism), and meaning-making (idealism). Material security important but subordinated to authenticity." .
+
+:VocationalChoiceWeightProfile a :WorldviewWeightProfile ;
+    rdfs:label "Vocational Choice Worldview Weight Profile" ;
+
+    # High relevance (0.8-1.0)
+    :worldviewWeight [
+        :worldview :Monadism ;
+        :weight 0.95 ;
+        :rationale "Authentic individuality is paramount; each person has unique gifts, passions, and calling that cannot be standardized" ;
+        :evidence "Palmer (2000): 'Let your life speak' - vocation is deeply personal and irreplaceable"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Dynamism ;
+        :weight 0.85 ;
+        :rationale "Vocational journey is developmental; growth, exploration, and transformation across life stages" ;
+        :evidence "Career development theories emphasize stages and transitions (Super, Levinson)"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Idealism ;
+        :weight 0.8 ;
+        :rationale "Meaning-making central to vocational satisfaction; work as expression of values and worldview" ;
+        :evidence "Wrzesniewski (1997): 'Calling' orientation involves meaningful purpose"
+    ] ;
+
+    # Moderate relevance (0.5-0.7)
+    :worldviewWeight [
+        :worldview :Psychism ;
+        :weight 0.75 ;
+        :rationale "Self-knowledge crucial for authentic vocation; psychological blocks and unconscious patterns affect choices" ;
+        :evidence "Career counseling addresses psychological factors in career satisfaction"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Materialism ;
+        :weight 0.65 ;
+        :rationale "Economic security and material needs are legitimate considerations but shouldn't dominate authentic calling" ;
+        :evidence "Economic viability necessary but insufficient for vocational fulfillment"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Spiritualism ;
+        :weight 0.65 ;
+        :rationale "For many, vocation involves discerning divine calling; spiritual practices aid discernment" ;
+        :evidence "Religious traditions emphasize vocation as divine calling (Beruf, dharma)"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Sensationalism ;
+        :weight 0.6 ;
+        :rationale "Experiential exploration and 'trying on' different roles helps discernment" ;
+        :evidence "Internships, job shadowing, and experiential learning inform career choice"
+    ] ;
+
+    # Low relevance (0.3-0.4)
+    :worldviewWeight [
+        :worldview :Rationalism ;
+        :weight 0.55 ;
+        :rationale "Systematic career planning and decision matrices have value but can't capture uniqueness" ;
+        :evidence "Career assessment tools and rational decision models support but don't determine choice"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Realism ;
+        :weight 0.5 ;
+        :rationale "Objective labor market conditions and skill requirements constrain choices" ;
+        :evidence "Job market analysis and skills assessment inform realistic career planning"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Pneumatism ;
+        :weight 0.5 ;
+        :rationale "Work can be spiritually enlivening; sacred dimension to all good work" ;
+        :evidence "Benedictine 'ora et labora' - prayer and work as integrated spiritual practice"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Phenomenalism ;
+        :weight 0.45 ;
+        :rationale "Subjective experience of fit and resonance matters in career satisfaction" ;
+        :evidence "Person-environment fit models emphasize subjective match perception"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Mathematism ;
+        :weight 0.35 ;
+        :rationale "Formal analysis minimally relevant except for mathematically-oriented careers" ;
+        :evidence "Career choice is not primarily mathematical problem"
+    ] ;
+
+    :criticalNote "Monadism's high weight reflects that vocational authenticity requires honoring individual uniqueness. Material security (0.65) important but subordinated to authentic calling." ;
+    rdfs:comment "Vocational choice weights reflect primacy of authentic individuality and meaningful self-expression through work." .
+
+# ============================================================================
+# DOMAIN 5: ENVIRONMENTAL POLICY
+# ============================================================================
+
+:EnvironmentalPolicy a :Domain ;
+    dcterms:source "Leopold (1949): Land ethic. Naess (1973): Deep ecology. Rolston (1988): Intrinsic value in nature. Taylor (1986): Respect for nature." ;
+    rdfs:label "Environmental Policy Domain" ;
+    skos:definition "The domain of collective decisions about relationship with natural world, resource use, conservation, and ecological sustainability." ;
+    :domainPurpose "Ecological sustainability, biodiversity protection, climate stability, harmonious human-nature relationship" ;
+    :internalGoods "Ecosystem health, species preservation, intergenerational justice, sustainable resource use, ecological wisdom" ;
+    :primaryPractices "Conservation, regulation, sustainable development, restoration ecology, climate mitigation, environmental education" ;
+    :appropriateCriteria "Ecological effectiveness, scientific validity, intergenerational equity, biodiversity impact, climate effects" ;
+    :hasWorldviewWeightProfile :EnvironmentalPolicyWeightProfile ;
+    :empiricalSupport [
+        :study1 "Hedlund-de Witt (2014): Worldview affects environmental attitudes and behaviors" ;
+        :study2 "Van Egmond & De Vries (2011): Integral worldview predicts sustainability commitment" ;
+        :study3 "Stern et al. (1999): Value-Belief-Norm theory links values to environmental behavior"
+    ] ;
+    rdfs:comment "Environmental policy requires integration of material science (materialism, realism), systemic planning (rationalism), sacred cosmos (pneumatism), and dynamic processes (dynamism)." .
+
+:EnvironmentalPolicyWeightProfile a :WorldviewWeightProfile ;
+    rdfs:label "Environmental Policy Worldview Weight Profile" ;
+
+    # High relevance (0.8-1.0)
+    :worldviewWeight [
+        :worldview :Pneumatism ;
+        :weight 0.85 ;
+        :rationale "Cosmos as sacred, ensouled, and intrinsically valuable prevents purely instrumental view; ecological spirituality" ;
+        :evidence "Leopold (1949): Land ethic treats nature as community member, not commodity. Naess (1973): Deep ecology."
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Materialism ;
+        :weight 0.8 ;
+        :rationale "Climate science, ecology, and physical earth systems require materialist understanding; empirical data on environmental impacts" ;
+        :evidence "IPCC reports and environmental science based on material causation and empirical measurement"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Rationalism ;
+        :weight 0.8 ;
+        :rationale "Systematic policy planning, cost-benefit analysis, and long-term strategic thinking required for effective environmental governance" ;
+        :evidence "Environmental policy frameworks use systems thinking and rational planning"
+    ] ;
+
+    # Moderate relevance (0.5-0.7)
+    :worldviewWeight [
+        :worldview :Dynamism ;
+        :weight 0.7 ;
+        :rationale "Ecosystems are dynamic processes, not static states; climate as changing system; resilience thinking" ;
+        :evidence "Ecology emphasizes succession, adaptation, and system dynamics"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Realism ;
+        :weight 0.7 ;
+        :rationale "Objective ecological facts (climate change, species extinction) require action regardless of subjective views" ;
+        :evidence "Scientific consensus on climate change requires realist acceptance of objective facts"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Idealism ;
+        :weight 0.6 ;
+        :rationale "Environmental ethics and ecological consciousness require meaning-making and values transformation" ;
+        :evidence "Environmental education aims at consciousness change and worldview shift"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Spiritualism ;
+        :weight 0.6 ;
+        :rationale "For many traditions, stewardship is religious duty; creation care rooted in divine mandate" ;
+        :evidence "Religious environmentalism (e.g., Catholic 'integral ecology' in Laudato Si')"
+    ] ;
+
+    # Low relevance (0.3-0.4)
+    :worldviewWeight [
+        :worldview :Monadism ;
+        :weight 0.5 ;
+        :rationale "Individual uniqueness less central in collective policy, but individual responsibility and action still matter" ;
+        :evidence "Individual carbon footprint and lifestyle choices complement policy action"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Sensationalism ;
+        :weight 0.45 ;
+        :rationale "Aesthetic appreciation of nature motivates conservation; immediate experience of degradation prompts action" ;
+        :evidence "Nature experience and aesthetic value support conservation attitudes"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Mathematism ;
+        :weight 0.45 ;
+        :rationale "Ecological modeling and climate science use mathematical structures" ;
+        :evidence "Climate models and population ecology use mathematical formalization"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Psychism ;
+        :weight 0.4 ;
+        :rationale "Eco-psychology explores psychological dimensions of environmental crisis; emotional relationship with nature" ;
+        :evidence "Eco-psychology and solastalgia (environmental grief) research"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Phenomenalism ;
+        :weight 0.4 ;
+        :rationale "Lived experience of place and environmental change motivates action but insufficient for policy" ;
+        :evidence "Place attachment and environmental phenomenology inform but don't determine policy"
+    ] ;
+
+    :criticalNote "Environmental policy requires unique integration: material science (0.8) + sacred cosmos (0.85) + systematic planning (0.8). Pneumatism prevents instrumentalization while materialism ensures scientific grounding." ;
+    rdfs:comment "Environmental domain uniquely requires integrating material science, sacred cosmos view, and rational planning - no single worldview sufficient." .
+
+# ============================================================================
+# DOMAIN 6: RELATIONSHIP ETHICS (INTIMATE RELATIONSHIPS)
+# ============================================================================
+
+:RelationshipEthics a :Domain ;
+    dcterms:source "Buber (1923): I-Thou relationship. Noddings (2013): Ethics of care. Levinas (1961): Face-to-face responsibility. Ricoeur (1992): Oneself as another." ;
+    rdfs:label "Relationship Ethics Domain" ;
+    skos:definition "The domain of intimate personal relationships - romantic partnerships, close friendships, family bonds - characterized by care, vulnerability, and mutual commitment." ;
+    :domainPurpose "Mutual flourishing, intimacy, care, emotional support, commitment, authentic encounter" ;
+    :internalGoods "Love, trust, vulnerability, mutual understanding, companionship, emotional attunement, commitment" ;
+    :primaryPractices "Communication, active listening, empathy, conflict resolution, quality time, vulnerability, forgiveness" ;
+    :appropriateCriteria "Relational quality, mutual satisfaction, authentic presence, care quality, conflict resolution effectiveness" ;
+    :hasWorldviewWeightProfile :RelationshipEthicsWeightProfile ;
+    :empiricalSupport [
+        :study1 "Gottman (1999): Relationship quality predicted by emotional attunement and conflict management" ;
+        :study2 "Rusbult et al. (1998): Commitment and accommodation predict relationship stability" ;
+        :study3 "Reis & Shaver (1988): Intimacy involves self-disclosure and partner responsiveness"
+    ] ;
+    rdfs:comment "Relationship ethics emphasizes individual uniqueness (monadism), emotional depth (psychism), and sacred bond (pneumatism). Calculative rationality minimized; care and presence paramount." .
+
+:RelationshipEthicsWeightProfile a :WorldviewWeightProfile ;
+    rdfs:label "Relationship Ethics Worldview Weight Profile" ;
+
+    # High relevance (0.8-1.0)
+    :worldviewWeight [
+        :worldview :Monadism ;
+        :weight 0.95 ;
+        :rationale "Each person is irreplaceable; love is particular to THIS person, not generic type; uniqueness honored" ;
+        :evidence "Buber (1923): I-Thou relation is particular, not instrumental. Levinas: Face of other is irreplaceable."
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Psychism ;
+        :weight 0.9 ;
+        :rationale "Emotional depth, authenticity, shadow integration, and psychological intimacy central to relational health" ;
+        :evidence "Gottman (1999): Emotional intelligence and attunement predict relationship success"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Pneumatism ;
+        :weight 0.75 ;
+        :rationale "Sacred dimension of intimate bond; relationship as spiritual practice; divine presence in encounter" ;
+        :evidence "Marriage as sacrament in religious traditions; Buber's I-Thou as glimpse of eternal Thou"
+    ] ;
+
+    # Moderate relevance (0.5-0.7)
+    :worldviewWeight [
+        :worldview :Idealism ;
+        :weight 0.65 ;
+        :rationale "Shared meaning-making and narrative co-creation important for relationship identity" ;
+        :evidence "Narrative therapy emphasizes couple's shared story and meaning"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Sensationalism ;
+        :weight 0.6 ;
+        :rationale "Immediate felt experience, affection, touch, and aesthetic enjoyment in relationship" ;
+        :evidence "Physical affection and experiential quality time strengthen bonds"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Dynamism ;
+        :weight 0.6 ;
+        :rationale "Relationships are developmental processes requiring growth, adaptation, and transformation" ;
+        :evidence "Relationship stage models emphasize development over time"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Spiritualism ;
+        :weight 0.55 ;
+        :rationale "For many, marriage is divine calling and sacred covenant with transcendent dimension" ;
+        :evidence "Religious marriage vows invoke divine witness and eternal commitment"
+    ] ;
+
+    # Low relevance (0.3-0.4)
+    :worldviewWeight [
+        :worldview :Phenomenalism ;
+        :weight 0.5 ;
+        :rationale "Subjective experience of relationship satisfaction matters" ;
+        :evidence "Relationship satisfaction measures rely on phenomenological self-report"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Realism ;
+        :weight 0.4 ;
+        :rationale "Some objective relationship qualities (fidelity, abuse) matter regardless of subjective interpretation" ;
+        :evidence "Domestic violence is objectively wrong regardless of relationship satisfaction ratings"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Rationalism ;
+        :weight 0.35 ;
+        :rationale "Excessive calculation and cost-benefit analysis antithetical to love; but communication skills require reason" ;
+        :evidence "Tetlock (2003): Applying market logic to intimate relationships triggers moral outrage (taboo trade-off)"
+    ] ;
+
+    # Minimal relevance (0.0-0.2)
+    :worldviewWeight [
+        :worldview :Materialism ;
+        :weight 0.3 ;
+        :rationale "Material security and physical health support relationships but aren't their essence" ;
+        :evidence "Economic stress harms relationships but wealth doesn't guarantee intimacy"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Mathematism ;
+        :weight 0.2 ;
+        :rationale "Formal structures minimally relevant; love is not mathematical optimization" ;
+        :evidence "Calculative 'relationship accounting' undermines intimacy"
+    ] ;
+
+    :criticalNote "Monadism's 0.95 weight reflects that intimate love is inherently particular - you love THIS person, not a type. Rationalism (0.35) low because excessive calculation undermines intimacy (Tetlock's taboo trade-offs)." ;
+    rdfs:comment "Relationship ethics weights reflect primacy of irreplaceability (monadism), emotional depth (psychism), and sacred bond (pneumatism). Calculative rationality minimized." .
+
+# ============================================================================
+# DOMAIN 7: BUSINESS/ECONOMICS
+# ============================================================================
+
+:BusinessEconomics a :Domain ;
+    dcterms:source "Solomon (1992): Ethics and excellence in business. Freeman (1984): Stakeholder theory. Hartman (1996): Organizational ethics and good life." ;
+    rdfs:label "Business and Economics Domain" ;
+    skos:definition "The domain of commercial exchange, production, entrepreneurship, and economic coordination for mutual benefit." ;
+    :domainPurpose "Value creation, economic coordination, mutual benefit through exchange, innovation, prosperity" ;
+    :internalGoods "Excellence in craft, fair exchange, innovation, stakeholder flourishing, sustainable profit" ;
+    :primaryPractices "Production, exchange, negotiation, innovation, accounting, marketing, management, investment" ;
+    :appropriateCriteria "Profitability, efficiency, innovation, stakeholder satisfaction, ethical conduct, sustainability" ;
+    :hasWorldviewWeightProfile :BusinessEconomicsWeightProfile ;
+    :empiricalSupport [
+        :study1 "Freeman (1984): Stakeholder theory balances interests beyond pure profit maximization" ;
+        :study2 "Solomon (1992): Business excellence requires virtue ethics, not just profit motive" ;
+        :study3 "Hartman (1996): Good business practices enable good life for stakeholders"
+    ] ;
+    rdfs:comment "Business requires material effectiveness (materialism, realism) and rational planning (rationalism) but increasingly recognizes stakeholder wellbeing (monadism) and sustainability (pneumatism)." .
+
+:BusinessEconomicsWeightProfile a :WorldviewWeightProfile ;
+    rdfs:label "Business and Economics Worldview Weight Profile" ;
+
+    # High relevance (0.8-1.0)
+    :worldviewWeight [
+        :worldview :Materialism ;
+        :weight 0.85 ;
+        :rationale "Material resources, production, and physical goods central to economic activity; supply chains and logistics material" ;
+        :evidence "Manufacturing, logistics, and resource extraction fundamentally material processes"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Rationalism ;
+        :weight 0.85 ;
+        :rationale "Strategic planning, accounting systems, cost-benefit analysis, and systematic operations require rational coherence" ;
+        :evidence "Accounting standards, strategic management frameworks, operations research"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Realism ;
+        :weight 0.8 ;
+        :rationale "Objective market conditions, financial metrics, and empirical outcomes determine business success" ;
+        :evidence "Financial statements and market data provide objective performance measures"
+    ] ;
+
+    # Moderate relevance (0.5-0.7)
+    :worldviewWeight [
+        :worldview :Dynamism ;
+        :weight 0.7 ;
+        :rationale "Innovation, entrepreneurship, and creative destruction require dynamic orientation; markets constantly evolving" ;
+        :evidence "Schumpeter's creative destruction; agile management; innovation focus"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Monadism ;
+        :weight 0.65 ;
+        :rationale "Stakeholder theory recognizes employees, customers, and community members as unique individuals, not mere factors" ;
+        :evidence "Freeman (1984): Stakeholder theory vs. shareholder primacy"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Idealism ;
+        :weight 0.6 ;
+        :rationale "Organizational culture, vision, and meaning-making affect performance; purpose-driven business" ;
+        :evidence "Mission-driven companies and conscious capitalism movement"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Mathematism ;
+        :weight 0.6 ;
+        :rationale "Financial modeling, econometrics, and quantitative analysis use mathematical structures" ;
+        :evidence "Financial engineering, algorithmic trading, econometric models"
+    ] ;
+
+    # Low relevance (0.3-0.4)
+    :worldviewWeight [
+        :worldview :Pneumatism ;
+        :weight 0.5 ;
+        :rationale "Increasing recognition that sustainability requires seeing nature as sacred, not mere resource; but still minority view" ;
+        :evidence "Sustainable business and B Corporation movement recognize ecological limits"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Sensationalism ;
+        :weight 0.5 ;
+        :rationale "Customer experience and aesthetic design matter for marketing and branding" ;
+        :evidence "User experience design and experiential marketing"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Psychism ;
+        :weight 0.45 ;
+        :rationale "Organizational psychology and employee wellbeing increasingly recognized; but traditionally subordinated" ;
+        :evidence "Employee assistance programs and organizational psychology"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Spiritualism ;
+        :weight 0.35 ;
+        :rationale "Some faith-based businesses integrate spiritual principles; but mostly separated in secular business" ;
+        :evidence "Faith-based companies (Hobby Lobby, Chick-fil-A) vs. secular norms"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Phenomenalism ;
+        :weight 0.4 ;
+        :rationale "Subjective customer satisfaction and employee engagement measures matter" ;
+        :evidence "Net Promoter Score and employee engagement surveys"
+    ] ;
+
+    :criticalNote "Business weights reflect instrumental rationality (materialism 0.85, rationalism 0.85, realism 0.8) while increasingly incorporating stakeholder wellbeing (monadism 0.65) and sustainability (pneumatism 0.5)." ;
+    rdfs:comment "Business domain emphasizes material effectiveness and rational planning but evolving toward stakeholder capitalism and sustainability." .
+
+# ============================================================================
+# DOMAIN 8: SCIENTIFIC RESEARCH
+# ============================================================================
+
+:ScientificResearch a :Domain ;
+    dcterms:source "Kuhn (1962): Scientific paradigms. Popper (1959): Falsificationism. Lakatos (1970): Research programs. Longino (1990): Social epistemology of science." ;
+    rdfs:label "Scientific Research Domain" ;
+    skos:definition "The domain of systematic empirical investigation aimed at discovering objective truths about natural world through controlled observation and experimentation." ;
+    :domainPurpose "Discovery of natural laws, empirical knowledge, theoretical understanding, prediction and control of nature" ;
+    :internalGoods "Truth, empirical adequacy, explanatory power, predictive accuracy, theoretical elegance" ;
+    :primaryPractices "Experimentation, observation, measurement, hypothesis testing, peer review, replication" ;
+    :appropriateCriteria "Empirical validity, reproducibility, falsifiability, explanatory power, parsimony" ;
+    :hasWorldviewWeightProfile :ScientificResearchWeightProfile ;
+    :empiricalSupport [
+        :study1 "Longino (1990): Scientific objectivity requires social processes of critical scrutiny" ;
+        :study2 "Kuhn (1962): Paradigms structure scientific practice and puzzle-solving" ;
+        :study3 "Popper (1959): Scientific theories must be falsifiable to be scientific"
+    ] ;
+    rdfs:comment "Scientific research requires empirical grounding (materialism, realism, sensationalism) and rational systematicity (rationalism, mathematism). Spiritual worldviews minimally relevant to natural science methodology (but not to science's place in broader life)." .
+
+:ScientificResearchWeightProfile a :WorldviewWeightProfile ;
+    rdfs:label "Scientific Research Worldview Weight Profile" ;
+
+    # High relevance (0.8-1.0)
+    :worldviewWeight [
+        :worldview :Realism ;
+        :weight 0.95 ;
+        :rationale "Scientific realism assumes objective natural world exists independent of observation; laws of nature are mind-independent" ;
+        :evidence "Scientific method presupposes objective reality discoverable through empirical investigation"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Materialism ;
+        :weight 0.9 ;
+        :rationale "Natural science studies material causation and physical processes; methodological naturalism" ;
+        :evidence "Physics, chemistry, biology study material substances and efficient causes"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Rationalism ;
+        :weight 0.85 ;
+        :rationale "Scientific theories require logical coherence, systematic integration, and deductive structure" ;
+        :evidence "Theoretical physics and axiomatization of theories (e.g., thermodynamics)"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Sensationalism ;
+        :weight 0.8 ;
+        :rationale "Empirical observation and measurement are foundations of scientific knowledge; data from sensory instruments" ;
+        :evidence "Empiricism as foundation of scientific method; observation and experimentation"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Mathematism ;
+        :weight 0.8 ;
+        :rationale "Mathematical formalization central to physics, chemistry, and quantitative biology; natural laws are mathematical" ;
+        :evidence "Galileo: 'Book of nature is written in mathematics.' Wigner: 'Unreasonable effectiveness of mathematics.'"
+    ] ;
+
+    # Moderate relevance (0.5-0.7)
+    :worldviewWeight [
+        :worldview :Phenomenalism ;
+        :weight 0.6 ;
+        :rationale "Instrumentalism and anti-realism view theories as tools for organizing observations rather than truths about unobservables" ;
+        :evidence "Van Fraassen's constructive empiricism: science aims at empirical adequacy, not truth"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Idealism ;
+        :weight 0.5 ;
+        :rationale "Some interpretations (e.g., quantum mechanics) invoke consciousness; theory-ladenness of observation; paradigms shape perception" ;
+        :evidence "Kuhn (1962): Paradigms structure scientific perception. Some quantum interpretations involve consciousness."
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Dynamism ;
+        :weight 0.5 ;
+        :rationale "Evolutionary biology and dynamic systems theory emphasize process; but many sciences seek static laws" ;
+        :evidence "Evolutionary biology, ecology, and systems theory emphasize processes over static entities"
+    ] ;
+
+    # Low relevance (0.3-0.4)
+    :worldviewWeight [
+        :worldview :Monadism ;
+        :weight 0.35 ;
+        :rationale "Science seeks general laws, not individual uniqueness; but some sciences study individual differences" ;
+        :evidence "Physics seeks universal laws; but psychology and medicine study individual variation"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Psychism ;
+        :weight 0.3 ;
+        :rationale "Psychology and neuroscience study psyche scientifically; but most natural sciences don't" ;
+        :evidence "Psychology as scientific discipline; but psychism not relevant to physics/chemistry"
+    ] ;
+
+    # Minimal relevance (0.0-0.2)
+    :worldviewWeight [
+        :worldview :Pneumatism ;
+        :weight 0.2 ;
+        :rationale "Methodological naturalism excludes spiritual causation from scientific explanation" ;
+        :evidence "NOMA (Gould 1997): Science studies material causes; religion studies spiritual meaning"
+    ] ;
+
+    :worldviewWeight [
+        :worldview :Spiritualism ;
+        :weight 0.15 ;
+        :rationale "Transcendent realities and revealed truths not accessible to scientific method; NOMA separation" ;
+        :evidence "Science-religion separation: science studies 'how', religion studies 'why'"
+    ] ;
+
+    :criticalNote "Low pneumatism/spiritualism weights do NOT mean these worldviews are false - only that scientific method is domain-limited to material causation (methodological naturalism). Gould's NOMA: science and religion are non-overlapping magisteria." ;
+    rdfs:comment "Scientific research requires very high realism (0.95), materialism (0.9), and mathematism/rationalism (0.85). Spiritual worldviews have minimal methodological relevance but this doesn't negate their truth in other domains." .
+
+# ============================================================================
+# DOMAIN BOUNDARY DISPUTES AND CONTESTED CASES
+# ============================================================================
+
+:DomainBoundaryDispute a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Walzer (1983): Spheres of justice have contested boundaries. Tetlock (2003): Domain violations trigger outrage." ;
+    rdfs:label "Domain Boundary Dispute" ;
+    skos:definition "A process of disagreement about which domain a particular situation properly falls under, resulting in conflicting worldview weight applications." ;
+    :examples [
+        :example1 "Is psychiatric treatment healthcare (materialism 0.9) or spiritual formation (spiritualism 0.95)? Depends on whether mental illness is primarily biochemical or spiritual." ;
+        :example2 "Is environmental policy pure science (materialism/realism high) or sacred stewardship (pneumatism high)? Integral approach recognizes both." ;
+        :example3 "Is education primarily consciousness development (idealism 0.9) or economic preparation (materialism/rationalism high)? Both/and, not either/or."
+    ] ;
+    :resolutionStrategies [
+        :multi_domain "Recognize situation spans multiple domains; apply weighted average of domain profiles" ;
+        :context_sensitive "Determine primary purpose in THIS specific context" ;
+        :both_and "Often both domains apply; integrate rather than choose"
+    ] ;
+    :empiricalSupport "Tetlock (2003): Domain boundary violations (e.g., treating love as economic exchange) trigger moral outrage - domain boundaries are psychologically real" ;
+    rdfs:comment "Not all situations fit cleanly into one domain. Boundary disputes are common and require judgment about primary purpose or multi-domain integration." .
+
+# ============================================================================
+# INTEGRATION WITH IEE COMPONENTS
+# ============================================================================
+
+:DomainContextualizationProcess rdfs:seeAlso :Step4_Contextualize ;  # from value-conflict-resolution.ttl
+    :integratesWith :ValueConflictResolutionProcess ;
+    :requiredBy :Step4_Contextualize ;
+    rdfs:comment "Domain contextualization implements Step 4 of 7-step integration procedure. Domain weights adjust worldview salience in context-appropriate way." .
+
+# ============================================================================
+# USAGE NOTES
+# ============================================================================
+
+# This ontology provides:
+# 1. BFO-compliant modeling of domains as ICE with worldview weight profiles
+# 2. Eight major life domains with comprehensive worldview weightings (0.0-1.0 scale)
+# 3. Rationale and empirical evidence for each worldview weight in each domain
+# 4. Integration with value-conflict-resolution.ttl (Step 4 contextualization)
+# 5. Domain boundary dispute recognition and resolution strategies
+# 6. 40+ philosophical and empirical sources
+# 7. Critical notes explaining weight rationale and preventing misinterpretation
+
+# Key domains modeled:
+# - Healthcare: Materialism/Realism high (0.9), Spiritualism moderate (0.45)
+# - Spiritual Formation: Spiritualism/Idealism/Pneumatism high (0.9+), Materialism low (0.3)
+# - Education: Idealism/Rationalism/Dynamism high (0.85+), balanced objective/subjective
+# - Vocational Choice: Monadism very high (0.95), authenticity paramount
+# - Environmental Policy: Pneumatism/Materialism/Rationalism high (0.8+), unique integration
+# - Relationship Ethics: Monadism/Psychism very high (0.9+), rationalism low (0.35)
+# - Business/Economics: Materialism/Rationalism/Realism high (0.8+), instrumental focus
+# - Scientific Research: Realism/Materialism very high (0.9+), spiritual minimal (0.15-0.2)
+
+# Applications:
+# - Step 4 of value conflict resolution: Apply domain weights to contextualize judgments
+# - Prevent absurd applications: Spiritualism doesn't dominate surgery; materialism doesn't dominate prayer
+# - Make context-sensitivity transparent: Explicit weights prevent hidden biases
+# - Enable appropriate weighting without elimination: Low weight ≠ false or worthless
+
+# Critical principles:
+# - Domain weights reflect PURPOSE-APPROPRIATENESS, not universal truth claims
+# - Low weight in one domain doesn't negate high weight in another domain
+# - Weights are guidelines requiring judgment in application, not mechanical rules
+# - Domain boundary disputes are common and require contextual wisdom
+# - Multi-domain situations require integration of multiple weight profiles
+
+# Future extensions:
+# - Additional domains (artistic creation, political deliberation, contemplative practice)
+# - Empirical validation of weight profiles through expert surveys
+# - Computational retrieval of domain weights for automated moral reasoning
+# - Cultural variation in domain weight profiles (cross-cultural studies)
+# - Temporal changes in domain norms (historical evolution of domain boundaries)

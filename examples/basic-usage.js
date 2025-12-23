@@ -18,8 +18,8 @@ console.log('Integral Ethics Engine - Basic Usage Example');
 console.log('='.repeat(80));
 console.log();
 
-// Initialize event-driven coordination
-initializeSynchronizations();
+// Initialize event-driven coordination (loads ValueNet automatically)
+await initializeSynchronizations();
 
 // Load the Material-Empirical worldviews (Phase 1)
 console.log('Loading Material-Empirical worldviews...');
@@ -200,6 +200,52 @@ console.log();
 
 console.log('Notice: Each worldview has distinct terminal and subordinated values.');
 console.log('This ensures no worldview reduces to another.');
+console.log();
+
+// ============================================================================
+// DEMONSTRATION: ValueNet Integration
+// ============================================================================
+
+console.log('='.repeat(80));
+console.log('DEMONSTRATION: ValueNet Integration (BFO-Aligned Value Ontology)');
+console.log('='.repeat(80));
+console.log();
+
+console.log('ValueNet provides BFO-aligned value dispositions:');
+console.log();
+
+import { ontologyLoader } from '../src/concepts/ontologyLoader.js';
+
+const dispositions = ontologyLoader.actions.getValueNetDispositions();
+if (dispositions.length > 0) {
+  console.log(`Loaded ${dispositions.length} ValueNet dispositions:`);
+  console.log();
+
+  // Show Schwartz's values
+  const schwartzDispositions = dispositions.filter(d =>
+    d.uri && d.uri.includes('schwartz')
+  ).slice(0, 5);
+
+  schwartzDispositions.forEach(d => {
+    console.log(`  • ${d.label || d.name}`);
+    if (d.definition) {
+      const shortDef = d.definition.substring(0, 80) + '...';
+      console.log(`    ${shortDef}`);
+    }
+  });
+
+  console.log();
+  console.log('Key Insight: Same ValueNet disposition (e.g., SecurityDisposition) has');
+  console.log('different meanings across worldviews:');
+  console.log('  - Materialism: Security = Physical safety, material resources');
+  console.log('  - Phenomenalism: Security = Subjective certainty, stable perceptions');
+  console.log();
+  console.log('This demonstrates multi-perspectival value interpretation using');
+  console.log('shared BFO-aligned ontological vocabulary.');
+} else {
+  console.log('ValueNet dispositions not loaded (files may not be available).');
+}
+
 console.log();
 
 // ============================================================================

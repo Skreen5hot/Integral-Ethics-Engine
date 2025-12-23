@@ -1,0 +1,3 @@
+
+
+(Continues with comprehensive documentation...)

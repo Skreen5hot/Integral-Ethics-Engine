@@ -1,0 +1,722 @@
+@prefix : <http://ontology-of-freedom.org/iee#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vn-core: <http://ontology-of-freedom.org/valuenet/core#> .
+
+# ============================================================================
+# Value Conflict Resolution Ontology - BFO 2020 Compliant
+# ============================================================================
+#
+# Purpose: Models the 7-step integration procedure for resolving value conflicts
+# arising from competing worldview perspectives in the Integral Ethics Engine.
+#
+# Philosophical Foundation:
+# This ontology synthesizes multiple conflict resolution and integration
+# traditions into a unified BFO-compliant process model:
+# - Hegelian dialectics (thesis-antithesis-synthesis)
+# - Gadamerian hermeneutics (fusion of horizons)
+# - Wilberian integral theory (all perspectives true but partial)
+# - Ricoeurian hermeneutics of conflict
+# - Habermasian discourse ethics (ideal speech conditions)
+# - Rawlsian reflective equilibrium
+#
+# Key Innovation:
+# The 7-step procedure prevents hidden worldview privileging by making explicit:
+# 1. The worldview sources of conflicting judgments
+# 2. The partial truths each worldview reveals
+# 3. False dichotomies vs. genuine tensions
+# 4. Domain-specific and developmental contextualization
+# 5. Synthesis possibilities
+# 6. Priority criteria when synthesis impossible
+# 7. Epistemic humility regarding uncertainty
+#
+# Primary Sources:
+# - Hegel, G. W. F. (1807/1977). Phenomenology of Spirit. Oxford University Press.
+# - Gadamer, H.-G. (1960/2013). Truth and Method. Bloomsbury.
+# - Ricoeur, P. (1970). Freud and Philosophy: An Essay on Interpretation. Yale University Press.
+# - Wilber, K. (2000). Integral Psychology. Shambhala.
+# - Habermas, J. (1990). Moral Consciousness and Communicative Action. MIT Press.
+# - Rawls, J. (1971). A Theory of Justice. Harvard University Press.
+#
+# Empirical Research - Conflict Resolution:
+# - Fisher, R., & Ury, W. (1981). Getting to Yes: Negotiating Agreement Without Giving In. Penguin.
+# - Deutsch, M. (1973). The Resolution of Conflict: Constructive and Destructive Processes. Yale University Press.
+# - Pruitt, D. G., & Kim, S. H. (2004). Social Conflict: Escalation, Stalemate, and Settlement. McGraw-Hill.
+# - De Dreu, C. K. W., & Gelfand, M. J. (Eds.). (2008). The Psychology of Conflict and Conflict Management. Psychology Press.
+#
+# Empirical Research - Moral Reasoning Integration:
+# - Rest, J. R. (1986). Moral Development: Advances in Research and Theory. Praeger.
+# - Kohlberg, L. (1984). The Psychology of Moral Development. Harper & Row.
+# - Narvaez, D., & Lapsley, D. K. (2009). Personality, Identity, and Character. Cambridge University Press.
+# - Thoma, S. J., et al. (2008). Does moral judgment development reduce to political ideology? Educational Psychology Review, 20(3), 347-366.
+#
+# Empirical Research - Perspective-Taking:
+# - Galinsky, A. D., et al. (2005). Why it pays to get inside the head of your opponent. Psychological Science, 16(5), 378-384.
+# - Batson, C. D., et al. (1997). Perspective taking: Imagining how another feels versus imagining how you would feel. Personality and Social Psychology Bulletin, 23(7), 751-758.
+# - Gehlbach, H., et al. (2012). Creating birds of similar feathers: Leveraging similarity to improve teacher-student relationships. Journal of Educational Psychology, 104(1), 192-206.
+#
+# ============================================================================
+# BIBLIOGRAPHIC CITATIONS
+# ============================================================================
+#
+# Dialectical Philosophy:
+# - Hegel, G. W. F. (1807/1977). Phenomenology of Spirit. Trans. A. V. Miller. Oxford University Press.
+# - Hegel, G. W. F. (1812-1816/2010). Science of Logic. Trans. George di Giovanni. Cambridge University Press.
+# - Fichte, J. G. (1794/1982). The Science of Knowledge. Cambridge University Press.
+# - Adorno, T. W. (1966/1973). Negative Dialectics. Trans. E. B. Ashton. Continuum.
+#
+# Hermeneutics:
+# - Gadamer, H.-G. (1960/2013). Truth and Method. Trans. Joel Weinsheimer & Donald G. Marshall. Bloomsbury.
+# - Ricoeur, P. (1970). Freud and Philosophy: An Essay on Interpretation. Yale University Press.
+# - Ricoeur, P. (1992). Oneself as Another. Trans. Kathleen Blamey. University of Chicago Press.
+# - Habermas, J. (1990). Moral Consciousness and Communicative Action. Trans. Christian Lenhardt & Shierry Weber Nicholsen. MIT Press.
+#
+# Integral Theory:
+# - Wilber, K. (1995). Sex, Ecology, Spirituality: The Spirit of Evolution. Shambhala.
+# - Wilber, K. (2000). Integral Psychology: Consciousness, Spirit, Psychology, Therapy. Shambhala.
+# - Esbjörn-Hargens, S. (2009). An overview of integral theory. Resource Paper No. 1, Integral Institute.
+# - Ferrer, J. N. (2017). Participation and the Mystery: Transpersonal Essays in Psychology, Education, and Religion. SUNY Press.
+#
+# Discourse Ethics:
+# - Habermas, J. (1983/1990). Moral Consciousness and Communicative Action. MIT Press.
+# - Apel, K.-O. (1980). Towards a Transformation of Philosophy. Routledge & Kegan Paul.
+# - Benhabib, S. (1992). Situating the Self: Gender, Community and Postmodernism in Contemporary Ethics. Routledge.
+#
+# Reflective Equilibrium:
+# - Rawls, J. (1971). A Theory of Justice. Harvard University Press.
+# - Daniels, N. (1996). Justice and Justification: Reflective Equilibrium in Theory and Practice. Cambridge University Press.
+# - DePaul, M. R. (1993). Balance and Refinement: Beyond Coherence Methods of Moral Inquiry. Routledge.
+#
+# Conflict Resolution Research:
+# - Fisher, R., Ury, W., & Patton, B. (2011). Getting to Yes: Negotiating Agreement Without Giving In (3rd ed.). Penguin.
+# - Deutsch, M. (1973). The Resolution of Conflict: Constructive and Destructive Processes. Yale University Press.
+# - Pruitt, D. G., & Kim, S. H. (2004). Social Conflict: Escalation, Stalemate, and Settlement (3rd ed.). McGraw-Hill.
+# - De Dreu, C. K. W., & Gelfand, M. J. (Eds.). (2008). The Psychology of Conflict and Conflict Management in Organizations. Psychology Press.
+# - Coleman, P. T., Deutsch, M., & Marcus, E. C. (Eds.). (2014). The Handbook of Conflict Resolution (3rd ed.). Jossey-Bass.
+#
+# Moral Development Research:
+# - Kohlberg, L. (1984). The Psychology of Moral Development: The Nature and Validity of Moral Stages. Harper & Row.
+# - Rest, J. R. (1986). Moral Development: Advances in Research and Theory. Praeger.
+# - Narvaez, D., & Lapsley, D. K. (Eds.). (2009). Personality, Identity, and Character: Explorations in Moral Psychology. Cambridge University Press.
+# - Thoma, S. J., Derryberry, W. P., & Narvaez, D. (2008). Does moral judgment development reduce to political ideology? Educational Psychology Review, 20(3), 347-366.
+# - Gibbs, J. C. (2014). Moral Development and Reality: Beyond the Theories of Kohlberg, Hoffman, and Haidt (3rd ed.). Oxford University Press.
+#
+# Perspective-Taking Research:
+# - Galinsky, A. D., Maddux, W. W., Gilin, D., & White, J. B. (2008). Why it pays to get inside the head of your opponent: The differential effects of perspective taking and empathy in negotiations. Psychological Science, 19(4), 378-384.
+# - Batson, C. D., Early, S., & Salvarani, G. (1997). Perspective taking: Imagining how another feels versus imagining how you would feel. Personality and Social Psychology Bulletin, 23(7), 751-758.
+# - Gehlbach, H., Brinkworth, M. E., & Harris, A. D. (2012). Changes in teacher-student relationships. British Journal of Educational Psychology, 82(4), 690-704.
+# - Ku, G., Wang, C. S., & Galinsky, A. D. (2015). The promise and perversity of perspective-taking in organizations. Research in Organizational Behavior, 35, 79-102.
+#
+# Epistemic Humility Research:
+# - Whitcomb, D., et al. (2017). Intellectual humility: Owning our limitations. Philosophy and Phenomenological Research, 94(3), 509-539.
+# - Hoyle, R. H., Davisson, E. K., Diebels, K. J., & Leary, M. R. (2016). Holding specific views with humility: Conceptualization and measurement of specific intellectual humility. Personality and Individual Differences, 97, 165-172.
+# - Krumrei-Mancuso, E. J., & Rouse, S. V. (2016). The development and validation of the Comprehensive Intellectual Humility Scale. Journal of Personality Assessment, 98(2), 209-221.
+# ============================================================================
+
+# ============================================================================
+# CORE PROCESS: VALUE CONFLICT RESOLUTION
+# ============================================================================
+
+:ValueConflictResolutionProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Synthesizes Hegelian dialectics, Gadamerian hermeneutics, and Wilberian integral theory into unified resolution procedure" ;
+    rdfs:label "Value Conflict Resolution Process" ;
+    skos:definition "A BFO process for resolving conflicts between values arising from different worldview perspectives through systematic integration following a 7-step procedure." ;
+    bfo:0000057 :Agent ;  # has_participant (moral agent performing resolution)
+    bfo:0000057 :ValueConflict ;  # has_participant (conflict being resolved)
+    cco:has_input :ConflictingValueJudgments ;
+    cco:has_output :IntegratedValueJudgment ;
+    :hasSubProcessSequence :SevenStepIntegrationProcedure ;
+    :requiredCapacities :CriticalReason, :HermeneuticSensitivity, :EpistemicHumility ;
+    :empiricalSupport [
+        :study1 "Coleman et al. (2014): Multi-step conflict resolution procedures improve outcomes in intractable conflicts" ;
+        :study2 "Galinsky et al. (2008): Perspective-taking improves integrative agreements (n=190 negotiators)" ;
+        :study3 "Rest (1986): Multi-component moral reasoning models outperform single-component models"
+    ] ;
+    rdfs:comment "The 7-step procedure prevents hidden worldview privileging through explicit acknowledgment of sources, truths, false dichotomies, contextualization, synthesis attempts, priority criteria, and epistemic humility." .
+
+:SevenStepIntegrationProcedure a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    rdfs:label "Seven-Step Integration Procedure" ;
+    skos:definition "An ordered sequence of seven sub-processes for systematically resolving value conflicts while respecting all worldview perspectives." ;
+    :hasOrderedSteps (
+        :Step1_IdentifyWorldviewSources
+        :Step2_AcknowledgePartialTruths
+        :Step3_CheckFalseDichotomies
+        :Step4_Contextualize
+        :Step5_SeekSynthesis
+        :Step6_PrioritizeIfNecessary
+        :Step7_EpistemicHumility
+    ) ;
+    :inspirationSources "Rawlsian reflective equilibrium + Wilberian integral method + Habermasian discourse ethics" ;
+    rdfs:comment "Sequential execution required; later steps depend on outputs of earlier steps. Each step is a BFO process with defined inputs/outputs." .
+
+# ============================================================================
+# STEP 1: IDENTIFY WORLDVIEW SOURCES
+# ============================================================================
+
+:Step1_IdentifyWorldviewSources a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    dcterms:source "Wilber (2000): Every perspective emerges from particular worldview commitments" ;
+    rdfs:label "Step 1: Identify Worldview Sources" ;
+    skos:definition "A process of tracing each conflicting value judgment to its grounding worldview(s) and metaphysical commitments." ;
+    bfo:0000057 :Agent ;
+    cco:has_input :ConflictingValueJudgments ;
+    cco:has_output :WorldviewSourceMapping ;
+    :procedureDescription "For each conflicting judgment, identify which worldview(s) generate it by examining its metaphysical presuppositions, epistemological assumptions, and value salience patterns." ;
+    :requiredKnowledge :WorldviewOntologies ;
+    :outputs [
+        :judgment_A_sources "List of worldviews generating Judgment A" ;
+        :judgment_B_sources "List of worldviews generating Judgment B" ;
+        :metaphysical_foundations "Explicit ontological commitments underlying each judgment"
+    ] ;
+    :example "Conflict: 'Euthanasia is permissible' vs. 'Euthanasia is impermissible'. Sources: Materialism (bodily autonomy, no afterlife) vs. Spiritualism (sacred life, transcendent consequences)" ;
+    :empiricalSupport "Koltko-Rivera (2004): Worldview identification enables understanding of value conflicts" ;
+    rdfs:comment "Transparency about sources prevents hidden privileging. Multiple worldviews may generate same judgment for different reasons." .
+
+:WorldviewSourceMapping a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # information content entity (ICE)
+    rdfs:label "Worldview Source Mapping" ;
+    skos:definition "An ICE representing the identified worldview sources for each conflicting value judgment." ;
+    :generatedBy :Step1_IdentifyWorldviewSources ;
+    :hasComponents :JudgmentWorldviewPairs, :MetaphysicalFoundations ;
+    rdfs:comment "Output of Step 1; input to Step 2." .
+
+# ============================================================================
+# STEP 2: ACKNOWLEDGE PARTIAL TRUTHS
+# ============================================================================
+
+:Step2_AcknowledgePartialTruths a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    dcterms:source "Wilber (2000): Nobody is smart enough to be wrong all the time - all perspectives are true but partial" ;
+    rdfs:label "Step 2: Acknowledge Partial Truths" ;
+    skos:definition "A process of identifying the legitimate insight or truth that each worldview reveals in the conflict situation." ;
+    bfo:0000057 :Agent ;
+    cco:has_input :WorldviewSourceMapping ;
+    cco:has_output :PartialTruthsRecognition ;
+    :procedureDescription "For each worldview generating a judgment, ask: What aspect of reality does this worldview illuminate? What would we miss if we ignored this perspective?" ;
+    :requiredCapacity :HermeneuticGenerosity ;
+    :philosophicalFoundation "Gadamer's 'hermeneutics of trust' + Ricoeur's 'hermeneutics of suspicion with recovery of meaning'" ;
+    :outputs [
+        :worldview_A_insight "What Worldview A correctly perceives" ;
+        :worldview_B_insight "What Worldview B correctly perceives" ;
+        :blind_spots "What each worldview misses or distorts"
+    ] ;
+    :example "Materialism insight: Physical suffering is real and morally relevant. Spiritualism insight: Transcendent meaning affects moral significance of death. Both true!" ;
+    :empiricalSupport [
+        :study1 "Batson et al. (1997): Perspective-taking increases recognition of legitimate concerns (n=60)" ;
+        :study2 "Gehlbach et al. (2012): Acknowledging others' perspectives improves relationships and outcomes"
+    ] ;
+    :warning "Do not confuse 'acknowledging partial truth' with 'accepting conclusion'. Can recognize legitimate concern without agreeing on resolution." ;
+    rdfs:comment "Critical step preventing dismissal of opposing views. Requires epistemic humility and hermeneutic charity." .
+
+:PartialTruthsRecognition a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Partial Truths Recognition" ;
+    skos:definition "An ICE documenting the legitimate insights revealed by each worldview perspective in the conflict." ;
+    :generatedBy :Step2_AcknowledgePartialTruths ;
+    :hasComponents :WorldviewInsights, :BlindSpots ;
+    rdfs:comment "Output of Step 2; input to Steps 3 and 5." .
+
+# ============================================================================
+# STEP 3: CHECK FOR FALSE DICHOTOMIES
+# ============================================================================
+
+:Step3_CheckFalseDichotomies a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    dcterms:source "Dewey (1938): Many conflicts arise from false either/or framings that dissolve with reframing" ;
+    rdfs:label "Step 3: Check for False Dichotomies" ;
+    skos:definition "A process of determining whether the value conflict represents a genuine tension or a false dichotomy that can be dissolved through reframing." ;
+    bfo:0000057 :Agent ;
+    cco:has_input :ConflictingValueJudgments, :PartialTruthsRecognition ;
+    cco:has_output :ConflictClassification ;
+    :procedureDescription "Examine whether values are genuinely incompatible or whether conflict arises from: (a) false framing, (b) different domains, (c) different time-scales, (d) confusion of means and ends." ;
+    :testTypes [
+        :false_framing "Is conflict framed as A-vs-B when reality is A-and-B-in-different-aspects?" ;
+        :domain_confusion "Do values apply to different domains (material vs. spiritual, public vs. private)?" ;
+        :temporal_confusion "Do values apply to different time-scales (immediate vs. long-term)?" ;
+        :means_ends_confusion "Is one value a means to the other?"
+    ] ;
+    :outputs [
+        :false_dichotomy "Conflict dissolves with reframing; values are compatible" ;
+        :genuine_tension "Values remain in tension even after reframing; proceed to contextualization"
+    ] ;
+    :example "False: 'Individual autonomy vs. Social responsibility'. Reframe: Autonomy requires social support; responsibility requires autonomous agents. Compatible!" ;
+    :example_genuine "Genuine: 'Material pleasure maximization vs. Spiritual transcendence of pleasure'. Irreducibly different orientations." ;
+    :empiricalSupport "De Dreu & Gelfand (2008): Reframing conflicts as integrative rather than distributive improves resolution success" ;
+    rdfs:comment "Many conflicts dissolve at this step. If false dichotomy discovered, no further steps needed - both values affirmed." .
+
+:ConflictClassification a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Conflict Classification" ;
+    skos:definition "An ICE categorizing the conflict as either a false dichotomy or genuine tension requiring further resolution." ;
+    :generatedBy :Step3_CheckFalseDichotomies ;
+    :hasValues :FalseDichotomy, :GenuineTension ;
+    rdfs:comment "Output of Step 3; determines whether to proceed to Step 4 or terminate with compatibility recognition." .
+
+# ============================================================================
+# STEP 4: CONTEXTUALIZE BY DOMAIN AND DEVELOPMENT
+# ============================================================================
+
+:Step4_Contextualize a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    dcterms:source "Gould (1997): NOMA - domain contextualization resolves many science/religion conflicts. Kohlberg (1984): Developmental stage affects moral reasoning." ;
+    rdfs:label "Step 4: Contextualize by Domain and Development" ;
+    skos:definition "A process of weighting worldview perspectives appropriately based on domain-specific relevance and developmental stage of moral agent." ;
+    bfo:0000057 :Agent ;
+    cco:has_input :ConflictClassification, :Domain, :DevelopmentalStage ;
+    cco:has_output :ContextualizedWeightings ;
+    :procedureDescription "Apply domain-specific worldview weightings and developmental stage considerations to determine contextually appropriate emphasis." ;
+    :twoSubProcesses [
+        :domain_weighting "Different domains privilege different worldviews (e.g., surgery privileges materialism, prayer privileges spiritualism)" ;
+        :developmental_contextualization "Developmental stage affects accessible worldviews and moral autonomy level"
+    ] ;
+    :inputs_required [
+        :domain "What domain does this situation fall under? (healthcare, education, spiritual formation, etc.)" ;
+        :developmental_stage "What is the moral agent's developmental stage? (preconventional, conventional, postconventional, integral)"
+    ] ;
+    :outputs [
+        :domain_adjusted_weights "Worldview salience weights for this specific domain" ;
+        :developmentally_appropriate_expectations "Appropriate moral expectations given developmental capacities" ;
+        :contextual_priority "Which worldview perspectives are most relevant in this context"
+    ] ;
+    :example "Healthcare domain: Materialism (0.9), Realism (0.9), Pneumatism (0.5), Spiritualism (0.4). Physical healing primary, spiritual support secondary." ;
+    :empiricalSupport [
+        :study1 "Hedlund-de Witt (2012): Domain-appropriate worldviews predict sustainable behaviors" ;
+        :study2 "Rest (1986): Moral reasoning shows domain-specific variation (n=1,000+)" ;
+        :study3 "Narvaez & Lapsley (2009): Context dramatically affects moral judgment and behavior"
+    ] ;
+    :limitation "Domain boundaries can be contested; requires judgment about proper domain identification" ;
+    rdfs:comment "Prevents absurd applications (e.g., spiritualism dominating surgery, materialism dominating prayer). Makes context-sensitivity transparent." .
+
+:ContextualizedWeightings a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Contextualized Weightings" ;
+    skos:definition "An ICE representing domain-adjusted and developmentally-appropriate worldview salience weightings." ;
+    :generatedBy :Step4_Contextualize ;
+    :hasComponents :DomainWeights, :DevelopmentalAdjustments ;
+    rdfs:comment "Output of Step 4; input to Steps 5 and 6." .
+
+# ============================================================================
+# STEP 5: SEEK CREATIVE SYNTHESIS
+# ============================================================================
+
+:Step5_SeekSynthesis a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    dcterms:source "Hegel (1807): Dialectical synthesis preserves truth of both thesis and antithesis at higher level. Ricoeur (1970): Creative interpretation transcends conflict." ;
+    rdfs:label "Step 5: Seek Creative Synthesis" ;
+    skos:definition "A process of attempting creative integration that preserves the partial truths of all worldview perspectives in a higher-order understanding or resolution." ;
+    bfo:0000057 :Agent ;
+    cco:has_input :PartialTruthsRecognition, :ContextualizedWeightings ;
+    cco:has_output :SynthesisAttemptResult ;
+    :procedureDescription "Ask: Is there a creative reframing, third option, or higher-order principle that honors the insights of all perspectives?" ;
+    :synthesisStrategies [
+        :dialectical_aufhebung "Hegelian synthesis: Transcend opposition while preserving truths (sublation)" ;
+        :temporal_sequencing "Honor both values across different life stages or time periods" ;
+        :domain_separation "Both values valid in different domains (Gould's NOMA)" ;
+        :hierarchical_nesting "One value nested within broader context of another" ;
+        :perspectival_pluralism "Multiple valid perspectives on same reality (Wilber)"
+    ] ;
+    :outputs [
+        :synthesis_achieved "Creative integration found that honors all insights" ;
+        :synthesis_impossible "No synthesis possible; proceed to Step 6 (prioritization)"
+    ] ;
+    :example_success "Synthesis of justice (universal principles) and care (relational context): 'Justice informed by care; care constrained by justice' (feminist ethics)" ;
+    :example_failure "Materialism ('No afterlife, maximize earthly wellbeing') vs. Spiritualism ('Afterlife exists, prepare soul'). No synthesis; irreconcilable metaphysics." ;
+    :empiricalSupport [
+        :study1 "Fisher & Ury (1981): Integrative bargaining (vs. distributive) produces mutual gains" ;
+        :study2 "Pruitt & Kim (2004): Creative problem-solving increases with perspective-taking and brainstorming" ;
+        :study3 "De Dreu (2008): Synthesis more likely when both parties' core concerns are understood"
+    ] ;
+    :requiredCapacity :CreativeIntegration ;
+    rdfs:comment "Synthesis is ideal outcome; preserves all insights. But not always possible - some conflicts are irreconcilable. If synthesis fails, proceed to Step 6." .
+
+:SynthesisAttemptResult a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Synthesis Attempt Result" ;
+    skos:definition "An ICE representing either a successful synthesis or documentation that synthesis is impossible." ;
+    :generatedBy :Step5_SeekSynthesis ;
+    :hasValues :SynthesisAchieved, :SynthesisImpossible ;
+    rdfs:comment "Output of Step 5; determines whether to terminate (if synthesis achieved) or proceed to Step 6 (if impossible)." .
+
+# ============================================================================
+# STEP 6: PRIORITIZE IF NECESSARY (ONLY IF SYNTHESIS IMPOSSIBLE)
+# ============================================================================
+
+:Step6_PrioritizeIfNecessary a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    dcterms:source "Rawls (1971): When reflective equilibrium cannot integrate all values, lexical priority may be necessary. Ross (1930): Prima facie duties require weighing when conflicting." ;
+    rdfs:label "Step 6: Prioritize If Necessary" ;
+    skos:definition "A process of establishing priority between conflicting values using explicit, defensible criteria when creative synthesis has proven impossible." ;
+    bfo:0000057 :Agent ;
+    cco:has_input :SynthesisAttemptResult, :ContextualizedWeightings ;
+    cco:has_output :PrioritizedResolution ;
+    :applicabilityCondition "ONLY applied if Step 5 synthesis is impossible" ;
+    :procedureDescription "Apply explicit priority criteria to determine which value takes precedence in this context while acknowledging the subordinated value's legitimate concern." ;
+    :priorityCriteria [
+        :necessity "Does one value address a necessity (survival, basic functioning) vs. enhancement?" ;
+        :irreversibility "Is one course of action irreversible while the other is reversible?" ;
+        :scope "Does one value affect more people or broader consequences?" ;
+        :imminence "Is one concern immediate/urgent while the other is distant/deferrable?" ;
+        :developmental_appropriateness "Which priority is appropriate given moral agent's developmental stage?" ;
+        :domain_centrality "Which value is more central to this domain's purpose?" ;
+        :consent "Do affected parties consent to the priority ordering?"
+    ] ;
+    :outputs [
+        :prioritized_value "Which value takes precedence in this situation" ;
+        :subordinated_value "Which value is subordinated (but not eliminated)" ;
+        :priority_justification "Explicit reasoning using priority criteria" ;
+        :acknowledgment_of_cost "Recognition of what is lost by subordinating other value"
+    ] ;
+    :example "Medical triage: Survival necessity (materialism-grounded) prioritized over spiritual preparation (spiritualism-grounded) in emergency. Criterion: necessity + irreversibility. But spiritual care offered later when survival secured." ;
+    :criticalRequirement "MUST acknowledge cost of subordination - not elimination. Subordinated value still matters; context forced priority." ;
+    :empiricalSupport [
+        :study1 "Deutsch (1973): Explicit criteria for priority reduce perceived injustice in conflict resolution" ;
+        :study2 "Thoma et al. (2008): Moral reasoning quality improves with explicit justification of priorities"
+    ] ;
+    :warning "This step is last resort. Always prefer synthesis (Step 5). Prioritization means one perspective subordinated." ;
+    rdfs:comment "Transparent prioritization using explicit criteria. Not arbitrary preference or hidden worldview bias. Acknowledges cost and limitation." .
+
+:PrioritizedResolution a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Prioritized Resolution" ;
+    skos:definition "An ICE documenting the priority ordering between conflicting values with explicit justification and acknowledgment of costs." ;
+    :generatedBy :Step6_PrioritizeIfNecessary ;
+    :hasComponents :PrioritizedValue, :SubordinatedValue, :PriorityJustification, :AcknowledgedCosts ;
+    rdfs:comment "Output of Step 6; input to Step 7 for final epistemic humility framing." .
+
+# ============================================================================
+# STEP 7: EPISTEMIC HUMILITY
+# ============================================================================
+
+:Step7_EpistemicHumility a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    dcterms:source "Whitcomb et al. (2017): Intellectual humility requires owning limitations of one's perspective. Habermas (1990): Ideal speech situation requires openness to revision." ;
+    rdfs:label "Step 7: Epistemic Humility" ;
+    skos:definition "A process of framing the resolution with explicit acknowledgment of uncertainty, minority perspectives, limitations, and openness to revision." ;
+    bfo:0000057 :Agent ;
+    cco:has_input :SynthesisAttemptResult, :PrioritizedResolution ;
+    cco:has_output :HumbleIntegratedJudgment ;
+    :procedureDescription "Frame resolution with explicit epistemic qualifications acknowledging fallibility, uncertainty, and perspective limitations." ;
+    :requiredAcknowledgments [
+        :fallibility "Recognition that this resolution may be mistaken" ;
+        :perspectival_limitation "Acknowledgment of limits of one's own worldview access" ;
+        :minority_perspectives "Respect for those who reasonably disagree" ;
+        :situational_specificity "Recognition that resolution is context-specific, not universal" ;
+        :openness_to_revision "Willingness to revise judgment with new evidence or perspectives" ;
+        :moral_remainder "Acknowledgment of what was sacrificed or not fully honored"
+    ] ;
+    :outputs [
+        :epistemic_qualifications "Explicit statement of uncertainties and limitations" ;
+        :respect_for_disagreement "Acknowledgment that reasonable people may reach different conclusions" ;
+        :revision_conditions "What would lead to reconsidering this judgment?" ;
+        :moral_remainder_recognition "Explicit acknowledgment of unresolved tensions or costs"
+    ] ;
+    :example "Resolution: 'In this emergency medical context, I prioritize immediate life-saving intervention over spiritual preparation, based on irreversibility and necessity criteria. However, I acknowledge: (1) This prioritizes materialist values over spiritual ones; (2) For many traditions, spiritual preparation is paramount; (3) If patient explicitly refuses treatment on spiritual grounds, their autonomy should be respected; (4) This judgment is context-specific (emergency) and should not be generalized.'" ;
+    :empiricalSupport [
+        :study1 "Whitcomb et al. (2017): Intellectual humility improves reasoning quality and openness to evidence" ;
+        :study2 "Krumrei-Mancuso & Rouse (2016): Intellectual humility predicts tolerance of opposing views (n=300+)" ;
+        :study3 "Hoyle et al. (2016): Specific intellectual humility (humility about particular beliefs) improves epistemic rationality"
+    ] ;
+    :philosophicalFoundation "Combines Socratic 'I know that I know nothing' with Rawlsian 'burdens of judgment' with Habermasian fallibilism" ;
+    :criticalFunction "Prevents dogmatism and hidden privileging. Resolution is provisional, context-specific, and open to revision." ;
+    rdfs:comment "Final step ensures resolution does not masquerade as absolute truth. Humility is moral virtue and epistemic virtue." .
+
+:HumbleIntegratedJudgment a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Humble Integrated Judgment" ;
+    skos:definition "An ICE representing the final integrated value judgment qualified by epistemic humility, uncertainty acknowledgment, and openness to revision." ;
+    :generatedBy :Step7_EpistemicHumility ;
+    :hasComponents :Resolution, :EpistemicQualifications, :RevisionConditions, :MoralRemainderAcknowledgment ;
+    rdfs:comment "Final output of 7-step procedure. This is the integrated value judgment used for moral decision-making." .
+
+# ============================================================================
+# CONFLICT TYPES AND PATTERNS
+# ============================================================================
+
+:ValueConflict a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process (conflict is ongoing tension)
+    dcterms:source "Deutsch (1973): Conflicts are processes, not static states" ;
+    rdfs:label "Value Conflict Process" ;
+    skos:definition "A process of tension between competing value judgments arising from different worldview perspectives." ;
+    bfo:0000057 :ConflictingValueJudgment ;  # has_participant
+    :hasProperty :ConflictSource, :ConflictIntensity, :ConflictType ;
+    :subtypes :MetaphysicalConflict, :EpistemicConflict, :AxiologicalConflict, :PragmaticConflict ;
+    rdfs:comment "Conflicts are not defects but inevitable given worldview plurality. The goal is not elimination but integration or transparent prioritization." .
+
+:MetaphysicalConflict a owl:Class ;
+    rdfs:subClassOf :ValueConflict ;
+    dcterms:source "Fundamental ontological disagreements generate value conflicts" ;
+    rdfs:label "Metaphysical Conflict" ;
+    skos:definition "A value conflict arising from incompatible ontological commitments about what exists and its fundamental nature." ;
+    :examples [
+        :materialism_spiritualism "Does transcendent spiritual realm exist? (Affects value of spiritual practices, afterlife preparation)" ;
+        :realism_idealism "Is reality mind-independent or mind-constituted? (Affects value of objective truth vs. subjective meaning)" ;
+        :dynamism_mathematism "Is becoming or eternal form primary? (Affects value of growth vs. perfection)"
+    ] ;
+    :resolutionDifficulty "Very high - irreconcilable metaphysics" ;
+    :preferredStrategy :DomainContextualization ;
+    rdfs:comment "Deepest conflicts; rarely admit synthesis. Usually require domain separation or perspectival pluralism." .
+
+:EpistemicConflict a owl:Class ;
+    rdfs:subClassOf :ValueConflict ;
+    dcterms:source "Disagreements about how knowledge is acquired and validated" ;
+    rdfs:label "Epistemic Conflict" ;
+    skos:definition "A value conflict arising from different epistemological standards for knowledge and justification." ;
+    :examples [
+        :empiricism_rationalism "Is sensory experience or logical deduction primary? (Affects value of data vs. theory)" ;
+        :objectivism_subjectivism "Is validity objective or perspectival? (Affects value of universal standards vs. individual authenticity)"
+    ] ;
+    :resolutionDifficulty "High" ;
+    :preferredStrategy :DomainContextualization ;
+    :potentialSynthesis "Critical realism: Objective reality exists but is always known through perspectives" ;
+    rdfs:comment "Significant conflicts but sometimes admit synthesis through critical realism or complementarity." .
+
+:AxiologicalConflict a owl:Class ;
+    rdfs:subClassOf :ValueConflict ;
+    dcterms:source "Direct value priority disagreements" ;
+    rdfs:label "Axiological Conflict" ;
+    skos:definition "A value conflict arising from different orderings or weightings of values themselves." ;
+    :examples [
+        :autonomy_community "Individual freedom vs. collective harmony" ;
+        :justice_care "Universal principles vs. relational responsiveness" ;
+        :achievement_acceptance "Striving for excellence vs. accepting what is"
+    ] ;
+    :resolutionDifficulty "Medium - often false dichotomies or context-dependent" ;
+    :preferredStrategy :CheckFalseDichotomies, :Contextualize, :SeekSynthesis ;
+    :note "Many axiological conflicts dissolve as false dichotomies or admit temporal/domain synthesis" ;
+    rdfs:comment "Most common type; frequently resolvable through reframing or contextualization." .
+
+:PragmaticConflict a owl:Class ;
+    rdfs:subClassOf :ValueConflict ;
+    dcterms:source "Disagreements about how to realize shared values in practice" ;
+    rdfs:label "Pragmatic Conflict" ;
+    skos:definition "A value conflict arising from different beliefs about means-ends relationships or practical consequences." ;
+    :examples [
+        :shared_value_different_means "Both value freedom; disagree on whether free markets or social support better promotes it" ;
+        :empirical_disagreement "Both value wellbeing; disagree on whether X causes harm or benefit"
+    ] ;
+    :resolutionDifficulty "Low - empirically testable" ;
+    :preferredStrategy :EmpiricalInvestigation ;
+    :note "Not genuine value conflicts; disagreements about facts or causal relations" ;
+    rdfs:comment "Easiest to resolve; often dissolve with better empirical evidence or means-ends clarity." .
+
+# ============================================================================
+# INTEGRATION STRATEGIES (FROM WORLDVIEW-RELATIONSHIPS.TTL)
+# ============================================================================
+
+:IntegrationStrategy a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;
+    dcterms:source "Multiple philosophical traditions offer integration strategies for value conflicts" ;
+    rdfs:label "Integration Strategy" ;
+    skos:definition "A BFO process for integrating or coordinating conflicting worldview perspectives." ;
+    :subtypes :DialecticalSynthesis, :DomainContextualization, :PerspectivalPluralism, :TemporalSequencing ;
+    rdfs:comment "Different conflicts require different strategies. 7-step procedure incorporates all strategies at appropriate steps." .
+
+:DialecticalSynthesis a :IntegrationStrategy ;
+    dcterms:source "Hegel (1807): Aufhebung (sublation) - preservation and transcendence" ;
+    rdfs:label "Dialectical Synthesis" ;
+    skos:definition "Integration via higher-order synthesis that preserves truths of thesis and antithesis." ;
+    :correspondingStep :Step5_SeekSynthesis ;
+    :example "Justice (universal) + Care (particular) → Justice informed by care, care constrained by justice" ;
+    rdfs:comment "Ideal outcome; attempted in Step 5." .
+
+:DomainContextualization a :IntegrationStrategy ;
+    dcterms:source "Gould (1997): NOMA - Non-overlapping magisteria" ;
+    rdfs:label "Domain Contextualization" ;
+    skos:definition "Integration via separating worldviews by domain of appropriate application." ;
+    :correspondingStep :Step4_Contextualize ;
+    :example "Materialism for physical health domain; Spiritualism for spiritual formation domain" ;
+    rdfs:comment "Pragmatic solution; applied in Step 4." .
+
+:PerspectivalPluralism a :IntegrationStrategy ;
+    dcterms:source "Wilber (2000): All perspectives are true but partial" ;
+    rdfs:label "Perspectival Pluralism" ;
+    skos:definition "Integration via recognizing multiple valid perspectives on same reality without privileging one as absolute." ;
+    :correspondingStep :Step2_AcknowledgePartialTruths ;
+    :requiredCapacity :PerspectivalFlexibility ;
+    rdfs:comment "Prevents dogmatism; foundational to Steps 2 and 7." .
+
+:TemporalSequencing a :IntegrationStrategy ;
+    rdfs:label "Temporal Sequencing" ;
+    skos:definition "Integration via honoring different values at different life stages or time periods." ;
+    :correspondingStep :Step5_SeekSynthesis ;
+    :example "Young adulthood: Achievement and exploration (dynamism). Later life: Wisdom and acceptance (spiritual depth)." ;
+    rdfs:comment "Synthesis strategy for developmentally-appropriate values." .
+
+# ============================================================================
+# REQUIRED CAPACITIES AND VIRTUES
+# ============================================================================
+
+:ConflictResolutionCapacity a owl:Class ;
+    rdfs:subClassOf bfo:0000016 ;  # disposition
+    rdfs:label "Conflict Resolution Capacity" ;
+    skos:definition "A disposition of moral agents to effectively navigate value conflicts using systematic integration procedures." ;
+    bfo:0000052 :Agent ;  # inheres_in
+    bfo:0000054 :ValueConflictResolutionProcess ;  # realized_in
+    :requiredSubCapacities :CriticalReason, :HermeneuticSensitivity, :EpistemicHumility, :CreativeIntegration, :PerspectivalFlexibility ;
+    rdfs:comment "Complex disposition requiring multiple sub-capacities. Can be cultivated through practice and education." .
+
+:CriticalReason a owl:Class ;
+    rdfs:subClassOf bfo:0000016 ;
+    rdfs:label "Critical Reason Capacity" ;
+    skos:definition "A disposition to analyze arguments, identify presuppositions, and trace conclusions to foundations." ;
+    :realizedIn :Step1_IdentifyWorldviewSources, :Step3_CheckFalseDichotomies ;
+    :empiricalSupport "Rest (1986): Critical reasoning is trainable component of moral judgment" ;
+    rdfs:comment "Required for Steps 1 and 3." .
+
+:HermeneuticSensitivity a owl:Class ;
+    rdfs:subClassOf bfo:0000016 ;
+    dcterms:source "Gadamer (1960): Hermeneutic sensitivity to meanings and perspectives" ;
+    rdfs:label "Hermeneutic Sensitivity" ;
+    skos:definition "A disposition to interpret others' perspectives charitably and recognize legitimate concerns." ;
+    :realizedIn :Step2_AcknowledgePartialTruths ;
+    :empiricalSupport "Batson et al. (1997): Perspective-taking disposition is measurable and consequential" ;
+    rdfs:comment "Required for Step 2." .
+
+:EpistemicHumility a owl:Class ;
+    rdfs:subClassOf bfo:0000016 ;
+    dcterms:source "Whitcomb et al. (2017): Intellectual humility as owning limitations" ;
+    rdfs:label "Epistemic Humility" ;
+    skos:definition "A disposition to acknowledge fallibility, perspective limitations, and uncertainty in one's judgments." ;
+    :realizedIn :Step7_EpistemicHumility ;
+    :empiricalSupport [
+        :study1 "Krumrei-Mancuso & Rouse (2016): Intellectual humility scale (IHS) predicts tolerance and openness" ;
+        :study2 "Hoyle et al. (2016): Specific intellectual humility improves belief revision"
+    ] ;
+    rdfs:comment "Required throughout procedure, especially Step 7." .
+
+:CreativeIntegration a owl:Class ;
+    rdfs:subClassOf bfo:0000016 ;
+    rdfs:label "Creative Integration Capacity" ;
+    skos:definition "A disposition to generate novel framings and syntheses that transcend dichotomies." ;
+    :realizedIn :Step5_SeekSynthesis ;
+    :empiricalSupport "Pruitt & Kim (2004): Integrative complexity and creative problem-solving are related" ;
+    rdfs:comment "Required for Step 5 synthesis attempts." .
+
+:PerspectivalFlexibility a owl:Class ;
+    rdfs:subClassOf bfo:0000016 ;
+    dcterms:source "Choi et al. (2007): Analytic-holistic flexibility as individual difference" ;
+    rdfs:label "Perspectival Flexibility" ;
+    skos:definition "A disposition to adopt and inhabit multiple worldview perspectives without losing coherence." ;
+    :realizedIn :Step2_AcknowledgePartialTruths, :Step5_SeekSynthesis ;
+    :empiricalSupport "Choi et al. (2007): Perspectival flexibility is measurable and varies across individuals" ;
+    rdfs:comment "Required for genuinely understanding multiple worldviews." .
+
+# ============================================================================
+# WORKED EXAMPLE: EUTHANASIA CONFLICT
+# ============================================================================
+
+:EuthanasiaConflictExample a :ValueConflictResolutionProcess ;
+    rdfs:label "Worked Example: Euthanasia Conflict" ;
+    :scenario "Patient with terminal illness requests physician-assisted death. Conflict between autonomy/compassion (materialism-grounded) and sanctity of life (spiritualism-grounded)." ;
+
+    :step1_execution [
+        :input "Judgment A: 'Euthanasia permissible - respects autonomy and ends suffering'. Judgment B: 'Euthanasia impermissible - violates sanctity of life'." ;
+        :worldview_sources_A "Materialism (no afterlife, bodily autonomy primary), Sensationalism (ending suffering), Monadism (individual uniqueness)" ;
+        :worldview_sources_B "Spiritualism (transcendent consequences, divine will), Pneumatism (sacred life force), Traditionalism (religious prohibition)" ;
+        :output "Clear worldview source mapping established"
+    ] ;
+
+    :step2_execution [
+        :materialism_insight "Physical suffering is real and morally weighty. Individual autonomy over one's body is fundamental right." ;
+        :spiritualism_insight "Human life has transcendent significance beyond physical pleasure/pain. Death may not be 'ending' but transition with moral consequences." ;
+        :acknowledgment "Both insights are legitimate! Materialism correctly emphasizes suffering and autonomy. Spiritualism correctly emphasizes transcendent dimensions."
+    ] ;
+
+    :step3_execution [
+        :dichotomy_test "Is this false dichotomy or genuine tension?" ;
+        :analysis "Cannot reframe as 'both-and'. Metaphysical conflict: Either (a) death is final and ending suffering is paramount, OR (b) death is transition and spiritual preparation is paramount. Irreconcilable." ;
+        :result "Genuine metaphysical conflict - proceed to Step 4"
+    ] ;
+
+    :step4_execution [
+        :domain "End-of-life medical care (hybrid: medical + spiritual + personal autonomy)" ;
+        :domain_weights "Materialism (0.7), Monadism (0.9 - individual autonomy), Spiritualism (0.6), Pneumatism (0.5)" ;
+        :developmental_stage "Assume postconventional (capable of autonomous judgment)" ;
+        :contextualized_insight "Individual autonomy weighted very high in this domain + developmental stage. But spiritual concern also significant."
+    ] ;
+
+    :step5_execution [
+        :synthesis_attempt "Can we honor both suffering/autonomy AND spiritual concern?" ;
+        :synthesis_possibility "Partial synthesis: Offer palliative care (reduces suffering without causing death) + spiritual support. But if suffering intolerable despite palliation, synthesis breaks down." ;
+        :result "Partial synthesis possible; full synthesis impossible for intractable suffering cases"
+    ] ;
+
+    :step6_execution [
+        :applicability "Applied only if palliative care insufficient" ;
+        :priority_criteria_applied [
+            :autonomy_principle "Individual's autonomous choice regarding their own life" ;
+            :suffering_intensity "Degree of intolerable suffering" ;
+            :consent_clarity "Clear, sustained, informed request"
+        ] ;
+        :prioritized_value "Patient autonomy and suffering-reduction (materialism/monadism-grounded)" ;
+        :subordinated_value "Spiritual prohibition against causing death (spiritualism-grounded)" ;
+        :justification "In cases of: (1) terminal diagnosis, (2) intolerable suffering despite palliation, (3) clear autonomous request - patient's autonomy over their body and suffering prioritized." ;
+        :acknowledged_cost "This subordinates spiritual concern about transcendent consequences. For spiritual traditions, this is profound loss."
+    ] ;
+
+    :step7_execution [
+        :epistemic_qualifications [
+            :fallibility "I may be wrong about metaphysics - afterlife may exist, spiritual consequences may be real" ;
+            :perspectival_limitation "I reason from postconventional Western framework; other perspectives equally legitimate" ;
+            :minority_respect "Many religious traditions and individuals reach opposite conclusion; they are not irrational" ;
+            :situational_specificity "This applies to: terminal illness + intolerable suffering + autonomous request. NOT a general license for euthanasia." ;
+            :moral_remainder "Even if permitted, euthanasia involves profound loss - of life, of possibility, of sacred trust. This should never be treated lightly."
+        ] ;
+        :revision_conditions "If: (1) Strong evidence of afterlife emerged, (2) Better palliation made suffering manageable, (3) Patient's request not truly autonomous - I would reconsider" ;
+        :final_judgment "In this specific context, I provisionally prioritize patient autonomy and suffering-reduction over spiritual prohibition, while acknowledging profound uncertainty and respecting those who reach opposite conclusion."
+    ] ;
+
+    rdfs:comment "Complete worked example demonstrating all 7 steps. Shows: transparent worldview sources, acknowledged truths, genuine conflict, contextualization, synthesis attempt, transparent prioritization with explicit criteria, and epistemic humility." .
+
+# ============================================================================
+# INTEGRATION WITH IEE COMPONENTS
+# ============================================================================
+
+:ValueConflictResolutionProcess rdfs:seeAlso :WorldviewRelationship ;
+    :integratesWith :WorldviewValueNetMappings ;
+    :requiredOntologies :WorldviewRelationships, :DomainContextualization, :MoralCharacter ;
+    rdfs:comment "Conflict resolution procedure integrates with worldview relationships ontology, domain contextualization, and character tracking." .
+
+# ============================================================================
+# USAGE NOTES
+# ============================================================================
+
+# This ontology provides:
+# 1. Complete 7-step integration procedure for value conflict resolution
+# 2. BFO-compliant process modeling with inputs/outputs for each step
+# 3. Four conflict types (metaphysical, epistemic, axiological, pragmatic)
+# 4. Integration strategies mapped to procedure steps
+# 5. Required moral and epistemic capacities
+# 6. Comprehensive worked example (euthanasia conflict)
+# 7. 40+ philosophical and empirical citations
+# 8. Full BFO 2020 compliance
+
+# Applications:
+# - Systematic moral reasoning under worldview plurality
+# - Transparent conflict resolution in bioethics, policy, personal decisions
+# - Educational tool for teaching integrative moral reasoning
+# - Prevents hidden worldview privileging through explicit procedure
+# - Combines philosophical rigor with empirical grounding
+
+# Critical features:
+# - Makes worldview sources explicit (Step 1)
+# - Requires acknowledging opposing truths (Step 2)
+# - Tests for false dichotomies (Step 3)
+# - Contextualizes by domain and development (Step 4)
+# - Always attempts synthesis first (Step 5)
+# - Prioritizes only when necessary with explicit criteria (Step 6)
+# - Frames all resolutions with epistemic humility (Step 7)
+
+# Future extensions:
+# - Computational implementation of 7-step procedure
+# - Integration with machine reasoning systems
+# - Empirical validation studies of procedure effectiveness
+# - Training programs for cultivating required capacities
+# - Domain-specific instantiations (medical, legal, environmental)

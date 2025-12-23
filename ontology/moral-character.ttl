@@ -1,0 +1,713 @@
+@prefix : <http://ontology-of-freedom.org/iee#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-core: <https://fandaws.com/ontology/bfo/valuenet-core#> .
+@prefix vn-schwartz: <https://fandaws.com/ontology/bfo/valuenet-schwartz-values#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Moral Character Ontology - BFO-Aligned Virtue and Vice Modeling
+# ============================================================================
+#
+# Philosophical Foundation:
+# - Character traits modeled as BFO dispositions (bfo:0000016)
+# - Realized through concrete acts and processes (bfo:0000015)
+# - Grounded in quality substrates inhering in agents (bfo:0000019)
+# - Cross-worldview: applicable across all 12 worldview frameworks
+#
+# Primary Sources:
+# - Aristotle. (350 BCE). Nicomachean Ethics. Trans. W.D. Ross. Oxford University Press.
+# - Aquinas, T. (1265-74). Summa Theologica. Trans. Fathers of the English Dominican Province.
+# - Hume, D. (1739-40). A Treatise of Human Nature. Book III: Of Morals.
+# - Kant, I. (1785). Groundwork of the Metaphysics of Morals. Trans. Mary Gregor. Cambridge (1997).
+# - MacIntyre, A. (1981). After Virtue: A Study in Moral Theory. University of Notre Dame Press.
+# - Foot, P. (1978). Virtues and Vices and Other Essays in Moral Philosophy. Oxford University Press.
+# - Annas, J. (2011). Intelligent Virtue. Oxford University Press.
+# - Hursthouse, R. (1999). On Virtue Ethics. Oxford University Press.
+#
+# Contemporary Empirical Research:
+# - Peterson, C., & Seligman, M. E. P. (2004). Character Strengths and Virtues: A Handbook and Classification. Oxford University Press.
+# - Fleeson, W., & Jayawickreme, E. (2015). Whole Trait Theory. Journal of Research in Personality, 56, 82-92.
+# - Miller, C. B. (2013). Moral Character: An Empirical Theory. Oxford University Press.
+# - Doris, J. M. (2002). Lack of Character: Personality and Moral Behavior. Cambridge University Press.
+# - Haidt, J. (2001). The emotional dog and its rational tail. Psychological Review, 108(4), 814-834.
+# - Narvaez, D., & Lapsley, D. K. (2009). Moral identity, moral functioning, and the development of moral character. Psychology of Learning and Motivation, 50, 237-274.
+#
+# BFO Modeling Strategy:
+# - Character traits = Dispositions (bfo:0000016) inhering in persons
+# - Virtuous/vicious acts = Processes (bfo:0000015) realizing character dispositions
+# - Character qualities = Quality substrates (bfo:0000019) measurable on scales
+# - Character development = Extended process of disposition cultivation
+#
+# Integration with ValueNet:
+# - Character dispositions cross-cut all Schwartz value dispositions
+# - Different worldviews prioritize different character traits
+# - Multi-perspectival character evaluation possible
+#
+# ============================================================================
+# BIBLIOGRAPHIC CITATIONS
+# ============================================================================
+#
+# Classical Virtue Theory:
+# - Aristotle (350 BCE). Nicomachean Ethics. Books II-V (virtue theory), Book X (eudaimonia).
+# - Plato (380 BCE). Republic. Books IV, VI-VII (cardinal virtues, philosopher-king virtues).
+# - Cicero (44 BCE). De Officiis (On Duties). Trans. Walter Miller. Harvard (1913).
+# - Aquinas, T. (1265-74). Summa Theologica. I-II, Q.49-89 (habits and virtues), II-II, Q.1-170 (theological and cardinal virtues).
+#
+# Modern Virtue Theory:
+# - Hume, D. (1751). An Enquiry Concerning the Principles of Morals. Section VI (Qualities Useful to Ourselves).
+# - Kant, I. (1797). The Metaphysics of Morals. Part II: The Doctrine of Virtue.
+# - Nietzsche, F. (1887). On the Genealogy of Morality. Trans. Carol Diethe. Cambridge (2006).
+#
+# Contemporary Virtue Ethics:
+# - MacIntyre, A. (1981). After Virtue: A Study in Moral Theory. University of Notre Dame Press.
+# - Foot, P. (1978). Virtues and Vices. In Virtues and Vices and Other Essays. Oxford University Press.
+# - Anscombe, G.E.M. (1958). Modern Moral Philosophy. Philosophy, 33(124), 1-19.
+# - Annas, J. (2011). Intelligent Virtue. Oxford University Press.
+# - Hursthouse, R. (1999). On Virtue Ethics. Oxford University Press.
+# - Zagzebski, L. (1996). Virtues of the Mind: An Inquiry into the Nature of Virtue and the Ethical Foundations of Knowledge. Cambridge.
+#
+# Empirical Character Research:
+# - Peterson, C., & Seligman, M. E. P. (2004). Character Strengths and Virtues (VIA classification). Oxford University Press.
+# - Fleeson, W., & Jayawickreme, E. (2015). Whole Trait Theory. Journal of Research in Personality, 56, 82-92.
+# - Miller, C. B. (2013). Moral Character: An Empirical Theory. Oxford University Press.
+# - Doris, J. M. (2002). Lack of Character: Personality and Moral Behavior. Cambridge University Press.
+# - Haidt, J. (2001). The emotional dog and its rational tail. Psychological Review, 108(4), 814-834.
+# - Narvaez, D., & Lapsley, D. K. (2009). Moral identity and moral functioning. Psychology of Learning and Motivation, 50, 237-274.
+# - Bleidorn, W., et al. (2022). Personality trait development across the lifespan. Nature Human Behaviour, 6(9), 1171-1179.
+#
+# Situationist Critique:
+# - Harman, G. (1999). Moral philosophy meets social psychology. Proceedings of the Aristotelian Society, 99, 315-331.
+# - Doris, J. M. (2002). Lack of Character: Personality and Moral Behavior. Cambridge University Press.
+# - Milgram, S. (1963). Behavioral Study of Obedience. Journal of Abnormal and Social Psychology, 67(4), 371-378.
+# - Zimbardo, P. (2007). The Lucifer Effect: Understanding How Good People Turn Evil. Random House.
+#
+# Virtue Epistemology:
+# - Zagzebski, L. (1996). Virtues of the Mind. Cambridge University Press.
+# - Sosa, E. (2007). A Virtue Epistemology: Apt Belief and Reflective Knowledge, Vol. I. Oxford University Press.
+# - Greco, J. (2010). Achieving Knowledge: A Virtue-Theoretic Account of Epistemic Normativity. Cambridge.
+# ============================================================================
+
+# ============================================================================
+# CORE CHARACTER CONCEPTS
+# ============================================================================
+
+:MoralCharacter a owl:Class ;
+    rdfs:subClassOf bfo:0000016 ;  # disposition
+    dcterms:source "Aristotle (NE II.6): 'Virtue is a state of character concerned with choice, lying in a mean relative to us, this being determined by reason.'" ;
+    rdfs:label "Moral Character Disposition" ;
+    skos:definition "A stable disposition of an agent to act, feel, and respond in characteristic ways across morally relevant situations. Modeled as BFO disposition inhering in persons." ;
+    :inheres_in :Agent ;
+    :realized_in :CharacterExpressiveAct ;
+    :cultivated_through :HabitualPractice ;
+    :empiricalEvidence "Fleeson & Jayawickreme (2015): Whole Trait Theory models traits as density distributions of states, with dispositions realized in situation-specific manifestations." ;
+    rdfs:comment "Character dispositions are relatively stable (but developable) tendencies to perceive, feel, and act in characteristic ways. Realized through concrete acts but irreducible to behavioral patterns." .
+
+:Virtue a owl:Class ;
+    rdfs:subClassOf :MoralCharacter ;
+    dcterms:source "Aristotle (NE II.6): 'Virtue is a disposition to choose the mean relative to us.'" ;
+    rdfs:label "Virtue" ;
+    skos:definition "Excellent character disposition conducive to human flourishing (eudaimonia). Involves knowledge, deliberation, and habituated emotional responses." ;
+    :conducive_to :Eudaimonia, :HumanFlourishing ;
+    :empiricalEvidence "Peterson & Seligman (2004): VIA classification identifies 24 character strengths clustered into 6 virtue categories" ;
+    rdfs:comment "Virtues are excellences of character enabling characteristically human functioning. Aristotelian mean between excess and deficiency." .
+
+:Vice a owl:Class ;
+    rdfs:subClassOf :MoralCharacter ;
+    dcterms:source "Aristotle (NE II.6): 'Vice is excess or deficiency, virtue observes the mean.'" ;
+    rdfs:label "Vice" ;
+    skos:definition "Deficient character disposition hindering human flourishing. Either excess or deficiency relative to the virtuous mean." ;
+    :hinders :Eudaimonia, :HumanFlourishing ;
+    :manifestsAs :Excess, :Deficiency ;
+    rdfs:comment "Vices are character defects representing failure to hit the mean. Both excess (e.g., rashness) and deficiency (e.g., cowardice) are vicious." .
+
+:CharacterExpressiveAct a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Aristotle (NE II.4): 'Acts are called just and temperate when they are such as the just or temperate person would do.'" ;
+    rdfs:label "Character-Expressive Act" ;
+    skos:definition "A concrete process realizing a character disposition in a specific situation." ;
+    bfo:0000055 :MoralCharacter ;  # realizes
+    bfo:0000057 :Agent ;  # has_participant
+    :contextualizedBy :Situation ;
+    :empiricalNote "Whole Trait Theory (Fleeson 2015): Character states are situation-specific realizations of underlying trait distributions" ;
+    rdfs:comment "Character acts are not mere behaviors but meaningful expressions of settled dispositions in context." .
+
+# ============================================================================
+# CARDINAL VIRTUES (Classical Framework)
+# ============================================================================
+
+:Wisdom a :Virtue ;
+    dcterms:source "Plato (Republic IV): Wisdom is the virtue of the rational part of the soul. Aristotle (NE VI): Phronesis (practical wisdom) guides right action." ;
+    rdfs:label "Wisdom (Phronesis)" ;
+    skos:definition "Intellectual virtue of good deliberation about what conduces to the good life. Practical wisdom combining knowledge, experience, and judgment." ;
+    :altLabels "Prudence", "Phronesis", "Practical Wisdom" ;
+    bfo:0000052 :Agent ;  # inheres_in
+    :involves :PracticalReasoning, :SituationalJudgment, :ExperiencedDiscernment ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # autonomous judgment
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # understanding and wisdom
+    :empiricalEvidence "Baltes & Staudinger (2000). Wisdom: A metaheuristic to orchestrate mind and virtue. American Psychologist, 55(1), 122-136." ;
+    rdfs:comment "Phronesis is the master virtue coordinating all other virtues through situational discernment." .
+
+:Courage a :Virtue ;
+    dcterms:source "Aristotle (NE III.6-9): Courage is the mean regarding fear and confidence, particularly facing death in noble causes." ;
+    rdfs:label "Courage (Andreia)" ;
+    skos:definition "Virtue of facing fear and danger well, neither rashly (excess) nor cowardly (deficiency). Steadfastness in pursuit of the good despite obstacles." ;
+    :altLabels "Fortitude", "Bravery", "Andreia" ;
+    bfo:0000052 :Agent ;
+    :mean_between :Rashness, :Cowardice ;
+    :concerns :Fear, :Confidence, :Risk ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # autonomous action despite fear
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # courage for justice
+    :empiricalEvidence "Pury, C. L., & Lopez, S. J. (Eds.). (2010). The Psychology of Courage: Modern Research on an Ancient Virtue. American Psychological Association." ;
+    :distinguishedFrom "Fearlessness (not a virtue; involves failure to recognize danger)" ;
+    rdfs:comment "True courage involves appropriate fear recognition with steadfast pursuit of the good." .
+
+:Temperance a :Virtue ;
+    dcterms:source "Aristotle (NE III.10-12): Temperance is the mean regarding bodily pleasures, particularly taste and touch." ;
+    rdfs:label "Temperance (Sophrosyne)" ;
+    skos:definition "Virtue of moderation regarding bodily pleasures and desires. Self-control in the pursuit of pleasure." ;
+    :altLabels "Moderation", "Self-Control", "Sophrosyne" ;
+    bfo:0000052 :Agent ;
+    :mean_between :Profligacy, :Insensibility ;
+    :concerns :BodilyPleasure, :Desire, :Appetite ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # autonomous self-regulation
+    :realizableAs vn-schwartz:ConformityDisposition ;  # restraint of impulses
+    :empiricalEvidence "Baumeister, R. F., & Tierney, J. (2011). Willpower: Rediscovering the Greatest Human Strength. Penguin. Shows self-control predicts positive life outcomes." ;
+    rdfs:comment "Temperance harmonizes desire with reason, enabling pursuit of higher goods." .
+
+:Justice a :Virtue ;
+    dcterms:source "Aristotle (NE V): Justice is complete virtue in relation to others. Plato (Republic IV): Justice is each part doing its proper work." ;
+    rdfs:label "Justice (Dikaiosyne)" ;
+    skos:definition "Virtue of giving each their due, fairness in distribution and rectification. Both general virtue (lawfulness) and particular virtue (fairness)." ;
+    :altLabels "Fairness", "Righteousness", "Dikaiosyne" ;
+    bfo:0000052 :Agent ;
+    :subtypes :DistributiveJustice, :RetributiveJustice, :CommutativeJustice ;
+    :concerns :Fairness, :Equality, :Desert, :Rights ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # justice and equality
+    :realizableAs vn-schwartz:BenevolenceDisposition ;  # caring for others
+    :empiricalEvidence "Haidt, J., & Joseph, C. (2004). Intuitive ethics: how innately prepared intuitions generate culturally variable virtues. Daedalus, 133(4), 55-66. Identifies fairness as universal moral foundation." ;
+    rdfs:comment "Justice is the complete virtue in our relations to others (Aristotle)." .
+
+# ============================================================================
+# THEOLOGICAL VIRTUES (Aquinas)
+# ============================================================================
+
+:Faith a :Virtue ;
+    dcterms:source "Aquinas (ST II-II, Q.4): Faith is the theological virtue by which we believe in God and all that He has revealed." ;
+    rdfs:label "Faith (Fides)" ;
+    skos:definition "Theological virtue of trust and belief in divine revelation and providence. Assent to truths beyond natural reason." ;
+    bfo:0000052 :Agent ;
+    :object :DivineTruth, :DivineProvidence ;
+    :grounds :ReligiousCommitment ;
+    :realizableAs vn-schwartz:TraditionDisposition ;  # religious tradition
+    :realizableAs vn-schwartz:SecurityDisposition ;  # trust in providence
+    :worldviewNote "Central to spiritualism, pneumatism; subordinated in materialism, sensationalism" ;
+    rdfs:comment "Faith involves both intellectual assent (belief that) and personal trust (belief in)." .
+
+:Hope a :Virtue ;
+    dcterms:source "Aquinas (ST II-II, Q.17): Hope is the theological virtue by which we desire and expect divine beatitude." ;
+    rdfs:label "Hope (Spes)" ;
+    skos:definition "Theological virtue of confident expectation of divine assistance and ultimate beatitude. Mean between presumption and despair." ;
+    bfo:0000052 :Agent ;
+    :mean_between :Presumption, :Despair ;
+    :object :DivineBeatitude, :FutureGood ;
+    :realizableAs vn-schwartz:SecurityDisposition ;  # hope for positive future
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # hope for universal good
+    :empiricalEvidence "Snyder, C. R. (2002). Hope theory: Rainbows in the mind. Psychological Inquiry, 13(4), 249-275." ;
+    rdfs:comment "Hope involves both desire for good and expectation of attainment with divine help." .
+
+:Charity a :Virtue ;
+    dcterms:source "Aquinas (ST II-II, Q.23): Charity is friendship with God, extending to love of neighbor for God's sake." ;
+    rdfs:label "Charity (Caritas)" ;
+    skos:definition "Theological virtue of supernatural love for God and neighbor. The highest virtue ordering all others to their proper end." ;
+    :altLabels "Love", "Agape", "Caritas" ;
+    bfo:0000052 :Agent ;
+    :object :God, :Neighbor ;
+    :orders_all_virtues true ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;  # caring for others
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # universal love
+    :worldviewNote "Central to spiritualism, pneumatism; reinterpreted as benevolence in secular worldviews" ;
+    rdfs:comment "Charity is the form of all virtues, directing them to the ultimate end (Aquinas)." .
+
+# ============================================================================
+# CONTEMPORARY CHARACTER STRENGTHS (Peterson & Seligman VIA)
+# ============================================================================
+
+:Creativity a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Creativity involves thinking of novel and productive ways to conceptualize and do things." ;
+    rdfs:label "Creativity" ;
+    skos:definition "Virtue of generating original and valuable ideas, approaches, or artifacts. Thinking of novel productive solutions." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Wisdom ;  # VIA classification
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # independent thought and action
+    :realizableAs vn-schwartz:StimulationDisposition ;  # novelty and variety
+    :empiricalEvidence "Kaufman, J. C., & Sternberg, R. J. (Eds.). (2010). The Cambridge Handbook of Creativity. Cambridge University Press." ;
+    rdfs:comment "Creativity combines originality with value or appropriateness to context." .
+
+:Curiosity a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Curiosity is taking an interest in ongoing experience for its own sake." ;
+    rdfs:label "Curiosity" ;
+    skos:definition "Virtue of active interest in and exploration of the world. Seeking novelty and knowledge for intrinsic satisfaction." ;
+    :altLabels "Interest", "Openness to Experience" ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Wisdom ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # curiosity and independent thought
+    :realizableAs vn-schwartz:StimulationDisposition ;  # seeking novelty
+    :empiricalEvidence "Kashdan, T. B., & Silvia, P. J. (2009). Curiosity and interest. In S. J. Lopez & C. R. Snyder (Eds.), Oxford handbook of positive psychology (2nd ed., pp. 367-374)." ;
+    rdfs:comment "Curiosity motivates learning and exploration beyond immediate practical needs." .
+
+:Perseverance a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Perseverance is finishing what one starts despite obstacles." ;
+    rdfs:label "Perseverance" ;
+    skos:definition "Virtue of sustained effort toward goals despite difficulty, boredom, or failure. Persistence and determination." ;
+    :altLabels "Persistence", "Industriousness", "Grit" ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Courage ;
+    :realizableAs vn-schwartz:AchievementDisposition ;  # success through persistence
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # autonomous goal pursuit
+    :empiricalEvidence "Duckworth, A. L., et al. (2007). Grit: Perseverance and passion for long-term goals. Journal of Personality and Social Psychology, 92(6), 1087-1101." ;
+    rdfs:comment "Perseverance (grit) predicts achievement independent of talent." .
+
+:Honesty a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Honesty is speaking the truth and presenting oneself genuinely and sincerely." ;
+    rdfs:label "Honesty" ;
+    skos:definition "Virtue of truthfulness in speech and authenticity in self-presentation. Alignment between inner conviction and outer expression." ;
+    :altLabels "Authenticity", "Integrity", "Sincerity" ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Courage ;  # courage to be authentic
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # authentic self-expression
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # honesty serves truth
+    :empiricalEvidence "Levine, E. E., & Schweitzer, M. E. (2015). Prosocial lies: When deception breeds trust. Organizational Behavior and Human Decision Processes, 126, 88-106." ;
+    :philosophicalNote "Kant: Lying always wrong (universal law). Utilitarians: Prosocial lies sometimes justified. Virtue ethics: Honesty admits context-sensitive judgment." ;
+    rdfs:comment "Honesty involves both refraining from deception and authentic self-presentation." .
+
+:Kindness a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Kindness is doing favors and good deeds for others, generosity and nurturance." ;
+    rdfs:label "Kindness" ;
+    skos:definition "Virtue of generosity, care, compassion, and altruistic love toward others. Benevolent action promoting others' welfare." ;
+    :altLabels "Generosity", "Benevolence", "Compassion" ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Humanity ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;  # preserving and enhancing welfare of close others
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # universal kindness
+    :empiricalEvidence "Konrath, S., et al. (2011). Changes in dispositional empathy in American college students over time. Personality and Social Psychology Review, 15(2), 180-198." ;
+    rdfs:comment "Kindness extends beyond justice to supererogatory benevolence." .
+
+:SocialIntelligence a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Social intelligence is awareness of motives and feelings of others and oneself, knowing what to do in social situations." ;
+    rdfs:label "Social Intelligence" ;
+    skos:definition "Virtue of understanding social dynamics, empathy for others, and skill in navigating interpersonal situations." ;
+    :altLabels "Empathy", "Emotional Intelligence" ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Humanity ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;  # understanding close others
+    :empiricalEvidence "Goleman, D. (2006). Social Intelligence: The New Science of Human Relationships. Bantam." ;
+    rdfs:comment "Social intelligence involves both affective empathy and cognitive perspective-taking." .
+
+:Fairness a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Fairness is treating all people according to notions of equity and justice, not letting feelings bias decisions." ;
+    rdfs:label "Fairness" ;
+    skos:definition "Virtue of impartiality and equity in treatment of others. Giving each their due without bias." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Justice ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # equality and justice
+    :empiricalEvidence "Haidt & Joseph (2004): Fairness/reciprocity is universal moral foundation" ;
+    rdfs:comment "Fairness is procedural (fair process) and distributive (fair outcomes)." .
+
+:Leadership a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Leadership is organizing group activities and seeing that they happen, maintaining good relations within the group." ;
+    rdfs:label "Leadership" ;
+    skos:definition "Virtue of coordinating group action toward shared goals while maintaining cohesion and morale." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Justice ;
+    :realizableAs vn-schwartz:PowerDisposition ;  # social influence and control
+    :realizableAs vn-schwartz:AchievementDisposition ;  # group success
+    :empiricalEvidence "Judge, T. A., et al. (2002). Personality and leadership. Journal of Applied Psychology, 87(4), 765-780." ;
+    rdfs:comment "Ethical leadership balances power with service to the led." .
+
+:Forgiveness a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Forgiveness is forgiving those who have done wrong, accepting others' shortcomings, giving people a second chance." ;
+    rdfs:label "Forgiveness" ;
+    skos:definition "Virtue of releasing resentment toward wrongdoers, overcoming anger with mercy and compassion." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Temperance ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;  # mercy toward others
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # universal compassion
+    :empiricalEvidence "McCullough, M. E., et al. (2000). Forgiveness, forbearance, and time: The temporal unfolding of transgression-related interpersonal motivations. Journal of Personality and Social Psychology, 78(6), 1162-1175." ;
+    :philosophicalNote "Forgiveness distinct from condoning (excusing) or forgetting. Requires acknowledgment of wrong while releasing retributive desire." ;
+    rdfs:comment "Forgiveness restores relationship without denying wrongdoing." .
+
+:Humility a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Humility is letting one's accomplishments speak for themselves, not seeking spotlight, not regarding oneself as more special than others." ;
+    rdfs:label "Humility" ;
+    skos:definition "Virtue of accurate self-assessment without inflated self-regard. Modest recognition of one's limitations and others' contributions." ;
+    :altLabels "Modesty" ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Temperance ;
+    :mean_between :SelfDeprecation, :Arrogance ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # equality and humility
+    :empiricalEvidence "Tangney, J. P. (2000). Humility: Theoretical perspectives, empirical findings and directions for future research. Journal of Social and Clinical Psychology, 19(1), 70-82." ;
+    :philosophicalNote "Hume: Humility is overrated, monkish virtue. Aristotle: Proper pride (megalopsychia) recognizes genuine excellence. Contemporary: Intellectual humility as epistemic virtue." ;
+    rdfs:comment "True humility is accurate self-knowledge, not self-abasement." .
+
+:Prudence a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Prudence is being careful about one's choices, not taking undue risks, not saying or doing things later regretted." ;
+    rdfs:label "Prudence (Caution)" ;
+    skos:definition "Virtue of careful deliberation and risk assessment. Avoiding unnecessary harm through foresight." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Temperance ;
+    :realizableAs vn-schwartz:SecurityDisposition ;  # safety and risk-avoidance
+    :realizableAs vn-schwartz:ConformityDisposition ;  # restraint of harmful impulses
+    :distinguishedFrom ":Wisdom (phronesis)" ;
+    :philosophicalNote "Peterson's 'prudence' closer to caution; Aristotle's 'phronesis' (practical wisdom) is master intellectual virtue." ;
+    rdfs:comment "Prudence involves foresight and appropriate risk calibration." .
+
+:Gratitude a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Gratitude is being aware of and thankful for good things that happen, taking time to express thanks." ;
+    rdfs:label "Gratitude" ;
+    skos:definition "Virtue of recognizing and appreciating benefits received, with disposition to reciprocate or 'pay forward.'" ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Transcendence ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;  # appreciation of others
+    :empiricalEvidence "Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being. Journal of Personality and Social Psychology, 84(2), 377-389." ;
+    :rdfs:comment "Gratitude interventions increase well-being and prosocial behavior." .
+
+:Hope_VIA a :Virtue ;
+    dcterms:source "Peterson & Seligman (2004): Hope is expecting the best in the future and working to achieve it, believing good future is something that can be brought about." ;
+    rdfs:label "Hope (Optimism)" ;
+    skos:definition "Virtue of positive expectation and agency toward future goals. Combining desire, expectation, and action." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Transcendence ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # agency for future
+    :realizableAs vn-schwartz:SecurityDisposition ;  # positive future expectation
+    :distinguishedFrom ":Hope (theological virtue)" ;
+    :empiricalEvidence "Snyder, C. R. (2002). Hope theory: Rainbows in the mind. Psychological Inquiry, 13(4), 249-275." ;
+    rdfs:comment "Hope combines goals (waypower) and agency (willpower)." .
+
+# ============================================================================
+# EPISTEMIC VIRTUES (Virtue Epistemology)
+# ============================================================================
+
+:IntellectualHumility a :Virtue ;
+    dcterms:source "Zagzebski (1996): Intellectual humility is the virtue of recognizing one's cognitive limitations and fallibility." ;
+    rdfs:label "Intellectual Humility" ;
+    skos:definition "Epistemic virtue of recognizing limits of one's knowledge, openness to contrary evidence, proper confidence calibration." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Wisdom ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;  # open-mindedness
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # independent thought
+    :empiricalEvidence "Porter, T., & Schumann, K. (2018). Intellectual humility and openness to the opposing view. Self and Identity, 17(2), 139-162." ;
+    rdfs:comment "Intellectual humility enables learning and belief revision in light of evidence." .
+
+:IntellectualCourage a :Virtue ;
+    dcterms:source "Zagzebski (1996): Intellectual courage is perseverance in the face of intellectual opposition or hardship." ;
+    rdfs:label "Intellectual Courage" ;
+    skos:definition "Epistemic virtue of persisting in inquiry despite social pressure, ridicule, or uncertainty. Standing by justified beliefs." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Courage ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # autonomous thought
+    :empiricalEvidence "Baehr, J. (2011). The Inquiring Mind: On Intellectual Virtues and Virtue Epistemology. Oxford University Press." ;
+    rdfs:comment "Intellectual courage balances openness (humility) with conviction (standing firm when justified)." .
+
+:IntellectualAutonomy a :Virtue ;
+    dcterms:source "Zagzebski (1996): Intellectual autonomy is thinking for oneself, not uncritically accepting authority or social pressure." ;
+    rdfs:label "Intellectual Autonomy" ;
+    skos:definition "Epistemic virtue of independent thinking and critical evaluation. Appropriate reliance on oneself vs. epistemic authorities." ;
+    bfo:0000052 :Agent ;
+    :virtueCathegory :Wisdom ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;  # independent thought and action
+    :empiricalEvidence "Baehr (2011): Intellectual autonomy central to critical thinking and education" ;
+    :philosophicalNote "Balance needed: Pure autonomy rejects legitimate expertise; pure heteronomy abdicates thinking." ;
+    rdfs:comment "Intellectual autonomy involves critical thinking while recognizing legitimate epistemic dependence." .
+
+# ============================================================================
+# VICES (Deficient Character Dispositions)
+# ============================================================================
+
+:Cowardice a :Vice ;
+    dcterms:source "Aristotle (NE III.6-9): Cowardice is deficiency regarding fear - fearing what should not be feared or more than appropriate." ;
+    rdfs:label "Cowardice" ;
+    skos:definition "Vice of excessive fear and avoidance of appropriate risk or confrontation. Deficiency of courage." ;
+    bfo:0000052 :Agent ;
+    :viceType :Deficiency ;
+    :opposedVirtue :Courage ;
+    :hinders :NobleAction, :Justice, :Protection ;
+    rdfs:comment "Cowardice fails to stand firm for good when facing danger or social pressure." .
+
+:Rashness a :Vice ;
+    dcterms:source "Aristotle (NE III.6-9): Rashness is excess regarding confidence - facing dangers foolishly without proper reason." ;
+    rdfs:label "Rashness" ;
+    skos:definition "Vice of excessive confidence and insufficient fear. Taking inappropriate risks. Excess relative to courage." ;
+    :altLabels "Recklessness", "Foolhardiness" ;
+    bfo:0000052 :Agent ;
+    :viceType :Excess ;
+    :opposedVirtue :Courage ;
+    :hinders :PracticalWisdom, :SelfPreservation ;
+    rdfs:comment "Rashness takes undue risks for insufficient goods or from misguided confidence." .
+
+:Dishonesty a :Vice ;
+    dcterms:source "Kant (1797): Lying is always wrong, violates duty to oneself and others as rational beings." ;
+    rdfs:label "Dishonesty" ;
+    skos:definition "Vice of deception, lying, and inauthentic self-presentation. Misalignment between conviction and expression." ;
+    :altLabels "Deceitfulness", "Mendacity", "Inauthenticity" ;
+    bfo:0000052 :Agent ;
+    :opposedVirtue :Honesty ;
+    :hinders :Trust, :Relationship, :Communication ;
+    :empiricalEvidence "Serota, K. B., et al. (2010). The prevalence of lying in America. Human Communication Research, 36(1), 2-25. Shows dishonesty distribution skewed (most lies from small % of people)." ;
+    rdfs:comment "Dishonesty undermines social trust and authentic relationship." .
+
+:Greed a :Vice ;
+    dcterms:source "Aristotle (NE IV.1): Illiberality (aneleutheria) is excess in taking and deficiency in giving regarding wealth." ;
+    rdfs:label "Greed" ;
+    skos:definition "Vice of excessive desire for wealth or resources beyond need. Overvaluing material goods." ;
+    :altLabels "Avarice", "Covetousness" ;
+    bfo:0000052 :Agent ;
+    :viceType :Excess ;
+    :opposedVirtue :Generosity, :Temperance ;
+    :realizableAs vn-schwartz:PowerDisposition ;  # excess power-seeking
+    :realizableAs vn-schwartz:AchievementDisposition ;  # excess achievement-seeking
+    :empiricalEvidence "Kasser, T., & Ryan, R. M. (1993). A dark side of the American dream: Correlates of financial success as a central life aspiration. Journal of Personality and Social Psychology, 65(2), 410-422." ;
+    rdfs:comment "Greed subordinates higher goods to material accumulation." .
+
+:Arrogance a :Vice ;
+    dcterms:source "Aristotle (NE IV.3): Vanity (chaunotēs) is claiming great things without deserving them." ;
+    rdfs:label "Arrogance" ;
+    skos:definition "Vice of inflated self-regard and dismissive attitude toward others. Claiming more worth or knowledge than warranted." ;
+    :altLabels "Pride", "Hubris", "Vanity" ;
+    bfo:0000052 :Agent ;
+    :viceType :Excess ;
+    :opposedVirtue :Humility ;
+    :hinders :Learning, :Relationship, :Cooperation ;
+    :empiricalEvidence "Kruger, J., & Dunning, D. (1999). Unskilled and unaware of it. Journal of Personality and Social Psychology, 77(6), 1121-1134. Dunning-Kruger effect: incompetence correlates with overconfidence." ;
+    rdfs:comment "Arrogance involves both inflated self-assessment and disrespect for others." .
+
+:Cruelty a :Vice ;
+    dcterms:source "Hume (1751): Cruelty is taking pleasure in others' suffering, opposed to benevolence and humanity." ;
+    rdfs:label "Cruelty" ;
+    skos:definition "Vice of deliberate infliction of suffering or taking pleasure in others' pain. Deficiency of compassion." ;
+    bfo:0000052 :Agent ;
+    :viceType :Deficiency ;  # of compassion
+    :opposedVirtue :Kindness, :Compassion ;
+    :hinders :Benevolence, :Community, :Trust ;
+    :empiricalEvidence "Zimbardo (2007): Situational factors can induce cruel behavior in ordinary people (Stanford Prison Experiment)." ;
+    rdfs:comment "Cruelty involves active harm-doing, distinct from mere callousness (passive)." .
+
+# ============================================================================
+# CHARACTER SUBSTRATES (BFO Quality Substrates)
+# ============================================================================
+
+:SinceritySubstrate a bfo:0000019 ;  # quality
+    bfo:0000052 :Person ;  # inheres_in
+    dcterms:source "Frankfurt, H. (1988). The Importance of What We Care About. Cambridge University Press." ;
+    rdfs:label "Sincerity Quality Substrate" ;
+    skos:definition "Quality substrate measuring alignment between agent's beliefs/values and assertions/actions. Degree of authenticity." ;
+    :hasSpecifiedValue :SincerityRatio ;
+    :measuredBy :BeliefAssertionAlignment ;
+    :empiricalNote "Operational measure: correlation between private belief and public assertion across contexts" ;
+    rdfs:comment "Sincerity substrate quantifies the dispositional tendency toward truthful expression." .
+
+:CourageSubstrate a bfo:0000019 ;
+    bfo:0000052 :Person ;
+    dcterms:source "Pury & Lopez (2010): Courage involves appropriate fear recognition with action despite fear." ;
+    rdfs:label "Courage Quality Substrate" ;
+    skos:definition "Quality substrate measuring tendency to act despite appropriate fear for worthy ends." ;
+    :hasSpecifiedValue :FearActionRatio ;
+    :measuredBy :RiskToleranceForGood ;
+    rdfs:comment "Courage substrate quantifies disposition to face fear for noble purposes." .
+
+:CompassionSubstrate a bfo:0000019 ;
+    bfo:0000052 :Person ;
+    dcterms:source "Goetz, J. L., et al. (2010). Compassion: An evolutionary analysis and empirical review. Psychological Bulletin, 136(3), 351-374." ;
+    rdfs:label "Compassion Quality Substrate" ;
+    skos:definition "Quality substrate measuring empathic concern and motivation to alleviate others' suffering." ;
+    :hasSpecifiedValue :CompassionLevel ;
+    :components :EmpatheticConcern, :AltruisticMotivation ;
+    :empiricalEvidence "Goetz et al. (2010): Compassion distinct from empathy (feeling with) and personal distress" ;
+    rdfs:comment "Compassion substrate combines affective empathy with prosocial motivation." .
+
+# ============================================================================
+# CHARACTER PROCESSES (Cultivation and Expression)
+# ============================================================================
+
+:HabitualPractice a bfo:0000015 ;  # process
+    dcterms:source "Aristotle (NE II.1): 'We become just by doing just acts, temperate by doing temperate acts, brave by doing brave acts.'" ;
+    rdfs:label "Habitual Practice" ;
+    skos:definition "Repeated process of virtuous action that cultivates and strengthens character dispositions." ;
+    bfo:0000057 :Agent ;  # has_participant
+    :cultivates :Virtue ;
+    :temporallyExtendedOver :TrainingPeriod ;
+    :empiricalEvidence "Wood, W., & Rünger, D. (2016). Psychology of habit. Annual Review of Psychology, 67, 289-314. Habit formation through repetition in stable contexts." ;
+    rdfs:comment "Character develops through repeated practice, not mere intellectual knowledge." .
+
+:VirtuousAct a bfo:0000015 ;
+    dcterms:source "Aristotle (NE II.4): Acts are virtuous when done knowingly, from firm character, for their own sake." ;
+    rdfs:label "Virtuous Act" ;
+    skos:definition "Process realizing virtue disposition. Requires knowledge, choice, and settled disposition." ;
+    rdfs:subClassOf :CharacterExpressiveAct ;
+    bfo:0000055 :Virtue ;  # realizes
+    bfo:0000057 :Agent ;
+    :requires :Knowledge, :Deliberation, :SettledDisposition ;
+    :empiricalEvidence "Miller (2013): Virtue requires cross-situational consistency, which empirical evidence finds limited (situationist challenge)" ;
+    rdfs:comment "Not all good acts are virtuous - must flow from settled character." .
+
+:ViciousAct a bfo:0000015 ;
+    dcterms:source "Aristotle (NE VII): Vicious acts flow from vice (settled bad character), distinct from akratic acts (weakness of will)." ;
+    rdfs:label "Vicious Act" ;
+    skos:definition "Process realizing vice disposition. Habitual wrongdoing from corrupt character." ;
+    rdfs:subClassOf :CharacterExpressiveAct ;
+    bfo:0000055 :Vice ;
+    bfo:0000057 :Agent ;
+    :distinguishedFrom :AkraticAct ;  # akrasia is weakness, not vice
+    rdfs:comment "Vicious acts express settled bad character, not mere error or weakness." .
+
+:CharacterDevelopment a bfo:0000015 ;
+    dcterms:source "Aristotle (NE II.1): Character develops through habituation and practice over time." ;
+    rdfs:label "Character Development Process" ;
+    skos:definition "Extended process of character formation and transformation through habituation, education, and experience." ;
+    bfo:0000057 :Agent ;
+    :temporallyExtendedOver :DevelopmentPeriod ;
+    :involves :HabitualPractice, :MoralEducation, :Reflection ;
+    :empiricalEvidence "Bleidorn et al. (2022): Personality traits show both stability and systematic change across lifespan" ;
+    :philosophicalNote "Character not fixed essence but developable disposition. Both nature and nurture." ;
+    rdfs:comment "Character develops through repeated practice in stable contexts over extended time." .
+
+# ============================================================================
+# CHARACTER EVALUATION PROCESSES
+# ============================================================================
+
+:SincerityIdentification a cco:InformationProcessing ;
+    dcterms:source "Frankfurt (1988): Sincerity involves alignment of first-order and second-order desires with expression." ;
+    rdfs:label "Sincerity Identification Process" ;
+    skos:definition "Cognitive process evaluating alignment between agent's beliefs/values and assertions/actions." ;
+    :hasInput :Belief, :Assertion, :Action ;
+    :hasOutput :SincerityJudgment ;
+    :comparator :BeliefAssertionMatcher ;
+    rdfs:comment "Sincerity evaluation compares inner state with outer expression." .
+
+:CharacterAssessment a cco:InformationProcessing ;
+    dcterms:source "Aristotle (NE II.4): Judge character by pattern of choices, not isolated acts." ;
+    rdfs:label "Character Assessment Process" ;
+    skos:definition "Evaluative process determining agent's character traits from behavioral evidence and patterns." ;
+    :hasInput :BehaviorHistory, :ContextualFactors ;
+    :hasOutput :CharacterJudgment ;
+    :requires :CrossSituationalObservation ;
+    :empiricalChallenge "Doris (2002): Behavioral evidence shows high situation-dependence, challenging trait attribution" ;
+    rdfs:comment "Character assessment requires longitudinal observation across contexts." .
+
+# ============================================================================
+# WORLDVIEW-SPECIFIC CHARACTER PRIORITIES
+# ============================================================================
+
+:MaterialismCharacterPriorities a :WorldviewCharacterProfile ;
+    :forWorldview :Materialism ;
+    :prioritizes :Honesty, :Courage, :Justice ;  # empirical virtues
+    :subordinates :Faith, :Hope_VIA ;  # supernatural virtues
+    :grounding "Material worldview values empirically verifiable virtues over faith-based virtues" ;
+    rdfs:comment "Materialism prioritizes naturalistic virtues demonstrable in physical behavior." .
+
+:SensationalismCharacterPriorities a :WorldviewCharacterProfile ;
+    :forWorldview :Sensationalism ;
+    :prioritizes :Authenticity, :Curiosity, :Creativity ;  # experiential virtues
+    :subordinates :Prudence, :Temperance ;  # restraining virtues
+    :grounding "Sensationalism values authentic immediate experience over cautious restraint" ;
+    rdfs:comment "Sensationalism prioritizes virtues enhancing experiential richness." .
+
+:RationalismCharacterPriorities a :WorldviewCharacterProfile ;
+    :forWorldview :Rationalism ;
+    :prioritizes :Wisdom, :IntellectualHumility, :IntellectualCourage ;
+    :subordinates :SocialIntelligence ;  # non-rational virtue
+    :grounding "Rationalism values intellectual virtues oriented to truth and logical coherence" ;
+    rdfs:comment "Rationalism prioritizes epistemic virtues and logical consistency." .
+
+:SpiritualismCharacterPriorities a :WorldviewCharacterProfile ;
+    :forWorldview :Spiritualism ;
+    :prioritizes :Faith, :Hope, :Charity, :Humility ;
+    :subordinates :Pride, :Autonomy ;
+    :grounding "Spiritualism values virtues connecting to transcendent reality and divine order" ;
+    rdfs:comment "Spiritualism prioritizes theological virtues and transcendence-oriented traits." .
+
+# ============================================================================
+# SITUATIONIST CHALLENGE (Empirical Considerations)
+# ============================================================================
+
+:SituationistChallenge a :PhilosophicalChallenge ;
+    dcterms:source "Harman (1999), Doris (2002): Empirical evidence shows behavior heavily influenced by situations, not stable traits." ;
+    rdfs:label "Situationist Challenge to Character" ;
+    skos:definition "Empirical argument that behavior is primarily situation-dependent, challenging existence of stable character traits." ;
+    :empiricalEvidence [
+        :study "Milgram (1963): 65% of participants delivered maximum shock in obedience experiment" ;
+        :study "Darley & Batson (1973): Seminary students' helpfulness predicted by time pressure, not religiosity" ;
+        :study "Zimbardo (1971): Normal participants adopted cruel behaviors in prison guard role"
+    ] ;
+    :philosophicalResponse [
+        :response1 "Miller (2013): Mixed trait theory - character dispositions exist but situation-sensitive" ;
+        :response2 "Annas (2011): Virtue requires practical wisdom (context-sensitivity), not rigid rules" ;
+        :response3 "Fleeson (2015): Whole trait theory - dispositions as density distributions of states"
+    ] ;
+    rdfs:comment "Empirical psychology challenges strong trait assumptions; contemporary virtue ethics accommodates situational variability." .
+
+# ============================================================================
+# INTEGRATION WITH VALUENET
+# ============================================================================
+
+# Character virtues cross-cut all value dispositions but with varying salience
+
+:Honesty
+    :supports vn-schwartz:UniversalismDisposition ;  # honesty serves truth and understanding
+    :supports vn-schwartz:BenevolenceDisposition ;  # honesty builds trust
+    :conflicts_with vn-schwartz:PowerDisposition ;  # honesty constrains manipulative power
+    :salience "high across all worldviews except those prioritizing power/achievement over truth" .
+
+:Courage
+    :supports vn-schwartz:SelfDirectionDisposition ;  # courage enables autonomous action
+    :supports vn-schwartz:UniversalismDisposition ;  # courage for justice
+    :supports vn-schwartz:AchievementDisposition ;  # courage to pursue difficult goals
+    :salience "very high - required for enacting any terminal value against obstacles" .
+
+:Compassion
+    :supports vn-schwartz:BenevolenceDisposition ;
+    :supports vn-schwartz:UniversalismDisposition ;
+    :conflicts_with :excess_achievement ;  # excessive compassion may sacrifice personal goals
+    :salience "high in worldviews prioritizing interpersonal harmony and welfare" .
+
+:Wisdom
+    :supports vn-schwartz:SelfDirectionDisposition ;  # autonomous wise judgment
+    :supports vn-schwartz:UniversalismDisposition ;  # understanding and appreciation
+    :salience "very high - master virtue coordinating all others" .
+
+:Temperance
+    :supports vn-schwartz:ConformityDisposition ;  # restraint of harmful impulses
+    :supports vn-schwartz:SecurityDisposition ;  # moderation ensures stability
+    :conflicts_with vn-schwartz:HedonismDisposition ;  # temperance restrains pleasure-seeking
+    :conflicts_with vn-schwartz:StimulationDisposition ;  # temperance restrains novelty-seeking
+    :salience "variable - high in restraint-oriented worldviews, low in experience-maximizing worldviews" .
+
+# ============================================================================
+# USAGE NOTES
+# ============================================================================
+
+# This ontology provides:
+# 1. BFO-compliant character trait modeling for all worldviews
+# 2. Classical (Aristotelian, Thomistic) and contemporary (VIA) virtue frameworks
+# 3. Epistemic virtue framework for intellectual character
+# 4. Empirical grounding in personality psychology
+# 5. Situationist challenge acknowledgment and responses
+# 6. WorldView-specific character priorities
+# 7. Integration with ValueNet value dispositions
+
+# Character traits enable:
+# - Temporal moral evaluation (character development over time)
+# - Process-based ethics (not just act-evaluation)
+# - Multi-perspectival character assessment
+# - Empirical personality research integration
+# - Virtue epistemology for belief evaluation
+
+# Future extensions:
+# - Individual character profiles (person-specific trait levels)
+# - Character development trajectories (temporal modeling)
+# - Situational modifiers (context-dependent trait expression)
+# - Cultural variation in virtue concepts

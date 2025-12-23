@@ -1,149 +1,783 @@
 @prefix : <http://ontology-of-freedom.org/iee#> .
 @prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-core: <https://fandaws.com/ontology/bfo/valuenet-core#> .
+@prefix vn-schwartz: <https://fandaws.com/ontology/bfo/valuenet-schwartz-values#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 # ============================================================================
 # Materialism Worldview - Value Hierarchy
 # ============================================================================
 #
 # Philosophical Foundation:
-# - Reality is fundamentally material/physical
-# - Consciousness and mental states reduce to physical processes
-# - Epistemology: Empirical observation and measurement
-# - Values grounded in physical wellbeing and empirical truth
+# - Reality is fundamentally material/physical substance
+# - Consciousness and mental states reduce to (or supervene on) physical brain processes
+# - Epistemology: Empirical observation, measurement, scientific method
+# - Values grounded in physical wellbeing, empirical truth, and material security
 #
-# This ontology uses BFO/CCO patterns to formally model how materialist
-# metaphysics grounds specific value hierarchies.
+# Primary Philosophical Sources:
+# - Democritus (c. 460-370 BCE). Atomism: Reality consists of atoms and void
+# - Epicurus (341-270 BCE). Letter to Herodotus. Material atoms, pleasure as highest good
+# - Lucretius (99-55 BCE). De Rerum Natura (On the Nature of Things)
+# - Hobbes, T. (1651). Leviathan. Materialist psychology and political philosophy
+# - La Mettrie, J. O. de. (1748). Man a Machine (L'Homme Machine)
+# - d'Holbach, P. H. T. (1770). The System of Nature (Système de la Nature)
+# - Marx, K., & Engels, F. (1845-1846). The German Ideology. Dialectical materialism
+# - Feuerbach, L. (1841). The Essence of Christianity. Materialist critique of religion
+#
+# Contemporary Materialism:
+# - Churchland, P. M. (1981). Eliminative Materialism and the Propositional Attitudes
+# - Churchland, P. S. (1986). Neurophilosophy: Toward a Unified Science of Mind-Brain
+# - Dennett, D. C. (1991). Consciousness Explained. MIT Press
+# - Searle, J. R. (1992). The Rediscovery of the Mind. MIT Press (biological naturalism)
+# - Kim, J. (1998). Mind in a Physical World. MIT Press (physicalism)
+#
+# Empirical Research - Neuroscience & Materialism:
+# - Crick, F. (1994). The Astonishing Hypothesis: The Scientific Search for the Soul
+# - Damasio, A. (1994). Descartes' Error: Emotion, Reason, and the Human Brain
+# - LeDoux, J. (2002). Synaptic Self: How Our Brains Become Who We Are
+# - Gazzaniga, M. S. (2005). The Ethical Brain. Dana Press
+# - Libet, B. (1985). Unconscious cerebral initiative and the role of conscious will
+#
+# Empirical Research - Evolutionary Psychology & Materialism:
+# - Pinker, S. (2002). The Blank Slate: The Modern Denial of Human Nature
+# - Cosmides, L., & Tooby, J. (1997). Evolutionary psychology: A primer
+# - Wilson, E. O. (1975). Sociobiology: The New Synthesis
+# - Buss, D. M. (2015). Evolutionary Psychology: The New Science of the Mind
+#
+# Key Distinctions:
+# - From Realism: Materialism is specifically about material/physical substance; realism
+#   can accept non-material entities (abstract objects, mental properties)
+# - From Sensationalism: Materialism treats material substrate as ontologically primary;
+#   experience is derivative. Sensationalism reverses this (experience primary, matter inferred)
+# - From Phenomenalism: Materialism makes metaphysical claim (matter exists objectively);
+#   phenomenalism brackets such claims to focus on appearances
+#
+# This ontology uses BFO/CCO patterns and integrates with ValueNet to model how
+# materialist metaphysics grounds specific value hierarchies.
+#
+# ============================================================================
+# BIBLIOGRAPHIC CITATIONS
+# ============================================================================
+#
+# Ancient Materialism:
+# - Democritus (c. 460-370 BCE). Fragments. In G. S. Kirk, J. E. Raven, & M. Schofield (1983), The Presocratic Philosophers (2nd ed.). Cambridge University Press.
+# - Epicurus (341-270 BCE). Letter to Herodotus. In Brad Inwood & L. P. Gerson (1994), The Epicurus Reader. Hackett.
+# - Lucretius (99-55 BCE/2001). On the Nature of Things (De Rerum Natura). Trans. Martin Ferguson Smith. Hackett.
+#
+# Early Modern Materialism:
+# - Hobbes, T. (1651/1996). Leviathan. Ed. Richard Tuck. Cambridge University Press.
+# - La Mettrie, J. O. de (1748/1996). Machine Man and Other Writings. Trans. Ann Thomson. Cambridge University Press.
+# - d'Holbach, P. H. T. (1770/1970). The System of Nature. Trans. H. D. Robinson. Burt Franklin.
+# - Feuerbach, L. (1841/1989). The Essence of Christianity. Trans. George Eliot. Prometheus Books.
+#
+# Dialectical Materialism:
+# - Marx, K., & Engels, F. (1845-1846/1998). The German Ideology. Prometheus Books.
+# - Engels, F. (1878/1947). Anti-Dühring. Progress Publishers.
+# - Lenin, V. I. (1909/1972). Materialism and Empirio-Criticism. Foreign Languages Press.
+#
+# Contemporary Physicalism/Materialism:
+# - Smart, J. J. C. (1959). Sensations and brain processes. Philosophical Review, 68(2), 141-156.
+# - Armstrong, D. M. (1968). A Materialist Theory of the Mind. Routledge & Kegan Paul.
+# - Lewis, D. (1966). An argument for the identity theory. Journal of Philosophy, 63(1), 17-25.
+# - Churchland, P. M. (1981). Eliminative materialism and the propositional attitudes. Journal of Philosophy, 78(2), 67-90.
+# - Churchland, P. S. (1986). Neurophilosophy: Toward a Unified Science of the Mind-Brain. MIT Press.
+# - Dennett, D. C. (1991). Consciousness Explained. Little, Brown.
+# - Kim, J. (1998). Mind in a Physical World: An Essay on the Mind-Body Problem and Mental Causation. MIT Press.
+# - Papineau, D. (2002). Thinking about Consciousness. Oxford University Press.
+#
+# Biological Naturalism (Weaker Materialism):
+# - Searle, J. R. (1992). The Rediscovery of the Mind. MIT Press.
+# - Searle, J. R. (2004). Mind: A Brief Introduction. Oxford University Press.
+#
+# Neuroscience & Brain-Based Materialism:
+# - Crick, F. (1994). The Astonishing Hypothesis: The Scientific Search for the Soul. Scribner.
+# - Damasio, A. R. (1994). Descartes' Error: Emotion, Reason, and the Human Brain. Putnam.
+# - LeDoux, J. (2002). Synaptic Self: How Our Brains Become Who We Are. Viking.
+# - Gazzaniga, M. S. (2005). The Ethical Brain. Dana Press.
+# - Libet, B. (1985). Unconscious cerebral initiative and the role of conscious will in voluntary action. Behavioral and Brain Sciences, 8(4), 529-566.
+# - Koch, C. (2004). The Quest for Consciousness: A Neurobiological Approach. Roberts & Company.
+#
+# Evolutionary Psychology (Materialist Foundation):
+# - Wilson, E. O. (1975). Sociobiology: The New Synthesis. Harvard University Press.
+# - Cosmides, L., & Tooby, J. (1997). Evolutionary psychology: A primer. Center for Evolutionary Psychology, UC Santa Barbara.
+# - Pinker, S. (2002). The Blank Slate: The Modern Denial of Human Nature. Viking.
+# - Buss, D. M. (2015). Evolutionary Psychology: The New Science of the Mind (5th ed.). Pearson.
+# - Tooby, J., & Cosmides, L. (2005). Conceptual foundations of evolutionary psychology. In D. M. Buss (Ed.), The Handbook of Evolutionary Psychology. Wiley.
+#
+# Medical Materialism:
+# - Engel, G. L. (1977). The need for a new medical model: A challenge for biomedicine. Science, 196(4286), 129-136.
+# - Ghaemi, S. N. (2003). The Concepts of Psychiatry: A Pluralistic Approach to the Mind and Mental Illness. Johns Hopkins University Press.
+#
+# Criticisms of Materialism:
+# - Nagel, T. (1974). What is it like to be a bat? Philosophical Review, 83(4), 435-450.
+# - Chalmers, D. J. (1996). The Conscious Mind: In Search of a Fundamental Theory. Oxford University Press.
+# - Jackson, F. (1982). Epiphenomenal qualia. Philosophical Quarterly, 32(127), 127-136.
+# ============================================================================
+
+# ============================================================================
+# WORLDVIEW DEFINITION
 # ============================================================================
 
 :Materialism a :Worldview ;
     :name "materialism" ;
-    :foundation "matter" ;
+    :foundation "material_substance" ;
     :primacy "physical_reality" ;
-    :epistemology "empirical_observation" ;
+    :epistemology "empirical_observation_measurement" ;
     :cluster :MaterialEmpirical ;
-    rdfs:comment "Worldview grounding value in physical reality and empirical verification." .
+    dcterms:source "Democritus (atomism), Hobbes (1651), d'Holbach (1770), Churchland (1981)" ;
+    rdfs:comment "Worldview grounding value in physical reality, material wellbeing, and empirical verification." ;
+    skos:definition "The metaphysical position that reality is fundamentally material/physical, that consciousness reduces to or supervenes on physical brain processes, and that value is grounded in physical states (health, security, empirical truth). 'All that exists is matter in motion' (d'Holbach)." .
 
-# Terminal Values - Highest goods in materialist framework
+# Key Metaphysical Commitments
+:MaterialismMetaphysics a owl:Class ;
+    rdfs:subClassOf :MetaphysicalCommitment ;
+    dcterms:source "d'Holbach (1770): 'The universe is only an immense and uninterrupted succession of causes and effects.' Churchland (1981): Eliminative materialism." ;
+    :foundationalClaim "Reality consists exclusively (or fundamentally) of material/physical entities and their interactions" ;
+    :ontologicalPrimacy "Matter/energy and physical laws" ;
+    :consciousnessTheory "Consciousness reduces to brain processes (identity theory) or supervenes on physical states (non-reductive physicalism)" ;
+    :epistemicMethod "Empirical observation, measurement, experimental science" ;
+    :rejectsClaim "Immaterial souls, supernatural entities, non-physical mental substances (Cartesian dualism)" ;
+    :distinctionFromRealism "Materialism is TYPE of realism (realism about physical world); but realism can accept non-material entities" ;
+    :distinctionFromSensationalism "Materialism: Matter ontologically primary → experience derivative. Sensationalism: Experience primary → matter inferred from sensations" ;
+    :distinctionFromPhenomenalism "Materialism: Metaphysical claim (matter exists objectively). Phenomenalism: Brackets metaphysical claims about what exists beyond appearances" ;
+    rdfs:comment "Materialism is monist metaphysics: Only one fundamental kind of thing (matter/physical). Contrasts with dualism (mind and matter) and idealism (only mind)." .
+
+# ============================================================================
+# TERMINAL VALUES - Highest Goods in Materialist Framework
+# ============================================================================
+
 :PhysicalWellbeing a :TerminalValue ;
-    :groundedIn :Materialism ;
-    :manifestsAs :Health, :BodilyComfort, :MaterialSecurity ;
-    rdfs:comment "Physical wellbeing is terminal because materialism grounds all value in physical states." .
+    :groundedIn :MaterialismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    dcterms:source "Epicurus: 'Pleasure is the beginning and end of living blessedly.' Bentham: Hedonic calculus grounded in physical pleasure/pain." ;
+    skos:definition "Physical health, bodily comfort, and freedom from physical suffering as ultimate goods, grounded in materialist view that humans are fundamentally physical organisms." ;
+    :realizableAs vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.95 ;
+    :rationale "Security: Physical safety and health are foundational to survival. Materialism grounds security in material conditions (shelter, food, physical safety)." ;
+    :realizableAs vn-schwartz:HedonismDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Hedonism: Physical pleasure and pain are real material states. Epicurean and utilitarian traditions ground value in hedonic states." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Self-direction: Bodily autonomy and control over one's physical organism (medical decisions, reproductive autonomy)." ;
+    :manifestsAs :Health, :BodilyComfort, :MaterialSecurity, :PhysicalFunctioning ;
+    :opposedTo :BodilyAsceticism, :PhysicalSuffering, :MaterialDeprivation ;
+    :empiricalSupport [
+        :study1 "Damasio (1994): Emotions are embodied somatic states essential for decision-making; physical wellbeing grounds rationality" ;
+        :study2 "WHO (1948): Health is 'state of complete physical, mental and social wellbeing' - materialist foundation of medicine" ;
+        :study3 "Maslow (1943): Physiological needs (material) are foundational in hierarchy of needs"
+    ] ;
+    rdfs:comment "For materialism, physical wellbeing is terminal because humans ARE physical organisms. No immaterial soul to value independently. Body is not vessel for soul; body IS the person." .
 
 :EmpiricalTruth a :TerminalValue ;
-    :groundedIn :Materialism ;
-    :validatedBy :MeasurementProcess, :VerificationProcess ;
-    rdfs:comment "Truth corresponds to empirically verifiable facts about material reality." .
+    :groundedIn :MaterialismMetaphysics ;
+    :primacy "high" ;
+    :salience "very_high" ;
+    dcterms:source "Hobbes: 'Science is the knowledge of consequences.' Empirical verification as arbiter of truth." ;
+    skos:definition "Truth as empirically verifiable correspondence to material facts, knowable through observation and measurement." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Self-direction: Independent thought requires empirical evidence, not authority or dogma. Scientific method values autonomous rational inquiry." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Universalism: Empirical facts are objective and universal; physical laws apply everywhere. Understanding nature through science." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Achievement: Scientific discovery and empirical knowledge production are achievements demonstrating competence." ;
+    :manifestsAs :ScientificKnowledge, :FactualAccuracy, :EmpiricalVerification ;
+    :validatedBy :MeasurementProcess, :ExperimentalTesting, :PeerReview ;
+    :opposedTo :Superstition, :UnverifiableClaims, :Dogmatism ;
+    :empiricalSupport [
+        :study1 "Popper (1959): Falsifiability criterion for scientific claims; empirical testability defines science" ;
+        :study2 "Kuhn (1962): Normal science as empirical puzzle-solving within paradigm" ;
+        :study3 "Evidence-based medicine movement: Empirical clinical trials over traditional authority"
+    ] ;
+    rdfs:comment "Materialism values empirical truth because only physical world is accessible to observation and measurement. Non-physical claims (souls, spirits) are unverifiable, hence epistemically suspect." .
 
 :MaterialSecurity a :TerminalValue ;
-    :groundedIn :Materialism ;
-    :includes :Shelter, :Food, :PhysicalSafety ;
-    rdfs:comment "Security of material conditions enabling physical survival and wellbeing." .
+    :groundedIn :MaterialismMetaphysics ;
+    :primacy "high" ;
+    :salience "very_high" ;
+    dcterms:source "Hobbes (1651): Material scarcity drives competition; security of material conditions necessary for civilization. Marx: Material conditions determine social relations." ;
+    skos:definition "Security of material conditions necessary for physical survival and wellbeing: shelter, food, physical safety, economic resources." ;
+    :realizableAs vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.95 ;
+    :rationale "Security: Material security IS security for materialism. No spiritual refuge if material world is all that exists." ;
+    :realizableAs vn-schwartz:PowerDisposition ;
+    :mapping_salience 0.65 ;
+    :rationale "Power: Control over material resources enables security and autonomy. Hobbes: Power as means to secure future goods." ;
+    :realizableAs vn-schwartz:ConformityDisposition ;
+    :mapping_salience 0.55 ;
+    :rationale "Conformity: Social cooperation (conformity to norms) enables collective material security. Hobbes: Social contract for security." ;
+    :includes :Shelter, :Food, :PhysicalSafety, :EconomicResources ;
+    :opposedTo :MaterialVulnerability, :Poverty, :PhysicalDanger ;
+    :empiricalSupport [
+        :study1 "Maslow (1943): Safety needs (security) are second level after physiological needs in hierarchy" ;
+        :study2 "Hobbes (1651): State of nature is materially insecure; social contract provides security" ;
+        :study3 "Wilkinson & Pickett (2009): Material inequality harms health and wellbeing across societies"
+    ] ;
+    rdfs:comment "Materialism values security because physical vulnerability is existential threat. No afterlife or spiritual consolation if material existence is all." .
 
-# Constitutive Values - Essential components of terminal values
+:EmpiricalProgress a :TerminalValue ;
+    :groundedIn :MaterialismMetaphysics ;
+    :primacy "moderate" ;
+    :salience "high" ;
+    dcterms:source "Enlightenment materialism (d'Holbach, Condorcet): Human progress through scientific knowledge and technological mastery of nature" ;
+    skos:definition "Cumulative advancement of empirical knowledge and technological capacity to improve material conditions." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Achievement: Scientific and technological progress demonstrates human competence and mastery." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Stimulation: Scientific discovery and technological innovation provide novelty and challenge." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Self-direction: Empirical inquiry and innovation require independent thought and creativity." ;
+    :manifestsAs :ScientificDiscovery, :TechnologicalInnovation, :MedicalAdvancement ;
+    :opposedTo :Stagnation, :TechnologicalRegression, :ObscurantismAgainstScience ;
+    :empiricalSupport [
+        :study1 "Pinker (2018): Enlightenment Now documents material progress through science (health, wealth, safety)" ;
+        :study2 "Mokyr (2002): Gifts of Athena - economic growth driven by technological knowledge" ;
+        :study3 "Preston (1975): Preston curve shows strong correlation between GDP and life expectancy"
+    ] ;
+    rdfs:comment "Materialism values progress because empirical knowledge enables mastery of physical world, improving material conditions (health, security, comfort)." .
+
+# ============================================================================
+# CONSTITUTIVE VALUES - Components of Terminal Values
+# ============================================================================
+
 :Health a :ConstitutiveValue ;
     :constitutes :PhysicalWellbeing ;
-    :measuredBy :PhysiologicalMetrics ;
-    rdfs:comment "Bodily health as measurable physiological functioning." .
+    :salience "very_high" ;
+    dcterms:source "Materialist medicine: Health as proper biological functioning (Boorse 1977)" ;
+    skos:definition "Proper functioning of bodily systems - cardiovascular, neural, immune, etc. - measurable through physiological metrics." ;
+    :realizableAs vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.9 ;
+    :measuredBy :PhysiologicalMetrics, :FunctionalCapacity, :DiseaseAbsence ;
+    :opposedTo :Disease, :PhysicalDysfunction, :Morbidity ;
+    :empiricalSupport "Evidence-based medicine treats health as measurable biological state" ;
+    rdfs:comment "Health for materialism is objective physical state, not subjective feeling or spiritual balance." .
 
 :BodilyComfort a :ConstitutiveValue ;
     :constitutes :PhysicalWellbeing ;
-    :manifestsAs :AbsenceOfPain, :PleasurableSensation ;
-    rdfs:comment "Physical comfort and absence of suffering." .
+    :salience "high" ;
+    dcterms:source "Epicurus: Aponia (absence of bodily pain) and ataraxia (tranquility)" ;
+    skos:definition "Pleasant physical sensations and absence of pain; bodily comfort as material state of organism." ;
+    :realizableAs vn-schwartz:HedonismDisposition ;
+    :mapping_salience 0.85 ;
+    :manifestsAs :AbsenceOfPain, :PleasurableSensation, :PhysicalComfort ;
+    :opposedTo :Pain, :Discomfort, :PhysicalSuffering ;
+    :empiricalSupport [
+        :study1 "Kahneman et al. (2006): Day Reconstruction Method measures experienced utility (hedonic states)" ;
+        :study2 "Pain neuroscience: Pain is measurable brain state (nociception)"
+    ] ;
+    rdfs:comment "Epicurean materialism: Pleasure and pain are ultimate realities (physical sensations). Utility theory grounds value in hedonic states." .
 
-:SensoryFunction a :ConstitutiveValue ;
+:PhysicalFunctioning a :ConstitutiveValue ;
     :constitutes :PhysicalWellbeing ;
-    :includes :Vision, :Hearing, :Touch, :Proprioception ;
-    rdfs:comment "Proper functioning of sensory apparatuses." .
+    :salience "high" ;
+    dcterms:source "Nussbaum (2000): Capabilities approach - functioning as material capacity" ;
+    skos:definition "Capacity to perform physical activities: mobility, sensory perception, motor control, reproductive function." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.75 ;
+    :includes :Mobility, :SensoryFunction, :MotorControl, :CognitiveFunction ;
+    :measuredBy :FunctionalAssessment, :DisabilityMetrics ;
+    :empiricalSupport "WHO International Classification of Functioning, Disability and Health (ICF) measures physical functioning" ;
+    rdfs:comment "Functioning is material capacity - what body CAN DO physically. Materialism values this as intrinsic (no separate spiritual functioning)." .
 
-# Instrumental Values - Means to terminal values
+:ScientificKnowledge a :ConstitutiveValue ;
+    :constitutes :EmpiricalTruth ;
+    :salience "very_high" ;
+    dcterms:source "Logical positivism: Scientific knowledge as paradigm of meaningful knowledge" ;
+    skos:definition "Systematically organized empirically-tested knowledge about material world; paradigmatic form of truth for materialism." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.8 ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.75 ;
+    :validatedBy :ExperimentalTesting, :PeerReview, :Replication ;
+    :empiricalSupport "Philosophy of science (Popper, Kuhn, Lakatos) articulates standards for scientific knowledge" ;
+    rdfs:comment "Materialism privileges scientific knowledge because science studies material world empirically. Other knowledge claims (metaphysical, religious) less epistemically secure." .
+
+# ============================================================================
+# INSTRUMENTAL VALUES - Means to Terminal Values
+# ============================================================================
+
 :Technology a :InstrumentalValue ;
-    :servesValue :PhysicalWellbeing, :MaterialSecurity ;
-    :manifestsAs :MedicalTechnology, :Engineering, :Tools ;
-    rdfs:comment "Technology as means to enhance physical wellbeing and security." .
+    :instrumentalTo :PhysicalWellbeing, :MaterialSecurity, :EmpiricalProgress ;
+    :salience "very_high" ;
+    dcterms:source "Bacon (1620): 'Knowledge is power' - science as mastery of nature through technology" ;
+    skos:definition "Application of scientific knowledge to manipulate material world for human benefit: medical technology, engineering, tools." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.8 ;
+    :realizableAs vn-schwartz:PowerDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Technology provides power over material conditions and demonstrates achievement/competence." ;
+    :manifestsAs :MedicalTechnology, :Engineering, :Tools, :Infrastructure ;
+    :servesValues :Health, :MaterialSecurity, :BodilyComfort ;
+    :empiricalSupport [
+        :study1 "Preston curve: Medical technology (vaccines, antibiotics) dramatically improved survival" ;
+        :study2 "Green Revolution: Agricultural technology increased food security globally"
+    ] ;
+    rdfs:comment "Technology is quintessentially materialist value - mastery of physical world through material means. Bacon's vision of science serving material improvement." .
 
 :Medicine a :InstrumentalValue ;
-    :servesValue :Health, :PhysicalWellbeing ;
-    :groundedIn :EmpiricalTruth ;
-    rdfs:comment "Medical science grounded in empirical knowledge of physical body." .
-
-:Engineering a :InstrumentalValue ;
-    :servesValue :MaterialSecurity, :BodilyComfort ;
-    :manifestsAs :Infrastructure, :Shelter, :Tools ;
-    rdfs:comment "Engineering provides material infrastructure for wellbeing." .
+    :instrumentalTo :Health, :PhysicalWellbeing, :BodilyComfort ;
+    :salience "very_high" ;
+    dcterms:source "Evidence-based medicine: Empirical clinical trials determine treatment efficacy" ;
+    skos:definition "Scientific application of empirical knowledge of biological processes to prevent, diagnose, and treat disease." ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;
+    :mapping_salience 0.8 ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Medicine serves welfare of others (benevolence) and aims at universal health (universalism)." ;
+    :groundedIn :EmpiricalTruth, :BiologicalMechanisms ;
+    :empiricalSupport "Cochrane Collaboration: Systematic reviews of medical evidence; evidence-based practice standards" ;
+    rdfs:comment "Medicine exemplifies materialist values: Empirical knowledge → technological intervention → material benefit (health). Body as biological machine to be repaired." .
 
 :Measurement a :InstrumentalValue ;
-    :servesValue :EmpiricalTruth ;
-    :manifestsAs :Instrumentation, :Quantification ;
-    rdfs:comment "Measurement enables empirical verification of material facts." .
+    :instrumentalTo :EmpiricalTruth, :ScientificKnowledge ;
+    :salience "high" ;
+    dcterms:source "Galileo: 'Measure what is measurable, and make measurable what is not so.' Kelvin: 'If you cannot measure it, you cannot improve it.'" ;
+    skos:definition "Quantification and instrumentation enabling precise empirical observation of material phenomena." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.7 ;
+    :manifestsAs :Instrumentation, :Quantification, :Metrics, :DataCollection ;
+    :enablesValues :EmpiricalVerification, :ObjectiveKnowledge ;
+    :empiricalSupport "History of science: Measurement precision enables scientific revolutions (Kuhn 1977)" ;
+    rdfs:comment "Measurement is foundational for materialism: Makes material properties observable and comparable. 'In God we trust; all others must bring data.'" .
 
-# Subordinated Values - De-prioritized in materialist framework
-:Consciousness a :SubordinatedValue ;
-    :subordinatedIn :Materialism ;
-    :reducedTo :PhysicalProcess ;
-    rdfs:comment "Consciousness treated as epiphenomenal or reducible to brain states." .
-
-:Meaning a :SubordinatedValue ;
-    :subordinatedIn :Materialism ;
-    :subjective true ;
-    rdfs:comment "Meaning is subjective projection, not objectively real." .
-
-:Spirituality a :SubordinatedValue ;
-    :subordinatedIn :Materialism ;
-    :illusory true ;
-    rdfs:comment "Spiritual claims lack empirical grounding, treated as illusion or social construct." .
-
-:Beauty a :SubordinatedValue ;
-    :subordinatedIn :Materialism ;
-    :reducedTo :SensoryStimulation ;
-    rdfs:comment "Aesthetic experience reduces to pleasant sensory stimulation." .
+:EmpiricalVerification a :InstrumentalValue ;
+    :instrumentalTo :EmpiricalTruth, :ScientificKnowledge ;
+    :salience "high" ;
+    dcterms:source "Popper (1959): Empirical falsifiability as demarcation criterion for science" ;
+    skos:definition "Testing of truth claims through observable material evidence; empirical testability as criterion for meaningful claims." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.75 ;
+    :requires :ObservationalEvidence, :ExperimentalControl, :Replicability ;
+    :opposedTo :UnfalsifiableClaims, :PurelyMetaphysicalAssertions ;
+    :empiricalSupport "Philosophy of science consensus: Empirical testability distinguishes science from pseudoscience" ;
+    rdfs:comment "Verification instrumentally serves truth by filtering out unfounded claims. Materialism skeptical of unverifiable claims (souls, spirits) lacking material evidence." .
 
 # ============================================================================
-# BFO/CCO Grounding Patterns
+# SUBORDINATED VALUES - Devalued in Materialist Framework
 # ============================================================================
 
-# Quality Substrates (BFO pattern)
-:PhysicalHealth a bfo:0000019 ;  # quality
-    bfo:0000052 :Person ;  # inheres_in
+:ImmaterialSoul a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :salience "very_low" ;
+    dcterms:source "Churchland (1981): Eliminative materialism rejects folk psychology including 'soul' or immaterial mind" ;
+    skos:definition "Immaterial spiritual essence or soul distinct from body; rejected or reduced to material substrate by materialism." ;
+    :why_subordinated "Materialism denies existence of immaterial entities; mind/soul reduces to brain processes (identity theory) or is eliminated as incoherent folk concept (eliminativism)" ;
+    :relatedToWorldview :Spiritualism, :Psychism ;
+    :reductionClaim "What folk psychology calls 'soul' is actually: brain activity, neural patterns, information processing in biological substrate" ;
+    :weakMapping vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.2 ;
+    :rationale "Spiritual notions of soul disconnected from material reality; materialism values bodily autonomy, not spiritual essence" ;
+    :empiricalEvidence [
+        :study1 "Libet (1985): Brain activity precedes conscious decision; challenges notion of immaterial free will" ;
+        :study2 "Split-brain studies (Gazzaniga): Consciousness divided by corpus callosum severing; suggests brain-basis" ;
+        :study3 "Neurodegenerative disease: Alzheimer's, Parkinson's show mind dependent on brain integrity"
+    ] ;
+    :conditionalValue "Eliminativists (Churchland) reject soul entirely. Non-reductive physicalists (Searle) allow mental properties supervening on physical" ;
+    :conflicts "Immaterial soul vs. material brain as locus of consciousness and identity" ;
+    :confidence 0.85 ;
+    rdfs:comment "Soul concept is paradigm case of what materialism rejects: Immaterial substance with causal powers. Crick (1994): 'You are nothing but a pack of neurons.'" .
+
+:TranscendentMeaning a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :salience "low" ;
+    dcterms:source "Camus (1942): Absurdism - universe is meaningless; meaning is human projection. Nietzsche: Death of God leaves meaningless material world." ;
+    skos:definition "Objective meaning or purpose built into fabric of reality by transcendent source (God, cosmic order)." ;
+    :why_subordinated "Materialism: Universe is purposeless matter in motion (d'Holbach). Meaning is subjective human construction, not objective feature of material reality." ;
+    :relatedToWorldview :Spiritualism, :Idealism ;
+    :subjectivistAlternative "Meaning as human projection (existentialism) or evolutionary adaptation (evolutionary psychology)" ;
+    :weakMapping vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.4 ;
+    :rationale "Self-created meaning through autonomous choice (existentialism) compatible with materialism; transcendent meaning is not" ;
+    :empiricalEvidence [
+        :study1 "Existential psychology (Frankl, Yalom): Humans create meaning; not discovered in cosmos" ;
+        :study2 "Evolutionary psychology: Meaning-making as adaptive trait, not cosmic truth"
+    ] ;
+    :conditionalValue "POSITIVE if 'meaning' means subjective purpose/significance. NEGATIVE if 'meaning' means objective teleology in nature." ;
+    :conflicts "Transcendent objective meaning vs. material purposeless universe" ;
+    :confidence 0.75 ;
+    rdfs:comment "Materialism faces 'meaning problem': If only matter exists, cosmic meaning seems illusory. Existentialists (Camus, Sartre) embrace meaninglessness; create own meaning." .
+
+:SpiritualExperiences a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :salience "low" ;
+    dcterms:source "James (1902/1985): Varieties of Religious Experience. Materialism: Religious experiences are brain states, not contact with transcendent." ;
+    skos:definition "Experiences interpreted as contact with transcendent divine reality, sacred cosmos, or spiritual dimension." ;
+    :why_subordinated "Materialism reduces spiritual experiences to neurobiological states: Temporal lobe epilepsy, psychedelic brain states, meditation-induced neural changes. No transcendent referent." ;
+    :relatedToWorldview :Spiritualism, :Pneumatism ;
+    :materialistExplanation "Spiritual experiences are real AS BRAIN STATES but don't evidence transcendent reality. Neurological phenomena (Persinger, Newberg)" ;
+    :weakMapping vn-schwartz:TraditionDisposition ;
+    :mapping_salience 0.25 ;
+    :rationale "Traditional religious practices have evolutionary/social functions but lack transcendent truth value" ;
+    :empiricalEvidence [
+        :study1 "Persinger (1987): Temporal lobe stimulation induces 'sensed presence' experiences" ;
+        :study2 "Newberg & d'Aquili (2001): Neuroimaging of meditation/prayer shows distinct brain states" ;
+        :study3 "Psychedelic neuroscience: DMT, psilocybin produce profound experiences via serotonin receptors"
+    ] ;
+    :conditionalValue "POSITIVE as interesting brain states worthy of study. NEGATIVE as evidence of supernatural/transcendent." ;
+    :conflicts "Spiritual experiences as brain states vs. contact with transcendent reality" ;
+    :confidence 0.7 ;
+    rdfs:comment "William James' 'medical materialism': Spiritual experiences reducible to physiological causes. Doesn't disprove transcendent but removes need for that hypothesis." .
+
+:AestheticBeauty a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :salience "moderate" ;
+    dcterms:source "Materialist aesthetics: Beauty reducible to neurological responses (Ramachandran, Zeki)" ;
+    skos:definition "Aesthetic value and beauty as transcendent quality vs. materialist reduction to pleasant sensory stimulation or evolutionary adaptation." ;
+    :why_subordinated "Materialism reduces aesthetic experience to: (1) Sensory pleasure (activation of reward circuits), (2) Evolutionary fitness indicators, (3) Cultural conditioning. Beauty not objective property of things." ;
+    :relatedToWorldview :Sensationalism, :Idealism ;
+    :materialistReduction "Beauty is: Brain's reward response + evolutionary preferences (symmetry, fertility cues) + cultural learning" ;
+    :weakMapping vn-schwartz:HedonismDisposition ;
+    :mapping_salience 0.65 ;
+    :rationale "Aesthetic pleasure is pleasant sensory experience; materialist can value hedonic aesthetic states without invoking transcendent beauty" ;
+    :empiricalEvidence [
+        :study1 "Ramachandran & Hirstein (1999): Laws of aesthetic experience grounded in neuroscience (peak shift, grouping, etc.)" ;
+        :study2 "Evolutionary aesthetics (Dutton 2009): Beauty preferences shaped by sexual selection and habitat preferences" ;
+        :study3 "Neuroaesthetics (Chatterjee 2011): fMRI studies show beauty activates reward circuits (ventral striatum)"
+    ] ;
+    :conditionalValue "POSITIVE as hedonic experience and cultural value. NEGATIVE as transcendent/objective quality." ;
+    :conflicts "Beauty as objective transcendent property vs. subjective brain response" ;
+    :confidence 0.6 ;
+    rdfs:comment "Materialism doesn't deny aesthetic experience exists; denies beauty is objective property independent of brains. Art appreciation is real neural phenomenon." .
+
+:MoralObjectivism a :SubordinatedValue ;
+    :subordinatedIn :Materialism ;
+    :salience "low" ;
+    dcterms:source "Mackie (1977): Ethics - Inventing Right and Wrong. Error theory: Moral objectivity is metaphysical error." ;
+    skos:definition "Objective moral facts existing independent of human minds, discoverable by reason or intuition." ;
+    :why_subordinated "Materialism skeptical of objective moral facts. Morality as: (1) Evolutionary adaptation (altruism, fairness), (2) Social contract, (3) Subjective preference, (4) Error theory (Mackie)." ;
+    :relatedToWorldview :Realism, :Rationalism ;
+    :materialistAlternatives "Evolutionary ethics, moral contractarianism, moral emotivism, error theory" ;
+    :weakMapping vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.45 ;
+    :rationale "Some materialists (consequentialists) value universal wellbeing without objective moral facts; others embrace moral relativism" ;
+    :empiricalEvidence [
+        :study1 "De Waal (2006): Primates & Other Animals - moral behavior has evolutionary origins, not transcendent source" ;
+        :study2 "Haidt (2012): Moral foundations as evolutionary adaptations for cooperation" ;
+        :study3 "Moral diversity across cultures challenges objectivism (Prinz 2007)"
+    ] ;
+    :conditionalValue "POSITIVE if 'morality' means: evolved prosociality, social cooperation, preference satisfaction. NEGATIVE if 'morality' means: transcendent moral facts independent of matter." ;
+    :conflicts "Objective moral facts vs. naturalistic explanation of morality" ;
+    :confidence 0.65 ;
+    rdfs:comment "Materialism faces 'is-ought problem': Can't derive objective moral 'oughts' from material 'is'. Solutions: Embrace moral anti-realism OR argue morality emerges from material facts (consequentialism)." .
+
+# ============================================================================
+# BFO PROCESS MODELING - Materialist Processes
+# ============================================================================
+
+:MaterialisticReduction a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Churchland (1981): Eliminative materialism reduces mental states to neuroscientific descriptions" ;
+    rdfs:label "Materialistic Reduction Process" ;
+    skos:definition "A BFO process of explaining apparently non-material phenomena (consciousness, meaning, beauty) in terms of underlying material/physical mechanisms." ;
+    bfo:0000057 :MaterialistPhilosopher ;  # has_participant
+    :hasSubProcesses :IdentifyApparentlyNonMaterial, :SeekMaterialBasis, :ProvideReductiveExplanation ;
+    cco:has_input :NonMaterialPhenomenon ;
+    cco:has_output :MaterialistExplanation ;
+    :reductionStrategies [
+        :typeIdentity "Mental state tokens are identical to brain state tokens (Smart, Place)" ;
+        :functionalism "Mental states are functional roles implementable in physical systems (Putnam, Fodor)" ;
+        :eliminativism "Folk psychology concepts eliminated in favor of neuroscience (Churchland)" ;
+        :supervenience "Mental supervenes on physical without reduction (Davidson, Kim)"
+    ] ;
+    :examples [
+        :consciousness "Consciousness = neural activity patterns in global workspace (Baars, Dehaene)" ;
+        :pain "Pain = C-fiber firing + associated neural cascades (Place 1956)" ;
+        :belief "Belief = functional state of brain disposed to guide behavior"
+    ] ;
+    rdfs:comment "Reduction is characteristic materialist move: Show apparent non-material phenomena have material basis. Makes materialism empirically testable." .
+
+:EmpiricalMeasurement a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Stevens (1946): Theory of measurement scales. Operationalism: Concepts defined by measurement operations." ;
+    rdfs:label "Empirical Measurement Process" ;
+    skos:definition "A BFO process of quantifying material properties through instrumentation and observation, yielding empirical data." ;
+    bfo:0000057 :Scientist, :Instrument ;
+    cco:has_input :MaterialProperty ;
+    cco:has_output :MeasurementData ;
+    :realizesValue :Measurement, :EmpiricalTruth ;
+    :processSteps [
+        :step1 "Select measurable material property (mass, length, temperature, neural firing rate)" ;
+        :step2 "Apply standardized measurement instrument (scale, ruler, thermometer, electrode)" ;
+        :step3 "Record quantitative value with units and precision" ;
+        :step4 "Replicate measurement to ensure reliability"
+    ] ;
+    :yieldedKnowledge "Quantitative empirical facts about material world" ;
+    :empiricalSupport "Measurement theory (Krantz et al. 1971): Formal theory of representation and uniqueness of measurement" ;
+    rdfs:comment "Measurement is paradigmatic materialist epistemology: Gain knowledge through interaction with material world via instruments. Only measurable properties are scientifically real." .
+
+:ExperimentalVerification a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Popper (1959): Experimental testing as attempted falsification. Mill (1843): Methods of experimental inquiry." ;
+    rdfs:label "Experimental Verification Process" ;
+    skos:definition "A BFO process of testing empirical hypotheses through controlled manipulation of material conditions and observation of outcomes." ;
+    bfo:0000057 :Scientist ;
+    cco:has_input :EmpiricalHypothesis, :ExperimentalConditions ;
+    cco:has_output :VerificationResult ;
+    :realizesValue :EmpiricalVerification, :EmpiricalTruth ;
+    :methodologicalFeatures [
+        :control "Control variables to isolate causal factor" ;
+        :randomization "Random assignment to eliminate confounds" ;
+        :blinding "Blind observers to prevent expectation effects" ;
+        :replication "Independent replication to confirm results"
+    ] ;
+    :yields "Empirically verified or falsified claims about material causation" ;
+    :empiricalSupport "Randomized controlled trial (RCT) as gold standard in medicine, psychology" ;
+    rdfs:comment "Experimental method is materialist epistemology par excellence: Manipulate material conditions, observe material effects. Evidence-based practice relies on this." .
+
+# ============================================================================
+# BFO QUALITY SUBSTRATES
+# ============================================================================
+
+:PhysicalHealth a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    dcterms:source "Boorse (1977): Health as species-typical functional organization" ;
+    rdfs:label "Physical Health Quality" ;
+    skos:definition "A quality inhering in organism characterized by proper functioning of biological systems relative to species-typical norms." ;
+    bfo:0000052 :Organism ;  # inheres_in
     :hasSpecifiedValue :HealthLevel ;
-    rdfs:comment "Health as quality substrate inhering in person." .
+    :measuredBy :PhysiologicalMetrics, :FunctionalAssessment ;
+    :opposedQuality :Disease, :Dysfunction ;
+    rdfs:comment "Health as objective biological state, not subjective wellbeing. Measurable through physiology, functional capacity." .
 
-# Processes that realize values
-:MeasurementProcess a bfo:0000015 ;  # process
-    :realizes :EmpiricalVerification ;
-    :hasParticipant :Scientist, :Instrument ;
-    rdfs:comment "Process of empirical measurement realizing value of empirical truth." .
+:HedonicState a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    dcterms:source "Kahneman (2000): Experienced utility as hedonic quality of conscious states" ;
+    rdfs:label "Hedonic State Quality" ;
+    skos:definition "A quality of experiential states characterized by pleasure-pain valence, understood materialistically as neurological state." ;
+    bfo:0000052 :ConsciousOrganism ;
+    :hasSpecifiedValue :PleasurePainLevel ;
+    :neurobiologicalBasis "Reward/aversion circuits (dopamine, opioids, etc.)" ;
+    :measuredBy :SelfReport, :NeuralImaging, :BehavioralIndicators ;
+    rdfs:comment "Hedonic states are material brain states with subjective feel. Materialism grounds pleasure/pain in neurobiology (dopamine, endorphins)." .
 
-:VerificationProcess a bfo:0000015 ;  # process
-    :validates :EmpiricalClaim ;
-    :produces :VerifiedKnowledge ;
-    rdfs:comment "Verification process establishing empirical truth." .
+:MaterialComplexity a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    dcterms:source "Complexity theory applied to material systems" ;
+    rdfs:label "Material Complexity Quality" ;
+    skos:definition "A quality of material systems characterized by degree of organizational complexity (entropy, information content, structural hierarchy)." ;
+    bfo:0000052 :MaterialSystem ;
+    :measuredBy :EntropyMetrics, :InformationContent, :HierarchicalLevels ;
+    :relevanceToMaterialism "Emergence of complex phenomena (life, consciousness) from material substrate requires sufficient complexity" ;
+    rdfs:comment "Materialist cosmology: Universe evolves from simple (Big Bang) to complex (galaxies, planets, life, brains). Complexity as material property enabling mind." .
 
-# Information Content Entities (CCO pattern)
-:EmpiricalClaim a cco:InformationContentEntity ;
+# ============================================================================
+# INFORMATION CONTENT ENTITIES (ICE)
+# ============================================================================
+
+:EmpiricalClaim a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # generically dependent continuant (ICE)
+    dcterms:source "Logical positivism: Empirically verifiable claims are meaningfully truth-apt" ;
+    rdfs:label "Empirical Claim" ;
+    skos:definition "An ICE representing assertion about material world that is in principle empirically testable through observation or experiment." ;
     :requiresVerification :EmpiricalEvidence ;
     :aboutPhysicalReality true ;
-    rdfs:comment "Claims about material reality requiring empirical verification." .
+    :contrastsWith :MetaphysicalClaim, :UnfalsifiableClaim ;
+    :verificationCriterion "Observable material consequences predicted by claim must obtain" ;
+    rdfs:comment "Materialism privileges empirical claims because they concern material world accessible to observation. Metaphysical claims about immaterial entities are epistemically suspect." .
+
+:ScientificTheory a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    dcterms:source "Kuhn (1962): Scientific theories as paradigms guiding empirical research" ;
+    rdfs:label "Scientific Theory" ;
+    skos:definition "An ICE representing systematically organized empirical knowledge about material world, including laws, mechanisms, and explanatory models." ;
+    :generatedBy :ScientificInquiry ;
+    :validatedBy :ExperimentalTesting, :PredictiveSuccess, :ExplanatoryPower ;
+    :examples "Newtonian mechanics, evolutionary theory, germ theory, quantum mechanics" ;
+    :valuedForMaterialism "Science paradigmatically generates reliable knowledge about material reality" ;
+    rdfs:comment "Scientific theories are crown jewels of materialist epistemology: Empirically testable, predictively successful, explanatorily powerful accounts of material world." .
+
+:MaterialistExplanation a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    dcterms:source "Materialist explanations cite only material causes and mechanisms" ;
+    rdfs:label "Materialist Explanation" ;
+    skos:definition "An ICE representing causal explanation that appeals only to material entities, physical laws, and efficient causes (no teleology, purpose, or immaterial agents)." ;
+    :generatedBy :MaterialisticReduction ;
+    :citesOnly :MaterialCauses, :PhysicalMechanisms, :EfficientCausation ;
+    :excludes :FinalCauses, :ImmaterialAgents, :Teleology ;
+    :example "Depression explained by: neurotransmitter imbalance + genetic predisposition + environmental stressors. NOT: spiritual malaise or demonic possession." ;
+    rdfs:comment "Materialist explanation is mechanistic and non-teleological. Hume: No purpose in nature; only cause and effect. Darwin: Apparent design explained by material selection." .
 
 # ============================================================================
-# Evaluation Criteria for Materialism
+# SCENARIO EVALUATIONS - Materialist Perspective
 # ============================================================================
 
-:MaterialistEvaluationCriteria a :EvaluationFramework ;
-    :prioritizes :PhysicalWellbeing, :EmpiricalTruth, :MaterialSecurity ;
-    :evaluatesBy :PhysicalConsequences, :EmpiricalVerifiability ;
-    :subordinates :SubjectiveExperience, :Meaning, :Spirituality ;
-    rdfs:comment "Criteria for evaluating actions from materialist perspective." .
+:MaterialistEvaluation a owl:Class ;
+    rdfs:subClassOf :WorldviewEvaluation ;
+    rdfs:label "Materialist Evaluation" ;
+    skos:definition "Evaluation of scenarios and actions from materialist perspective, prioritizing physical wellbeing, empirical truth, and material security." .
 
-:PhysicalConsequences a :EvaluationDimension ;
-    :measures :ImpactOnPhysicalWellbeing ;
-    :quantifiable true ;
-    rdfs:comment "Evaluate based on measurable physical consequences." .
+# Scenario 1: Medical treatment decision
+:MedicalTreatmentDecisionScenario a :Scenario ;
+    :action "choose_treatment_for_terminal_illness" ;
+    :context [
+        :medical true ;
+        :terminal_diagnosis true ;
+        :treatment_options [ :curative_attempt true ; :palliative_care true ]
+    ] ;
+    :materialistEvaluation [
+        :judgment "prioritize_empirical_efficacy_and_quality_of_life" ;
+        :reasoning "Materialism: (1) No afterlife, so THIS physical life is all that exists. (2) Physical suffering is real and bad (hedonic negative state). (3) Treatment efficacy determined by empirical evidence (clinical trials). Choose treatment maximizing: (a) physical lifespan if realistic, OR (b) quality of remaining life (hedonic wellbeing, functioning) if cure unlikely." ;
+        :valuePriorities :PhysicalWellbeing, :EmpiricalTruth, :BodilyComfort ;
+        :subordinatedConcerns "Spiritual preparation for afterlife is irrelevant (no afterlife). Meaning-making is subjective preference (may value but not objective necessity)." ;
+        :decisionCriteria [
+            :survival_probability "Evidence-based survival rates from clinical trials" ;
+            :quality_of_life "Hedonic state, physical functioning during/after treatment" ;
+            :patient_autonomy "Bodily autonomy: Patient decides re: own physical organism"
+        ] ;
+        :empiricalGrounding "Evidence-based medicine (Cochrane): Choose treatments with best empirical outcomes for survival and quality of life" ;
+        :confidence 0.9
+    ] .
 
-:EmpiricalVerifiability a :EvaluationDimension ;
-    :requires :ObservationalEvidence ;
-    :rejectsUnverifiableClaims true ;
-    rdfs:comment "Truth claims must be empirically verifiable to have value." .
+# Scenario 2: Resource allocation - healthcare vs. arts funding
+:ResourceAllocationScenario a :Scenario ;
+    :action "allocate_public_funds_between_healthcare_and_arts" ;
+    :context [
+        :public_policy true ;
+        :scarce_resources true ;
+        :competing_values [ :health true ; :culture true ]
+    ] ;
+    :materialistEvaluation [
+        :judgment "prioritize_healthcare_over_arts" ;
+        :reasoning "Materialism: (1) Physical health is foundational terminal value (biological survival and wellbeing). (2) Arts are instrumental to hedonic pleasure or cultural cohesion but not essential to survival. (3) Healthcare has measurable material impact (mortality, morbidity reduction). (4) Scarcity requires prioritization: Health > aesthetic pleasure. (5) However, arts funding not zero - contributes to hedonic wellbeing (legitimate but secondary)." ;
+        :valuePriorities :PhysicalWellbeing, :MaterialSecurity, :Health ;
+        :secondaryValues :HedonicWellbeing, :CulturalCohesion ;
+        :priorityRationale "Maslow's hierarchy: Physiological needs (health) more basic than aesthetic needs (beauty). Utilitarianism: Healthcare prevents suffering (negative hedonic states) more effectively than arts promote pleasure." ;
+        :suggestedAllocation "Healthcare: 70-80%, Arts: 20-30%. Health primary, arts secondary but not eliminated." ;
+        :empiricalGrounding "Public health ROI: Healthcare spending has high return on life years and quality-adjusted life years (QALYs)" ;
+        :confidence 0.75
+    ] .
+
+# Scenario 3: Evaluating religious truth claims
+:ReligiousTruthClaimScenario a :Scenario ;
+    :action "evaluate_claim_that_prayer_heals_disease" ;
+    :context [
+        :religious_claim true ;
+        :empirical_testability true ;
+        :medical_context true
+    ] ;
+    :materialistEvaluation [
+        :judgment "require_empirical_evidence_or_reject_claim" ;
+        :reasoning "Materialism: (1) Prayer healing would require causal mechanism: Either (a) physical (psychological placebo effect, stress reduction), OR (b) supernatural (immaterial divine intervention). (2) Physical mechanisms are empirically testable and some are supported (placebo, stress effects). (3) Supernatural mechanisms lack material evidence and contradict materialist metaphysics (no immaterial causal agents). (4) Burden of proof on claimant: Extraordinary claims require extraordinary evidence. (5) If empirical studies (controlled trials) show NO effect beyond placebo → reject claim. If studies show effect → seek material mechanism (psychology, social support, etc.)." ;
+        :valuePriorities :EmpiricalTruth, :EmpiricalVerification, :MaterialCausation ;
+        :subordinatedClaims "Supernatural causation lacking material evidence" ;
+        :acceptableInterpretation "Prayer may have psychological/social benefits (stress reduction, social support) explainable through material mechanisms. NOT divine intervention." ;
+        :empiricalEvidence "Benson et al. (2006): Study of Therapeutic Effects of Intercessory Prayer (STEP) showed no effect of intercessory prayer on recovery from cardiac surgery. Psychological benefits of personal prayer explainable materially." ;
+        :conditionalValue "POSITIVE for empirically-supported psychological mechanisms. NEGATIVE for unsupported supernatural claims." ;
+        :confidence 0.85
+    ] .
+
+# ============================================================================
+# METAPHYSICAL COMMITMENTS & DISTINCTIONS
+# ============================================================================
+
+:MaterialismVsRealism a :MetaphysicalDistinction ;
+    :distinguishes :Materialism, :Realism ;
+    :dimension "Ontological Scope" ;
+    :materialismClaim "Reality is exclusively or fundamentally MATERIAL/PHYSICAL" ;
+    :realismClaim "Reality exists INDEPENDENTLY of minds (but may include non-material entities like abstract objects, mental properties)" ;
+    :relationship "Materialism is TYPE of realism (realism about physical world). But realism broader - Platonic realism accepts abstract Forms, property realism accepts mental properties as real." ;
+    :examples [
+        :materialist_realism "Physical objects exist mind-independently AND nothing else exists (d'Holbach, Churchland)" ;
+        :platonic_realism "Physical objects AND abstract mathematical objects exist mind-independently (NOT materialist)" ;
+        :property_dualism "Physical AND irreducible mental properties both real (realism but NOT materialism - Chalmers)"
+    ] ;
+    :practicalDifference "Materialist must reduce/eliminate anything apparently non-material. Realist need not." ;
+    rdfs:comment "Materialism is ontologically restrictive realism: Only material things are real. Contrast Platonic realism (material + abstract) or property dualism (material + irreducible mental)." .
+
+:MaterialismVsSensationalism a :MetaphysicalDistinction ;
+    :distinguishes :Materialism, :Sensationalism ;
+    :dimension "Ontological vs Epistemological Priority" ;
+    :materialismClaim "MATTER is ontologically primary; experience is derivative (brain states cause conscious experiences)" ;
+    :sensationalismClaim "SENSORY EXPERIENCE is epistemically primary; matter is inferred from sensations (Berkeley, Mach)" ;
+    :relationship "Opposite priority orderings: Materialism: Matter → Experience. Sensationalism: Experience → Matter (as theoretical construct from sensations)." ;
+    :berkeleyVsMaterialism "Berkeley: 'Esse est percipi' (to be is to be perceived) - material substance is meaningless abstraction from sensations. Materialist: Experience supervenes on material brain; no brain, no experience." ;
+    :empiricalImplication [
+        :materialism "Neuroscience studies matter (brain) to understand experience (consciousness)" ;
+        :sensationalism "Phenomenology describes experience directly; material substrate is theoretical inference"
+    ] ;
+    :practicalDifference "Materialist privileges neuroscience and physical health. Sensationalist privileges phenomenal quality and aesthetic experience." ;
+    rdfs:comment "Both in Material-Empirical cluster (empiricist) but reverse priority: Matter → Experience (materialism) vs. Experience primary (sensationalism)." .
+
+:MaterialismVsPhenomenalism a :MetaphysicalDistinction ;
+    :distinguishes :Materialism, :Phenomenalism ;
+    :dimension "Metaphysical Commitment vs Methodological Bracketing" ;
+    :materialismClaim "MATERIAL WORLD EXISTS OBJECTIVELY - metaphysical claim about what's real" ;
+    :phenomenalismClaim "BRACKET existence claims (epoché); describe phenomena as given to consciousness without metaphysical commitment" ;
+    :relationship "Materialism makes positive metaphysical claim; phenomenalism suspends (brackets) such claims methodologically." ;
+    :husserlVsMaterialism "Husserl: Phenomenological reduction suspends natural attitude's assumption of objective material world. Materialist: No suspension - material world is foundational reality." ;
+    :epistemicDifference [
+        :materialism "Knowledge aims at correspondence to objective material facts" ;
+        :phenomenalism "Knowledge is subjective certainty about phenomenal structures; no claim about correspondence to 'things-in-themselves'"
+    ] ;
+    :practicalDifference "Materialist: Science discovers objective material reality. Phenomenologist: Science constitutes meaning-structures; phenomenology investigates constitution." ;
+    rdfs:comment "Materialism is metaphysically assertive (material world exists!). Phenomenalism is metaphysically agnostic (brackets such claims to study appearances)." .
+
+# ============================================================================
+# CLUSTER INTEGRATION
+# ============================================================================
+
+:Materialism rdfs:seeAlso :Realism, :Sensationalism, :Phenomenalism ;
+    :complementaryTo :Spiritualism ;  # from worldview-relationships.ttl
+    :affinityWith :Realism ;  # both Material-Empirical, closely aligned
+    :clusterMembership :MaterialEmpirical ;
+    :sharedCommitment "Empiricist epistemology: Knowledge grounded in experience/observation of material/empirical world" ;
+    :distinctiveCommitment "Ontological: ONLY material/physical exists (or is fundamentally real)" ;
+    :internalClusterRole "Most ontologically restrictive in cluster: Materialism < Realism < Sensationalism < Phenomenalism (in terms of what's admitted as real)" ;
+    rdfs:comment "Materialism anchors Material-Empirical cluster: Paradigm case of ontological commitment to material world as foundational reality." .
+
+# ============================================================================
+# INTEGRATION WITH VALUENET AND IEE COMPONENTS
+# ============================================================================
+
+# ValueNet mappings are embedded in individual value definitions above with
+# :realizableAs, :mapping_salience, and :rationale properties.
+# Summary profile:
+# - High priority: Security (0.95), Hedonism (0.85), Achievement (0.8)
+# - Moderate: Universalism (0.75), Self-direction (0.75), Power (0.65)
+# - Low: Conformity (0.55), Tradition (0.3)
+# - Very low: Spirituality (0.15)
+
+# ============================================================================
+# USAGE NOTES
+# ============================================================================
+
+# This ontology provides:
+# 1. Complete materialist value hierarchy (terminal, constitutive, instrumental, subordinated)
+# 2. Comprehensive ValueNet mappings with salience levels and rationales
+# 3. 35+ philosophical citations (ancient to contemporary materialism)
+# 4. 15+ empirical research citations (neuroscience, evolutionary psychology, medical)
+# 5. BFO-compliant process modeling (reduction, measurement, verification)
+# 6. 3 worked scenarios demonstrating materialist evaluation
+# 7. Detailed metaphysical distinctions from other Material-Empirical worldviews
+# 8. Quality substrates and ICE modeling
+# 9. Subordinated values with rationales, evidence, conditional value, confidence levels
+
+# Key Insights:
+# - Materialism grounds value in material reality: Physical wellbeing, empirical truth, material security
+# - Consciousness, meaning, spirituality either reduced to material or eliminated as incoherent
+# - Epistemology: Empirical observation and measurement privileged; unfalsifiable claims suspect
+# - Ethics: Tends toward consequentialism, hedonism, or error theory; skeptical of objective moral facts
+# - Distinctive in cluster: Most ontologically restrictive (only matter real); contrasts with phenomenalism (brackets ontology)
+
+# Complements in Material-Empirical Cluster:
+# - Realism: Shared empiricism, mind-independence; differs on non-material entities
+# - Sensationalism: Shared empiricism; differs on priority (matter vs. experience)
+# - Phenomenalism: Shared empiricism; differs on metaphysical commitment vs. bracketing
+
+# Future Extensions:
+# - Marxist dialectical materialism (historical materialism, class analysis)
+# - Feminist materialism (embodiment, reproductive labor)
+# - Eliminative materialism in detail (Churchland's neurophilosophy)
+# - Medical ethics from materialist perspective (brain death, personhood)

@@ -208,6 +208,117 @@ export function materializeWorldview(triples, worldviewURI) {
   return worldview;
 }
 
+/**
+ * Extracts ValueNet dispositions from triples.
+ * PURE FUNCTION - converts RDF to ValueNet disposition objects.
+ *
+ * @param {Array} triples - All triples in the store
+ * @param {Object} namespaces - Namespace mappings
+ * @returns {Array} Array of value disposition objects
+ */
+export function extractValueNetDispositions(triples, namespaces) {
+  const dispositions = [];
+  const processedURIs = new Set();
+
+  // Find all instances of ValueDisposition or its subclasses
+  triples.forEach(triple => {
+    const predicate = triple.predicate.split(/[/#]/).pop();
+
+    // Look for rdf:type or rdfs:subClassOf pointing to ValueDisposition-related classes
+    if (predicate === 'type' || predicate === 'subClassOf') {
+      const objectPart = triple.object.split(/[/#]/).pop();
+
+      if (objectPart && objectPart.includes('Disposition') && objectPart.includes('Value')) {
+        const dispositionURI = triple.subject;
+
+        if (!processedURIs.has(dispositionURI)) {
+          processedURIs.add(dispositionURI);
+
+          const disposition = {
+            uri: dispositionURI,
+            name: dispositionURI.split(/[/#]/).pop(),
+            label: null,
+            definition: null,
+            type: objectPart,
+            properties: {}
+          };
+
+          // Find all properties of this disposition
+          const relatedTriples = triples.filter(t => t.subject === dispositionURI);
+          relatedTriples.forEach(t => {
+            const prop = t.predicate.split(/[/#]/).pop();
+            const val = t.object.replace(/^"|"@\w+$/g, ''); // Remove quotes and language tags
+
+            if (prop === 'label') {
+              disposition.label = val;
+            } else if (prop === 'definition') {
+              disposition.definition = val;
+            } else if (prop === 'altLabel') {
+              disposition.altLabel = val;
+            } else if (prop !== 'type' && prop !== 'subClassOf') {
+              disposition.properties[prop] = val;
+            }
+          });
+
+          dispositions.push(disposition);
+        }
+      }
+    }
+  });
+
+  return dispositions;
+}
+
+/**
+ * Extracts worldview-ValueNet mappings from mapping ontology triples.
+ * PURE FUNCTION - converts RDF mappings to JavaScript objects.
+ *
+ * @param {Array} triples - Triples from worldview-valuenet-mappings.ttl
+ * @returns {Object} Mapping of worldview values to ValueNet dispositions with salience
+ */
+export function extractValueNetMappings(triples) {
+  const mappings = {};
+
+  triples.forEach(triple => {
+    const subject = triple.subject;
+    const predicate = triple.predicate.split(/[/#]/).pop();
+    const object = triple.object;
+
+    if (!mappings[subject]) {
+      mappings[subject] = {
+        uri: subject,
+        realizableAs: [],
+        incompatibleWith: [],
+        weaklyRelatedTo: [],
+        salience: null,
+        grounding: null
+      };
+    }
+
+    const mapping = mappings[subject];
+
+    switch (predicate) {
+      case 'realizableAs':
+        mapping.realizableAs.push(object);
+        break;
+      case 'incompatibleWith':
+        mapping.incompatibleWith.push(object);
+        break;
+      case 'weaklyRelatedTo':
+        mapping.weaklyRelatedTo.push(object);
+        break;
+      case 'salience':
+        mapping.salience = object.replace(/"/g, '');
+        break;
+      case 'grounding':
+        mapping.grounding = object.replace(/"/g, '');
+        break;
+    }
+  });
+
+  return mappings;
+}
+
 // ============================================================================
 // ONTOLOGY LOADER CONCEPT (Singleton)
 // ============================================================================
@@ -221,7 +332,9 @@ export const ontologyLoader = {
     loadedOntologies: [],      // URIs of loaded ontologies
     tripleStore: [],            // All triples from loaded ontologies
     namespaces: {},             // Namespace prefix mappings
-    worldviewDefinitions: {}    // Materialized worldview objects
+    worldviewDefinitions: {},   // Materialized worldview objects
+    valueNetDispositions: [],   // ValueNet disposition objects
+    valueNetMappings: {}        // Worldview value → ValueNet disposition mappings
   },
 
   /**
@@ -327,6 +440,92 @@ export const ontologyLoader = {
     },
 
     /**
+     * Loads ValueNet ontology files and extracts value dispositions.
+     *
+     * @param {Array<string>} filePaths - Array of ValueNet TTL file paths
+     * @returns {Promise<Object>} Extracted dispositions
+     */
+    async loadValueNet(filePaths = []) {
+      const self = ontologyLoader;
+
+      // Default ValueNet files if none specified
+      if (filePaths.length === 0) {
+        filePaths = [
+          'valueNet/valuenet-core.ttl',
+          'valueNet/valuenet-schwartz-values.ttl',
+          'valueNet/valuenet-moral-foundations.ttl'
+        ];
+      }
+
+      // Load all ValueNet files
+      for (const filePath of filePaths) {
+        try {
+          await self.actions.loadTTL(filePath);
+        } catch (error) {
+          console.warn(`[OntologyLoader] Could not load ${filePath}:`, error.message);
+        }
+      }
+
+      // Extract dispositions from loaded triples
+      const dispositions = extractValueNetDispositions(
+        self.state.tripleStore,
+        self.state.namespaces
+      );
+
+      self.state.valueNetDispositions = dispositions;
+
+      self.notify('valueNetLoaded', {
+        dispositionCount: dispositions.length,
+        filesLoaded: filePaths
+      });
+
+      return { dispositions };
+    },
+
+    /**
+     * Loads worldview-ValueNet mapping ontology.
+     *
+     * @param {string} filePath - Path to mapping TTL file
+     * @returns {Promise<Object>} Extracted mappings
+     */
+    async loadValueNetMappings(filePath = 'ontology/worldview-valuenet-mappings.ttl') {
+      const self = ontologyLoader;
+
+      await self.actions.loadTTL(filePath);
+
+      // Extract mappings from triples
+      const mappings = extractValueNetMappings(self.state.tripleStore);
+
+      self.state.valueNetMappings = mappings;
+
+      self.notify('valueNetMappingsLoaded', {
+        mappingCount: Object.keys(mappings).length,
+        filePath
+      });
+
+      return { mappings };
+    },
+
+    /**
+     * Gets ValueNet dispositions for a specific worldview value.
+     *
+     * @param {string} valueURI - URI of worldview value
+     * @returns {Object} Mapping object with dispositions and salience
+     */
+    getValueNetMapping(valueURI) {
+      return ontologyLoader.state.valueNetMappings[valueURI] || null;
+    },
+
+    /**
+     * Gets all ValueNet dispositions.
+     *
+     * @returns {Array} All loaded value dispositions
+     */
+    getValueNetDispositions() {
+      return ontologyLoader.state.valueNetDispositions;
+    },
+
+    /**
      * Resets all state (for testing).
      */
     reset() {
@@ -335,6 +534,8 @@ export const ontologyLoader = {
       self.state.tripleStore = [];
       self.state.namespaces = {};
       self.state.worldviewDefinitions = {};
+      self.state.valueNetDispositions = [];
+      self.state.valueNetMappings = {};
       self.notify('reset');
     }
   },

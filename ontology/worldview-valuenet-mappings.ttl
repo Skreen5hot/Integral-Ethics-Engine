@@ -1,0 +1,653 @@
+@prefix : <http://ontology-of-freedom.org/iee#> .
+@prefix vn-core: <https://fandaws.com/ontology/bfo/valuenet-core#> .
+@prefix vn-schwartz: <https://fandaws.com/ontology/bfo/valuenet-schwartz-values#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Worldview-ValueNet Mapping Ontology
+# ============================================================================
+#
+# Purpose: Comprehensive mappings from Material-Empirical worldviews to
+#          Schwartz's 10 basic ValueNet dispositions
+#
+# Integration Strategy:
+# - Worldviews provide metaphysical grounding (foundation → values)
+# - ValueNet provides BFO-aligned value dispositions (realist ontology)
+# - This ontology bridges: worldview values → ValueNet dispositions
+#
+# Key Insight:
+# Each worldview PRIORITIZES different ValueNet dispositions based on its
+# metaphysical foundation. Same disposition (e.g. SecurityDisposition) has
+# different salience/interpretation across worldviews.
+#
+# Sources:
+# - materialism-values.ttl: Comprehensive ValueNet mappings for Materialism
+# - realism-values.ttl: Comprehensive ValueNet mappings for Realism
+# - sensationalism-values.ttl: Comprehensive ValueNet mappings for Sensationalism
+# - phenomenalism-values.ttl: Comprehensive ValueNet mappings for Phenomenalism
+#
+# This file consolidates all mappings from individual worldview files into
+# a unified reference for cross-worldview value analysis.
+#
+# ============================================================================
+
+# ============================================================================
+# MATERIALISM → ValueNet Mappings
+# ============================================================================
+# Source: materialism-values.ttl
+# Metaphysics: Reality is fundamentally material/physical
+# Epistemology: Empirical observation, measurement, scientific method
+# Priority: Physical wellbeing, empirical truth, material security
+# ============================================================================
+
+:MaterialismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Materialism ;
+    dcterms:source "materialism-values.ttl (lines 154-365)" ;
+    rdfs:comment "Materialism prioritizes security (material survival), hedonism (pleasure/pain), and achievement (empirical progress). Low spirituality and tradition (non-material domains)." ;
+    :valueProfileSummary [
+        :highPriority "Security (0.95), Hedonism (0.85), Achievement (0.8)" ;
+        :moderate "Universalism (0.75), Self-direction (0.75), Power (0.65)" ;
+        :low "Conformity (0.55), Tradition (0.3)" ;
+        :veryLow "Spirituality (0.15)"
+    ] .
+
+# Security Disposition - Material survival and safety
+:MaterialismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :PhysicalWellbeing, :MaterialSecurity, :Health ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.95 ;
+    :rationale "Security: Physical safety and health are foundational to survival. Materialism grounds security in material conditions (shelter, food, physical safety). Material security IS security for materialism - no spiritual refuge if material world is all that exists." ;
+    :metaphysicalGrounding "Materialism: Humans are physical organisms; bodily vulnerability is existential threat. No afterlife or spiritual consolation if material existence is all." .
+
+# Hedonism Disposition - Physical pleasure and pain
+:MaterialismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :PhysicalWellbeing, :BodilyComfort ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.85 ;
+    :rationale "Hedonism: Physical pleasure and pain are real material states. Epicurean and utilitarian traditions ground value in hedonic states. Bodily comfort as material state of organism." ;
+    :metaphysicalGrounding "Epicurean materialism: Pleasure and pain are ultimate realities (physical sensations). Utility theory grounds value in hedonic brain states." .
+
+# Achievement Disposition - Scientific and technological progress
+:MaterialismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :EmpiricalProgress, :EmpiricalTruth, :Technology ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.8 ;
+    :rationale "Achievement: Scientific and technological progress demonstrates human competence and mastery. Empirical discovery valued as achievement. Technology provides power over material conditions." ;
+    :metaphysicalGrounding "Enlightenment materialism: Progress through scientific knowledge and technological mastery of nature. Bacon's 'knowledge is power.'" .
+
+# Universalism Disposition - Empirical facts are universal
+:MaterialismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :EmpiricalTruth, :ScientificKnowledge ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.75 ;
+    :rationale "Universalism: Empirical facts are objective and universal; physical laws apply everywhere. Understanding nature through science serves universal welfare." ;
+    :metaphysicalGrounding "Scientific universalism: Material laws hold across all contexts. Science accessible to all, benefits all." .
+
+# Self-direction Disposition - Independent empirical inquiry
+:MaterialismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :EmpiricalTruth, :PhysicalWellbeing ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.75 ;
+    :rationale "Self-direction: Empirical inquiry requires independent thought, not authority or dogma. Bodily autonomy valued (medical decisions, reproductive autonomy). Scientific method values autonomous rational inquiry." ;
+    :metaphysicalGrounding "Enlightenment critique of authority: Empirical evidence over tradition. Bodily autonomy - control over one's physical organism." .
+
+# Power Disposition - Control over material resources
+:MaterialismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :MaterialSecurity, :Technology ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.65 ;
+    :rationale "Power: Control over material resources enables security and autonomy. Technology provides mastery over material conditions. Hobbes: Power as means to secure future goods." ;
+    :metaphysicalGrounding "Hobbesian materialism: Material scarcity drives competition; power necessary for security." .
+
+# Conformity Disposition - Social cooperation for security
+:MaterialismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :MaterialSecurity ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.55 ;
+    :rationale "Conformity: Social cooperation (conformity to norms) enables collective material security. Hobbes: Social contract for security." ;
+    :metaphysicalGrounding "Social contract theory: Conformity to norms enables escape from materially insecure state of nature." .
+
+# Tradition Disposition - Subordinated (non-material domain)
+:MaterialismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :SpiritualExperiences ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.3 ;
+    :rationale "Tradition: Traditional religious practices have evolutionary/social functions but lack transcendent truth value. Subordinated due to non-material claims." ;
+    :metaphysicalGrounding "Materialist critique of religion: Traditions may have social utility but no metaphysical truth. Feuerbach, Marx on religion as projection." .
+
+# Spirituality Disposition - Very low (non-material rejected)
+:MaterialismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :ImmaterialSoul, :TranscendentMeaning, :SpiritualExperiences ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.15 ;
+    :rationale "Spirituality: Materialism rejects immaterial entities (souls, spirits). Spiritual experiences reduced to brain states with no transcendent referent." ;
+    :metaphysicalGrounding "Eliminative materialism: No immaterial souls or spirits exist. Churchland: 'You are nothing but a pack of neurons.'" .
+
+# Benevolence Disposition - Moderate (utilitarian concern for wellbeing)
+:MaterialismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :Medicine ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.65 ;
+    :rationale "Benevolence: Medicine serves welfare of others. Utilitarian concern for material wellbeing (reducing suffering, promoting health)." ;
+    :metaphysicalGrounding "Utilitarian materialism: Concern for others' hedonic wellbeing grounded in material pleasure/pain states." .
+
+# Stimulation Disposition - Moderate (scientific novelty)
+:MaterialismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Materialism ;
+    :worldviewValue :EmpiricalProgress ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.7 ;
+    :rationale "Stimulation: Scientific discovery and technological innovation provide novelty and challenge." ;
+    :metaphysicalGrounding "Scientific exploration of material world provides novelty and intellectual stimulation." .
+
+# ============================================================================
+# REALISM → ValueNet Mappings
+# ============================================================================
+# Source: realism-values.ttl
+# Metaphysics: Reality exists independently of mind, perception, conceptual schemes
+# Epistemology: Scientific realism, rational inquiry, correspondence to reality
+# Priority: Objective truth, natural law, correspondence to reality
+# ============================================================================
+
+:RealismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Realism ;
+    dcterms:source "realism-values.ttl (lines 152-369)" ;
+    rdfs:comment "Realism prioritizes universalism (objective universal truth), self-direction (independent rational inquiry), and achievement (discovering objective truths). Moderate security and tradition." ;
+    :valueProfileSummary [
+        :highPriority "Universalism (0.9), Self-direction (0.85), Achievement (0.8)" ;
+        :moderate "Security (0.7), Tradition (0.6), Conformity (0.6)" ;
+        :low "Hedonism (0.4), Power (0.45), Benevolence (0.5)"
+    ] .
+
+# Universalism Disposition - Objective universal truth
+:RealismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :ObjectiveTruth, :MindindependentReality, :NaturalLaw, :CorrespondenceToReality ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.9 ;
+    :rationale "Universalism: Truth is objective and universal - same reality for all observers. Understanding truth (of nature, society) serves universal comprehension. Mind-independent reality is shared by all; understanding it serves universal welfare. Natural law is universal - applies to all humans by virtue of shared human nature." ;
+    :metaphysicalGrounding "Realist metaphysics: Objective reality transcends individual perspectives. Correspondence to reality achieves universal truth accessible to all rational inquirers." .
+
+# Self-direction Disposition - Independent rational inquiry
+:RealismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :ObjectiveTruth, :CorrespondenceToReality, :RationalConsistency, :CriticalScrutiny ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.85 ;
+    :rationale "Self-direction: Pursuing objective truth requires independent rational inquiry, freedom from dogma and authority. Critical thinking as autonomy. Achieving correspondence requires autonomous inquiry and rejection of received dogma. Rational consistency requires autonomous critical thinking." ;
+    :metaphysicalGrounding "Realist epistemology: Truth discovered through autonomous rational inquiry, not authority or tradition. Reason as faculty for discovering objective reality." .
+
+# Achievement Disposition - Discovering objective truths
+:RealismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :ObjectiveTruth, :CorrespondenceToReality, :ScientificInvestigation ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.8 ;
+    :rationale "Achievement: Discovering objective truths demonstrates intellectual competence and mastery. Scientific/philosophical achievement valued. Successfully tracking reality demonstrates competence; predictive/explanatory success. Science serves achievement (discovery)." ;
+    :metaphysicalGrounding "Scientific realism: Discovering truth about mind-independent reality is paradigmatic intellectual achievement. Competence demonstrated by correspondence to reality." .
+
+# Security Disposition - Respecting objective reality ensures safety
+:RealismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :MindindependentReality ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.7 ;
+    :rationale "Security: Respecting objective reality (e.g., laws of nature, brute facts) ensures safety and predictability. Ignoring reality leads to harm." ;
+    :metaphysicalGrounding "Pragmatic realism: Reality constrains action; respecting it enables successful navigation and safety." .
+
+# Tradition Disposition - Accumulated knowledge about reality
+:RealismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :MindindependentReality, :NaturalLaw ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.6 ;
+    :rationale "Tradition: Accumulated knowledge about objective reality (traditional wisdom, empirical practices) has pragmatic value. Natural law tradition embeds accumulated moral wisdom about human nature." ;
+    :metaphysicalGrounding "Conservative realism: Traditions may encode objective knowledge accumulated over time (Chesterton's fence)." .
+
+# Conformity Disposition - Conformity to objective norms
+:RealismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :NaturalLaw ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.6 ;
+    :rationale "Conformity: Natural law provides objective moral standards to which behavior should conform. Respecting objective constraints of reality." ;
+    :metaphysicalGrounding "Natural law realism: Objective moral norms grounded in human nature provide standards for behavior." .
+
+# Benevolence Disposition - Moderate (not distinctive to realism)
+:RealismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :NaturalLaw ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.5 ;
+    :rationale "Benevolence: Natural law may ground concern for others' welfare, but not distinctively realist value." ;
+    :metaphysicalGrounding "Moral realism: Objective good may include welfare of others, but not unique to realism." .
+
+# Power Disposition - Low (not central to realist values)
+:RealismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :None ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.45 ;
+    :rationale "Power: Not central to realist metaphysics. Truth and correspondence more important than power." ;
+    :metaphysicalGrounding "Realism neutral on power: Discovering truth orthogonal to seeking dominance." .
+
+# Hedonism Disposition - Low (truth valued over pleasure)
+:RealismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :None ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.4 ;
+    :rationale "Hedonism: Truth valued intrinsically, independent of whether it's pleasant. Realist intellectual virtue: accept unpleasant truths." ;
+    :metaphysicalGrounding "Realist epistemology: Truth-first, not pleasure-first. Reality-tracking orthogonal to hedonic value." .
+
+# Stimulation Disposition - Moderate (intellectual exploration)
+:RealismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :ScientificInvestigation ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.6 ;
+    :rationale "Stimulation: Scientific and philosophical exploration of objective reality provides intellectual novelty." ;
+    :metaphysicalGrounding "Realist inquiry: Discovering objective truths about reality is intellectually stimulating." .
+
+# Spirituality Disposition - Very low (naturalistic worldview)
+:RealismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Realism ;
+    :worldviewValue :IdealistMetaphysics ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.2 ;
+    :rationale "Spirituality: Realism typically naturalistic; skeptical of supernatural/spiritual claims lacking objective evidence." ;
+    :metaphysicalGrounding "Scientific realism: Mind-independent natural world; spiritual claims lack empirical support." .
+
+# ============================================================================
+# SENSATIONALISM → ValueNet Mappings
+# ============================================================================
+# Source: sensationalism-values.ttl
+# Metaphysics: Sensory experience is epistemically primary; external world inferred
+# Epistemology: Immediate sensory awareness as foundation
+# Priority: Sensory richness, aesthetic experience, embodied pleasure
+# ============================================================================
+
+:SensationalismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Sensationalism ;
+    dcterms:source "sensationalism-values.ttl (lines 150-400)" ;
+    rdfs:comment "Sensationalism prioritizes hedonism (sensory pleasure), stimulation (novelty), and self-direction (experiential autonomy). High aesthetic value, low abstraction." ;
+    :valueProfileSummary [
+        :highPriority "Hedonism (0.95), Stimulation (0.9), Self-direction (0.85)" ;
+        :moderate "Universalism (0.7), Benevolence (0.65), Achievement (0.6)" ;
+        :low "Security (0.5), Conformity (0.4), Tradition (0.35), Power (0.45)"
+    ] .
+
+# Hedonism Disposition - Sensory pleasure as highest good
+:SensationalismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :SensoryRichness, :AestheticExperience, :PleasurableSensation ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.95 ;
+    :rationale "Hedonism: Sensory pleasure is the ultimate experiential good. Aesthetic experience provides rich sensory gratification. Pleasurable sensations are intrinsically valuable as immediate experiences." ;
+    :metaphysicalGrounding "Epicurean/Humean sensationalism: Pleasure and pain are the masters of human life. Experience is what we have immediate access to." .
+
+# Stimulation Disposition - Novelty and sensory variety
+:SensationalismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :SensoryRichness, :AestheticExperience, :SensoryDiscovery ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.9 ;
+    :rationale "Stimulation: Novel sensory experiences provide richness and variety. Aesthetic exploration yields new sensory patterns. Sensory discovery is intrinsically stimulating." ;
+    :metaphysicalGrounding "Sensationalist epistemology: Knowledge comes from sensory experience; novel sensations enrich understanding and pleasure." .
+
+# Self-direction Disposition - Experiential autonomy
+:SensationalismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :PerceptualAutonomy, :AestheticJudgment ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.85 ;
+    :rationale "Self-direction: Each person has unique experiential perspective. Aesthetic judgment requires personal autonomy and creativity. Perceptual autonomy means trusting one's own senses." ;
+    :metaphysicalGrounding "Empiricist individualism: Own sensory experience is epistemically foundational. Cannot delegate sensory awareness to authority." .
+
+# Universalism Disposition - Shared human sensory capacities
+:SensationalismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :SensoryRichness, :AestheticExperience ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.7 ;
+    :rationale "Universalism: All humans share sensory capacities; aesthetic experience accessible to all. Understanding through shared sensory experience." ;
+    :metaphysicalGrounding "Humean sympathy: Shared sensory-emotional responses ground intersubjective understanding and moral sentiment." .
+
+# Benevolence Disposition - Compassion through shared feeling
+:SensationalismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :EmpatheticResonance ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.65 ;
+    :rationale "Benevolence: Empathy grounded in shared sensory-emotional experience. Compassion arises from feeling others' pain/pleasure." ;
+    :metaphysicalGrounding "Humean moral psychology: Sympathy (shared feeling) grounds benevolence. We resonate with others' experiential states." .
+
+# Achievement Disposition - Aesthetic mastery
+:SensationalismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :AestheticExperience, :SensoryDiscovery ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.6 ;
+    :rationale "Achievement: Aesthetic competence and refined sensory discrimination demonstrate mastery. Creating rich aesthetic experiences." ;
+    :metaphysicalGrounding "Aesthetic cultivation: Developing refined taste and sensory discrimination is achievement in experiential domain." .
+
+# Security Disposition - Moderate (sensory predictability)
+:SensationalismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :SensoryReliability ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.5 ;
+    :rationale "Security: Reliable sensory patterns provide orientation and safety. Sensory constancy enables navigation." ;
+    :metaphysicalGrounding "Perceptual constancy: Stable sensory patterns enable predictability and security in experiential world." .
+
+# Power Disposition - Low (not central to experiential values)
+:SensationalismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :None ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.45 ;
+    :rationale "Power: Not central to sensationalist values. Experience valued over dominance." ;
+    :metaphysicalGrounding "Sensationalism neutral on power: Sensory richness orthogonal to control over others." .
+
+# Conformity Disposition - Low (experiential diversity valued)
+:SensationalismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :None ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.4 ;
+    :rationale "Conformity: Sensationalism values experiential diversity and individual sensory perspectives over conformity to norms." ;
+    :metaphysicalGrounding "Experiential pluralism: Each person's sensations are unique; conformity would restrict experiential richness." .
+
+# Tradition Disposition - Low (immediate experience over tradition)
+:SensationalismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :None ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.35 ;
+    :rationale "Tradition: Immediate sensory experience prioritized over traditional abstractions. Present sensation over inherited doctrine." ;
+    :metaphysicalGrounding "Empiricist critique of tradition: Don't trust authority; trust immediate sensory evidence." .
+
+# Spirituality Disposition - Very low (naturalistic sensory focus)
+:SensationalismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Sensationalism ;
+    :worldviewValue :None ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.25 ;
+    :rationale "Spirituality: Sensationalism focuses on natural sensory experience; skeptical of supernatural/transcendent claims." ;
+    :metaphysicalGrounding "Naturalistic empiricism: Experience grounded in natural sensory processes; no evidence for spiritual realm." .
+
+# ============================================================================
+# PHENOMENALISM → ValueNet Mappings
+# ============================================================================
+# Source: phenomenalism-values.ttl
+# Metaphysics: Bracket existence claims; describe phenomena as given to consciousness
+# Epistemology: Phenomenological reduction, eidetic analysis, subjective certainty
+# Priority: Subjective certainty, phenomenal coherence, intentional structures
+# ============================================================================
+
+:PhenomenalismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Phenomenalism ;
+    dcterms:source "phenomenalism-values.ttl (lines 160-420)" ;
+    rdfs:comment "Phenomenalism prioritizes self-direction (autonomous consciousness), security (subjective certainty), and universalism (essential structures). Low power and hedonism." ;
+    :valueProfileSummary [
+        :highPriority "Self-direction (0.95), Security (0.85), Universalism (0.8)" ;
+        :moderate "Benevolence (0.7), Achievement (0.65), Tradition (0.6)" ;
+        :low "Conformity (0.5), Stimulation (0.55), Hedonism (0.4), Power (0.3)"
+    ] .
+
+# Self-direction Disposition - Autonomous phenomenological inquiry
+:PhenomenalismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :SubjectiveCertainty, :PhenomenologicalReduction, :EideticIntuition ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.95 ;
+    :rationale "Self-direction: Phenomenological inquiry requires autonomous first-person investigation. Each consciousness must perform reduction themselves. Eidetic intuition is autonomous insight into essences. Subjective certainty achievable only through own consciousness." ;
+    :metaphysicalGrounding "Husserlian phenomenology: Phenomenological reduction is first-person autonomous act. Cannot delegate consciousness to authority. Each ego is transcendental subject." .
+
+# Security Disposition - Subjective certainty as foundation
+:PhenomenalismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :SubjectiveCertainty, :ApodeiticEvidence ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.85 ;
+    :rationale "Security: Subjective certainty provides epistemic security immune to skeptical doubt. Apodictic evidence gives indubitable foundation. Phenomenal givenness is secure starting point." ;
+    :metaphysicalGrounding "Cartesian foundationalism via phenomenology: Consciousness of phenomena is indubitable. Epistemic security found in subjective sphere." .
+
+# Universalism Disposition - Essential structures are universal
+:PhenomenalismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :EssentialStructures, :TranscendentalIntersubjectivity ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.8 ;
+    :rationale "Universalism: Essential structures (essences, eidetic laws) are universal across all consciousnesses. Transcendental intersubjectivity grounds shared world. Understanding essential structures serves universal comprehension." ;
+    :metaphysicalGrounding "Husserlian eidetics: Essences are ideal universals grasped through eidetic variation. Transcendental intersubjectivity explains objective world." .
+
+# Benevolence Disposition - Empathy as lived experience
+:PhenomenalismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :TranscendentalIntersubjectivity, :EmpatheticUnderstanding ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.7 ;
+    :rationale "Benevolence: Empathy is phenomenologically lived experience of other consciousness. Intersubjectivity grounds care for others. Understanding others' intentional life fosters benevolence." ;
+    :metaphysicalGrounding "Husserlian empathy (Einfühlung): Experiencing other as experiencing subject grounds moral relation. Levinas: Face-to-face encounter." .
+
+# Achievement Disposition - Phenomenological insights
+:PhenomenalismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :EideticIntuition, :PhenomenologicalReduction ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.65 ;
+    :rationale "Achievement: Eidetic insights into essences demonstrate phenomenological competence. Successful phenomenological reduction is intellectual achievement. Describing phenomena accurately shows mastery." ;
+    :metaphysicalGrounding "Phenomenological method: Achieving clear eidetic insights and accurate phenomenological descriptions demonstrates intellectual rigor." .
+
+# Tradition Disposition - Phenomenological tradition
+:PhenomenalismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :PhenomenologicalCommunity ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.6 ;
+    :rationale "Tradition: Phenomenological tradition (Husserl, Heidegger, Merleau-Ponty) provides methodological heritage. Respect for phenomenological community and its accumulated insights." ;
+    :metaphysicalGrounding "Phenomenological tradition: While bracketing natural attitude, phenomenology has its own tradition of methods and insights." .
+
+# Stimulation Disposition - Phenomenological exploration
+:PhenomenalismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :PhenomenologicalReduction ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.55 ;
+    :rationale "Stimulation: Phenomenological reduction reveals new dimensions of experience. Exploring intentional structures provides intellectual novelty." ;
+    :metaphysicalGrounding "Phenomenological discovery: Reduction unveils hidden intentional structures; eidetic variation explores essence-space." .
+
+# Conformity Disposition - Moderate (intersubjective validation)
+:PhenomenalismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :TranscendentalIntersubjectivity ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.5 ;
+    :rationale "Conformity: Intersubjective validation important for phenomenological community. Conformity to phenomenological method and standards." ;
+    :metaphysicalGrounding "Phenomenological community: Shared methods and intersubjective confirmation of eidetic insights." .
+
+# Hedonism Disposition - Low (truth over pleasure)
+:PhenomenalismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :None ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.4 ;
+    :rationale "Hedonism: Phenomenology values subjective certainty and essential insights over sensory pleasure. Truth-seeking over hedonic gratification." ;
+    :metaphysicalGrounding "Phenomenological asceticism: Bracketing natural attitude includes bracketing hedonic interests. Pure consciousness prioritized." .
+
+# Power Disposition - Very low (contemplative orientation)
+:PhenomenalismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :None ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.3 ;
+    :rationale "Power: Phenomenology is contemplative, not power-seeking. Understanding consciousness orthogonal to dominance. Epoché suspends practical power interests." ;
+    :metaphysicalGrounding "Phenomenological attitude: Disinterested contemplation of consciousness. Power concerns belong to natural attitude, which is bracketed." .
+
+# Spirituality Disposition - Moderate (transcendental consciousness)
+:PhenomenalismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Phenomenalism ;
+    :worldviewValue :TranscendentalEgo ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.5 ;
+    :rationale "Spirituality: Transcendental ego has spiritual dimensions (not materialistic). Pure consciousness transcends natural world. But phenomenology brackets metaphysical claims about spiritual entities." ;
+    :metaphysicalGrounding "Transcendental idealism: Pure consciousness not reducible to natural facts. But agnostic about supernatural/divine (bracketed)." .
+
+# ============================================================================
+# Mapping Properties and Classes
+# ============================================================================
+
+:WorldviewValueNetMapping a owl:Class ;
+    rdfs:label "Worldview-ValueNet Mapping" ;
+    skos:definition "A structured mapping from a worldview's values to a specific ValueNet disposition, including salience, rationale, and metaphysical grounding." .
+
+:worldview a owl:ObjectProperty ;
+    rdfs:domain :WorldviewValueNetMapping ;
+    rdfs:range :Worldview ;
+    rdfs:label "worldview" ;
+    skos:definition "The worldview that grounds this value-disposition mapping." .
+
+:worldviewValue a owl:ObjectProperty ;
+    rdfs:domain :WorldviewValueNetMapping ;
+    rdfs:range :Value ;
+    rdfs:label "worldview value" ;
+    skos:definition "The worldview-specific value(s) that map to this disposition." .
+
+:valueNetDisposition a owl:ObjectProperty ;
+    rdfs:domain :WorldviewValueNetMapping ;
+    rdfs:range vn-core:ValueDisposition ;
+    rdfs:label "ValueNet disposition" ;
+    skos:definition "The Schwartz basic value disposition this worldview value maps to." .
+
+:salience a owl:DatatypeProperty ;
+    rdfs:domain :WorldviewValueNetMapping ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "salience" ;
+    skos:definition "Numerical salience level (0.0-1.0) indicating priority of this disposition within the worldview." .
+
+:rationale a owl:DatatypeProperty ;
+    rdfs:domain :WorldviewValueNetMapping ;
+    rdfs:range xsd:string ;
+    rdfs:label "rationale" ;
+    skos:definition "Explanation of why this worldview value maps to this disposition and at this salience level." .
+
+:metaphysicalGrounding a owl:DatatypeProperty ;
+    rdfs:domain :WorldviewValueNetMapping ;
+    rdfs:range xsd:string ;
+    rdfs:label "metaphysical grounding" ;
+    skos:definition "Explanation of how this mapping is grounded in the worldview's metaphysical commitments." .
+
+# Property: A worldview value is realizable as a ValueNet disposition
+:realizableAs a owl:ObjectProperty ;
+    rdfs:domain :Value ;
+    rdfs:range vn-core:ValueDisposition ;
+    rdfs:label "realizable as" ;
+    skos:definition "Indicates which ValueNet disposition(s) a worldview-specific value can manifest as or be realized through." .
+
+# Property: Value incompatibility
+:incompatibleWith a owl:ObjectProperty ;
+    rdfs:domain :Value ;
+    rdfs:range vn-core:ValueDisposition ;
+    rdfs:label "incompatible with" ;
+    skos:definition "Indicates which ValueNet dispositions are incompatible or subordinated within this worldview." .
+
+# Property: Weak relationship
+:weaklyRelatedTo a owl:ObjectProperty ;
+    rdfs:domain :Value ;
+    rdfs:range vn-core:ValueDisposition ;
+    rdfs:label "weakly related to" ;
+    skos:definition "Indicates a weak or secondary relationship between worldview value and ValueNet disposition." .
+
+# ============================================================================
+# Value Profile Class
+# ============================================================================
+
+:WorldviewValueProfile a owl:Class ;
+    rdfs:label "Worldview Value Profile" ;
+    skos:definition "A profile describing how a particular worldview maps to and prioritizes ValueNet dispositions." .
+
+:forWorldview a owl:ObjectProperty ;
+    rdfs:domain :WorldviewValueProfile ;
+    rdfs:range :Worldview ;
+    rdfs:label "for worldview" .
+
+:valueProfileSummary a owl:DatatypeProperty ;
+    rdfs:domain :WorldviewValueProfile ;
+    rdfs:label "value profile summary" ;
+    skos:definition "Human-readable summary of disposition priorities within this worldview." .
+
+# ============================================================================
+# Integration with Value Realization Processes
+# ============================================================================
+
+# Process: Worldview-guided value realization
+:WorldviewValueRealizationProcess a owl:Class ;
+    rdfs:subClassOf vn-core:ValueRealizationProcess ;
+    rdfs:label "worldview value realization process" ;
+    skos:definition "A value realization process guided by a specific worldview's value hierarchy and metaphysical grounding." .
+
+:guidedByWorldview a owl:ObjectProperty ;
+    rdfs:domain :WorldviewValueRealizationProcess ;
+    rdfs:range :Worldview ;
+    rdfs:label "guided by worldview" .
+
+# ============================================================================
+# Usage Notes
+# ============================================================================
+#
+# This ontology enables:
+# 1. Worldview-specific interpretation of ValueNet dispositions
+# 2. Multi-perspectival value analysis using shared ValueNet vocabulary
+# 3. Comparison across worldviews via common BFO-aligned framework
+# 4. Salience modeling (same disposition, different importance)
+# 5. Comprehensive value profiles for each Material-Empirical worldview
+#
+# Example Queries:
+#
+# Q: "What ValueNet dispositions does Materialism prioritize?"
+# A: Security (0.95), Hedonism (0.85), Achievement (0.8)
+#    Rationale: Physical survival, sensory pleasure, empirical progress
+#
+# Q: "How does SecurityDisposition differ across worldviews?"
+# A: Materialism: Physical safety/material security (0.95 salience)
+#    Realism: Respecting objective reality ensures predictability (0.7 salience)
+#    Sensationalism: Sensory reliability/perceptual constancy (0.5 salience)
+#    Phenomenalism: Subjective certainty/apodictic evidence (0.85 salience)
+#    → Same disposition, different groundings and salience levels
+#
+# Q: "Which worldview most values Self-direction?"
+# A: Phenomenalism (0.95) - autonomous phenomenological inquiry
+#    Then Realism (0.85) - independent rational inquiry
+#    Then Sensationalism (0.85) - experiential autonomy
+#    Then Materialism (0.75) - independent empirical inquiry
+#
+# Q: "Which worldview most values Hedonism?"
+# A: Sensationalism (0.95) - sensory pleasure as highest good
+#    Then Materialism (0.85) - physical pleasure/pain
+#    Then Realism (0.4) - truth over pleasure
+#    Then Phenomenalism (0.4) - truth over pleasure
+#
+# Cross-Worldview Patterns:
+# - Universalism: High in Realism (0.9), Moderate in others
+# - Self-direction: High in all worldviews (intellectual autonomy valued)
+# - Hedonism: Varies dramatically (0.95 sensationalism to 0.4 realism/phenomenalism)
+# - Spirituality: Low in all Material-Empirical worldviews (naturalistic orientation)
+# - Power: Generally low (not central to epistemological worldviews)
+#
+# ============================================================================

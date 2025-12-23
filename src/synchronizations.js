@@ -42,6 +42,28 @@ export const synchronizations = [
     }
   },
 
+  // When ValueNet is loaded, log for transparency
+  {
+    name: 'valuenet-loader',
+    when: 'valueNetLoaded',
+    from: ontologyLoader,
+    description: 'When ValueNet loaded, log disposition count',
+    do: (payload) => {
+      console.log(`[Sync] ValueNet loaded: ${payload.dispositionCount} dispositions from ${payload.filesLoaded.length} files`);
+    }
+  },
+
+  // When ValueNet mappings are loaded, log for transparency
+  {
+    name: 'valuenet-mappings-loader',
+    when: 'valueNetMappingsLoaded',
+    from: ontologyLoader,
+    description: 'When ValueNet mappings loaded, log mapping count',
+    do: (payload) => {
+      console.log(`[Sync] ValueNet mappings loaded: ${payload.mappingCount} mappings from ${payload.filePath}`);
+    }
+  },
+
   // When worldview is loaded, make it available to moral reasoner
   {
     name: 'worldview-to-reasoner',
@@ -123,8 +145,13 @@ export const synchronizations = [
  * This function wires up the event-driven coordination.
  *
  * Call this once at application startup.
+ *
+ * @param {Object} options - Initialization options
+ * @param {boolean} options.loadValueNet - Whether to load ValueNet ontologies (default: true)
  */
-export function initializeSynchronizations() {
+export async function initializeSynchronizations(options = {}) {
+  const { loadValueNet = true } = options;
+
   synchronizations.forEach(sync => {
     // Subscribe to the event from the source concept
     sync.from.subscribe((event, payload) => {
@@ -141,6 +168,17 @@ export function initializeSynchronizations() {
   });
 
   console.log(`[Sync Init] ${synchronizations.length} synchronizations initialized`);
+
+  // Load ValueNet if requested
+  if (loadValueNet) {
+    try {
+      await ontologyLoader.actions.loadValueNet();
+      await ontologyLoader.actions.loadValueNetMappings();
+      console.log('[Sync Init] ValueNet ontologies loaded');
+    } catch (error) {
+      console.warn('[Sync Init] Could not load ValueNet:', error.message);
+    }
+  }
 }
 
 /**

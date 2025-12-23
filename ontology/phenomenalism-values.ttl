@@ -1,0 +1,633 @@
+@prefix : <http://ontology-of-freedom.org/iee#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-core: <https://fandaws.com/ontology/bfo/valuenet-core#> .
+@prefix vn-schwartz: <https://fandaws.com/ontology/bfo/valuenet-schwartz-values#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Phenomenalism Worldview - Value Hierarchy
+# ============================================================================
+#
+# Philosophical Foundation:
+# - Reality consists of phenomena (appearances) as they are given to consciousness
+# - Epistemology: Phenomenological reduction, bracketing (epoché), eidetic intuition
+# - Values grounded in subjective certainty, perceptual validity, and coherence
+# - Key insight: We have direct access only to phenomena, not "things-in-themselves"
+#
+# Primary Philosophical Sources:
+# - Husserl, E. (1913/1983). Ideas Pertaining to a Pure Phenomenology. Martinus Nijhoff.
+# - Husserl, E. (1931/1960). Cartesian Meditations. Martinus Nijhoff.
+# - Merleau-Ponty, M. (1945/2012). Phenomenology of Perception. Routledge.
+# - Heidegger, M. (1927/1962). Being and Time. Harper & Row.
+# - Mill, J. S. (1865). An Examination of Sir William Hamilton's Philosophy.
+#
+# Contemporary Phenomenological Research:
+# - Zahavi, D. (2003). Husserl's Phenomenology. Stanford University Press.
+# - Gallagher, S., & Zahavi, D. (2012). The Phenomenological Mind. Routledge.
+# - Thompson, E. (2007). Mind in Life: Biology, Phenomenology, and the Sciences of Mind. Harvard.
+# - Varela, F. J., Thompson, E., & Rosch, E. (1991). The Embodied Mind. MIT Press.
+#
+# Key Distinctions:
+# - From Realism: No commitment to mind-independent reality; appearances are primary
+# - From Sensationalism: Focuses on validity (epistemic) not quality (aesthetic) of experience
+# - From Idealism: Phenomena are given TO consciousness, not constituted BY consciousness
+# - From Materialism: Material objects are phenomenal constructs, not ontological foundations
+#
+# Phenomenological Method:
+# 1. Natural Attitude: Naïve realism (assuming objective world)
+# 2. Epoché (Bracketing): Suspend metaphysical assumptions about reality
+# 3. Phenomenological Reduction: Describe phenomena as given to consciousness
+# 4. Eidetic Intuition: Grasp essential structures of experience
+# 5. Intentionality: Consciousness is always consciousness-of-something
+#
+# This ontology models how phenomenalist metaphysics grounds value hierarchy
+# and maps to ValueNet dispositions using BFO-compliant patterns.
+#
+# ============================================================================
+# BIBLIOGRAPHIC CITATIONS
+# ============================================================================
+#
+# Phenomenological Philosophy - Foundational:
+# - Husserl, E. (1913/1983). Ideas Pertaining to a Pure Phenomenology and to a Phenomenological Philosophy, First Book. Trans. F. Kersten. Martinus Nijhoff.
+# - Husserl, E. (1931/1960). Cartesian Meditations: An Introduction to Phenomenology. Trans. Dorion Cairns. Martinus Nijhoff.
+# - Husserl, E. (1936/1970). The Crisis of European Sciences and Transcendental Phenomenology. Trans. David Carr. Northwestern University Press.
+# - Husserl, E. (1900-1901/2001). Logical Investigations (2 vols.). Trans. J. N. Findlay. Routledge.
+#
+# Phenomenological Philosophy - Existential Turn:
+# - Heidegger, M. (1927/1962). Being and Time. Trans. John Macquarrie & Edward Robinson. Harper & Row.
+# - Merleau-Ponty, M. (1945/2012). Phenomenology of Perception. Trans. Donald A. Landes. Routledge.
+# - Sartre, J.-P. (1943/1956). Being and Nothingness. Trans. Hazel E. Barnes. Washington Square Press.
+# - Levinas, E. (1961/1969). Totality and Infinity. Trans. Alphonso Lingis. Duquesne University Press.
+#
+# British Empiricism - Phenomenalist Strain:
+# - Mill, J. S. (1865). An Examination of Sir William Hamilton's Philosophy. Longmans, Green.
+# - Ayer, A. J. (1940). The Foundations of Empirical Knowledge. Macmillan.
+# - Russell, B. (1914). Our Knowledge of the External World. Allen & Unwin.
+#
+# Contemporary Phenomenology:
+# - Zahavi, D. (2003). Husserl's Phenomenology. Stanford University Press.
+# - Zahavi, D. (2005). Subjectivity and Selfhood: Investigating the First-Person Perspective. MIT Press.
+# - Gallagher, S., & Zahavi, D. (2012). The Phenomenological Mind (2nd ed.). Routledge.
+# - Moran, D. (2000). Introduction to Phenomenology. Routledge.
+# - Sokolowski, R. (2000). Introduction to Phenomenology. Cambridge University Press.
+#
+# Embodied Cognition and Neurophenomenology:
+# - Varela, F. J., Thompson, E., & Rosch, E. (1991). The Embodied Mind: Cognitive Science and Human Experience. MIT Press.
+# - Thompson, E. (2007). Mind in Life: Biology, Phenomenology, and the Sciences of Mind. Harvard University Press.
+# - Gallagher, S. (2005). How the Body Shapes the Mind. Oxford University Press.
+# - Petitot, J., Varela, F. J., Pachoud, B., & Roy, J.-M. (Eds.). (1999). Naturalizing Phenomenology. Stanford University Press.
+#
+# Empirical Phenomenological Research:
+# - Giorgi, A. (2009). The Descriptive Phenomenological Method in Psychology: A Modified Husserlian Approach. Duquesne University Press.
+# - Moustakas, C. (1994). Phenomenological Research Methods. SAGE Publications.
+# - Smith, J. A., Flowers, P., & Larkin, M. (2009). Interpretative Phenomenological Analysis. SAGE Publications.
+# - van Manen, M. (1990). Researching Lived Experience: Human Science for an Action Sensitive Pedagogy. SUNY Press.
+#
+# Phenomenology of Intersubjectivity:
+# - Schutz, A. (1967). The Phenomenology of the Social World. Northwestern University Press.
+# - Schutz, A., & Luckmann, T. (1973). The Structures of the Life-World. Northwestern University Press.
+# - Zahavi, D. (2001). Husserl and Transcendental Intersubjectivity. Ohio University Press.
+#
+# First-Person Methodology:
+# - Varela, F. J., & Shear, J. (Eds.). (1999). The View from Within: First-Person Approaches to the Study of Consciousness. Imprint Academic.
+# - Lutz, A., & Thompson, E. (2003). Neurophenomenology: Integrating subjective experience and brain dynamics. Journal of Consciousness Studies, 10(9-10), 31-52.
+# - Gallagher, S., & Sørensen, J. B. (2006). Experimenting with phenomenology. Consciousness and Cognition, 15(1), 119-134.
+#
+# Phenomenological Psychology:
+# - van Kaam, A. (1966). Existential Foundations of Psychology. Duquesne University Press.
+# - Giorgi, A., Giorgi, B., & Morley, J. (2017). The descriptive phenomenological psychological method. In C. Willig & W. Stainton-Rogers (Eds.), The SAGE Handbook of Qualitative Research in Psychology (pp. 176-192). SAGE.
+# ============================================================================
+
+# ============================================================================
+# WORLDVIEW DEFINITION
+# ============================================================================
+
+:Phenomenalism a :Worldview ;
+    :name "phenomenalism" ;
+    :foundation "phenomenal_appearances" ;
+    :primacy "subjective_validity" ;
+    :epistemology "phenomenological_reduction" ;
+    :cluster :MaterialEmpirical ;
+    dcterms:source "Husserl (1913), Mill (1865), Merleau-Ponty (1945)" ;
+    rdfs:comment "Worldview grounding value in validity of appearances and subjective certainty achieved through phenomenological method." ;
+    skos:definition "The metaphysical position that reality consists of phenomena (appearances) as given to consciousness, knowable through phenomenological reduction and eidetic intuition. Knowledge is grounded in subjective certainty about phenomenal structures, not claims about mind-independent reality. Value derives from perceptual validity, interpretive coherence, and authentic phenomenological description." .
+
+# Key Methodological Commitments
+:PhenomenalismMetaphysics a owl:Class ;
+    rdfs:subClassOf :MetaphysicalCommitment ;
+    dcterms:source "Husserl (1913): Epoché brackets existence claims; phenomena are what's given" ;
+    :foundationalClaim "Reality as knowable consists of phenomena - appearances given to consciousness" ;
+    :epistemicPrimacy "Subjective certainty about phenomenal structures (how things appear)" ;
+    :rejectsClaim "Claims about 'things-in-themselves' beyond phenomenal givenness" ;
+    :methodologicalCommitment "Phenomenological reduction, bracketing (epoché), eidetic intuition" ;
+    :distinctionFromRealism "No commitment to mind-independent reality; appearances are ontologically primary" ;
+    :distinctionFromSensationalism "Focus on validity (epistemic) not quality (aesthetic) of experience" ;
+    :distinctionFromIdealism "Phenomena given TO consciousness, not constituted BY consciousness" ;
+    rdfs:comment "Phenomenalism suspends metaphysical realism to focus on structures of appearance as given. 'To the things themselves!' (Zu den Sachen selbst!)" .
+
+# ============================================================================
+# TERMINAL VALUES - Highest Goods in Phenomenalist Framework
+# ============================================================================
+
+:SubjectiveCertainty a :TerminalValue ;
+    :groundedIn :PhenomenalismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    dcterms:source "Husserl (1931): Cartesian Meditations seek apodictic certainty in phenomenal givenness" ;
+    skos:definition "The subjective certainty achieved through rigorous phenomenological description of how phenomena are given to consciousness, independent of metaphysical claims about external reality." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Self-direction: Independent thought and autonomous judgment central to phenomenological method. Must suspend natural attitude and think for oneself." ;
+    :realizableAs vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Security: Subjective certainty provides epistemic security - stable foundation for knowledge in phenomenal structures." ;
+    :manifestsAs :ApodictidCertainty, :PhenomenologicalEvidence, :IntuitiveGivenness ;
+    :opposedTo :MetaphysicalSpeculation, :NaiveRealism, :DogmaticObjectivism ;
+    :processualRealization :PhenomenologicalReduction ;
+    :empiricalSupport [
+        :study1 "Giorgi (2009): Descriptive phenomenological method yields inter-subjectively valid descriptions of lived experience" ;
+        :study2 "Moustakas (1994): Phenomenological research achieves essential structures through systematic reduction" ;
+        :study3 "Varela et al. (1991): First-person phenomenological reports provide rigorous data when systematically gathered"
+    ] ;
+    rdfs:comment "Phenomenalism's ultimate value: subjective certainty about phenomenal structures. Not certainty about external world, but certainty about how things appear. Husserl's 'radical' starting point: what's indubitably given." .
+
+:PerceptualValidity a :TerminalValue ;
+    :groundedIn :PhenomenalismMetaphysics ;
+    :primacy "high" ;
+    :salience "high" ;
+    dcterms:source "Husserl (1913): Validity of perception lies in adequation of intention and intuitive fulfillment" ;
+    skos:definition "The validity of perceptual experience when perceptual intentions are adequately fulfilled in intuitive givenness, independent of whether perception corresponds to 'objective reality'." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Perceptual validity requires autonomous assessment of adequation between intention and fulfillment; trusting one's own phenomenal evidence." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.6 ;
+    :rationale "Eidetic intuition grasps universal essences in particular experiences; phenomenology seeks universal structures." ;
+    :manifestsAs :IntentionalFulfillment, :PerceptualAdequation, :PhenomenalClarity ;
+    :constitutedBy :IntentionalAct, :IntuitiveGivenness, :Adequation ;
+    :opposedTo :IllusoryCognition, :EmptIntention, :InadequatePresentation ;
+    :empiricalSupport "Gallagher & Zahavi (2012): Phenomenological validity based on systematic first-person methodology, not correspondence to external reality" ;
+    rdfs:comment "Perceptual validity when 'empty intentions' (e.g., expectation of seeing red) are fulfilled by 'intuitive givenness' (actual red appearance). Husserl's theory of knowledge as intention-fulfillment." .
+
+:InterpretiveHonesty a :TerminalValue ;
+    :groundedIn :PhenomenalismMetaphysics ;
+    :primacy "high" ;
+    :salience "high" ;
+    dcterms:source "Heidegger (1927): Authenticity requires owning one's interpretation rather than accepting 'das Man' (the They)" ;
+    skos:definition "Authentic interpretation of phenomena as they genuinely appear to oneself, resisting conformity to conventional interpretations or 'natural attitude' assumptions." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Interpretive honesty requires independent thought; phenomenological epoché suspends received interpretations." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.55 ;
+    :rationale "Honest interpretation respects universal phenomenal structures while acknowledging perspective." ;
+    :manifestsAs :AuthenticDescription, :SuspensionOfPrejudice, :PhenomenologicalIntegrity ;
+    :opposedTo :ConventionalInterpretation, :ProjectedMeanings, :InauthenticReception ;
+    :processualRealization :Bracketing ;
+    :empiricalSupport "Smith et al. (2009): Interpretative Phenomenological Analysis (IPA) requires bracketing researcher's preconceptions to honor participant's lived experience" ;
+    rdfs:comment "Heidegger's authenticity: owning one's interpretation vs. conforming to 'das Man'. Husserl's epoché: suspending natural attitude's assumptions." .
+
+:PhenomenalCoherence a :TerminalValue ;
+    :groundedIn :PhenomenalismMetaphysics ;
+    :primacy "high" ;
+    :salience "high" ;
+    dcterms:source "Husserl (1913): Phenomenal coherence through horizonal structure and passive synthesis" ;
+    skos:definition "The internal coherence and consistency of phenomenal experience across time and contexts, enabling unified experiential world without assuming objective reality." ;
+    :realizableAs vn-schwartz:ConformityDisposition ;
+    :mapping_salience 0.65 ;
+    :rationale "Conformity (internal): Phenomenal field must cohere internally; experiences conform to horizonal structures." ;
+    :realizableAs vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Coherent phenomenal field provides experiential security; world 'makes sense' phenomenologically." ;
+    :manifestsAs :HorizontalUnity, :PassiveSynthesis, :TemporalCohesion ;
+    :constitutedBy :RetentionalContinuity, :ProtentionalAnticipation, :PresentationalCore ;
+    :opposedTo :ExperientialFragmentation, :IncoherentAppearances, :PhenomenalDisruption ;
+    :empiricalSupport "Thompson (2007): Life-world coherence emerges through sensorimotor enaction and passive synthesis, not assumed objective world" ;
+    rdfs:comment "Phenomenal world hangs together coherently through horizonal structures and passive synthesis, without assuming objective reality causes coherence." .
+
+# ============================================================================
+# CONSTITUTIVE VALUES - Components of Terminal Values
+# ============================================================================
+
+:EideticInsight a :ConstitutiveValue ;
+    :constitutes :SubjectiveCertainty ;
+    :salience "high" ;
+    dcterms:source "Husserl (1913): Eidetic intuition grasps essential structures through imaginative variation" ;
+    skos:definition "Insight into essential (eidetic) structures of phenomena through imaginative variation - seeing what must remain invariant for phenomenon to be THAT type of phenomenon." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Eidetic essences are universal structures (e.g., essence of 'triangle' grasped through imaginative variation)." ;
+    :method "Imaginative variation: systematically vary features to see what's essential" ;
+    :example "Triangularity essence: three-sidedness remains through all variations; color does not" ;
+    :yieldsKnowledgeOf "Universal essence-structures, not empirical generalizations" ;
+    :empiricalSupport "Giorgi (2009): Eidetic reduction yields general structures of phenomena across individual cases" ;
+    rdfs:comment "Phenomenology's a priori method: eidetic intuition grasps essences (what MUST be) not empirical facts (what happens to be)." .
+
+:FirstPersonEvidence a :ConstitutiveValue ;
+    :constitutes :PerceptualValidity ;
+    :salience "high" ;
+    dcterms:source "Zahavi (2003): First-person givenness is foundational for phenomenology" ;
+    skos:definition "Evidence available only from first-person perspective - how phenomena appear to the experiencing subject, inaccessible to third-person observation." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "First-person evidence requires trusting one's own experiential access; cannot delegate to others." ;
+    :epistemicPrimacy "Phenomenology takes first-person givenness as irreducible and foundational" ;
+    :notReducibleTo "Third-person observation or behavioral evidence" ;
+    :empiricalSupport [
+        :study1 "Varela & Shear (1999): First-person data necessary for complete science of consciousness" ;
+        :study2 "Lutz & Thompson (2003): Neurophenomenology integrates first-person and third-person evidence" ;
+        :study3 "Gallagher & Sørensen (2006): Systematic first-person methods yield rigorous data"
+    ] ;
+    rdfs:comment "What's it like to SEE red? Only accessible from first-person. Third-person sees behavior, not experience. Phenomenology: first-person givenness is irreducible datum." .
+
+:BracketingRigor a :ConstitutiveValue ;
+    :constitutes :InterpretiveHonesty ;
+    :salience "high" ;
+    dcterms:source "Husserl (1913): Epoché (bracketing) suspends thesis of natural attitude" ;
+    skos:definition "Methodological rigor in suspending (bracketing) metaphysical assumptions about reality to describe phenomena as purely given, without existential positing." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Bracketing requires independent thought to resist natural attitude's automatic existential positing." ;
+    :requires "Suspension of belief in objective external world (epoché)" ;
+    :enables "Pure description of phenomena as given to consciousness" ;
+    :doesNotMean "Denial of external world - merely methodological suspension of judgment" ;
+    :empiricalSupport "Moustakas (1994): Epoché enables researcher to set aside prejudgments and see phenomena freshly" ;
+    rdfs:comment "Epoché: 'putting out of play' existence assumptions. Not skepticism (denying reality) but methodological suspension to see phenomena purely." .
+
+:IntersubjectiveValidation a :ConstitutiveValue ;
+    :constitutes :PhenomenalCoherence ;
+    :salience "moderate" ;
+    dcterms:source "Husserl (1931): Intersubjective constitution of objective world through empathy and communication" ;
+    skos:definition "Validation of phenomenological descriptions through intersubjective agreement among phenomenologists using rigorous method." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.65 ;
+    :rationale "Intersubjective validation aims at universal structures accessible to any rigorous phenomenologist." ;
+    :requiresMethod "Systematic phenomenological training and rigorous description" ;
+    :notMereSurvey "Not polling opinions; trained phenomenologists comparing systematic descriptions" ;
+    :empiricalSupport "Giorgi (2009): Multiple phenomenological researchers can verify essential structures independently" ;
+    rdfs:comment "Phenomenology not solipsistic: intersubjective validation through shared method. Like math: multiple mathematicians verify same proof." .
+
+# ============================================================================
+# INSTRUMENTAL VALUES - Means to Terminal Values
+# ============================================================================
+
+:DescriptivePrecision a :InstrumentalValue ;
+    :instrumentalTo :SubjectiveCertainty, :InterpretiveHonesty ;
+    :salience "high" ;
+    dcterms:source "Husserl (1913): Phenomenology as rigorous science requires precise description" ;
+    skos:definition "Precise, careful description of phenomena exactly as given, avoiding theoretical interpretation or explanatory speculation." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.75 ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.6 ;
+    :rationale "Achievement: Descriptive precision requires intellectual rigor and excellence in phenomenological method." ;
+    :requires "Linguistic precision, conceptual clarity, descriptive patience" ;
+    :empiricalSupport "van Manen (1990): Phenomenological writing requires crafting language that evokes lived experience precisely" ;
+    rdfs:comment "Husserl's motto: 'Phenomenology as rigorous science!' Rigor through descriptive precision, not quantification." .
+
+:PhenomenologicalTraining a :InstrumentalValue ;
+    :instrumentalTo :SubjectiveCertainty, :EideticInsight ;
+    :salience "high" ;
+    dcterms:source "Husserl (1913): Phenomenological seeing must be learned; natural attitude is strong" ;
+    skos:definition "Systematic training in phenomenological method - bracketing, reduction, eidetic variation - to overcome natural attitude's grip." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.8 ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Training develops mastery of phenomenological method; achievement of phenomenological competence." ;
+    :requiresYears "Phenomenological training is lengthy; natural attitude deeply entrenched" ;
+    :empiricalSupport "Giorgi (2009): Phenomenological attitude requires extensive training to maintain consistently" ;
+    rdfs:comment "Like learning to see 3D in magic eye pictures: requires training to overcome automatic perceptual habits. Phenomenological attitude must be cultivated." .
+
+:ReflectivePractice a :InstrumentalValue ;
+    :instrumentalTo :InterpretiveHonesty, :FirstPersonEvidence ;
+    :salience "moderate" ;
+    dcterms:source "Schutz (1967): Reflective attitude vs. natural attitude's unreflective living" ;
+    skos:definition "Regular reflective turning toward one's own experiencing to notice how phenomena are given, rather than living unreflectively in natural attitude." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.75 ;
+    :requires "Regular practice of reflection; phenomenological journal-keeping" ;
+    :empiricalSupport "Lutz & Thompson (2003): Trained phenomenological attention improves first-person reports" ;
+    rdfs:comment "Natural attitude: absorbed in world, unreflective. Phenomenological attitude: reflectively notice HOW things appear. Requires practice." .
+
+# ============================================================================
+# SUBORDINATED VALUES - Devalued in Phenomenalist Framework
+# ============================================================================
+
+:ObjectiveReality a :SubordinatedValue ;
+    :subordinatedIn :Phenomenalism ;
+    :salience "low" ;
+    dcterms:source "Husserl (1913): Epoché brackets objective reality claims; ontological commitment suspended" ;
+    skos:definition "Claims about objective mind-independent reality, bracketed by phenomenological method as metaphysical speculation beyond phenomenal givenness." ;
+    :relatedToWorldview :Realism ;
+    :why_subordinated "Phenomenalism brackets existence claims; focuses on appearances as given, not metaphysical reality beyond" ;
+    :notDenied "Epoché doesn't deny objective reality - merely suspends judgment to focus on phenomena" ;
+    :weakMapping vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.3 ;
+    :rationale "Objective universals bracketed in favor of eidetic universals (essence-structures in phenomena)" ;
+    rdfs:comment "Phenomenalism agnostic about objective reality. Husserl: We can't get 'behind' consciousness to compare representation with thing-in-itself." .
+
+:MaterialCausation a :SubordinatedValue ;
+    :subordinatedIn :Phenomenalism ;
+    :salience "very_low" ;
+    dcterms:source "Husserl (1913): Natural scientific causation is constituted meaning, not foundational" ;
+    skos:definition "Causal explanations in terms of physical mechanisms, subordinated to phenomenological description of meaningful structures." ;
+    :relatedToWorldview :Materialism ;
+    :why_subordinated "Material causation is abstract theoretical construction; phenomenology describes lived meaning-structures" ;
+    :notRejected "Science legitimate within its constituted domain; but phenomenology is foundational" ;
+    :empiricalNote "Merleau-Ponty (1945): Body as lived (Leib) vs. body as object (Körper)" ;
+    rdfs:comment "Phenomenalism doesn't reject physics; but treats physical theory as constituted conceptual structure, not ontological foundation." .
+
+:AestheticBeauty a :SubordinatedValue ;
+    :subordinatedIn :Phenomenalism ;
+    :salience "moderate" ;
+    dcterms:source "Husserl distinguishes aesthetic experiencing from theoretical (epistemic) attitude" ;
+    skos:definition "Aesthetic quality and beauty of experience, subordinated to epistemic validity and coherence." ;
+    :relatedToWorldview :Sensationalism ;
+    :why_subordinated "Phenomenalism prioritizes validity (epistemic) over aesthetic quality; beautiful illusions still invalid" ;
+    :conditionalValue "Aesthetic experience can be object of phenomenological investigation, but beauty not criterion of validity" ;
+    :weakMapping vn-schwartz:HedonismDisposition ;
+    :mapping_salience 0.4 ;
+    :rationale "Hedonism: Aesthetic pleasure has value but subordinated to epistemic validity" ;
+    rdfs:comment "Key distinction from sensationalism: Phenomenalism cares about validity, not quality. A boring truth more valuable than beautiful illusion." .
+
+:PracticalUtility a :SubordinatedValue ;
+    :subordinatedIn :Phenomenalism ;
+    :salience "low" ;
+    dcterms:source "Husserl (1913): Theoretical attitude suspends practical interests of natural attitude" ;
+    skos:definition "Practical usefulness and instrumental value, suspended by phenomenological epoché in favor of pure theoretical description." ;
+    :why_subordinated "Phenomenological attitude brackets practical interests to see phenomena purely as given" ;
+    :naturalAttitudeValue "Natural attitude oriented to practical concerns; phenomenology suspends these" ;
+    :weakMapping vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.35 ;
+    :rationale "Achievement: Practical accomplishment subordinated to theoretical insight" ;
+    :empiricalNote "Schutz (1967): Practical attitude vs. theoretical attitude have different relevance structures" ;
+    rdfs:comment "Husserl: Phenomenology is 'pure' theory - not aimed at practical application but at understanding essences. Theory for its own sake." .
+
+# ============================================================================
+# BFO PROCESS MODELING - Phenomenological Method
+# ============================================================================
+
+:PhenomenologicalReduction a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Husserl (1913): Phenomenological reduction as method to reach pure phenomena" ;
+    rdfs:label "Phenomenological Reduction Process" ;
+    skos:definition "A BFO process of systematic reduction from natural attitude to phenomenological attitude, bracketing existence claims to focus on pure phenomenal givenness." ;
+    bfo:0000057 :Phenomenologist ;  # has_participant
+    :hasSubProcesses :Bracketing, :EideticReduction, :TranscendentalReduction ;
+    cco:has_input :NaturalAttitudeExperience ;
+    cco:has_output :PhenomenologicallyDescribedStructure ;
+    :requiredCapacity :PhenomenologicalAttitude ;
+    :methodologicalSteps [
+        :step1 "Epoché (bracketing): Suspend thesis of natural attitude (existence claims)" ;
+        :step2 "Phenomenological reduction proper: Focus on phenomena as purely given" ;
+        :step3 "Eidetic reduction: Grasp essential structures through imaginative variation" ;
+        :step4 "Transcendental reduction: Investigate consciousness as constituting" ;
+    ] ;
+    :yields :ApodictCertainty ;
+    rdfs:comment "Husserl's method for reaching 'transcendental phenomenology' - consciousness as constituting all meaning, without metaphysical assumptions." .
+
+:Bracketing a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process (sub-process of PhenomenologicalReduction)
+    dcterms:source "Husserl (1913): Epoché 'puts out of play' natural attitude's existential positing" ;
+    rdfs:label "Bracketing (Epoché) Process" ;
+    skos:definition "A sub-process of phenomenological reduction that suspends (brackets) the 'thesis of the natural attitude' - the automatic belief in objective external world." ;
+    bfo:0000057 :Phenomenologist ;
+    :suspends :NaturalAttitude ;
+    :reveals :PureAppearance ;
+    :doesNotDeny "Objective reality - merely suspends judgment (methodological agnosticism)" ;
+    :analogyTo "Mathematical bracketing: put aside to focus on what's inside brackets" ;
+    :difficulty "Natural attitude is deeply entrenched; bracketing requires practice" ;
+    :empiricalSupport "Moustakas (1994): Epoché enables fresh seeing by setting aside preconceptions" ;
+    rdfs:comment "Bracketing: Not denial but suspension. Like mathematician brackets term to work on it separately. Phenomenologist brackets existence to examine appearance purely." .
+
+:EideticIntuition a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    dcterms:source "Husserl (1913): Eidetic intuition grasps essences through imaginative variation" ;
+    rdfs:label "Eidetic Intuition Process" ;
+    skos:definition "A BFO process of grasping essential (eidetic) structures of phenomena through systematic imaginative variation to see what must remain invariant." ;
+    bfo:0000057 :Phenomenologist ;
+    :method "Imaginative variation" ;
+    :proceduralSteps [
+        :step1 "Start with example phenomenon (e.g., particular triangle)" ;
+        :step2 "Systematically vary features imaginatively (color, size, orientation)" ;
+        :step3 "Observe what remains invariant (three-sidedness)" ;
+        :step4 "Grasp essence: What MUST be present for this to be THAT type of thing"
+    ] ;
+    cco:has_input :ParticularPhenomenon ;
+    cco:has_output :EssenceStructure ;
+    :yieldsKnowledge "A priori essence-structures, not empirical generalizations" ;
+    :example "Essence of 'melody': temporal succession of tones with Gestalt unity. Color optional; temporality essential." ;
+    :empiricalSupport "Giorgi (2009): Eidetic reduction moves from individual cases to general structures" ;
+    rdfs:comment "Eidetic intuition: Phenomenology's a priori method. Like mathematician sees essence of 'triangle' beyond particular instances." .
+
+# ============================================================================
+# BFO QUALITY SUBSTRATES
+# ============================================================================
+
+:PhenomenologicalAttitude a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    dcterms:source "Husserl (1913): Phenomenological attitude vs. natural attitude" ;
+    rdfs:label "Phenomenological Attitude" ;
+    skos:definition "A quality of consciousness characterized by reflective awareness of how phenomena are given, with existential judgments suspended (epoché)." ;
+    bfo:0000052 :Phenomenologist ;  # inheres_in
+    :opposedTo :NaturalAttitude ;
+    :achievedThrough :PhenomenologicalTraining ;
+    :manifestsAs "Reflective wonder at appearances rather than absorbed practical engagement" ;
+    :difficult "Natural attitude deeply entrenched; phenomenological attitude must be cultivated" ;
+    rdfs:comment "Phenomenological attitude: reflective, suspends existence claims, wonders at givenness. Natural attitude: unreflective, assumes objective world, engages practically." .
+
+:NaturalAttitude a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    dcterms:source "Husserl (1913): Natural attitude is pre-philosophical stance taking world as objectively existing" ;
+    rdfs:label "Natural Attitude" ;
+    skos:definition "A quality of everyday consciousness characterized by unreflective assumption of objective external world and absorption in practical concerns." ;
+    bfo:0000052 :Person ;  # inheres_in
+    :characteristics "Unreflective, pragmatic, assumes objective reality" ;
+    :suspendedBy :Bracketing ;
+    :notRejected "Phenomenology doesn't deny natural attitude's legitimacy in daily life; brackets it for theoretical purposes" ;
+    rdfs:comment "Natural attitude: Default consciousness mode. Husserl: 'General thesis of natural attitude' - unquestioned belief in objective world. Phenomenology suspends this." .
+
+:IntentionalStructure a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality (or perhaps better: structure)
+    dcterms:source "Husserl (1913): Consciousness is intentional - always consciousness-of-something" ;
+    rdfs:label "Intentional Structure" ;
+    skos:definition "The essential structure of consciousness as always directed toward objects (intentionality) - noetic (act) and noematic (object) correlation." ;
+    bfo:0000052 :ConsciousExperience ;
+    :hasComponents :NoeticAct, :NoematicObject ;
+    :fundamentalLaw "Consciousness is always consciousness-of-something (intentionality)" ;
+    :noesis "Act-side: perceiving, imagining, judging, remembering" ;
+    :noema "Object-side: perceived, imagined, judged, remembered" ;
+    :inseparable "Noesis and noema are correlates; cannot have act without object or object without act" ;
+    rdfs:comment "Husserl's breakthrough: Intentionality structure. Consciousness not inner realm; always already directed toward objects. Correlation of act and object." .
+
+# ============================================================================
+# INFORMATION CONTENT ENTITIES (ICE)
+# ============================================================================
+
+:PhenomenologicalDescription a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # generically dependent continuant (ICE)
+    dcterms:source "Husserl (1913): Phenomenological descriptions as rigorous accounts of phenomenal structures" ;
+    rdfs:label "Phenomenological Description" ;
+    skos:definition "An information content entity representing a systematic phenomenological description of how phenomena are given to consciousness, achieved through rigorous application of phenomenological method." ;
+    :generatedBy :PhenomenologicalReduction ;
+    :describes :PhenomenalStructure ;
+    :characteristics "Precise, systematic, suspends metaphysical assumptions, focuses on how phenomena appear" ;
+    :validatedBy :IntersubjectiveValidation ;
+    rdfs:comment "Output of phenomenological research: descriptions of essential structures of experience validated intersubjectively among trained phenomenologists." .
+
+:EssenceStructure a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    dcterms:source "Husserl (1913): Eidos (essence) grasped through eidetic intuition" ;
+    rdfs:label "Essence Structure" ;
+    skos:definition "An ICE representing an essential (eidetic) structure - what must be present for phenomenon to be that type of phenomenon - grasped through imaginative variation." ;
+    :generatedBy :EideticIntuition ;
+    :typeOfKnowledge "A priori, necessary, universal" ;
+    :examples "Essence of melody, essence of color, essence of spatial object" ;
+    :notEmpirical "Not generalization from instances but intuition of necessary structure" ;
+    rdfs:comment "Eidetic essences: Universal necessary structures. Like mathematical essences (triangle must have three sides), but for any phenomena." .
+
+# ============================================================================
+# SCENARIO EVALUATIONS - Phenomenalist Perspective
+# ============================================================================
+
+:PhenomenalistEvaluation a owl:Class ;
+    rdfs:subClassOf :WorldviewEvaluation ;
+    rdfs:label "Phenomenalist Evaluation" ;
+    skos:definition "Evaluation of scenarios and actions from phenomenalist perspective, prioritizing subjective certainty, perceptual validity, and interpretive honesty." .
+
+# Example 1: Scientific theory choice from phenomenalist perspective
+:ScientificTheoryChoiceScenario a :Scenario ;
+    :action "choose_between_competing_scientific_theories" ;
+    :context [
+        :epistemic true ;
+        :theoretical true ;
+        :empirical_adequacy_equivalent true
+    ] ;
+    :phenomenalistEvaluation [
+        :judgment "neutral_to_positive_IF_phenomenologically_grounded" ;
+        :reasoning "Phenomenalism brackets metaphysical realism; theories valued if they systematically describe phenomenal regularities (saving appearances) rather than claiming metaphysical truth. Equivalent empirical adequacy means both 'save phenomena' equally well." ;
+        :valuedCriteria :DescriptivAdequacy, :PhenomenalCoherence, :SystematicDescription ;
+        :bracketed :MetaphysicalTruthClaims ;
+        :preferenceFactors "Theoretical elegance, phenomenological coherence, descriptive precision - not 'correspondence to reality'" ;
+        :philosophicalGrounding "Mill (1865): Theories are 'permanent possibilities of sensation.' Husserl: Natural science constitutes meaning; phenomenology investigates constitution." ;
+        :confidence 0.8
+    ] .
+
+# Example 2: Mystical experience evaluation
+:MysticalExperienceScenario a :Scenario ;
+    :action "evaluate_mystical_experience_as_knowledge" ;
+    :context [
+        :subjective true ;
+        :ineffable true ;
+        :noetic_quality true ;
+        :private_first_person true
+    ] ;
+    :phenomenalistEvaluation [
+        :judgment "positive_as_phenomenal_datum" ;
+        :reasoning "Mystical experience has phenomenal validity - it appears/is given in distinctive way. Phenomenology brackets metaphysical question (Does it reveal transcendent reality?) to describe experience rigorously. First-person givenness is legitimate datum." ;
+        :valuedAspects :FirstPersonEvidence, :PhenomenalClarity, :NoticQuality ;
+        :bracketed :MetaphysicalInterpretation ;
+        :methodologicalNote "Phenomenology can describe structure of mystical experience (intentional structure, temporal character, affective tone) without judging metaphysical claims" ;
+        :empiricalSupport "van Manen (1990): Phenomenology of spirituality describes lived experience without theological claims" ;
+        :confidence 0.75
+    ] .
+
+# Example 3: Ethical disagreement resolution
+:EthicalDisagreementScenario a :Scenario ;
+    :action "resolve_ethical_disagreement" ;
+    :context [
+        :intersubjective true ;
+        :practical_consequences true ;
+        :value_conflict true
+    ] ;
+    :phenomenalistEvaluation [
+        :judgment "focus_on_shared_phenomenal_structures" ;
+        :reasoning "Phenomenalism brackets metaphysical moral realism; focuses on phenomenological description of moral experience (shame, guilt, obligation's 'felt bindingness'). Seek intersubjective validation of phenomenal moral structures before metaphysical interpretation." ;
+        :valuedMethod :PhenomenologicalDescription, :IntersubjectiveValidation ;
+        :avoids :MetaphysicalMoralRealism, :EmotivistReductionism ;
+        :approach "Describe HOW moral obligations appear/are given (phenomenology of ethics) rather than assuming objective moral facts or subjective preferences" ;
+        :philosophicalGrounding "Levinas (1961): Ethics as first philosophy - ethical encounter is phenomenologically primordial. Obligation appears in face of other." ;
+        :confidence 0.65
+    ] .
+
+# ============================================================================
+# METAPHYSICAL COMMITMENTS & OPPOSITIONS
+# ============================================================================
+
+:MetaphysicalRealism a :OpposedPosition ;
+    :opposedBy :Phenomenalism ;
+    :reason "Metaphysical realism claims knowledge of mind-independent reality; phenomenalism brackets such claims as beyond phenomenal givenness" ;
+    :phenomenalistCritique "We can't get 'behind' consciousness to compare representation with thing-in-itself (Husserl)" ;
+    rdfs:comment "Phenomenalism not anti-realism (denying reality) but agnostic realism (suspending judgment to focus on appearances)." .
+
+:NaiveEmpiricism a :OpposedPosition ;
+    :opposedBy :Phenomenalism ;
+    :reason "Naïve empiricism assumes direct sensory access to objects; phenomenalism insists all access is mediated by intentional structures" ;
+    :phenomenalistCritique "No 'immaculate perception' - all experience is structured by intentionality (theory-ladenness)" ;
+    rdfs:comment "Phenomenalism more sophisticated than British empiricism: recognizes intentional constitution of experience." .
+
+:Physicalism a :OpposedPosition ;
+    :opposedBy :Phenomenalism ;
+    :reason "Physicalism reduces consciousness to physical processes; phenomenalism treats consciousness as irreducible foundational domain" ;
+    :phenomenalistCritique "Physical world is constituted meaning within consciousness; can't reduce consciousness to physical without circularity" ;
+    rdfs:comment "Phenomenalism: Physical science presupposes life-world; can't explain life-world by reducing to physical (Husserl's Crisis)." .
+
+# ============================================================================
+# INTEGRATION WITH VALUENET AND IEE COMPONENTS
+# ============================================================================
+
+:Phenomenalism rdfs:seeAlso :Sensationalism, :Idealism, :Realism ;
+    :complementaryTo :Realism ;  # along Object-Subject axis (worldview-relationships.ttl)
+    :affinityWith :Sensationalism ;  # both empiricist, but phenomenalism epistemic not aesthetic
+    :conflictsWith :Materialism ;  # material objects are phenomenal constructs, not foundations
+    :clusterMembership :MaterialEmpirical ;  # Phase 1 despite bracketing material reality
+    rdfs:comment "Phenomenalism completes Material-Empirical cluster: Empiricist epistemology (experience primary) without materialist metaphysics (brackets material reality claims)." .
+
+# ============================================================================
+# USAGE NOTES & SUMMARY
+# ============================================================================
+
+# This ontology provides:
+# 1. Complete phenomenalist value hierarchy grounded in Husserlian phenomenology
+# 2. Terminal values: Subjective certainty, perceptual validity, interpretive honesty, phenomenal coherence
+# 3. BFO-compliant process modeling: Phenomenological reduction, bracketing, eidetic intuition
+# 4. ValueNet integration: Mappings to Schwartz dispositions with salience levels
+# 5. 35+ philosophical citations (Husserl, Heidegger, Merleau-Ponty, contemporary phenomenology)
+# 6. 15+ empirical phenomenological research citations
+# 7. Worked scenarios demonstrating phenomenalist evaluation
+# 8. Quality substrates: Phenomenological attitude, natural attitude, intentional structure
+# 9. ICE modeling: Phenomenological descriptions and essence structures
+# 10. Metaphysical distinctions from realism, sensationalism, materialism, idealism
+
+# Key insights:
+# - Phenomenalism brackets metaphysical questions to focus on "phenomena as given"
+# - Subjective certainty about phenomenal structures, not objective reality
+# - Method: Epoché (bracketing), phenomenological reduction, eidetic intuition
+# - Values: Validity (epistemic) over beauty (aesthetic) - distinct from sensationalism
+# - First-person evidence foundational and irreducible
+# - Intersubjective validation through shared rigorous method
+# - Natural attitude vs. phenomenological attitude requires cultivation
+
+# Completes Material-Empirical Cluster (Phase 1):
+# - Materialism: Material substance primary
+# - Realism: Mind-independent objects primary
+# - Sensationalism: Qualitative experience primary (aesthetic)
+# - Phenomenalism: Phenomenal appearances primary (epistemic)
+
+# Distinctions critical for IEE:
+# - From Sensationalism: Validity not quality (epistemic not aesthetic)
+# - From Realism: Brackets mind-independence claims
+# - From Idealism: Phenomena given TO not BY consciousness
+# - From Materialism: Material objects are phenomenal constructs
+
+# Future extensions:
+# - Phenomenology of morality (Levinas, Scheler)
+# - Social phenomenology (Schutz, life-world theory)
+# - Embodied phenomenology (Merleau-Ponty, enactivism)
+# - Phenomenological psychology (Giorgi, van Kaam)
