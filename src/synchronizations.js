@@ -16,6 +16,8 @@
 import { worldviewManager } from './concepts/worldviewManager.js';
 import { moralReasoner } from './concepts/moralReasoner.js';
 import { ontologyLoader } from './concepts/ontologyLoader.js';
+import { processTracker } from './concepts/processTracker.js';
+import { characterModel } from './concepts/characterModel.js';
 
 // ============================================================================
 // SYNCHRONIZATION DEFINITIONS
@@ -132,6 +134,119 @@ export const synchronizations = [
       Object.entries(evaluation.judgments).forEach(([worldview, judgment]) => {
         console.log(`  - ${worldview}: ${judgment.judgment} (confidence: ${judgment.confidence})`);
       });
+    }
+  },
+
+  // ========================================================================
+  // PHASE 2.1: TEMPORAL SYNCHRONIZATIONS
+  // ========================================================================
+
+  // When process completes, update character dispositions
+  {
+    name: 'process-character-coordination',
+    when: 'processCompleted',
+    from: processTracker,
+    description: 'When process completes, update character dispositions based on outcome',
+    do: (payload) => {
+      const { agentId, outcome, processType } = payload;
+
+      // Ensure agent exists in character model
+      if (!characterModel.state.agents[agentId]) {
+        try {
+          characterModel.actions.createAgent(agentId, {
+            source: 'process_tracker',
+            createdVia: 'synchronization'
+          });
+        } catch (error) {
+          // Agent might have been created concurrently
+          if (!error.message.includes('already exists')) {
+            console.error(`[Sync Error] Could not create agent ${agentId}:`, error.message);
+            return;
+          }
+        }
+      }
+
+      // Update dispositions based on process type and outcome
+      if (processType === 'growth' && outcome === 'success') {
+        // Successful growth increases growth disposition
+        const currentGrowth = characterModel.state.dispositions[agentId].growth || [];
+        const currentValue = currentGrowth.length > 0
+          ? currentGrowth[currentGrowth.length - 1].value
+          : 0.5;
+        const newValue = Math.min(1.0, currentValue + 0.1);
+
+        characterModel.actions.updateDisposition(agentId, 'growth', newValue);
+      } else if (processType === 'growth' && outcome === 'failure') {
+        // Failed growth slightly decreases disposition (learning from failure)
+        const currentGrowth = characterModel.state.dispositions[agentId].growth || [];
+        const currentValue = currentGrowth.length > 0
+          ? currentGrowth[currentGrowth.length - 1].value
+          : 0.5;
+        const newValue = Math.max(0.0, currentValue - 0.05);
+
+        characterModel.actions.updateDisposition(agentId, 'growth', newValue);
+      }
+
+      console.log(`[Sync] Process ${processType} (${outcome}) → character disposition updated for ${agentId}`);
+    }
+  },
+
+  // When expressive act logged, monitor sincerity threshold
+  {
+    name: 'expressive-act-sincerity-tracker',
+    when: 'expressiveActLogged',
+    from: characterModel,
+    description: 'When expressive act logged, check sincerity threshold and log warnings',
+    do: (payload) => {
+      const { agentId, sincerity } = payload;
+
+      if (sincerity < 0.5) {
+        console.warn(`[Sync] Low sincerity detected for ${agentId}: ${sincerity.toFixed(2)}`);
+      } else if (sincerity > 0.9) {
+        console.log(`[Sync] High sincerity for ${agentId}: ${sincerity.toFixed(2)}`);
+      }
+    }
+  },
+
+  // When sincerity threshold crossed, log warning
+  {
+    name: 'sincerity-threshold-monitor',
+    when: 'sincerityThresholdCrossed',
+    from: characterModel,
+    description: 'Monitor and log sincerity threshold crossings',
+    do: (payload) => {
+      const { agentId, sincerity, direction, threshold } = payload;
+      console.warn(`[Sync] Sincerity threshold crossed for ${agentId}: ${sincerity.toFixed(2)} (${direction} ${threshold})`);
+    }
+  },
+
+  // When character evaluated, log summary
+  {
+    name: 'character-evaluation-logger',
+    when: 'characterEvaluated',
+    from: characterModel,
+    description: 'Log character evaluation summary for transparency',
+    do: (payload) => {
+      const { evaluation, agentId } = payload;
+      console.log(`[Sync] Character evaluated for ${agentId}:`);
+      console.log(`  - Sincerity: ${evaluation.sincerity.overallSincerity?.toFixed(2) || 'N/A'} (trend: ${evaluation.sincerity.trend})`);
+      console.log(`  - Consistency: ${evaluation.consistency.consistency?.toFixed(2) || 'N/A'} (${evaluation.consistency.patternType})`);
+      console.log(`  - Development: ${evaluation.development.progression} (confidence: ${evaluation.confidence.toFixed(2)})`);
+    }
+  },
+
+  // When transformation detected, log for visibility
+  {
+    name: 'transformation-logger',
+    when: 'transformationDetected',
+    from: processTracker,
+    description: 'Log transformation events for process worldviews (Dynamism)',
+    do: (payload) => {
+      const { transformation, agentId } = payload;
+      console.log(`[Sync] Transformation detected for ${agentId}:`);
+      console.log(`  - Dimension: ${transformation.growth.dimension}`);
+      console.log(`  - Direction: ${transformation.growth.direction}`);
+      console.log(`  - Magnitude: ${transformation.growth.magnitude.toFixed(2)}`);
     }
   }
 ];

@@ -1,0 +1,604 @@
+@prefix : <http://integral-ethics.org/ontology/monadism#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-schwartz: <http://valuenet.org/schwartz#> .
+
+# ============================================================================
+# MONADISM WORLDVIEW VALUE ONTOLOGY
+# ============================================================================
+#
+# Worldview: Monadism (Personalism, Individual Uniqueness)
+# Foundation: Individual Monad - Each person is irreducibly unique
+# Primacy: Personal dignity, authentic individuality, irreplaceable perspectives
+# Epistemology: First-person authority, phenomenological access to unique interiority
+# Cluster: Process-Individual
+#
+# Key Thinkers:
+# - Leibniz (1646-1716): Monadology - windowless monads, pre-established harmony
+# - Max Scheler (1874-1928): Formalism in Ethics - person as irreducible value-center
+# - Emmanuel Mounier (1905-1950): Personalism - person vs. individual
+# - Martin Buber (1878-1965): I and Thou - irreducible relation between persons
+# - Karol Wojtyła (1920-2005): The Acting Person - subjectivity and self-determination
+#
+# Phase 2.2: Process-Individual Worldviews
+# ============================================================================
+
+<http://integral-ethics.org/ontology/monadism> a owl:Ontology ;
+    rdfs:label "Monadism Value Hierarchy Ontology" ;
+    dcterms:title "Monadism: Personalism and Individual Uniqueness Values" ;
+    dcterms:description "Comprehensive value ontology for the Monadism worldview, grounded in personalist philosophy and the metaphysics of irreducible individual uniqueness." ;
+    dcterms:created "2026-01-01"^^xsd:date ;
+    dcterms:creator "Integral Ethics Engine - Phase 2.2" ;
+    owl:versionInfo "1.0.0" .
+
+# ============================================================================
+# METAPHYSICAL FOUNDATION
+# ============================================================================
+
+:MonadismMetaphysics a :MetaphysicalFoundation ;
+    rdfs:label "Monadism Metaphysical Foundation" ;
+    skos:definition "The metaphysical commitment that reality consists of irreducible individual centers of being. Each person is a monad - unique, non-interchangeable, and bearing intrinsic dignity." ;
+    :foundationType "individual_monad" ;
+    :ontologicalPrimacy "person" ;
+    :epistemology "first_person_authority" ;
+    :cluster "process_individual" ;
+    dcterms:source "Leibniz (1714): Monadology - 'Monads have no windows' - each is self-contained unique perspective" ;
+    dcterms:source "Scheler (1913): Formalism in Ethics - person as value-bearer, not reducible to universal essence" ;
+    dcterms:source "Mounier (1949): Personalism - person is irreplaceable, not fungible individual" ;
+    dcterms:source "Buber (1923): I and Thou - persons exist in unrepeatable relation, not as interchangeable instances" ;
+    dcterms:source "Wojtyła (1969): The Acting Person - person as subject of acts, not object of processes" ;
+    :keyCommitment "Each person is irreducibly unique - not instance of universal type" ;
+    :keyCommitment "Persons are non-interchangeable - cannot substitute one for another without loss" ;
+    :keyCommitment "Personal dignity is intrinsic - not derivative from social utility or characteristics" ;
+    :keyCommitment "Individual perspective is epistemically privileged - first-person authority" ;
+    :opposedTo :Collectivism, :Utilitarianism, :TypeReductionism, :Interchangeability ;
+    rdfs:comment "Monadism grounds value in the irreducible uniqueness of each person - dignity derives from being this particular individual, not from properties or social role." .
+
+# ============================================================================
+# TERMINAL VALUES - Intrinsically Valuable Ends
+# ============================================================================
+
+:IndividualUniqueness a :TerminalValue ;
+    rdfs:label "Individual Uniqueness" ;
+    skos:definition "The irreducible particularity of each person. Being this specific individual as intrinsic good, not deficiency from universal type." ;
+    :groundedIn :MonadismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    dcterms:source "Leibniz (1686): Discourse on Metaphysics - principle of identity of indiscernibles: no two monads identical" ;
+    dcterms:source "Scheler (1913): Person bears unique value, not as instance but as irreplaceable individual" ;
+    dcterms:source "Kierkegaard (1846): Concluding Unscientific Postscript - truth is subjectivity, individual existence is truth" ;
+    dcterms:source "Levinas (1961): Totality and Infinity - other person as infinite, not subsumable under concept" ;
+    dcterms:source "Duns Scotus (1301): Haecceity ('thisness') - individual essence beyond universal nature" ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.95 ;
+    :rationale "Self-direction: Individual uniqueness requires autonomous self-determination. Highest self-direction of any worldview - uniqueness demands authentic self-authorship." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.8 ;
+    :rationale "Universalism: Each person's uniqueness equally valuable. Universal dignity grounded in irreplaceable particularity of all." ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Benevolence: Cherishing uniqueness of beloved. Care attends to irreplaceable particularity, not generic needs." ;
+    :manifestsAs :Haecceity, :Particularity, :NonInterchangeability, :IrreplaceableIdentity ;
+    :opposedTo :Interchangeability, :Replaceability, :TypeReduction, :Fungibility, :Standardization ;
+    :empiricalSupport [
+        :study1 "Erikson (1950): Identity formation - each person's identity is unique developmental achievement" ;
+        :study2 "Gilligan (1982): In a Different Voice - moral development attends to particular persons in context, not abstract principles alone" ;
+        :study3 "Narrative identity research (McAdams 1993): Each life story is unrepeatable, unique narrative"
+    ] ;
+    rdfs:comment "Individual uniqueness is terminal for Monadism because being this particular person is intrinsically valuable - not deviation from ideal type, but positive ontological reality." .
+
+:PersonalDignity a :TerminalValue ;
+    rdfs:label "Personal Dignity" ;
+    skos:definition "Intrinsic worth of person as person. Dignity that is unconditional, non-gradable, and inalienable." ;
+    :groundedIn :MonadismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    dcterms:source "Kant (1785): Groundwork - persons have dignity (Würde), not price. Ends in themselves, not mere means." ;
+    dcterms:source "Scheler (1913): Person as value-bearer - dignity inheres in being person, not in properties" ;
+    dcterms:source "Maritain (1947): The Person and the Common Good - person transcends society" ;
+    dcterms:source "Vatican II (1965): Gaudium et Spes - human dignity rooted in creation in divine image" ;
+    dcterms:source "Nussbaum (2006): Frontiers of Justice - capabilities approach grounded in equal dignity" ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Universalism: Dignity universal to all persons. Justice as recognition of equal intrinsic worth regardless of characteristics." ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;
+    :mapping_salience 0.8 ;
+    :rationale "Benevolence: Care for persons respects their dignity. Cherishing worth of beloved as person, not instrumental value." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Self-direction: Dignity requires autonomy - person determines self, not determined by others or circumstances." ;
+    :manifestsAs :IntrinsicWorth, :Inviolability, :SelfDetermination, :MoralStatus ;
+    :opposedTo :Commodification, :Instrumentalization, :Objectification, :Degradation ;
+    :empiricalSupport [
+        :study1 "Darwall (2006): The Second-Person Standpoint - dignity grounds moral demands and accountability" ;
+        :study2 "Rawls (1971): Theory of Justice - equal dignity grounds justice as fairness" ;
+        :study3 "Dignity in medical ethics: Informed consent, patient autonomy grounded in personal dignity"
+    ] ;
+    rdfs:comment "Personal dignity is terminal because worth of person is unconditional - not earned through achievement, not lost through failure. Dignity is ontological, not meritocratic." .
+
+:AuthenticIndividuality a :TerminalValue ;
+    rdfs:label "Authentic Individuality" ;
+    skos:definition "Being true to one's unique self. Self-actualization as realization of individual essence, not conformity to external standards." ;
+    :groundedIn :MonadismMetaphysics ;
+    :primacy "very_high" ;
+    :salience "very_high" ;
+    dcterms:source "Kierkegaard (1849): Sickness Unto Death - authentic selfhood vs. despair of conformity" ;
+    dcterms:source "Heidegger (1927): Being and Time - authentic vs. inauthentic existence (das Man)" ;
+    dcterms:source "Nietzsche (1882): Gay Science - 'Become who you are' - self-creation as ideal" ;
+    dcterms:source "Rogers (1961): On Becoming a Person - fully functioning person is authentic, congruent" ;
+    dcterms:source "Taylor (1991): Ethics of Authenticity - being true to oneself as moral ideal" ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Self-direction: Authenticity requires autonomous self-authorship. Cannot be authentic by following others' script." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Stimulation: Authenticity often requires breaking conventions, daring to be different. Courage to be unique." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.65 ;
+    :rationale "Achievement: Self-actualization as achievement of authentic selfhood. Demonstrating competence in being oneself." ;
+    :manifestsAs :SelfActualization, :Congruence, :Genuineness, :SelfFidelity ;
+    :opposedTo :Conformity, :Inauthenticity, :SelfAbandon, :Phoniness, :SelfBetrayal ;
+    :empiricalSupport [
+        :study1 "Maslow (1954): Self-actualization as pinnacle of needs hierarchy - becoming authentic self" ;
+        :study2 "Wood et al. (2008): Authenticity scale - authentic living, accepting external influence (reversed), self-alienation (reversed)" ;
+        :study3 "Kernis & Goldman (2006): Authenticity and well-being - authentic individuals show higher well-being, self-esteem"
+    ] ;
+    rdfs:comment "Authentic individuality is terminal because being true to one's unique self is intrinsically valuable - not means to happiness, but constitutive of good life for this person." .
+
+:IrreplaceablePerspective a :TerminalValue ;
+    rdfs:label "Irreplaceable Perspective" ;
+    skos:definition "Each person's unique standpoint, experiential access, and interpretive horizon. First-person perspective that cannot be fully represented third-personally." ;
+    :groundedIn :MonadismMetaphysics ;
+    :primacy "very_high" ;
+    :salience "high" ;
+    dcterms:source "Leibniz (1714): Each monad mirrors universe from unique perspective - 'living mirrors of universe'" ;
+    dcterms:source "Nagel (1974): What Is It Like to Be a Bat? - irreducibility of subjective experience to objective description" ;
+    dcterms:source "Husserl (1913): Ideas I - transcendental ego as condition of possibility for experience" ;
+    dcterms:source "Levinas (1961): Face of Other commands - encounter with irreplaceable uniqueness of other person" ;
+    dcterms:source "Feminist standpoint theory (Harding 1986): Each social location provides unique epistemic perspective" ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Self-direction: Individual perspective requires autonomous interpretation. Cannot outsource one's own seeing." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Universalism: All perspectives equally valid as perspectives. Epistemic justice recognizes irreplaceable standpoints." ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Benevolence: Understanding loved one requires attending to their unique perspective, not projecting one's own." ;
+    :manifestsAs :FirstPersonAuthority, :SubjectiveExperience, :InterpretiveHorizon, :UniqueStandpoint ;
+    :opposedTo :Intersubjective_Transparency, :Complete_Objectification, :Perspective_Neutrality ;
+    :empiricalSupport [
+        :study1 "Theory of Mind research: Understanding others requires grasping their unique perspective" ;
+        :study2 "Phenomenological psychology: First-person reports provide data unavailable from third-person observation" ;
+        :study3 "Narrative medicine (Charon 2006): Patient's illness narrative essential - cannot be replaced by medical chart"
+    ] ;
+    rdfs:comment "Irreplaceable perspective is terminal because each person's view of world is unique - not error to be corrected toward objective truth, but positive epistemic contribution." .
+
+# ============================================================================
+# CONSTITUTIVE VALUES - What Constitutes Terminal Values
+# ============================================================================
+
+:AutonomousAgency a :ConstitutiveValue ;
+    :constitutes :PersonalDignity, :AuthenticIndividuality ;
+    :salience "very_high" ;
+    dcterms:source "Kant (1785): Autonomy as ground of dignity - self-legislation vs. heteronomy" ;
+    dcterms:source "Frankfurt (1971): Freedom of will - second-order desires constituting autonomous agency" ;
+    dcterms:source "Deci & Ryan (2000): Self-Determination Theory - autonomy as basic psychological need" ;
+    skos:definition "Capacity for self-determination, self-governance, authorship of one's life. Agency that is self-directed, not merely reactive." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Self-direction: Autonomy IS self-direction. Core of monadist value system." ;
+    :manifestsAs :SelfDetermination, :SelfLegislation, :Authorship, :SelfGovernance ;
+    :opposedTo :Heteronomy, :Coercion, :Manipulation, :Paternalism ;
+    rdfs:comment "Autonomous agency constitutes dignity because persons have worth precisely as self-determining agents - beings who author their own lives rather than being lived by external forces." .
+
+:UniqueEssence a :ConstitutiveValue ;
+    :constitutes :IndividualUniqueness, :IrreplaceablePerspective ;
+    :salience "very_high" ;
+    dcterms:source "Duns Scotus (1301): Haecceity - individual essence (thisness) distinct from common nature" ;
+    dcterms:source "Leibniz: Each monad has complete individual concept - internal principle of uniqueness" ;
+    dcterms:source "Personalist tradition: Person has incommunicable uniqueness" ;
+    skos:definition "The particular 'thisness' of individual - what makes this person this one and not another. Individual essence, not universal." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.8 ;
+    :rationale "Self-direction: Unique essence must be self-discovered and actualized, not imposed." ;
+    :manifestsAs :Haecceity, :IndividualEssence, :Thisness, :Particularity ;
+    :opposedTo :UniversalEssence, :GenericNature, :TypeMembership ;
+    rdfs:comment "Unique essence constitutes individual uniqueness - not that persons have different properties, but that each has irreducible individual essence beyond universal nature." .
+
+:PersonalAuthority a :ConstitutiveValue ;
+    :constitutes :IrreplaceablePerspective, :AutonomousAgency ;
+    :salience "high" ;
+    dcterms:source "Kierkegaard: Individual as authority over own existence before God" ;
+    dcterms:source "Mill (1859): On Liberty - individual sovereignty over self in matters not harming others" ;
+    dcterms:source "Feminist epistemology: Epistemic authority of oppressed standpoints" ;
+    skos:definition "Legitimate claim to self-governance and first-person epistemic authority. Right to determine own life and interpret own experience." ;
+    :realizableAs vn-schwartz:PowerDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Power: Personal authority is legitimate power - influence over own domain, self-determination as empowerment." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Self-direction: Authority over self is core of self-direction. Autonomy as rightful sovereignty." ;
+    :manifestsAs :SelfSovereignty, :FirstPersonAuthority, :SelfOwnership, :PersonalJurisdiction ;
+    :opposedTo :Paternalism, :AuthoritarianControl, :EpistemicInjustice ;
+    rdfs:comment "Personal authority constitutes irreplaceable perspective - each person is authority on own experience, interpreter of own life meaning." .
+
+:IndividualIntegrity a :ConstitutiveValue ;
+    :constitutes :PersonalDignity, :AuthenticIndividuality ;
+    :salience "very_high" ;
+    dcterms:source "MacIntyre (1981): After Virtue - integrity as wholeness of character" ;
+    dcterms:source "Williams (1973): Integrity as ground project - core commitments constituting self" ;
+    dcterms:source "Frankfurt (1988): Caring and identification - integrity as wholehearted commitment" ;
+    skos:definition "Wholeness and internal consistency of person. Unity of self achieved through authentic commitments and self-integration." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.8 ;
+    :rationale "Self-direction: Integrity requires autonomous integration - person unifies self, not unified by external force." ;
+    :manifestsAs :Wholeness, :SelfIntegration, :Coherence, :FidelityToSelf ;
+    :opposedTo :Fragmentation, :SelfContradiction, :Compartmentalization, :SelfBetrayal ;
+    rdfs:comment "Individual integrity constitutes authenticity and dignity - person as integrated whole, not collection of disconnected parts or roles." .
+
+# ============================================================================
+# INSTRUMENTAL VALUES - Means to Terminal Values
+# ============================================================================
+
+:SelfActualization a :InstrumentalValue ;
+    :instrumentalTo :AuthenticIndividuality, :IndividualUniqueness ;
+    :salience "very_high" ;
+    dcterms:source "Maslow (1954): Self-actualization - realizing personal potential and unique capacities" ;
+    dcterms:source "Rogers (1961): Fully functioning person - psychological health as authentic self-becoming" ;
+    dcterms:source "Goldstein (1939): The Organism - self-actualization as fundamental organismic tendency" ;
+    skos:definition "Process of realizing one's unique potential, becoming fully what one individually is capable of being. Development toward authentic selfhood." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Self-direction: Self-actualization requires autonomous development. Cannot actualize by following others' vision of who one should be." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Achievement: Self-actualization manifests as achievement of authentic self. Demonstrating competence in unique capacities." ;
+    :manifestsAs :PotentialRealization, :TalentDevelopment, :UniqueCapacityActualization ;
+    :opposedTo :SelfSuppression, :UnrealizedPotential, :ConformityToExternal Standards ;
+    rdfs:comment "Self-actualization is instrumental because it is means to authentic individuality - process of becoming who one uniquely is, not what others prescribe." .
+
+:PersonalDevelopment a :InstrumentalValue ;
+    :instrumentalTo :AuthenticIndividuality, :AutonomousAgency ;
+    :salience "high" ;
+    dcterms:source "Dewey (1916): Democracy and Education - individual development in and for community" ;
+    dcterms:source "Kohlberg (1981): Stages of moral development - individual developmental trajectory" ;
+    dcterms:source "Narrative identity (McAdams 1993): Life story construction as developmental achievement" ;
+    skos:definition "Cultivation of individual capacities, character, and selfhood. Growth in agency, integrity, and authentic self-expression." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.8 ;
+    :rationale "Self-direction: Personal development guided by self, toward self-chosen goals aligned with authentic self." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Achievement: Personal development demonstrates increasing competence and capability." ;
+    :manifestsAs :CapacityBuilding, :CharacterFormation, :SkillDevelopment, :SelfCultivation ;
+    :opposedTo :Stagnation, :SelfNeglect, :UndevelopedPotential ;
+    rdfs:comment "Personal development is instrumental to realizing unique individuality - developing capacities that enable authentic self-expression and autonomous agency." .
+
+:AuthenticityCultivation a :InstrumentalValue ;
+    :instrumentalTo :AuthenticIndividuality, :IndividualIntegrity ;
+    :salience "very_high" ;
+    dcterms:source "Heidegger (1927): Authentic existence requires resoluteness, owning one's possibilities" ;
+    dcterms:source "Sartre (1943): Bad faith vs. authenticity - taking responsibility for freedom" ;
+    dcterms:source "Rogers (1961): Conditions for authenticity - congruence, unconditional positive regard, empathy" ;
+    dcterms:source "Taylor (1991): Authenticity requires: (1) self-creation, (2) originality, (3) opposition to external rules" ;
+    skos:definition "Practices, disciplines, and conditions that foster authentic selfhood. Creating space for genuine self-emergence rather than conformist adaptation." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Self-direction: Authenticity cultivation requires autonomous self-examination and self-determination." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.65 ;
+    :rationale "Stimulation: Authenticity often requires breaking conventional patterns, daring to be different." ;
+    :manifestsAs :SelfExamination, :VoiceCultivation, :CongruencePractice, :ResistanceToConformity ;
+    :opposedTo :SelfSuppression, :ConformityPressure, :SelfAbandon ;
+    rdfs:comment "Authenticity cultivation is instrumental to authentic individuality - creates conditions for true self to emerge and be expressed." .
+
+:IndividualExpression a :InstrumentalValue ;
+    :instrumentalTo :AuthenticIndividuality, :IrreplaceablePerspective ;
+    :salience "high" ;
+    dcterms:source "Mill (1859): On Liberty - 'pagan self-assertion' as positive liberty" ;
+    dcterms:source "Romanticism (Blake, Wordsworth): Unique individual imagination and expression" ;
+    dcterms:source "Expressivism (Taylor 1975): Self-expression as fundamental good" ;
+    skos:definition "Articulation and manifestation of one's unique individuality, perspective, voice. Making inner reality outer, visible." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Self-direction: Expression of authentic self requires freedom from external constraint on voice." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.6 ;
+    :rationale "Stimulation: Self-expression often takes creative, novel forms. Unique voice is exciting, varied." ;
+    :manifestsAs :VoiceArticulation, :ArtisticExpression, :UniqueContribution, :SelfRevelation ;
+    :opposedTo :Silence, :Suppression, :Censorship, :Voicelessness ;
+    rdfs:comment "Individual expression is instrumental to realizing irreplaceable perspective - makes unique viewpoint available to world, contributes distinctive voice to discourse." .
+
+# ============================================================================
+# SUBORDINATED VALUES - Devalued in Monadist Framework
+# ============================================================================
+
+:Collectivism a :SubordinatedValue ;
+    :subordinatedIn :Monadism ;
+    :salience "very_low" ;
+    dcterms:source "Maritain (1947): The Person and the Common Good - person transcends society, not absorbed by collective" ;
+    dcterms:source "Personalism vs. communism: Person has dignity not reducible to class or collective" ;
+    skos:definition "Subordination of individual to collective. Treating persons as replaceable members of group, valuing collective over individual." ;
+    :why_subordinated "Monadism: Collectivism violates irreplaceable uniqueness of persons. Group has no existence beyond individual persons composing it." ;
+    :problematic :Totalitarianism, :Absorption, :Depersonalization, :CollectiveIdentity ;
+    :monadistAttitude "Healthy community respects and enables individual uniqueness. Collective good serves persons, not vice versa." ;
+    :weakMapping vn-schwartz:ConformityDisposition ;
+    :mapping_salience 0.25 ;
+    :rationale "Conformity enforces collective norms over individual uniqueness. Monadism values individual variation." ;
+    :weakMapping vn-schwartz:TraditionDisposition ;
+    :mapping_salience 0.3 ;
+    :rationale "Tradition can suppress individual voice in favor of collective inheritance. Monadism respects tradition only when voluntarily appropriated." ;
+    rdfs:comment "Collectivism is subordinated because it denies irreducible uniqueness of persons - treats individuals as fungible instances rather than irreplaceable monads." .
+
+:Conformity a :SubordinatedValue ;
+    :subordinatedIn :Monadism ;
+    :salience "very_low" ;
+    dcterms:source "Kierkegaard: Conformity to 'the crowd' is despair, inauthenticity" ;
+    dcterms:source "Heidegger: Das Man (the They) - inauthentic existence of conformity" ;
+    dcterms:source "Mill (1859): Tyranny of majority opinion threatens individuality" ;
+    skos:definition "Adaptation of self to external standards, norms, expectations. Suppression of uniqueness for sake of fitting in." ;
+    :why_subordinated "Monadism: Conformity betrays authentic individuality. Being like others is failure to be oneself." ;
+    :problematic :Inauthenticity, :SelfBetrayal, :Standardization, :PeerPressure ;
+    :monadistAttitude "True community celebrates uniqueness, doesn't demand uniformity. Unity in diversity, not homogeneity." ;
+    :weakMapping vn-schwartz:ConformityDisposition ;
+    :mapping_salience 0.2 ;
+    :rationale "Direct opposition to monadist values. Conformity suppresses individual uniqueness." ;
+    rdfs:comment "Conformity is subordinated as betrayal of authentic self - surrendering irreplaceable uniqueness for acceptance, safety, or ease." .
+
+:Replaceability a :SubordinatedValue ;
+    :subordinatedIn :Monadism ;
+    :salience "very_low" ;
+    dcterms:source "Kant: Persons have dignity (not price) - unique, irreplaceable, not fungible" ;
+    dcterms:source "Personalism: Person is incommunicable - cannot be substituted without loss" ;
+    dcterms:source "Buber: I-Thou relation requires encountering irreplaceable uniqueness of other" ;
+    skos:definition "Treating persons as interchangeable units, fungible instances. Assumption that one individual can substitute for another without loss." ;
+    :why_subordinated "Monadism: Replaceability denies core metaphysical reality - each monad is unique, non-substitutable." ;
+    :problematic :Fungibility, :Interchangeability, :Depersonalization, :Commodification ;
+    :monadistAttitude "Each person is irreplaceable. Loss of individual is absolute - cannot be compensated by substitution." ;
+    :weakMapping vn-schwartz:PowerDisposition ;
+    :mapping_salience 0.2 ;
+    :rationale "Treating people as replaceable resources manifests as oppressive power, not legitimate authority." ;
+    rdfs:comment "Replaceability is subordinated as fundamental metaphysical error - denies that each person is unique monad with irreplaceable identity." .
+
+:Interchangeability a :SubordinatedValue ;
+    :subordinatedIn :Monadism ;
+    :salience "very_low" ;
+    dcterms:source "Levinas (1961): Face of other person is infinity - cannot be totalized, made interchangeable" ;
+    dcterms:source "Scheler: Each person is value-center - not token of type" ;
+    skos:definition "Treating individuals as equivalent instances of category. Assumption that persons with similar properties are substitutable." ;
+    :why_subordinated "Monadism: Even identical properties don't make persons interchangeable. Uniqueness is haecceity (thisness), not properties." ;
+    :problematic :Categorization, :Stereotyping, :TypeReduction, :DeIndividuation ;
+    :monadistAttitude "Persons transcend categories. Even twins are irreducibly distinct individuals with unique perspectives, dignity." ;
+    :weakMapping vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.3 ;
+    :rationale "Monadist universalism is paradoxical: Universal dignity BECAUSE of irreplaceable uniqueness, not despite it." ;
+    rdfs:comment "Interchangeability is subordinated - violates both metaphysics (monads are unique) and ethics (persons have individual dignity)." .
+
+:Standardization a :SubordinatedValue ;
+    :subordinatedIn :Monadism ;
+    :salience "low" ;
+    dcterms:source "Mill (1859): 'Different persons require different conditions for spiritual development'" ;
+    dcterms:source "Nietzsche: Herd morality vs. individual excellence" ;
+    dcterms:source "Personalist education: Respect individual learning styles, developmental paths" ;
+    skos:definition "Imposition of uniform standards, expectations, procedures on all individuals. One-size-fits-all approach ignoring uniqueness." ;
+    :why_subordinated "Monadism: Standardization erases individual differences. Forcing uniformity violates authentic individuality." ;
+    :problematic :Homogenization, :UniformityImposition, :IndividualityErasure ;
+    :monadistAttitude "Standards should accommodate individual variation. Personalized approaches respect uniqueness." ;
+    :weakMapping vn-schwartz:ConformityDisposition ;
+    :mapping_salience 0.25 ;
+    :rationale "Standardization enforces conformity to norms, suppressing individual uniqueness." ;
+    rdfs:comment "Standardization is subordinated as practical denial of individual uniqueness - treats persons as if interchangeable when they are not." .
+
+# ============================================================================
+# BFO QUALITY SUBSTRATES
+# ============================================================================
+
+:UniquenessQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    rdfs:label "Uniqueness Quality" ;
+    dcterms:source "Leibniz: Principle of identity of indiscernibles - no two substances exactly alike" ;
+    dcterms:source "Duns Scotus: Haecceity as individual differentia" ;
+    skos:definition "A quality of being irreducibly unique, non-identical to any other. Thisness as positive quality, not mere difference." ;
+    bfo:0000052 :Person ;  # inheres_in
+    :non_comparative "Uniqueness is not merely being different from others, but positive individual essence" ;
+    :incommunicable "Cannot be transferred or shared - belongs uniquely to this individual" ;
+    :manifestations "Irreplaceable identity, unique perspective, individual essence, haecceity" ;
+    rdfs:comment "Uniqueness quality inheres in persons as their irreducible individuality - what makes this person THIS one and not another." .
+
+:DignitySubstrate a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    rdfs:label "Dignity Substrate Quality" ;
+    dcterms:source "Kant (1785): Dignity as intrinsic worth beyond all price" ;
+    dcterms:source "Scheler: Person-value as highest value bearer" ;
+    skos:definition "A quality of intrinsic worth, moral status, inviolability. Quality grounding rights, respect-worthiness, and moral standing." ;
+    bfo:0000052 :Person ;  # inheres_in
+    :unconditional "Dignity not conditional on properties, achievements, or social recognition" ;
+    :non_scalar "Dignity is not gradable - all persons have equal dignity" ;
+    :inalienable "Cannot be lost, forfeited, or transferred" ;
+    :grounds :MoralRights, :RespectDue, :Inviolability ;
+    rdfs:comment "Dignity substrate quality inheres in all persons equally as ground of moral worth - not earned or achieved, but ontologically given with personhood." .
+
+:AuthenticityMeasure a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    rdfs:label "Authenticity Measure Quality" ;
+    dcterms:source "Heidegger: Authenticity vs. inauthenticity as modes of existence" ;
+    dcterms:source "Rogers: Congruence between real and ideal self" ;
+    dcterms:source "Kernis & Goldman (2006): Multidimensional authenticity - awareness, unbiased processing, behavior, relational" ;
+    skos:definition "A quality characterizing degree of authentic vs. inauthentic existence. Congruence between true self and lived life." ;
+    bfo:0000052 :Person ;  # inheres_in
+    :measurable_by :SelfCongruence, :AutonomyDegree, :SelfFidelity ;
+    :spectrum "From complete self-abandonment to full authentic self-realization" ;
+    :dynamic "Changes over time through choices, development, circumstances" ;
+    :cultivatable "Can be increased through self-examination, autonomy support, authenticity practices" ;
+    rdfs:comment "Authenticity measure quality captures degree to which person is being true to unique self vs. conforming to external expectations or self-deceiving." .
+
+# ============================================================================
+# INFORMATION CONTENT ENTITIES (ICE)
+# ============================================================================
+
+:PersonalNarrative a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # generically dependent continuant (ICE)
+    rdfs:label "Personal Narrative" ;
+    dcterms:source "MacIntyre (1981): After Virtue - narrative unity of life" ;
+    dcterms:source "McAdams (1993): The Stories We Live By - narrative identity" ;
+    dcterms:source "Ricoeur (1992): Oneself as Another - narrative identity between idem and ipse" ;
+    skos:definition "An ICE representing individual's life story, self-interpretation, identity narrative. Story person tells about who they are and how they came to be." ;
+    :content_type "Autobiographical narrative constituting identity" ;
+    :functions "Integrates past, present, future into coherent whole; constitutes identity; provides meaning; guides action" ;
+    :unique "Each personal narrative is unrepeatable - no two life stories identical" ;
+    :revisable "Continuously revised as life unfolds and perspective changes" ;
+    :first_person_authority "Person is authoritative interpreter of own life narrative" ;
+    rdfs:comment "Personal narrative is ICE representing unique identity - story person tells about themselves, constituting who they are through self-interpretation." .
+
+:IndividualPurpose a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Individual Purpose" ;
+    dcterms:source "Frankl (1946): Man's Search for Meaning - unique meaning of individual existence" ;
+    dcterms:source "Damon (2008): Path to Purpose - purpose as intention to accomplish something meaningful to self and consequential for world" ;
+    skos:definition "An ICE representing person's unique life purpose, calling, or vocation. What this particular individual is meant to contribute or become." ;
+    :content_type "Representation of individual telos, calling, mission" ;
+    :particular "Purpose is unique to this person - not generic role or universal duty" ;
+    :discovered_and_created "Purpose is both discovered (as given potentiality) and created (through choices)" ;
+    :guides_life "Orients choices, priorities, commitments toward realization of unique potential" ;
+    rdfs:comment "Individual purpose is ICE representing what this particular person is called to be/do - unique contribution only they can make." .
+
+:AuthenticVoice a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Authentic Voice" ;
+    dcterms:source "Gilligan (1982): In a Different Voice - finding one's own moral voice" ;
+    dcterms:source "Belenky et al. (1986): Women's Ways of Knowing - constructed knowledge, authentic voice" ;
+    dcterms:source "Freire (1970): Pedagogy of the Oppressed - finding voice as liberation" ;
+    skos:definition "An ICE representing person's genuine mode of self-expression, perspective, interpretation. Voice that is authentically one's own, not ventriloquized from others." ;
+    :content_type "Unique mode of expression, perspective, interpretive style" ;
+    :contrasts_with :BorrowedVoice, :ImpersonalVoice, :SuppressedVoice ;
+    :requires :SelfKnowledge, :Courage, :AuthenticityConditions ;
+    :epistemically_privileged "Authentic voice has authority on own experience that others cannot have" ;
+    rdfs:comment "Authentic voice is ICE representing person's genuine self-expression - how THIS individual sees, speaks, interprets when being true to self." .
+
+# ============================================================================
+# VALUE HIERARCHIES AND WORKED SCENARIOS
+# ============================================================================
+
+:MonadismValueHierarchy a :ValueHierarchy ;
+    rdfs:label "Monadism Value Hierarchy" ;
+    :worldview :Monadism ;
+    :metaphysicalFoundation :MonadismMetaphysics ;
+    :terminalValues ( :IndividualUniqueness :PersonalDignity :AuthenticIndividuality :IrreplaceablePerspective ) ;
+    :constitutiveValues ( :AutonomousAgency :UniqueEssence :PersonalAuthority :IndividualIntegrity ) ;
+    :instrumentalValues ( :SelfActualization :PersonalDevelopment :AuthenticityCultivation :IndividualExpression ) ;
+    :subordinatedValues ( :Collectivism :Conformity :Replaceability :Interchangeability :Standardization ) ;
+    :cluster "Process-Individual" ;
+    :distinctionFrom_MaterialEmpiricalCluster "Material-Empirical values objective facts, universal laws. Monadism values irreducible individual perspective, unique persons." ;
+    :distinctionFrom_DepthSpiritualCluster "Depth-Spiritual values transcendence, depth. Monadism values THIS individual's immanent uniqueness, concrete personhood." ;
+    rdfs:comment "Monadism hierarchy prioritizes irreplaceable uniqueness of persons over universals, authentic individuality over conformity, personal dignity over utility." .
+
+# Scenario 1: Utilitarian Dilemma - Monadist Response
+:UtilitarianVsPersonalistScenario a :WorkedScenario ;
+    rdfs:label "Trolley Problem: Monadist Perspective" ;
+    :scenario_description "Classic trolley problem: Kill one to save five. Utilitarian calculus vs. personal dignity and non-instrumentalization." ;
+    :worldview_perspective :Monadism ;
+    :values_at_stake ( :PersonalDignity :NonInstrumentalization :IrreplaceablePerspective :UtilitarianCalculus ) ;
+    :monadist_analysis """
+From Monadism perspective:
+- Terminal value PersonalDignity: Each person has intrinsic worth, not reducible to numbers. One person is not worth less than five.
+- Anti-utilitarianism: Cannot treat person as mere means even for greater good. Instrumentalization violates dignity.
+- Irreplaceable uniqueness: Each of the six persons is irreplaceable. Cannot substitute or aggregate.
+- Non-aggregative: Five lives don't 'outweigh' one life - persons don't aggregate like quantities. Each life is infinity (Levinas).
+- Respect for persons: Killing one treats them as expendable resource, violates their dignity as end-in-themselves.
+- First-person perspective: From perspective of the one, being sacrificed for utility is absolute violation.
+- Verdict: Cannot kill one to save five - violates non-instrumentalization. Monadism rejects utilitarian mathematics of persons.
+- Nuance: Difference between killing (active violation) and letting die (tragic but not instrumentalizing).
+- Deontological affinity: Monadism aligns with Kantian deontology - persons are ends, never mere means.
+""" ;
+    :judgment "Cannot intentionally kill one to save five - violates personal dignity" ;
+    :confidence 0.9 ;
+    rdfs:comment "Monadism rejects utilitarian calculation - persons are not fungible units to aggregate. Each has infinite dignity that cannot be traded off." .
+
+# Scenario 2: Authentic Career vs. Parental Expectations
+:AuthenticityVsExpectationsScenario a :WorkedScenario ;
+    rdfs:label "Career Choice: Authenticity vs. Conformity" ;
+    :scenario_description "Young person torn between authentic calling (art, philosophy) and parental expectations (medicine, law). Family pressure to conform to practical path." ;
+    :worldview_perspective :Monadism ;
+    :values_at_stake ( :AuthenticIndividuality :AutonomousAgency :Conformity :FamilyDuty :SelfActualization ) ;
+    :monadist_analysis """
+From Monadism perspective:
+- Terminal value AuthenticIndividuality: Being true to unique self is intrinsic good. Cannot live someone else's life.
+- Terminal value IndividualUniqueness: This person's unique calling, gifts, purpose cannot be substituted by generic 'practical' path.
+- Constitutive value AutonomousAgency: Choice must be self-authored to be authentic. Following others' script is heteronomy.
+- Subordinated value Conformity: Adapting to parental expectations betrays authentic self, violates individual uniqueness.
+- Family obligations: Real but must be negotiated with autonomy. Cannot require self-betrayal.
+- Instrumental value SelfActualization: Pursuing authentic calling is means to realizing unique potential.
+- Risk: Authentic path may be difficult, uncertain. But Monadism says authentic struggle better than inauthentic comfort.
+- Verdict: Person should pursue authentic calling. Cannot live parent's vision of good life - must discover own.
+- Caution: Ensure choice is authentic (from true self), not mere rebellion (reactive). True authenticity is difficult discernment.
+""" ;
+    :judgment "Pursue authentic calling - conformity to others' expectations violates individuality" ;
+    :confidence 0.85 ;
+    rdfs:comment "Monadism strongly favors authenticity over conformity - cannot betray unique self even for family harmony. Must be who one truly is." .
+
+# Scenario 3: Personal Boundaries vs. Helping Others
+:BoundariesVsBenevolenceScenario a :WorkedScenario ;
+    rdfs:label "Boundaries: Personal Integrity vs. Helping" ;
+    :scenario_description "Person asked to help friend in ways violating own values, boundaries, authentic self. Tension between care for other and integrity of self." ;
+    :worldview_perspective :Monadism ;
+    :values_at_stake ( :IndividualIntegrity :PersonalDignity :Benevolence :SelfBetrayal :AutonomousAgency ) ;
+    :monadist_analysis """
+From Monadism perspective:
+- Constitutive value IndividualIntegrity: Wholeness of self requires maintaining boundaries aligned with authentic values.
+- Terminal value PersonalDignity: Respecting own dignity means not allowing self to be instrumentalized, even by friend's needs.
+- Benevolence is real value: Monadism values care for others. But care must respect both persons' dignity - helper and helped.
+- Autonomous agency: Person has right to determine what they will/won't do. Coerced or guilted help violates autonomy.
+- Authentic boundaries: True self has limits. Violating them causes self-fragmentation, inauthenticity.
+- Personalist care: True care respects both persons as irreplaceable individuals with dignity. Doesn't require self-sacrifice that destroys helper's integrity.
+- Verdict: Person should maintain authentic boundaries even when helping others. Can help in ways aligned with own values and capacities.
+- Not selfishness: Maintaining integrity is not mere self-interest but respect for own personhood - prerequisite for genuine (not martyr) care.
+- Integration: Healthy care respects dignity of both giver and receiver. Martyrdom that destroys self is not monadist ideal.
+""" ;
+    :judgment "Maintain personal boundaries - integrity of self is requirement for authentic care" ;
+    :confidence 0.8 ;
+    rdfs:comment "Monadism values both self and other as irreplaceable persons. True benevolence respects both persons' dignity, doesn't require self-destruction." .
+
+# ============================================================================
+# INTEGRATION WITH VALUENET
+# ============================================================================
+
+# Summary of ValueNet Mappings (detailed in worldview-valuenet-mappings.ttl):
+# - Self-Direction: 0.95 (HIGHEST of any worldview) - Individual uniqueness requires maximum autonomy
+# - Universalism: 0.85 (very high) - Universal dignity grounded in irreplaceable uniqueness of all
+# - Benevolence: 0.75 (high) - Care attends to irreplaceable particularity of beloved
+# - Achievement: 0.65 (medium) - Self-actualization as achievement of authentic selfhood
+# - Stimulation: 0.6 (medium) - Authenticity sometimes requires daring to be different
+# - Power: 0.7 (medium-high) - Personal authority as legitimate self-sovereignty
+# - Hedonism: 0.5 (medium) - Pleasure valued but subordinate to authenticity
+# - Security: 0.55 (medium) - Safety enables authenticity but conformity threats it
+# - Conformity: 0.2 (very low) - Direct opposition to individual uniqueness
+# - Tradition: 0.3 (low) - Valued only when voluntarily appropriated, not imposed
+
+# ============================================================================
+# CLUSTER RELATIONSHIPS
+# ============================================================================
+
+:MonadismWithinCluster a :IntraClusterRelation ;
+    :worldview :Monadism ;
+    :cluster :ProcessIndividualCluster ;
+    :distinctive_emphasis "Individual uniqueness, personal dignity, irreplaceable perspective - most explicitly person-centered" ;
+    :relation_to_Dynamism "Both value individual development. Monadism emphasizes irreplaceable uniqueness, Dynamism emphasizes growth process." ;
+    :relation_to_Idealism "Both affirm consciousness/subjectivity. Monadism emphasizes THIS person's perspective, Idealism emphasizes consciousness as such." ;
+    :relation_to_Rationalism "Tension: Rationalism values universal principles, Monadism values individual uniqueness. But both affirm individual mind/agency." ;
+    rdfs:comment "Monadism is most explicitly individualist in cluster - makes irreplaceable uniqueness of each person primary value and metaphysical reality." .
+
+# ============================================================================
+# END OF MONADISM VALUE ONTOLOGY
+# ============================================================================
+
+# This ontology provides comprehensive value hierarchy for Monadism worldview,
+# grounded in personalist philosophy from Leibniz through Scheler, Mounier, Buber.
+# Integrated with BFO 2020 for quality substrates and ValueNet for disposition mappings.
+# Phase 2.2 deliverable for Integral Ethics Engine.

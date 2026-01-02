@@ -510,6 +510,482 @@
     :metaphysicalGrounding "Transcendental idealism: Pure consciousness not reducible to natural facts. But agnostic about supernatural/divine (bracketed)." .
 
 # ============================================================================
+# DYNAMISM → ValueNet Mappings
+# ============================================================================
+# Source: dynamism-values.ttl
+# Metaphysics: Reality is fundamentally process, becoming, creative transformation
+# Epistemology: Process inquiry, developmental observation, transformational tracking
+# Priority: Growth, transformation, vital energy, creative becoming
+# Cluster: Process-Individual (Process Metaphysics + Individual Focus)
+# ============================================================================
+
+:DynamismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Dynamism ;
+    dcterms:source "dynamism-values.ttl (lines 154-420)" ;
+    rdfs:comment "Dynamism prioritizes stimulation (novelty/change), self-direction (autonomous development), and achievement (growth). High change orientation, low stability values." ;
+    :valueProfileSummary [
+        :highPriority "Stimulation (0.95), Self-direction (0.9), Achievement (0.85)" ;
+        :moderate "Universalism (0.75), Benevolence (0.7), Hedonism (0.65)" ;
+        :low "Security (0.45), Conformity (0.35), Tradition (0.25), Power (0.6)"
+    ] .
+
+# Stimulation Disposition - Novelty, change, and transformation
+:DynamismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :Transformation, :CreativeBecoming, :VitalEnergy ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.95 ;
+    :rationale "Stimulation: Transformation and creative becoming require novelty and change. Vital energy seeks new forms and expressions. Heraclitean flux: 'You cannot step into the same river twice.' Highest stimulation of any worldview - change is fundamental." ;
+    :metaphysicalGrounding "Process metaphysics: Reality is becoming, not being. Change and novelty are ontologically fundamental (Heraclitus, Bergson, Whitehead)." .
+
+# Self-direction Disposition - Autonomous development and creative evolution
+:DynamismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :Growth, :DevelopmentalPotential, :CreativeBecoming ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.9 ;
+    :rationale "Self-direction: Growth requires autonomous self-directed development. Realizing developmental potential demands self-determination. Creative becoming is inherently autonomous - élan vital cannot be dictated externally." ;
+    :metaphysicalGrounding "Bergsonian creative evolution: Life evolves through autonomous creative development. Self-direction is the process of becoming oneself." .
+
+# Achievement Disposition - Developmental progress and transformation
+:DynamismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :Growth, :Transformation, :EvolutionaryImpetus ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.85 ;
+    :rationale "Achievement: Growth and transformation represent successful development. Evolutionary progress demonstrates competence. Achieving higher developmental stages shows mastery." ;
+    :metaphysicalGrounding "Developmental theories: Growth toward greater complexity and integration is achievement (Piaget, Kegan, Wilber)." .
+
+# Universalism Disposition - Universal developmental patterns
+:DynamismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :EvolutionaryImpetus, :DevelopmentalPotential ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.75 ;
+    :rationale "Universalism: Evolutionary principles apply universally. Developmental patterns (ontogeny recapitulates phylogeny) are universal. Understanding process serves universal comprehension." ;
+    :metaphysicalGrounding "Universal evolutionism: Developmental and evolutionary processes are universal features of reality (Spencer, Teilhard, process theology)." .
+
+# Benevolence Disposition - Supporting others' growth and development
+:DynamismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :DevelopmentalSupport, :Cultivation ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.7 ;
+    :rationale "Benevolence: Supporting others' developmental potential is care. Cultivation of growth in others demonstrates concern. Nurturing transformation shows benevolence." ;
+    :metaphysicalGrounding "Developmental care ethics: Supporting growth and development of others (Gilligan, Noddings in developmental context)." .
+
+# Hedonism Disposition - Vital pleasure and energetic joy
+:DynamismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :VitalEnergy, :CreativeBecoming ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.65 ;
+    :rationale "Hedonism: Vital energy experienced as pleasure and joy. Creative becoming intrinsically enjoyable. Nietzschean joy of self-overcoming. Flow states as hedonic peak." ;
+    :metaphysicalGrounding "Nietzschean vitalism: Joy in growth, self-overcoming, and creative expression. Bergson's élan vital as joyful life force." .
+
+# Power Disposition - Generative power and creative force
+:DynamismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :VitalEnergy, :EvolutionaryImpetus ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.6 ;
+    :rationale "Power: Vital energy as generative power. Evolutionary impetus as creative force. Nietzschean will to power as creative self-overcoming, not domination." ;
+    :metaphysicalGrounding "Nietzschean power: Will to power as creative self-overcoming and growth. Power as generative capacity, not domination." .
+
+# Security Disposition - Low (stasis threatens becoming)
+:DynamismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :Stagnation ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.45 ;
+    :rationale "Security: Stability and security can lead to stagnation (subordinated value). Too much security prevents growth. Process worldview accepts vulnerability as price of development." ;
+    :metaphysicalGrounding "Process philosophy: Security/stasis subordinated to becoming. Risk necessary for growth (Whitehead: 'Adventure or decadence')." .
+
+# Conformity Disposition - Low (conformity prevents authentic development)
+:DynamismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :Stagnation, :FixedEssence ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.35 ;
+    :rationale "Conformity: Conformity to static norms prevents creative becoming. Fixed essences subordinated to developmental potential. Conformity leads to stagnation." ;
+    :metaphysicalGrounding "Existential process thought: Conformity to static norms prevents authentic self-becoming. 'Existence precedes essence' in developmental terms." .
+
+# Tradition Disposition - Very low (tradition implies fixity)
+:DynamismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :StaticForm, :Permanence ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.25 ;
+    :rationale "Tradition: Traditional forms are static and fixed (subordinated). Permanence opposes process. Past should inform but not constrain becoming." ;
+    :metaphysicalGrounding "Heraclitean critique of permanence: 'All is flux.' Traditions embody static forms that resist transformation." .
+
+# Spirituality Disposition - Moderate (spiritual transformation)
+:DynamismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Dynamism ;
+    :worldviewValue :Transformation, :CreativeBecoming ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.6 ;
+    :rationale "Spirituality: Spiritual transformation and evolution valued. Teilhard's noosphere. Process theology (Whitehead, Hartshorne). But naturalistic process (Bergson, Deleuze) lowers average." ;
+    :metaphysicalGrounding "Process theology: God as becoming, not static being. Spiritual evolution (Teilhard, Aurobindo). But also naturalistic process philosophy." .
+
+# ============================================================================
+# MONADISM → ValueNet Mappings
+# ============================================================================
+# Source: monadism-values.ttl
+# Metaphysics: Irreducible individual substances with unique perspectives and dignity
+# Epistemology: First-person authority, perspectival knowledge, individual insight
+# Priority: Individual uniqueness, personal dignity, authentic individuality
+# Cluster: Process-Individual (Individual Focus + Process of Individuation)
+# ============================================================================
+
+:MonadismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Monadism ;
+    dcterms:source "monadism-values.ttl (lines 160-430)" ;
+    rdfs:comment "Monadism prioritizes self-direction (individual autonomy), universalism (universal dignity), and benevolence (personalist care). HIGHEST self-direction (0.95) of any worldview. Low conformity and power." ;
+    :valueProfileSummary [
+        :highPriority "Self-direction (0.95), Universalism (0.85), Benevolence (0.8)" ;
+        :moderate "Achievement (0.7), Security (0.65), Stimulation (0.6)" ;
+        :low "Conformity (0.3), Power (0.25), Tradition (0.5), Hedonism (0.55)"
+    ] .
+
+# Self-direction Disposition - Individual autonomy and authentic self-determination
+:MonadismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :IndividualUniqueness, :AuthenticIndividuality, :AutonomousAgency ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.95 ;
+    :rationale "Self-direction: Individual uniqueness requires autonomous self-determination. Authentic individuality demands freedom from external control. Personalist autonomy as highest value. HIGHEST self-direction of any worldview - each monad is self-determining." ;
+    :metaphysicalGrounding "Leibnizian monadology: Each monad develops from its own internal principle. Personalism: Person as autonomous agent (Mounier, Wojtyła)." .
+
+# Universalism Disposition - Universal dignity and irreplaceable worth
+:MonadismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :PersonalDignity, :IrreplaceablePerspective ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.85 ;
+    :rationale "Universalism: Personal dignity is universal - all persons have irreducible worth. Each perspective irreplaceable. Kantian respect for persons as ends. Personalist philosophy emphasizes universal human dignity." ;
+    :metaphysicalGrounding "Kantian personalism: All rational beings possess dignity. Scheler: Person as highest value-bearer. Buber: I-Thou relation recognizes universal personhood." .
+
+# Benevolence Disposition - Personalist care for unique individuals
+:MonadismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :PersonalDignity, :IndividualIntegrity ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.8 ;
+    :rationale "Benevolence: Care for others as unique irreplaceable persons. Respecting individual integrity shows benevolence. Personalist ethics centers care for concrete individuals, not abstract humanity." ;
+    :metaphysicalGrounding "Personalist ethics: Levinas's face-to-face responsibility. Buber's I-Thou relation. Caring for concrete persons, not abstractions (Marcel)." .
+
+# Achievement Disposition - Individual self-actualization
+:MonadismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :SelfActualization, :PersonalDevelopment ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.7 ;
+    :rationale "Achievement: Self-actualization as realizing unique potential. Personal development demonstrates individual competence. Becoming authentic self is achievement." ;
+    :metaphysicalGrounding "Humanistic personalism: Self-actualization (Maslow). Kierkegaard: Becoming a self is greatest task. Individual achievement of authentic selfhood." .
+
+# Security Disposition - Protection of individual integrity
+:MonadismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :IndividualIntegrity, :PersonalDignity ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.65 ;
+    :rationale "Security: Protecting individual integrity and boundaries ensures safety. Personal dignity requires security from violation. Individual rights as security mechanisms." ;
+    :metaphysicalGrounding "Personalist rights theory: Individual rights protect personhood from violation. Dignity requires security of person (Maritain)." .
+
+# Stimulation Disposition - Unique individual expression and creativity
+:MonadismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :IndividualExpression, :AuthenticIndividuality ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.6 ;
+    :rationale "Stimulation: Individual expression provides novelty through unique perspectives. Authentic individuality manifests through creative self-expression. Each person adds unique contribution." ;
+    :metaphysicalGrounding "Personalist creativity: Each person's unique perspective generates novel insights. Individual creativity as expression of irreducible selfhood." .
+
+# Hedonism Disposition - Moderate (individual wellbeing valued)
+:MonadismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :SelfActualization ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.55 ;
+    :rationale "Hedonism: Individual wellbeing and flourishing valued, but not as highest good. Self-actualization includes pleasure but transcends it. Person not reducible to hedonic states." ;
+    :metaphysicalGrounding "Personalist anthropology: Person transcends pleasure/pain. Wellbeing important but dignity higher than happiness (Scheler's value hierarchy)." .
+
+# Tradition Disposition - Moderate (personal narrative and heritage)
+:MonadismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :PersonalNarrative ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.5 ;
+    :rationale "Tradition: Personal narrative includes heritage and tradition as part of individual identity. MacIntyre: Persons embedded in traditions. But tradition subordinate to individual authenticity when conflicting." ;
+    :metaphysicalGrounding "Narrative personalism: Individual identity includes inherited traditions (MacIntyre, Taylor). But authentic self may transcend tradition (Kierkegaard)." .
+
+# Conformity Disposition - Very low (conformity threatens uniqueness)
+:MonadismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :Conformity, :Standardization ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.3 ;
+    :rationale "Conformity: Conformity to external standards threatens individual uniqueness (subordinated value). Standardization opposes irreplaceability. Mass conformity depersonalizes." ;
+    :metaphysicalGrounding "Personalist critique of conformism: Mass society threatens personhood (Marcel, Mounier). 'The crowd is untruth' (Kierkegaard)." .
+
+# Power Disposition - Very low (domination violates dignity)
+:MonadismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :PersonalDignity ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.25 ;
+    :rationale "Power: Domination violates personal dignity and reduces persons to means. Power over others threatens their autonomy. Lowest power disposition - persons are ends, not means to power." ;
+    :metaphysicalGrounding "Kantian personalism: Persons are ends in themselves, never mere means. Power-seeking instrumentalizes persons (Buber: I-It vs I-Thou)." .
+
+# Spirituality Disposition - High (person as spiritual being)
+:MonadismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Monadism ;
+    :worldviewValue :PersonalDignity, :UniqueEssence ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.75 ;
+    :rationale "Spirituality: Person has spiritual dimension transcending material reduction. Soul/spirit as seat of individual uniqueness (Leibniz). Dignity rooted in spiritual nature." ;
+    :metaphysicalGrounding "Personalist metaphysics: Person as spiritual being (Scheler, Wojtyła). Leibnizian monad as spiritual substance. Soul as principle of individuation." .
+
+# ============================================================================
+# IDEALISM → ValueNet Mappings
+# ============================================================================
+# Source: idealism-values.ttl
+# Metaphysics: Consciousness/ideas are fundamental; material reality is derivative
+# Epistemology: Rational insight, intellectual intuition, contemplative knowledge
+# Priority: Consciousness development, ideas as causal, meaning making, mental clarity
+# Cluster: Process-Individual (Individual Consciousness + Developmental Process)
+# ============================================================================
+
+:IdealismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Idealism ;
+    dcterms:source "idealism-values.ttl (lines 154-450)" ;
+    rdfs:comment "Idealism prioritizes spirituality (consciousness as sacred), self-direction (autonomous intellectual growth), and universalism (universal ideas). High intellectual and spiritual values, low materialism." ;
+    :valueProfileSummary [
+        :highPriority "Spirituality (0.90), Self-direction (0.85), Universalism (0.80)" ;
+        :moderate "Achievement (0.75), Benevolence (0.75), Conformity (0.65)" ;
+        :low "Tradition (0.70), Security (0.70), Stimulation (0.70), Hedonism (0.50), Power (0.60)"
+    ] .
+
+# Spirituality Disposition - Consciousness as sacred, Spirit as ultimate reality
+:IdealismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :ConsciousnessDevelopment, :IdeasAsCausal, :ContemplativePractice ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.90 ;
+    :rationale "Spirituality: Idealism has very high spiritual dimension. Absolute Idealism sees reality as Spirit/Geist (Hegel). Plato's Forms are transcendent spiritual realities. Consciousness is sacred, not reducible to matter. Contemplation is spiritual practice. Second highest spirituality after Monadism (0.75)." ;
+    :metaphysicalGrounding "Hegel: Reality is Spirit (Geist) developing through history. Plato: Forms are eternal spiritual realities. Berkeley: Material world exists in divine mind. Consciousness transcends material reduction." .
+
+# Self-direction Disposition - Autonomous intellectual development
+:IdealismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :ConsciousnessDevelopment, :MeaningMaking, :PhilosophicalReflection ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.85 ;
+    :rationale "Self-direction: Consciousness development requires autonomous self-directed exploration of ideas, independent thought, and choosing one's own mental development path. Meaning-making requires autonomous interpretation. Lower than Monadism (0.95) but very high - emphasizes self-directed intellectual growth." ;
+    :metaphysicalGrounding "Fichte: The I (Ego) is self-positing - autonomous self-development. Kant: Mind actively structures experience through autonomous categories. Berkeley: Each consciousness interprets reality through ideas." .
+
+# Universalism Disposition - Universal ideas and consciousness
+:IdealismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :IdeasAsCausal, :SystematicUnderstanding ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.80 ;
+    :rationale "Universalism: Ideas as causal emphasizes understanding universal principles, welfare of all thinking beings, and protection of universal truths. Ideas transcend particular contexts - universal forms that structure reality for all rational beings. Systematic understanding serves universal comprehension." ;
+    :metaphysicalGrounding "Plato: Forms are universal - same Forms accessible to all rational minds. Hegel: Universal Spirit develops through history. Ideas are shared by all consciousnesses." .
+
+# Achievement Disposition - Intellectual achievement and mental clarity
+:IdealismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :MentalClarity, :SystematicUnderstanding ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.75 ;
+    :rationale "Achievement: Mental clarity represents competence in thinking, demonstrating ability through clear reasoning, and achieving intellectual standards of excellence. Systematic understanding shows intellectual mastery. Cultivated achievement of well-developed mind." ;
+    :metaphysicalGrounding "Descartes: Clear and distinct ideas as mark of intellectual achievement. Hegel: Achieving absolute knowing is highest intellectual accomplishment. Intellectual competence demonstrated through clarity and system." .
+
+# Benevolence Disposition - Helping others develop consciousness
+:IdealismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :EducationAndCultivation, :ConsciousnessDevelopment ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.75 ;
+    :rationale "Benevolence: Idealism values helping others develop their consciousness and rational capacities. Plato's educational ideal in Republic. Hegel's ethical community (Sittlichkeit). Promoting welfare of close others through intellectual and spiritual development." ;
+    :metaphysicalGrounding "Plato: Education as turning the soul toward the Good. Hegel: Ethical community develops individual consciousness. Idealist education fosters consciousness in others." .
+
+# Tradition Disposition - Philosophical tradition and classical wisdom
+:IdealismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :EducationAndCultivation, :SystematicUnderstanding ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.70 ;
+    :rationale "Tradition: Idealism deeply engages with philosophical traditions (Plato, Kant, Hegel). Education requires mastering canonical texts. However, tradition is critically examined and rationally developed - not blindly followed. High-moderate salience." ;
+    :metaphysicalGrounding "Idealist engagement with tradition: Study classical philosophy (Plato, Aristotle), but critically appropriate and develop. Hegel: Philosophy as its time comprehended in thought." .
+
+# Stimulation Disposition - Intellectual novelty and discovery
+:IdealismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :ConsciousnessDevelopment, :PhilosophicalReflection ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.70 ;
+    :rationale "Stimulation: Consciousness development involves encountering novel ideas and exciting intellectual discoveries. Philosophical reflection provides intellectual stimulation. However, Idealism also values eternal truths and systematic coherence, tempering pure novelty-seeking. Lower than Dynamism (0.95)." ;
+    :metaphysicalGrounding "Hegel: Dialectical development provides intellectual excitement through contradictions and syntheses. But also values eternal Forms (Plato) and systematic necessity - balances novelty with stability." .
+
+# Security Disposition - Systematic knowledge provides certainty
+:IdealismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :SystematicUnderstanding, :ConceptualClarity ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.70 ;
+    :rationale "Security: Systematic understanding and clear concepts provide intellectual security, certainty, and stable foundations. Idealism seeks secure knowledge grounded in reason or eternal Forms. Truth provides safety from doubt and confusion." ;
+    :metaphysicalGrounding "Plato: Forms provide stable, unchanging reality - secure foundations. Hegel: Systematic philosophy provides comprehensive security. Clarity eliminates intellectual anxiety." .
+
+# Conformity Disposition - Conformity to rational norms
+:IdealismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :SystematicUnderstanding, :InterpretiveCoherence ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.65 ;
+    :rationale "Conformity: Idealism values conformity to rational norms, logical principles, and systematic coherence. However, also values intellectual independence and critical thinking within rational constraints. Moderate-high salience." ;
+    :metaphysicalGrounding "Rational conformity: Hegel's Sittlichkeit (ethical life) requires conforming to rational social structures. But Kant emphasizes autonomous rational thought. Balance of conformity and independence." .
+
+# Power Disposition - Intellectual authority and power of ideas
+:IdealismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :IdeasAsCausal, :SystematicUnderstanding ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.60 ;
+    :rationale "Power: Ideas have causal power to shape reality. Systematic understanding grants intellectual authority. However, Idealism subordinates personal dominance to universal truth - power of ideas, not personal power. Moderate salience." ;
+    :metaphysicalGrounding "Plato: Philosopher-kings have intellectual authority through knowledge of Forms. But power subordinated to truth. Ideas have power, not necessarily persons." .
+
+# Hedonism Disposition - Intellectual pleasure, not sensory
+:IdealismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Idealism ;
+    :worldviewValue :ContemplativePractice, :MentalClarity ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.50 ;
+    :rationale "Hedonism: Idealism values intellectual pleasure (contemplation, clarity, insight) but subordinates sensory/bodily pleasures. Plato's critique of bodily pleasures in Phaedo. Moderate salience - acknowledges mental pleasure but not primary value." ;
+    :metaphysicalGrounding "Platonic hierarchy: Intellectual pleasures higher than bodily pleasures, but wisdom higher than pleasure. Contemplation is pleasurable but pursued for truth, not pleasure." .
+
+# ============================================================================
+# RATIONALISM → ValueNet Mappings
+# ============================================================================
+# Source: rationalism-values.ttl
+# Metaphysics: Reality is fundamentally rational and intelligible through reason
+# Epistemology: A priori knowledge, deductive rigor, rational necessity
+# Priority: Logical coherence, universal principles, systematic order, rational necessity
+# Cluster: Process-Individual (Rational Development + Individual Reasoning)
+# ============================================================================
+
+:RationalismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Rationalism ;
+    dcterms:source "rationalism-values.ttl (lines 154-480)" ;
+    rdfs:comment "Rationalism prioritizes universalism (universal principles), achievement (intellectual rigor), and security (logical certainty). High rational values, moderate spiritual values, low hedonism and power." ;
+    :valueProfileSummary [
+        :highPriority "Universalism (0.90), Achievement (0.85), Security (0.85)" ;
+        :moderate "Self-direction (0.80), Conformity (0.75), Spirituality (0.75)" ;
+        :low "Tradition (0.70), Benevolence (0.70), Stimulation (0.65), Power (0.60), Hedonism (0.55)"
+    ] .
+
+# Universalism Disposition - Universal rational principles
+:RationalismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :UniversalPrinciples, :NecessaryTruth ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.90 ;
+    :rationale "Universalism: Universal principles emphasize understanding, appreciating, tolerating, and protecting welfare of all people. Rationalism seeks universal truths that transcend particular perspectives - what is true for all rational beings. Kantian categorical imperative binds all rational agents. Very high salience." ;
+    :metaphysicalGrounding "Kant: Categorical imperative as universal moral law for all rational beings. Leibniz: Truths of reason are universal and necessary. Spinoza: God/Nature follows universal rational necessity." .
+
+# Achievement Disposition - Intellectual rigor and systematic mastery
+:RationalismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :SystematicOrder, :DeductiveRigor, :MathematicalTraining ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.85 ;
+    :rationale "Achievement: Rationalism highly values intellectual achievement - demonstrating competence in reasoning, achieving systematic understanding, and meeting rigorous standards of proof. Mathematical and logical mastery as achievement. Very high salience." ;
+    :metaphysicalGrounding "Rationalist ideal: Achieving systematic knowledge demonstrated geometrically (Spinoza's Ethics). Mastering mathematics and logic demonstrates intellectual competence. Descartes: Clear and distinct knowledge as achievement." .
+
+# Security Disposition - Logical certainty and stable foundations
+:RationalismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :LogicalCoherence, :SystematicOrder ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.85 ;
+    :rationale "Security: Logical coherence provides intellectual security, certainty, and stable foundations. Rationalism seeks secure knowledge grounded in logical necessity and non-contradiction. Freedom from intellectual chaos and uncertainty. Very high salience." ;
+    :metaphysicalGrounding "Descartes: Seeking indubitable foundations - certainty as security. Spinoza: Geometric demonstration provides secure knowledge. Leibniz: Logical coherence ensures security from contradiction." .
+
+# Self-direction Disposition - Autonomous rational inquiry
+:RationalismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :RationalNecessity, :CriticalAnalysis ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.80 ;
+    :rationale "Self-direction: Rational necessity emphasizes autonomous thinking, independent reasoning, and choosing to follow rational principles rather than external authority or arbitrary preference. Reason as self-legislation (Kant). Critical analysis requires autonomy." ;
+    :metaphysicalGrounding "Kant: Autonomy as self-legislation through reason. Descartes: Independent rational inquiry, not authority. Rationalism values autonomous reasoning within rational constraints." .
+
+# Conformity Disposition - Conformity to logical principles
+:RationalismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :LogicalCoherence, :DeductiveRigor, :ConceptualRigor ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.75 ;
+    :rationale "Conformity: Rationalism values conformity to logical principles, rational norms, and standards of rigor. However, also values autonomous reasoning and critical examination within these constraints. High salience but not highest." ;
+    :metaphysicalGrounding "Rational conformity: Must conform to logical principles (non-contradiction), deductive standards, and conceptual rigor. But encourages critical thinking within rational framework." .
+
+# Spirituality Disposition - Reason as divine light, intellectual love of God
+:RationalismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :UniversalPrinciples, :RationalNecessity, :NecessaryTruth ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.75 ;
+    :rationale "Spirituality: Rationalism has significant spiritual dimension. Spinoza's intellectual love of God (amor Dei intellectualis). Plato's ascent to Forms as spiritual journey. Leibniz's pre-established harmony reflects divine mind. Reason as participation in divine rationality. High but not highest salience." ;
+    :metaphysicalGrounding "Spinoza: Intellectual love of God as highest spiritual achievement. Leibniz: Spirits as images of divinity, capable of knowing universal truths. Plato: Contemplation of Forms is spiritual ascent." .
+
+# Tradition Disposition - Philosophical tradition critically appropriated
+:RationalismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :SystematicStudy, :UniversalPrinciples ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.70 ;
+    :rationale "Tradition: Rationalism engages deeply with philosophical tradition (Plato, Aristotle, Descartes, Leibniz, Kant). Systematic study requires mastering canonical works. However, tradition is subjected to rational critique - Descartes' rejection of scholasticism. Moderate-high salience." ;
+    :metaphysicalGrounding "Rationalist engagement with tradition: Study classical philosophy but subject it to rational critique. Descartes: Reject tradition lacking rational foundations. Rebuild knowledge systematically." .
+
+# Benevolence Disposition - Helping others develop rational capacities
+:RationalismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :IntellectualDiscourse, :SystematicStudy ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.70 ;
+    :rationale "Benevolence: Rationalism values helping others develop rational capacities through education and discourse. Kant's enlightenment ideal - helping others use their own reason (sapere aude). Promoting intellectual welfare of others. Moderate-high salience." ;
+    :metaphysicalGrounding "Kantian enlightenment: 'Dare to know' - helping others achieve intellectual maturity. Socratic education: Helping others develop rational capacities through dialogue." .
+
+# Stimulation Disposition - Intellectual challenge and problem-solving
+:RationalismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :CriticalAnalysis, :MathematicalTraining ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.65 ;
+    :rationale "Stimulation: Rationalism finds intellectual stimulation in solving problems, discovering proofs, and encountering novel arguments. However, values eternal truths and systematic necessity over mere novelty. Subordinates novelty to truth. Moderate salience." ;
+    :metaphysicalGrounding "Rationalist problem-solving: Intellectual excitement in mathematical proofs and logical arguments. But eternal truths valued over novelty - Platonist and rationalist preference for timeless over temporal." .
+
+# Power Disposition - Intellectual authority, not personal dominance
+:RationalismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :UniversalPrinciples, :SystematicOrder ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.60 ;
+    :rationale "Power: Reason has power to grasp necessary truths and achieve systematic order. Intellectual authority comes from rational mastery. However, Rationalism subordinates personal will to impersonal rational principles - moderate salience. Not personal power but power of reason." ;
+    :metaphysicalGrounding "Rational authority: Authority comes from logical necessity and rational demonstration, not personal dominance. Spinoza: Human power perfected through reason, but subordinated to God/Nature's necessity." .
+
+# Hedonism Disposition - Intellectual pleasure, not sensory
+:RationalismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Rationalism ;
+    :worldviewValue :MathematicalTraining, :IntellectualDiscourse ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.55 ;
+    :rationale "Hedonism: Rationalism values intellectual pleasure (solving proofs, understanding systems, clarity of reasoning) but subordinates bodily/sensory pleasures. Spinoza's intellectual love of God as highest pleasure. Moderate salience - mental pleasure acknowledged but not primary." ;
+    :metaphysicalGrounding "Spinoza: Highest pleasure is intellectual love of God (amor Dei intellectualis). Plato: Rational pleasures higher than bodily pleasures. But pleasure subordinated to truth." .
+
+# ============================================================================
 # Mapping Properties and Classes
 # ============================================================================
 

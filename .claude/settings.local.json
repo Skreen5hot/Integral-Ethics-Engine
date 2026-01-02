@@ -30,7 +30,8 @@
       "Bash(grep:*)",
       "Bash(dir:*)",
       "Bash(node examples/basic-usage.js:*)",
-      "Bash(powershell -Command \"\\(Get-Item realism-values.ttl\\).Length\")"
+      "Bash(powershell -Command \"\\(Get-Item realism-values.ttl\\).Length\")",
+      "Bash(npm test)"
     ]
   }
 }

@@ -1,0 +1,668 @@
+@prefix : <http://integral-ethics.org/ontology/dynamism#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-schwartz: <http://valuenet.org/schwartz#> .
+
+# ============================================================================
+# DYNAMISM WORLDVIEW VALUE ONTOLOGY
+# ============================================================================
+#
+# Worldview: Dynamism (Process Philosophy)
+# Foundation: Becoming - Reality is fundamentally dynamic, not static
+# Primacy: Change, growth, transformation, vital energy
+# Epistemology: Developmental observation, process tracking
+# Cluster: Process-Individual
+#
+# Key Thinkers:
+# - Heraclitus (535-475 BCE): "Panta rhei" - everything flows
+# - Henri Bergson (1859-1941): Creative evolution, élan vital
+# - Alfred North Whitehead (1861-1947): Process and Reality
+# - Gilles Deleuze (1925-1995): Difference and repetition, becoming
+#
+# Phase 2.2: Process-Individual Worldviews
+# ============================================================================
+
+<http://integral-ethics.org/ontology/dynamism> a owl:Ontology ;
+    rdfs:label "Dynamism Value Hierarchy Ontology" ;
+    dcterms:title "Dynamism: Process Philosophy Values" ;
+    dcterms:description "Comprehensive value ontology for the Dynamism worldview, grounded in process philosophy and the metaphysics of becoming." ;
+    dcterms:created "2026-01-01"^^xsd:date ;
+    dcterms:creator "Integral Ethics Engine - Phase 2.2" ;
+    owl:versionInfo "1.0.0" .
+
+# ============================================================================
+# METAPHYSICAL FOUNDATION
+# ============================================================================
+
+:DynamismMetaphysics a :MetaphysicalFoundation ;
+    rdfs:label "Dynamism Metaphysical Foundation" ;
+    skos:definition "The metaphysical commitment that reality is fundamentally dynamic process, not static substance. Being is becoming." ;
+    :foundationType "becoming" ;
+    :ontologicalPrimacy "process" ;
+    :epistemology "developmental_observation" ;
+    :cluster "process_individual" ;
+    dcterms:source "Heraclitus (Fragment 12): 'You cannot step twice into the same river, for other waters are continually flowing on'" ;
+    dcterms:source "Bergson (1907): Creative Evolution - reality is durée (duration), continuous creation" ;
+    dcterms:source "Whitehead (1929): Process and Reality - actual occasions are fundamental, not enduring substances" ;
+    dcterms:source "Deleuze (1968): Difference and Repetition - being is productive difference, not static identity" ;
+    :keyCommitment "Change is more fundamental than permanence" ;
+    :keyCommitment "Becoming precedes being ontologically" ;
+    :keyCommitment "Static forms are temporary crystallizations of dynamic processes" ;
+    :keyCommitment "Growth and transformation are intrinsically valuable" ;
+    :opposedTo :StaticSubstanceMetaphysics, :Essentialism, :Permanentism ;
+    rdfs:comment "Dynamism grounds value in process: what grows, transforms, and becomes is more real than what merely persists unchanging." .
+
+# ============================================================================
+# TERMINAL VALUES - Intrinsically Valuable Ends
+# ============================================================================
+
+:Growth a :TerminalValue ;
+    rdfs:label "Growth" ;
+    skos:definition "The process of increasing in size, complexity, capacity, or realization of potential. Growth as intrinsic good." ;
+    :groundedIn :DynamismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    dcterms:source "Bergson (1907): Creative Evolution - élan vital as fundamental impulse toward growth and complexification" ;
+    dcterms:source "Whitehead (1938): Modes of Thought - 'The essence of life is to be found in the frustrations of established order'" ;
+    dcterms:source "Piaget (1970): Genetic Epistemology - cognitive development as continuous construction" ;
+    dcterms:source "Vygotsky (1978): Mind in Society - zone of proximal development as growth potential" ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Self-direction: Growth requires autonomous self-directed development. Cannot be imposed from outside without becoming mere change." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Stimulation: Growth thrives on novelty, challenge, excitement. Stagnation opposes growth." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Universalism: Growth of all beings valued, not just self. Evolutionary perspective embraces universal flourishing." ;
+    :manifestsAs :DevelopmentalPotential, :Complexification, :Maturation, :Learning ;
+    :opposedTo :Stagnation, :Atrophy, :Regression, :FixedCapacity ;
+    :empiricalSupport [
+        :study1 "Dweck (2006): Mindset - growth mindset predicts achievement, resilience, learning" ;
+        :study2 "Lerner et al. (2015): Positive youth development - growth as developmental asset across lifespan" ;
+        :study3 "Fredrickson (2001): Broaden-and-build theory - positive emotions fuel psychological growth"
+    ] ;
+    rdfs:comment "Growth is terminal for Dynamism because increase itself is good - not for external ends, but as manifestation of vital creative power inherent in becoming." .
+
+:Transformation a :TerminalValue ;
+    rdfs:label "Transformation" ;
+    skos:definition "Qualitative change in form, structure, or nature. Metamorphosis as fundamental reality." ;
+    :groundedIn :DynamismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    dcterms:source "Heraclitus (Fragment 88): 'It is in changing that things find repose' - rest is in motion itself" ;
+    dcterms:source "Ovid: Metamorphoses - transformation as cosmic principle" ;
+    dcterms:source "Jung (1953): Transformation Symbolism in the Mass - individuation as transformative process" ;
+    dcterms:source "Mezirow (1991): Transformative Dimensions of Adult Learning - perspective transformation" ;
+    dcterms:source "Deleuze & Guattari (1980): A Thousand Plateaus - becoming-other, lines of flight" ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.95 ;
+    :rationale "Stimulation: Transformation requires novelty, daring, excitement. Highest stimulation disposition of any worldview." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Self-direction: Authentic transformation is self-initiated, not imposed. Agency in becoming." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Universalism: Transformation extends to all beings. Evolutionary cosmology values universal becoming." ;
+    :manifestsAs :Metamorphosis, :QualitativeChange, :PhaseTransition, :Emergence ;
+    :opposedTo :StaticIdentity, :Permanence, :UnchangingEssence, :Fossilization ;
+    :empiricalSupport [
+        :study1 "Prigogine (1984): Order Out of Chaos - dissipative structures transform through far-from-equilibrium states" ;
+        :study2 "Kegan (1982): Evolving Self - transformational development through subject-object shifts" ;
+        :study3 "Kauffman (1995): At Home in the Universe - self-organization and emergent order in complex systems"
+    ] ;
+    rdfs:comment "Transformation is terminal because qualitative novelty is intrinsically valuable - not mere quantitative change, but genuine ontological creativity." .
+
+:VitalEnergy a :TerminalValue ;
+    rdfs:label "Vital Energy" ;
+    skos:definition "Intrinsic dynamism, life force, creative power. Élan vital as cosmic principle." ;
+    :groundedIn :DynamismMetaphysics ;
+    :primacy "very_high" ;
+    :salience "high" ;
+    dcterms:source "Bergson (1907): Creative Evolution - élan vital as non-mechanistic life principle" ;
+    dcterms:source "Nietzsche (1883-1885): Thus Spoke Zarathustra - will to power as creative force" ;
+    dcterms:source "Schopenhauer (1818): World as Will and Representation - will as fundamental reality" ;
+    dcterms:source "Spinoza (1677): Ethics - conatus (striving to persist in being)" ;
+    dcterms:source "Whitehead (1929): Process and Reality - creative advance into novelty" ;
+    :realizableAs vn-schwartz:PowerDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Power: Vital energy manifests as influence, potency, efficacy. Dynamism values power as creative capacity." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Achievement: Vital energy realizes itself through accomplishment, demonstration of competence and capacity." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Stimulation: Vital energy thrives on excitement, novelty, challenge. Energy seeks expression." ;
+    :manifestsAs :Vigor, :Potency, :Dynamism, :LifeForce, :CreativePower ;
+    :opposedTo :Inertia, :Passivity, :Enervation, :MechanisticCausation ;
+    :empiricalSupport [
+        :study1 "Ryan & Deci (2000): Self-Determination Theory - intrinsic motivation as manifestation of vital tendency" ;
+        :study2 "Csikszentmihalyi (1990): Flow - optimal experience as energy fully engaged" ;
+        :study3 "Peterson & Seligman (2004): Character Strengths - vitality/zest as core strength across cultures"
+    ] ;
+    rdfs:comment "Vital energy is terminal because dynamism is power - not power-over (domination) but power-to (creative capacity, efficacy, realization)." .
+
+:CreativeBecoming a :TerminalValue ;
+    rdfs:label "Creative Becoming" ;
+    skos:definition "Continuous self-creation, productive difference, ontological novelty. Being as perpetual self-transcendence." ;
+    :groundedIn :DynamismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    dcterms:source "Whitehead (1929): Process and Reality - 'creative advance into novelty' as ultimate metaphysical principle" ;
+    dcterms:source "Bergson (1907): Creative Evolution - 'Life is tendency, and the essence of a tendency is to develop in the form of a sheaf'" ;
+    dcterms:source "Deleuze (1968): Difference and Repetition - productive difference, not derivative sameness" ;
+    dcterms:source "Peirce (1892): Evolutionary Love - creative growth as cosmic agape" ;
+    dcterms:source "Heidegger (1927): Being and Time - authentic existence as projecting possibilities" ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.95 ;
+    :rationale "Self-direction: Creative becoming is self-initiated. Autonomy essential to genuine creativity, not mere reactive change." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.9 ;
+    :rationale "Stimulation: Creativity requires novelty, daring to venture into unknown. Excitement in creation." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.8 ;
+    :rationale "Universalism: Creative becoming extends to cosmos. Whitehead's creative advance is universal process." ;
+    :manifestsAs :Novelty, :Innovation, :Emergence, :SelfTranscendence, :OntologicalCreativity ;
+    :opposedTo :MereRepetition, :Determinism, :Mechanization, :Stasis ;
+    :empiricalSupport [
+        :study1 "Amabile (1996): Creativity in Context - intrinsic motivation essential for creativity" ;
+        :study2 "Simonton (2000): Creative development across lifespan - creativity as emergent, not fixed trait" ;
+        :study3 "Kaufman & Sternberg (2010): Cambridge Handbook of Creativity - creativity involves novelty and value"
+    ] ;
+    rdfs:comment "Creative becoming is terminal because genuine novelty - not recombination of old - is the highest expression of dynamic reality. Creation ex nihilo through becoming." .
+
+# ============================================================================
+# CONSTITUTIVE VALUES - What Constitutes Terminal Values
+# ============================================================================
+
+:DevelopmentalPotential a :ConstitutiveValue ;
+    :constitutes :Growth, :Transformation ;
+    :salience "very_high" ;
+    dcterms:source "Aristotle: Dynamis (potentiality) and energeia (actuality) - but Dynamism reverses priority: potential is real" ;
+    dcterms:source "Vygotsky (1978): Zone of Proximal Development - what one can become with support" ;
+    dcterms:source "Maturana & Varela (1987): Tree of Knowledge - autopoiesis as self-creating potential" ;
+    skos:definition "Latent capacity for growth, transformation, realization. Potential as ontologically real, not mere absence." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.8 ;
+    :rationale "Self-direction: Realizing potential requires autonomous choice of developmental path." ;
+    :manifestsAs :UnrealizedCapacity, :LatentAbility, :DevelopmentalReadiness ;
+    :opposedTo :FixedNature, :StaticCapacity, :Predetermination ;
+    rdfs:comment "Developmental potential constitutes growth because Dynamism sees potential as real - not mere privation, but positive power awaiting actualization." .
+
+:DynamicProcess a :ConstitutiveValue ;
+    :constitutes :VitalEnergy, :CreativeBecoming ;
+    :salience "very_high" ;
+    dcterms:source "Whitehead (1929): Actual occasions as fundamental - process is reality" ;
+    dcterms:source "Bergson (1889): Time and Free Will - durée as continuous becoming" ;
+    skos:definition "Ongoing activity, flux, temporal unfolding. Process as ontologically primary over product." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Stimulation: Process itself is exciting, engaging. Dynamism values doing over having." ;
+    :manifestsAs :Activity, :Flux, :Unfolding, :TemporalFlow ;
+    :opposedTo :StaticState, :Timelessness, :Product, :Endpoint ;
+    rdfs:comment "Dynamic process constitutes vital energy because energy IS process - not substance with properties, but pure activity, pure becoming." .
+
+:LifeForce a :ConstitutiveValue ;
+    :constitutes :VitalEnergy, :Growth ;
+    :salience "high" ;
+    dcterms:source "Bergson (1907): Élan vital - life as creative impulse, not mechanism" ;
+    dcterms:source "Driesch (1908): Entelechy - vitalist principle organizing development" ;
+    dcterms:source "Nietzsche: Will to power as fundamental drive" ;
+    skos:definition "Non-mechanistic principle animating living beings. Vitalism as resistance to reduction." ;
+    :realizableAs vn-schwartz:PowerDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Power: Life force is power - creative capacity, efficacy, ability to effect change." ;
+    :manifestsAs :Vitality, :Animation, :OrganicPower, :SelfOrganization ;
+    :opposedTo :MechanisticCausation, :Passivity, :InertMatter ;
+    rdfs:comment "Life force constitutes vital energy because Dynamism resists mechanistic reduction - life is spontaneity, self-creativity, not clockwork." .
+
+:EvolutionaryImpetus a :ConstitutiveValue ;
+    :constitutes :Transformation, :CreativeBecoming ;
+    :salience "very_high" ;
+    dcterms:source "Bergson (1907): Creative Evolution - evolution as creative, not mechanical" ;
+    dcterms:source "Teilhard de Chardin (1955): Phenomenon of Man - evolution toward Omega Point" ;
+    dcterms:source "Darwin (1859): Origin of Species - but Dynamism emphasizes creativity over competition" ;
+    skos:definition "Drive toward increasing complexity, consciousness, novelty. Evolution as cosmic creative tendency." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Universalism: Evolutionary impulse extends to all beings, whole cosmos. Universal creative advance." ;
+    :manifestsAs :DirectedEvolution, :Complexification, :Emergence, :Orthogenesis ;
+    :opposedTo :RandomDrift, :Devolution, :Entropy, :Stagnation ;
+    rdfs:comment "Evolutionary impetus constitutes transformation because evolution for Dynamism is not random variation but creative tendency toward novelty and complexity." .
+
+# ============================================================================
+# INSTRUMENTAL VALUES - Means to Terminal Values
+# ============================================================================
+
+:Cultivation a :InstrumentalValue ;
+    :instrumentalTo :Growth, :DevelopmentalPotential ;
+    :salience "high" ;
+    dcterms:source "Dewey (1916): Democracy and Education - growth as aim of education" ;
+    dcterms:source "Montessori (1912): Montessori Method - cultivating child's natural development" ;
+    dcterms:source "Rogers (1961): On Becoming a Person - facilitating growth conditions" ;
+    skos:definition "Deliberate fostering of growth, development, potential realization. Creating conditions for flourishing." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Self-direction: Cultivation supports autonomous development, not manipulation or control." ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Benevolence: Cultivation of others is care, nurture. Promoting welfare through growth." ;
+    :manifestsAs :Nurture, :Education, :Training, :Development, :Gardening ;
+    :opposedTo :Neglect, :Suppression, :Stunting, :Pruning ;
+    rdfs:comment "Cultivation is instrumental because it creates conditions for growth - not forcing, but facilitating natural developmental processes." .
+
+:EvolutionaryPressure a :InstrumentalValue ;
+    :instrumentalTo :Transformation, :EvolutionaryImpetus ;
+    :salience "medium" ;
+    dcterms:source "Darwin (1859): Natural selection as evolutionary mechanism" ;
+    dcterms:source "Lamarck (1809): But Dynamism emphasizes active response, not passive adaptation" ;
+    dcterms:source "Lewontin (1983): Organism constructs its niche - reciprocal causation" ;
+    skos:definition "Challenge, adversity, selection that drives transformation. Not deterministic, but creative response to challenge." ;
+    :realizableAs vn-schwartz:StimulationDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Stimulation: Challenge is exciting, engaging. Dynamism values difficulty that spurs growth." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.65 ;
+    :rationale "Achievement: Overcoming evolutionary pressure demonstrates competence, capacity." ;
+    :manifestsAs :Challenge, :Selection, :AdaptivePressure, :EnvironmentalDemand ;
+    :opposedTo :Stagnation, :Comfort, :ProtectionFromChallenge ;
+    rdfs:comment "Evolutionary pressure is instrumental because challenge drives transformation - but Dynamism sees this as creative response, not mechanical adaptation." .
+
+:TransformativePractice a :InstrumentalValue ;
+    :instrumentalTo :Transformation, :CreativeBecoming ;
+    :salience "very_high" ;
+    dcterms:source "Mezirow (1991): Transformative learning through critical reflection" ;
+    dcterms:source "Foucault (1984): Technologies of the self - practices of self-transformation" ;
+    dcterms:source "Hadot (1995): Philosophy as Way of Life - spiritual exercises as transformation" ;
+    dcterms:source "Ericsson et al. (1993): Deliberate practice - structured activity for skill transformation" ;
+    skos:definition "Intentional activities, exercises, disciplines that catalyze transformation. Practice as transformative technology." ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Self-direction: Transformative practice requires autonomous commitment, self-initiated discipline." ;
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Achievement: Transformative practice demonstrates competence through mastery, improvement." ;
+    :manifestsAs :SpiritualExercises, :DeliberatePractice, :DevelopmentalActivity, :Praxis ;
+    :opposedTo :Passivity, :Stagnation, :MereRepetition, :Automaticity ;
+    rdfs:comment "Transformative practice is instrumental because it is method for catalyzing qualitative change - not mere habit, but developmental discipline." .
+
+:DevelopmentalSupport a :InstrumentalValue ;
+    :instrumentalTo :Growth, :DevelopmentalPotential ;
+    :salience "high" ;
+    dcterms:source "Vygotsky (1978): Scaffolding - support enabling zone of proximal development" ;
+    dcterms:source "Bowlby (1969): Attachment theory - secure base for exploration and growth" ;
+    dcterms:source "Noddings (1984): Caring - creating conditions for ethical development" ;
+    skos:definition "Resources, relationships, structures that enable developmental advancement. Support as facilitation, not dependency." ;
+    :realizableAs vn-schwartz:BenevolenceDisposition ;
+    :mapping_salience 0.8 ;
+    :rationale "Benevolence: Developmental support is care for welfare through enabling growth." ;
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.7 ;
+    :rationale "Universalism: Support extends to all developing beings. Justice as developmental opportunity." ;
+    :manifestsAs :Scaffolding, :Mentoring, :Resources, :SafeEnvironment, :SecureBase ;
+    :opposedTo :Abandonment, :Deprivation, :Sabotage, :Dependency ;
+    rdfs:comment "Developmental support is instrumental because it enables growth without controlling it - providing resources and safety for autonomous development." .
+
+# ============================================================================
+# SUBORDINATED VALUES - Devalued in Dynamist Framework
+# ============================================================================
+
+:StaticForm a :SubordinatedValue ;
+    :subordinatedIn :Dynamism ;
+    :salience "very_low" ;
+    dcterms:source "Heraclitus contra Parmenides: Being is becoming, not static unity" ;
+    dcterms:source "Bergson (1907): Creative Evolution - intelligence spatializes, misses durée" ;
+    skos:definition "Fixed structure, unchanging pattern, permanent form. Form as temporary crystallization, not ultimate reality." ;
+    :why_subordinated "Dynamism: Static forms are illusions or temporary stabilizations of underlying process. Change is primary, form derivative." ;
+    :problematic :Rigidity, :Inflexibility, :Ossification, :Fossilization ;
+    :dynamistAttitude "Forms are useful pragmatically but ontologically secondary. Don't reify what is actually process." ;
+    :weakMapping vn-schwartz:TraditionDisposition ;
+    :mapping_salience 0.3 ;
+    :rationale "Tradition preserves static forms from past. Dynamism respects origins but prioritizes creative advance." ;
+    :weakMapping vn-schwartz:ConformityDisposition ;
+    :mapping_salience 0.35 ;
+    :rationale "Conformity enforces static patterns. Dynamism values individual variation as source of novelty." ;
+    rdfs:comment "Static form is subordinated because it mistakes snapshot for reality - like single frame from film, missing motion that is true being." .
+
+:Stagnation a :SubordinatedValue ;
+    :subordinatedIn :Dynamism ;
+    :salience "very_low" ;
+    dcterms:source "Whitehead: 'The essence of life is to be found in the frustrations of established order'" ;
+    dcterms:source "Nietzsche: 'He who cannot obey himself will be commanded' - self-overcoming necessary" ;
+    skos:definition "Cessation of growth, development, transformation. Arrested development, plateau." ;
+    :why_subordinated "Dynamism: Stagnation is failure of vital energy, betrayal of becoming. Life IS growth; stagnation is semi-death." ;
+    :problematic :Complacency, :Plateau, :ArrestedDevelopment, :Inertia ;
+    :dynamistAttitude "Stagnation is ethical failure - not because rest is bad, but because vitality requires continuous transformation. Rest IN motion, not cessation." ;
+    :weakMapping vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.4 ;
+    :rationale "Security can lead to stagnation if it prevents risk-taking necessary for growth. Dynamism accepts uncertainty." ;
+    rdfs:comment "Stagnation is subordinated as the antithesis of vital becoming - not evil per se, but privation of good (growth, transformation)." .
+
+:MereBeing a :SubordinatedValue ;
+    :subordinatedIn :Dynamism ;
+    :salience "low" ;
+    dcterms:source "Heidegger: Dasein is 'being toward death' - existence as project, not substance" ;
+    dcterms:source "Sartre (1943): Being and Nothingness - existence precedes essence" ;
+    skos:definition "Static existence without becoming. Being that simply IS without growing, transforming, creating." ;
+    :why_subordinated "Dynamism: Mere being is abstraction - real being is always becoming. Substance metaphysics is false." ;
+    :problematic :Passivity, :Inertness, :StaticExistence ;
+    :dynamistAttitude "True being is becoming - what merely persists without changing is less real, less valuable than what grows and transforms." ;
+    :weakMapping vn-schwartz:TraditionDisposition ;
+    :mapping_salience 0.25 ;
+    :rationale "Tradition valorizes what has been, not what is becoming. Static reverence for past forms." ;
+    rdfs:comment "Mere being is subordinated because Dynamism reverses substance metaphysics - process is real, 'being' is convenient fiction." .
+
+:FixedEssence a :SubordinatedValue ;
+    :subordinatedIn :Dynamism ;
+    :salience "very_low" ;
+    dcterms:source "Sartre: 'Existence precedes essence' - no fixed human nature" ;
+    dcterms:source "Deleuze: Difference is productive, not derivative of identity" ;
+    dcterms:source "Dewey: 'Every existence is an event' - no enduring substances" ;
+    skos:definition "Unchanging core nature, permanent identity, essential properties independent of process." ;
+    :why_subordinated "Dynamism: Essentialism falsifies reality by abstracting from temporal process. No fixed essences, only developmental trajectories." ;
+    :problematic :Essentialism, :NaturalKinds, :ImmutableNature, :Determinism ;
+    :dynamistAttitude "What appear as essences are statistical regularities in processes. Even 'human nature' evolves." ;
+    :weakMapping vn-schwartz:ConformityDisposition ;
+    :mapping_salience 0.3 ;
+    :rationale "Conformity assumes fixed standards, essential norms. Dynamism sees norms as evolving." ;
+    rdfs:comment "Fixed essence is subordinated because it denies creative becoming - treats identity as given, not achieved through transformation." .
+
+:Permanence a :SubordinatedValue ;
+    :subordinatedIn :Dynamism ;
+    :salience "very_low" ;
+    dcterms:source "Heraclitus (Fragment 91): 'Upon those who step into the same rivers, different and again different waters flow'" ;
+    dcterms:source "Bergson: Permanence is practical construct, not metaphysical reality" ;
+    skos:definition "Enduring sameness, immunity to change, eternal unchangingness." ;
+    :why_subordinated "Dynamism: Permanence is impossible or, if achieved, is death. Life requires impermanence, continuous renewal." ;
+    :problematic :Immutability, :Eternalism, :Timelessness, :Fossilization ;
+    :dynamistAttitude "What seems permanent is slow change. True permanence would be stasis - absence of vitality." ;
+    :weakMapping vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.35 ;
+    :rationale "Security often seeks permanence - stable job, unchanging relationships. Dynamism embraces creative instability." ;
+    rdfs:comment "Permanence is subordinated because change is not accidental to being but constitutive of it. To stop changing is to cease being (fully)." .
+
+# ============================================================================
+# BFO PROCESS MODELING
+# ============================================================================
+
+:GrowthProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    rdfs:label "Growth Process" ;
+    dcterms:source "Piaget (1970): Genetic epistemology - development as process of equilibration" ;
+    dcterms:source "Vygotsky (1978): Development occurs in activity" ;
+    skos:definition "A BFO process of increasing in size, complexity, capacity, or organization over time. Developmental process with directional tendency." ;
+    bfo:0000057 :DevelopingAgent ;  # has_participant
+    bfo:0000057 :DevelopmentalEnvironment ;  # has_participant
+    cco:has_input :DevelopmentalPotential, :Resources, :Challenge ;
+    cco:has_output :IncreasedCapacity, :GreaterComplexity, :Maturation ;
+    :temporal_structure "Extended process with successive stages" ;
+    :directional_tendency "Toward increased complexity, integration, differentiation" ;
+    :requires :Time, :Energy, :Support, :Challenge ;
+    :realizesValue :Growth, :DevelopmentalPotential ;
+    :processPattern [
+        :stage1 "Readiness - potential for growth exists" ;
+        :stage2 "Challenge - encounter with developmental demand" ;
+        :stage3 "Reorganization - accommodating new complexity" ;
+        :stage4 "Integration - stabilizing new level of organization" ;
+        :stage5 "New readiness - potential for further growth"
+    ] ;
+    rdfs:comment "Growth process embodies Dynamism's commitment to becoming - not mere quantitative increase, but qualitative development toward greater complexity." .
+
+:TransformationProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    rdfs:label "Transformation Process" ;
+    dcterms:source "Kuhn (1962): Structure of Scientific Revolutions - paradigm shifts as transformative" ;
+    dcterms:source "Kegan (1982): Evolving Self - subject-object transformations" ;
+    dcterms:source "Mezirow (1991): Transformative learning theory" ;
+    skos:definition "A BFO process of qualitative change in form, structure, or organization. Metamorphosis, not mere modification." ;
+    bfo:0000057 :TransformingAgent ;  # has_participant
+    bfo:0000057 :CatalyzingConditions ;  # has_participant
+    cco:has_input :ExistingForm, :TransformativeChallenge, :CreativeEnergy ;
+    cco:has_output :NewForm, :QualitativeNovelty, :Emergence ;
+    :temporal_structure "Punctuated - periods of stability interrupted by transformative transitions" ;
+    :qualitative_change true ;
+    :irreversibility "Often irreversible - cannot return to exact prior state" ;
+    :emergence "New properties not predictable from components" ;
+    :realizesValue :Transformation, :CreativeBecoming ;
+    :transformationPattern [
+        :phase1 "Crisis - existing form inadequate to demands" ;
+        :phase2 "Destabilization - dissolution of old structure" ;
+        :phase3 "Liminal phase - between forms, creative chaos" ;
+        :phase4 "Emergence - novel form crystallizes" ;
+        :phase5 "Stabilization - new form integrates, consolidates"
+    ] ;
+    rdfs:comment "Transformation process is metamorphosis - not gradual modification but qualitative leap to new form. Caterpillar to butterfly, not bigger caterpillar." .
+
+:CreativeProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # process
+    rdfs:label "Creative Process" ;
+    dcterms:source "Whitehead (1929): Creative advance into novelty" ;
+    dcterms:source "Amabile (1996): Componential theory of creativity" ;
+    dcterms:source "Csikszentmihalyi (1996): Creativity - Flow and the Psychology of Discovery" ;
+    skos:definition "A BFO process of generating genuine novelty, not mere recombination. Ontological creativity producing new actual occasions." ;
+    bfo:0000057 :CreativeAgent ;  # has_participant
+    cco:has_input :VitalEnergy, :Imagination, :Materials ;
+    cco:has_output :NovelEntity, :Emergence, :Innovation ;
+    :requires :Freedom, :Spontaneity, :Play, :Risk ;
+    :novelty_degree "Genuine novelty - not merely new to knower, but objectively new in universe" ;
+    :realizesValue :CreativeBecoming, :VitalEnergy ;
+    :creativePattern [
+        :phase1 "Preparation - gathering materials, knowledge, energy" ;
+        :phase2 "Incubation - subconscious processing, gestation" ;
+        :phase3 "Illumination - creative insight, breakthrough" ;
+        :phase4 "Verification - testing, refining, realizing insight" ;
+        :phase5 "Elaboration - developing, expressing, sharing creation"
+    ] ;
+    rdfs:comment "Creative process for Dynamism is ontological, not merely psychological - each genuine act of creation adds novelty to universe, contributing to cosmic creative advance." .
+
+# ============================================================================
+# BFO QUALITY SUBSTRATES
+# ============================================================================
+
+:VitalityQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    rdfs:label "Vitality Quality" ;
+    dcterms:source "Peterson & Seligman (2004): VIA classification - zest/vitality as character strength" ;
+    skos:definition "A quality of being animated, energetic, alive. Degree of vital energy manifested." ;
+    bfo:0000052 :LivingBeing ;  # inheres_in
+    :measurable_by :EnergyLevel, :Enthusiasm, :Vigor ;
+    :spectrum "From lethargy/enervation to high vitality/zest" ;
+    :manifestations "Physical energy, mental alertness, emotional vibrancy, spiritual aliveness" ;
+    rdfs:comment "Vitality quality inheres in living beings as degree of life force expression - measurable as energy, zest, engagement with life." .
+
+:DevelopmentalStage a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    rdfs:label "Developmental Stage Quality" ;
+    dcterms:source "Piaget: Stages of cognitive development" ;
+    dcterms:source "Erikson: Psychosocial stages" ;
+    dcterms:source "Kohlberg: Stages of moral development" ;
+    skos:definition "A quality characterizing level of development attained. Position in developmental trajectory." ;
+    bfo:0000052 :DevelopingBeing ;  # inheres_in
+    :temporal_dimension "Changes over time through developmental process" ;
+    :qualitative_levels "Distinct stages with different organizational principles" ;
+    :hierarchical_integration "Each stage integrates and transcends prior stages" ;
+    rdfs:comment "Developmental stage quality captures current level of organization - not static trait but dynamic marker in ongoing growth process." .
+
+:TransformationalCapacity a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # quality
+    rdfs:label "Transformational Capacity Quality" ;
+    dcterms:source "Dweck (2006): Growth mindset as belief in transformability" ;
+    dcterms:source "Mezirow (1991): Transformative learning capacity" ;
+    skos:definition "A quality of being capable of transformation, open to metamorphosis. Plasticity, adaptability, creative responsiveness." ;
+    bfo:0000052 :TransformableBeing ;  # inheres_in
+    :measurable_by :Plasticity, :Adaptability, :Openness, :Flexibility ;
+    :impediments :Rigidity, :Fixedness, :Defensiveness, :Crystallization ;
+    :cultivatable "Can be increased through transformative practices, reduced through rigidification" ;
+    rdfs:comment "Transformational capacity is potential for metamorphosis - not mere adaptability but openness to qualitative change in self." .
+
+# ============================================================================
+# INFORMATION CONTENT ENTITIES (ICE)
+# ============================================================================
+
+:DevelopmentalGoal a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # generically dependent continuant (ICE)
+    rdfs:label "Developmental Goal" ;
+    dcterms:source "Deci & Ryan (2000): Goal contents theory - intrinsic vs. extrinsic goals" ;
+    skos:definition "An ICE representing aimed-at developmental state or capacity. Telos of growth process." ;
+    :content_type "Representation of desired developmental outcome" ;
+    :guides :GrowthProcess, :DevelopmentalActivity ;
+    :types "Skill mastery, maturity level, capacity realization, integration achievement" ;
+    :intrinsic_vs_extrinsic "Dynamism values intrinsic developmental goals (growth itself) over extrinsic (growth for external reward)" ;
+    rdfs:comment "Developmental goals direct growth processes - not static endpoints but waypoints in continuous developmental journey." .
+
+:TransformationalPlan a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Transformational Plan" ;
+    dcterms:source "Mezirow (1991): Transformative learning involves forming new action plans" ;
+    dcterms:source "Prochaska & DiClemente (1983): Transtheoretical model - stages of change" ;
+    skos:definition "An ICE representing intended transformative process and methods. Blueprint for metamorphosis." ;
+    :content_type "Specification of transformative practices, stages, supports needed" ;
+    :prescribes :TransformativePractices, :DevelopmentalSupport, :Timing ;
+    :flexible "Must adapt to emergent dynamics of transformation - not rigid blueprint" ;
+    :examples "Spiritual practice regimen, therapeutic treatment plan, educational curriculum" ;
+    rdfs:comment "Transformational plans guide metamorphosis while remaining open to creative emergence - scaffolding, not deterministic program." .
+
+:GrowthNarrative a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE
+    rdfs:label "Growth Narrative" ;
+    dcterms:source "McAdams (1993): Stories We Live By - narrative identity" ;
+    dcterms:source "Bruner (1990): Acts of Meaning - narrative mode of thought" ;
+    skos:definition "An ICE representing developmental trajectory as story. Narrative of becoming." ;
+    :content_type "Story of growth, transformation, development over time" ;
+    :structure "Has beginning (starting point), middle (developmental journey), open ending (continuing growth)" ;
+    :identity_constituting "Growth narratives constitute developmental identity - who one is becoming" ;
+    :revisable "Continuously revised as development proceeds - reinterpreting past from new developmental stage" ;
+    rdfs:comment "Growth narratives give meaning to developmental process - not objective chronicle but interpretive story of becoming." .
+
+# ============================================================================
+# VALUE HIERARCHIES AND WORKED SCENARIOS
+# ============================================================================
+
+:DynamismValueHierarchy a :ValueHierarchy ;
+    rdfs:label "Dynamism Value Hierarchy" ;
+    :worldview :Dynamism ;
+    :metaphysicalFoundation :DynamismMetaphysics ;
+    :terminalValues ( :Growth :Transformation :VitalEnergy :CreativeBecoming ) ;
+    :constitutiveValues ( :DevelopmentalPotential :DynamicProcess :LifeForce :EvolutionaryImpetus ) ;
+    :instrumentalValues ( :Cultivation :EvolutionaryPressure :TransformativePractice :DevelopmentalSupport ) ;
+    :subordinatedValues ( :StaticForm :Stagnation :MereBeing :FixedEssence :Permanence ) ;
+    :cluster "Process-Individual" ;
+    :distinctionFrom_MaterialEmpiricalCluster "Material-Empirical values static being, outcomes, facts. Dynamism values becoming, processes, transformation." ;
+    :distinctionFrom_DepthSpiritualCluster "Depth-Spiritual values soul, spirit, transcendence. Dynamism values immanent creative advance, this-worldly becoming." ;
+    rdfs:comment "Dynamism hierarchy prioritizes process over product, becoming over being, growth over stability, transformation over persistence." .
+
+# Scenario 1: Career Decision
+:CareerChangeScenario a :WorkedScenario ;
+    rdfs:label "Career Change: Dynamist Evaluation" ;
+    :scenario_description "Agent has stable, well-paying job but feels stagnant. Considering risky career change to field allowing more growth." ;
+    :worldview_perspective :Dynamism ;
+    :values_at_stake ( :Growth :Transformation :Stagnation :Security ) ;
+    :dynamist_analysis """
+From Dynamism perspective:
+- Current situation: Stagnation is serious ethical problem, not mere dissatisfaction. Vital energy wasted.
+- Terminal value Growth: Career change valued if it enables development of new capacities, learning, expansion.
+- Terminal value Transformation: Qualitative change in work life intrinsically valuable - metamorphosis of professional identity.
+- Subordinated value Stagnation: Remaining in stagnant job is ethical failing - betrays becoming.
+- Material security: Important instrumentally but subordinate to growth. Risk acceptable if serving developmental trajectory.
+- Verdict: Change is ethically required (or strongly recommended) IF new career offers genuine developmental potential.
+- Cautions: Ensure change serves growth, not mere novelty. Transformation should be developmental, not impulsive flight.
+""" ;
+    :judgment "Change careers to enable growth - stagnation is ethically intolerable" ;
+    :confidence 0.85 ;
+    rdfs:comment "Dynamism strongly favors career change because stagnation violates fundamental value of growth - material security subordinate to developmental trajectory." .
+
+# Scenario 2: Educational Approach
+:EducationalPhilosophyScenario a :WorkedScenario ;
+    rdfs:label "Education: Dynamist vs. Traditional" ;
+    :scenario_description "Choosing between traditional education (fixed curriculum, standard outcomes) vs. developmental education (process-oriented, individual growth trajectories)." ;
+    :worldview_perspective :Dynamism ;
+    :values_at_stake ( :Growth :DevelopmentalPotential :Cultivation :FixedEssence :StandardOutcomes ) ;
+    :dynamist_analysis """
+From Dynamism perspective:
+- Traditional education problematic: Treats students as having fixed essences to fill with content. Static view of knowledge and person.
+- Developmental education aligned: Education IS growth process itself, not preparation for future. Learning as becoming.
+- Terminal value Growth: Education's purpose is continuous development, not mastery of fixed canon.
+- Constitutive value DevelopmentalPotential: Students have unique developmental trajectories - one-size-fits-all violates this.
+- Instrumental value Cultivation: Teacher as gardener facilitating organic growth, not sculptor imposing form.
+- Subordinated value Fixed Essence: Traditional education assumes fixed 'educated person' ideal - Dynamism sees education as lifelong transformation.
+- Process over product: Value in learning process itself, not just outcomes or credentials.
+- Verdict: Favor progressive, developmental education respecting individual growth trajectories.
+""" ;
+    :judgment "Developmental education ethically superior - respects becoming" ;
+    :confidence 0.9 ;
+    rdfs:comment "Dynamism aligns with progressive education (Dewey, Montessori) - education as growth, not filling vessels. Process-oriented, respecting developmental uniqueness." .
+
+# Scenario 3: Personal Development Decision
+:SelfImprovementScenario a :WorkedScenario ;
+    rdfs:label "Self-Improvement: Growth or Narcissism?" ;
+    :scenario_description "Agent contemplating intensive personal development work (therapy, coaching, workshops). Concerned it might be self-indulgent given other responsibilities." ;
+    :worldview_perspective :Dynamism ;
+    :values_at_stake ( :Growth :CreativeBecoming :SelfActualization :Duty :Benevolence ) ;
+    :dynamist_analysis """
+From Dynamism perspective:
+- Personal development IS moral requirement, not self-indulgence. Growth is terminal value.
+- Terminal value Growth: Developing one's capacities is intrinsically valuable, not merely instrumentally good.
+- Terminal value CreativeBecoming: Self-creation through transformative practice is highest form of becoming.
+- Concern about neglecting others: Legitimate, but Dynamism sees developed person as more capable of contributing.
+- Benevolence: Cultivation of self enables cultivation of others. Can't pour from empty cup.
+- Instrumental value TransformativePractice: Therapy, coaching, workshops are legitimate transformative technologies.
+- Caution: Ensure practices genuinely transformative, not mere self-absorption or consumerism.
+- Balance: Personal growth should not completely eclipse care for others, but it's not either/or. Synergy between self-development and service.
+- Verdict: Personal development work is ethically valuable, not self-indulgent, when genuinely serving growth.
+""" ;
+    :judgment "Personal development is ethical imperative - growth benefits all" ;
+    :confidence 0.8 ;
+    rdfs:comment "Dynamism values personal development as moral requirement - not narcissism but fulfillment of developmental duty to become fully alive, realize potential." .
+
+# ============================================================================
+# INTEGRATION WITH VALUENET
+# ============================================================================
+
+# Summary of ValueNet Mappings (detailed in worldview-valuenet-mappings.ttl):
+# - Self-Direction: 0.9 (very high) - Growth, creative becoming require autonomy
+# - Stimulation: 0.95 (highest of any worldview) - Transformation values novelty, excitement, challenge
+# - Universalism: 0.75 (high) - Evolutionary perspective extends to all beings
+# - Achievement: 0.7 (medium-high) - Growth manifests as accomplishment, competence
+# - Benevolence: 0.65 (medium) - Cultivation of others' growth
+# - Power: 0.75 (medium-high) - Vital energy as creative capacity
+# - Hedonism: 0.6 (medium) - Process itself is pleasurable (flow states)
+# - Security: 0.4 (low) - Growth requires risk, creative instability
+# - Conformity: 0.35 (low) - Individual variation source of novelty
+# - Tradition: 0.3 (low) - Respect origins but prioritize creative advance
+
+# ============================================================================
+# CLUSTER RELATIONSHIPS
+# ============================================================================
+
+:ProcessIndividualCluster a :WorldviewCluster ;
+    rdfs:label "Process-Individual Cluster" ;
+    :includes ( :Dynamism :Monadism :Idealism :Rationalism ) ;
+    :shared_commitment "Reality is not static substance but dynamic process/activity" ;
+    :shared_commitment "Individual persons/perspectives are metaphysically significant" ;
+    :contrasts_with :MaterialEmpiricalCluster "Material-Empirical focuses on what IS (substances, facts). Process-Individual focuses on what BECOMES (processes, subjects)." ;
+    :contrasts_with :DepthSpiritualCluster "Depth-Spiritual emphasizes depth, interiority, transcendence. Process-Individual emphasizes temporal development, immanent creativity." ;
+    rdfs:comment "Process-Individual cluster shares process/becoming ontology and value for individual development, perspectives, agency." .
+
+:DynamismWithinCluster a :IntraClusterRelation ;
+    :worldview :Dynamism ;
+    :cluster :ProcessIndividualCluster ;
+    :distinctive_emphasis "Temporality, change, growth, vital energy - most explicitly process-oriented" ;
+    :relation_to_Monadism "Both value individual development. Monadism emphasizes uniqueness, Dynamism emphasizes growth trajectory." ;
+    :relation_to_Idealism "Both see process as real. Idealism emphasizes consciousness development, Dynamism emphasizes broader becoming (including non-conscious)." ;
+    :relation_to_Rationalism "Both value development toward greater complexity. Rationalism emphasizes logical coherence, Dynamism emphasizes creative novelty." ;
+    rdfs:comment "Dynamism is most explicitly process-oriented in cluster - makes temporal becoming primary metaphysical category." .
+
+# ============================================================================
+# END OF DYNAMISM VALUE ONTOLOGY
+# ============================================================================
+
+# This ontology provides comprehensive value hierarchy for Dynamism worldview,
+# grounded in process philosophy from Heraclitus through Bergson, Whitehead, Deleuze.
+# Integrated with BFO 2020 for process modeling and ValueNet for disposition mappings.
+# Phase 2.2 deliverable for Integral Ethics Engine.

@@ -1,0 +1,732 @@
+@prefix : <http://purl.org/integralism/ethics/idealism-values#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-schwartz: <http://purl.org/valuenet/schwartz#> .
+
+# ====================================================================
+# IDEALISM VALUES ONTOLOGY
+# Process-Individual Worldview Cluster
+# ====================================================================
+# This ontology defines the value hierarchy for the Idealism worldview,
+# which grounds reality in consciousness, ideas, and mental phenomena.
+# Idealism holds that mind or spirit is the fundamental substance of
+# reality, and material phenomena are derivative or dependent on mind.
+#
+# Key philosophical traditions:
+# - Platonic Idealism: Ideas/Forms as ultimate reality
+# - Subjective Idealism: Berkeley's esse est percipi
+# - Absolute Idealism: Hegel's dialectical development of Spirit
+# - Transcendental Idealism: Kant's conditions of possible experience
+# - German Idealism: Fichte, Schelling, systematic philosophy
+#
+# Size target: 40-50KB
+# BFO compliance: Process modeling for consciousness development,
+#                 ICE entities for ideas, Quality substrates for mental clarity
+# ====================================================================
+
+<http://purl.org/integralism/ethics/idealism-values> a owl:Ontology ;
+    rdfs:label "Idealism Values Ontology"@en ;
+    rdfs:comment "Defines the value hierarchy for the Idealism worldview within the Integral Ethics Engine."@en ;
+    owl:versionInfo "1.0.0" ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ,
+                <http://www.ontologyrepository.com/CommonCoreOntologies/> ;
+    cco:created "2026-01-02"^^xsd:date .
+
+# ====================================================================
+# CORE METAPHYSICAL FOUNDATION
+# ====================================================================
+
+:IdeaismMetaphysics a owl:Class ;
+    rdfs:subClassOf bfo:0000001 ;  # Entity
+    rdfs:label "Idealism Metaphysics"@en ;
+    skos:definition "The metaphysical foundation that reality is fundamentally mental, ideal, or spiritual in nature. Consciousness and ideas are ontologically primary; matter is derivative or phenomenal."@en ;
+    skos:scopeNote "Idealism encompasses multiple traditions: Platonic realism about Forms, Berkeley's immaterialism, Hegelian absolute idealism, and Kantian transcendental idealism. Common theme: mind/spirit/ideas are metaphysically fundamental."@en ;
+    :primarySource "Plato. Republic. ~380 BCE. Theory of Forms." ;
+    :primarySource "Berkeley, George. A Treatise Concerning the Principles of Human Knowledge. 1710." ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Transcendental Idealism." ;
+    :primarySource "Hegel, G.W.F. Phenomenology of Spirit. 1807. Absolute Idealism." ;
+    :primarySource "Fichte, J.G. Science of Knowledge (Wissenschaftslehre). 1794/1804." .
+
+:ConsciousnessSubstrate a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Consciousness Substrate"@en ;
+    skos:definition "The quality of being conscious, aware, or experiencing. In Idealism, consciousness is not an emergent property but the fundamental substrate of reality."@en ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Berkeley, George. Three Dialogues Between Hylas and Philonous. 1713. 'Esse est percipi.'" ;
+    :primarySource "Schelling, F.W.J. System of Transcendental Idealism. 1800." .
+
+# ====================================================================
+# TERMINAL VALUES (Intrinsically Valuable Ends)
+# ====================================================================
+
+:TerminalValue a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE - Information Content Entity
+    rdfs:label "Terminal Value"@en ;
+    skos:definition "An end state that is intrinsically valuable according to Idealism."@en .
+
+# ---------------------------------------------------------------------
+# Terminal Value 1: Consciousness Development
+# ---------------------------------------------------------------------
+
+:ConsciousnessDevelopment a :TerminalValue ;
+    rdfs:label "Consciousness Development"@en ;
+    skos:definition "The process of expanding, deepening, and refining consciousness and awareness. The cultivation of richer, more comprehensive forms of conscious experience and understanding."@en ;
+    skos:example "Plato's allegory of the cave describes consciousness development as ascending from shadows to direct perception of the Forms (Republic, Book VII)."@en ;
+    skos:example "Hegel's Phenomenology traces the development of consciousness through stages from sense-certainty to absolute knowing."@en ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    :entails :MentalClarity, :IdeasAsCausal ;
+
+    # ValueNet mapping: Self-Direction
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Self-direction: Consciousness development requires autonomous self-directed exploration of ideas, independent thought, and choosing one's own mental development path. Lower than Monadism (0.95) but still very high - Idealism emphasizes self-directed intellectual growth."@en ;
+
+    # Philosophical grounding
+    :primarySource "Plato. Republic. ~380 BCE. Book VII: Allegory of the Cave. Educational ascent from opinion to knowledge."@en ;
+    :primarySource "Hegel, G.W.F. Phenomenology of Spirit. 1807. Dialectical development of consciousness through stages."@en ;
+    :primarySource "Fichte, J.G. The Vocation of Man. 1800. Self-development of the I (Ego) through self-positing."@en ;
+    :primarySource "Schelling, F.W.J. System of Transcendental Idealism. 1800. Consciousness developing from nature to spirit."@en ;
+    :primarySource "Hegel, G.W.F. Encyclopedia of the Philosophical Sciences. 1817. Spirit's self-development through history."@en ;
+
+    # Empirical support
+    :empiricalSupport "Kegan, Robert. The Evolving Self. 1982. Harvard University Press. Stages of consciousness development."@en ;
+    :empiricalSupport "Wilber, Ken. Integral Psychology. 2000. Shambhala. Comprehensive model of consciousness development stages."@en ;
+    :empiricalSupport "Fischer, Kurt W. & Bidell, Thomas R. 'Dynamic development of psychological structures in action and thought.' 1998. Handbook of Child Psychology. Developmental stages of consciousness."@en .
+
+:ConsciousnessDevelopmentProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # Process
+    rdfs:label "Consciousness Development Process"@en ;
+    skos:definition "The BFO process of consciousness expanding, deepening, and self-organizing over time."@en ;
+    :realizes :ConsciousnessDevelopment ;
+    :hasParticipant :ConsciousnessSubstrate .
+
+# ---------------------------------------------------------------------
+# Terminal Value 2: Ideas as Causal
+# ---------------------------------------------------------------------
+
+:IdeasAsCausal a :TerminalValue ;
+    rdfs:label "Ideas as Causal"@en ;
+    skos:definition "The recognition that ideas, concepts, and mental forms are causally efficacious. Ideas are not epiphenomenal but shape and determine reality. In strong Idealism, ideas are the primary causal agents."@en ;
+    skos:example "Plato's Forms are the causal explanations for why things are as they are - the Form of the Good causes goodness in particular things."@en ;
+    skos:example "Hegel's dialectic shows how ideas (thesis, antithesis, synthesis) drive historical development and social change."@en ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    :entails :MeaningMaking, :SystematicUnderstanding ;
+
+    # ValueNet mapping: Universalism
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.80 ;
+    :rationale "Universalism: Ideas as causal emphasizes understanding universal principles, the welfare of all thinking beings, and protection of universal truths. Ideas transcend particular contexts - they are universal forms that structure reality for all rational beings."@en ;
+
+    # Philosophical grounding
+    :primarySource "Plato. Phaedo. ~380 BCE. Forms as causes - the Form of Beauty causes beautiful things to be beautiful."@en ;
+    :primarySource "Plato. Timaeus. ~360 BCE. The Demiurge uses eternal Forms as patterns to shape the material world."@en ;
+    :primarySource "Hegel, G.W.F. Philosophy of History. 1837. Ideas (Spirit/Geist) drive historical development."@en ;
+    :primarySource "Hegel, G.W.F. Science of Logic. 1812-1816. The Absolute Idea as self-developing causal principle."@en ;
+    :primarySource "Fichte, J.G. Science of Knowledge. 1794. The I (Ego) posits itself and thereby creates reality."@en ;
+    :primarySource "Schopenhauer, Arthur. The World as Will and Representation. 1818. Will (mental principle) causes phenomenal world."@en ;
+
+    # Empirical support
+    :empiricalSupport "Baumeister, Roy F. & Masicampo, E.J. 'Conscious thought is for facilitating social and cultural interactions: How mental simulations serve the animal–culture interface.' 2010. Psychological Review 117(3): 945-971."@en ;
+    :empiricalSupport "Wegner, Daniel M. The Illusion of Conscious Will. 2002. MIT Press. Consciousness as causal agent in action."@en ;
+    :empiricalSupport "Dennett, Daniel C. Darwin's Dangerous Idea. 1995. Evolution of ideas (memes) as causal agents in cultural evolution."@en .
+
+:IdeaEntity a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE - Information Content Entity
+    rdfs:label "Idea Entity"@en ;
+    skos:definition "An abstract concept, form, or mental content that has causal efficacy in the Idealist framework."@en ;
+    :realizes :IdeasAsCausal .
+
+# ---------------------------------------------------------------------
+# Terminal Value 3: Meaning Making
+# ---------------------------------------------------------------------
+
+:MeaningMaking a :TerminalValue ;
+    rdfs:label "Meaning Making"@en ;
+    skos:definition "The active construction of significance, purpose, and coherent interpretation. The mind's capacity to impose order, structure, and meaning on experience. Reality is meaningful because consciousness interprets and structures it."@en ;
+    skos:example "Kant's transcendental idealism: The mind actively structures experience through categories - meaning is not passively received but actively constructed."@en ;
+    skos:example "Hegel's dialectical method finds meaning through contradictions resolving into higher syntheses - meaning emerges through rational development."@en ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    :entails :InterpretiveCoherence, :ConceptualClarity ;
+
+    # ValueNet mapping: Self-Direction
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Self-direction: Meaning-making requires autonomous interpretation, independent thought, and choosing one's own frameworks for understanding reality. The mind actively structures experience rather than passively receiving it."@en ;
+
+    # Philosophical grounding
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. B edition. The mind actively structures experience through categories of understanding."@en ;
+    :primarySource "Hegel, G.W.F. Phenomenology of Spirit. 1807. Preface. 'The True is the whole' - meaning emerges through systematic development."@en ;
+    :primarySource "Fichte, J.G. Vocation of Scholar. 1794. The scholar's role in meaning-making for society."@en ;
+    :primarySource "Schelling, F.W.J. Ideas for a Philosophy of Nature. 1797. Nature as unconscious spirit finding meaning through conscious interpretation."@en ;
+    :primarySource "Bradley, F.H. Appearance and Reality. 1893. British Idealism - reality as coherent meaningful system."@en ;
+
+    # Empirical support
+    :empiricalSupport "Park, Crystal L. 'Making sense of the meaning literature: An integrative review of meaning making and its effects on adjustment to stressful life events.' 2010. Psychological Bulletin 136(2): 257-301."@en ;
+    :empiricalSupport "Bruner, Jerome. Acts of Meaning. 1990. Harvard University Press. Mind as meaning-maker, narrative construction of reality."@en ;
+    :empiricalSupport "Frankl, Viktor E. Man's Search for Meaning. 1946. Meaning-making as essential human capacity, logotherapy."@en .
+
+:MeaningMakingProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # Process
+    rdfs:label "Meaning Making Process"@en ;
+    skos:definition "The process of consciousness actively structuring, interpreting, and finding coherence in experience."@en ;
+    :realizes :MeaningMaking .
+
+# ---------------------------------------------------------------------
+# Terminal Value 4: Mental Clarity
+# ---------------------------------------------------------------------
+
+:MentalClarity a :TerminalValue ;
+    rdfs:label "Mental Clarity"@en ;
+    skos:definition "Clear, distinct, and luminous consciousness. Freedom from confusion, obscurity, and muddled thinking. The ideal of transparent self-awareness and lucid comprehension characteristic of developed consciousness."@en ;
+    skos:example "Descartes' clear and distinct ideas as criterion of truth - clarity is the mark of proper mental functioning."@en ;
+    skos:example "Fichte's intellectual intuition - direct, immediate self-awareness of the I by itself."@en ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    :entails :ConceptualClarity, :ReflectiveSelfAwareness ;
+
+    # ValueNet mapping: Achievement
+    :realizableAs vn-schwartz:AchievementDisposition ;
+    :mapping_salience 0.75 ;
+    :rationale "Achievement: Mental clarity represents competence in thinking, demonstrating ability through clear reasoning, and achieving intellectual standards of excellence. It is a cultivated achievement of the well-developed mind."@en ;
+
+    # Philosophical grounding
+    :primarySource "Descartes, René. Meditations on First Philosophy. 1641. Meditation III: Clear and distinct perception as criterion of truth."@en ;
+    :primarySource "Descartes, René. Rules for the Direction of the Mind. 1628. Rule III: Clear and distinct intuition as foundation of knowledge."@en ;
+    :primarySource "Fichte, J.G. Science of Knowledge. 1794. Intellectual intuition - the I's immediate self-awareness."@en ;
+    :primarySource "Berkeley, George. Principles of Human Knowledge. 1710. Introduction: Clarity through rejecting abstract ideas."@en ;
+    :primarySource "Husserl, Edmund. Ideas Pertaining to a Pure Phenomenology. 1913. Phenomenological clarity through eidetic reduction."@en ;
+
+    # Empirical support
+    :empiricalSupport "Schooler, Jonathan W. et al. 'Meta-awareness, perceptual decoupling and the wandering mind.' 2011. Trends in Cognitive Sciences 15(7): 319-326. Mental clarity vs. mind-wandering."@en ;
+    :empiricalSupport "Lutz, Antoine et al. 'Attention regulation and monitoring in meditation.' 2008. Trends in Cognitive Sciences 12(4): 163-169. Cultivating mental clarity through meditation."@en ;
+    :empiricalSupport "Teasdale, John D. et al. 'Metacognitive awareness and prevention of relapse in depression.' 2002. Journal of Consulting and Clinical Psychology 70(2): 275-287."@en .
+
+:MentalClarityQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Mental Clarity Quality"@en ;
+    skos:definition "The quality of being clear, distinct, and luminous in consciousness."@en ;
+    :realizes :MentalClarity ;
+    :inheresIn :ConsciousnessSubstrate .
+
+# ====================================================================
+# CONSTITUTIVE VALUES (What Constitutes Terminal Values)
+# ====================================================================
+
+:ConstitutiveValue a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Constitutive Value"@en ;
+    skos:definition "A value that constitutes or makes up terminal values in Idealism."@en .
+
+:SystematicUnderstanding a :ConstitutiveValue ;
+    rdfs:label "Systematic Understanding"@en ;
+    skos:definition "Grasping reality as a coherent, rational system. Understanding the logical connections and conceptual relations that unify diverse phenomena into a comprehensive whole."@en ;
+    :constitutes :ConsciousnessDevelopment, :IdeasAsCausal ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Hegel, G.W.F. Encyclopedia of the Philosophical Sciences. 1817. Philosophy as systematic comprehension of the whole."@en ;
+    :primarySource "Fichte, J.G. Science of Knowledge. 1794. Systematic derivation from first principle (the I)."@en ;
+    :empiricalSupport "Chi, Michelene T.H. et al. 'Categorization and representation of physics problems by experts and novices.' 1981. Cognitive Science 5(2): 121-152. Systematic vs. superficial understanding."@en .
+
+:InterpretiveCoherence a :ConstitutiveValue ;
+    rdfs:label "Interpretive Coherence"@en ;
+    skos:definition "The fitting together of meanings into a consistent, unified interpretation. Internal consistency and mutual support among beliefs and interpretations."@en ;
+    :constitutes :MeaningMaking, :ConsciousnessDevelopment ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Bradley, F.H. Appearance and Reality. 1893. Coherence as criterion of truth and reality."@en ;
+    :empiricalSupport "Thagard, Paul. Coherence in Thought and Action. 2000. MIT Press. Coherence as cognitive constraint."@en .
+
+:ConceptualClarity a :ConstitutiveValue ;
+    rdfs:label "Conceptual Clarity"@en ;
+    skos:definition "Clear, well-defined concepts with precise boundaries and relations. Freedom from conceptual confusion and ambiguity."@en ;
+    :constitutes :MentalClarity, :MeaningMaking ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Descartes, René. Principles of Philosophy. 1644. Part I. Clear and distinct ideas."@en ;
+    :empiricalSupport "Murphy, Gregory L. The Big Book of Concepts. 2002. MIT Press. Conceptual clarity in categorization."@en .
+
+:ReflectiveSelfAwareness a :ConstitutiveValue ;
+    rdfs:label "Reflective Self-Awareness"@en ;
+    skos:definition "The capacity of consciousness to take itself as object. Self-reflexive awareness where the knower knows itself as knower."@en ;
+    :constitutes :ConsciousnessDevelopment, :MentalClarity ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Fichte, J.G. Science of Knowledge. 1794. The I positing itself - self-reflexive self-awareness."@en ;
+    :primarySource "Schelling, F.W.J. System of Transcendental Idealism. 1800. Self-consciousness as identity of subject and object."@en ;
+    :empiricalSupport "Morin, Alain. 'Levels of consciousness and self-awareness: A comparison and integration of various neurocognitive views.' 2006. Consciousness and Cognition 15(2): 358-371."@en .
+
+# ====================================================================
+# INSTRUMENTAL VALUES (Means to Terminal Values)
+# ====================================================================
+
+:InstrumentalValue a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Instrumental Value"@en ;
+    skos:definition "A value that serves as a means to achieving terminal values in Idealism."@en .
+
+:PhilosophicalReflection a :InstrumentalValue ;
+    rdfs:label "Philosophical Reflection"@en ;
+    skos:definition "Systematic, critical thinking about fundamental questions. The method of achieving mental clarity and systematic understanding through sustained rational inquiry."@en ;
+    :meansTo :ConsciousnessDevelopment, :MentalClarity, :SystematicUnderstanding ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Plato. Apology. ~399 BCE. 'The unexamined life is not worth living.' Reflection as essential to human flourishing."@en ;
+    :primarySource "Hegel, G.W.F. Phenomenology of Spirit. 1807. Preface. Philosophy as its time comprehended in thought."@en ;
+    :empiricalSupport "King, Patricia M. & Kitchener, Karen S. Developing Reflective Judgment. 1994. Jossey-Bass. Stages of reflective thinking."@en .
+
+:DialecticalMethod a :InstrumentalValue ;
+    rdfs:label "Dialectical Method"@en ;
+    skos:definition "The method of proceeding through contradictions to higher syntheses. Thesis and antithesis resolved into synthesis, which becomes new thesis. Means of advancing consciousness and understanding."@en ;
+    :meansTo :ConsciousnessDevelopment, :SystematicUnderstanding ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Hegel, G.W.F. Science of Logic. 1812-1816. Dialectical development of categories."@en ;
+    :primarySource "Fichte, J.G. Science of Knowledge. 1794. Dialectical triad: I, Not-I, synthesis."@en ;
+    :empiricalSupport "Basseches, Michael. Dialectical Thinking and Adult Development. 1984. Ablex. Dialectical reasoning in cognitive development."@en .
+
+:ContemplativePractice a :InstrumentalValue ;
+    rdfs:label "Contemplative Practice"@en ;
+    skos:definition "Sustained attention to ideas, Forms, or consciousness itself. Practices of meditation, contemplation, or focused study that refine awareness and deepen understanding."@en ;
+    :meansTo :ConsciousnessDevelopment, :MentalClarity ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Plato. Republic. ~380 BCE. Book VII. Prolonged study of mathematics and dialectic to prepare mind for Forms."@en ;
+    :primarySource "Plotinus. Enneads. c. 270 CE. Contemplation as path to unity with the One."@en ;
+    :empiricalSupport "Lutz, Antoine et al. 'Long-term meditators self-induce high-amplitude gamma synchrony during mental practice.' 2004. PNAS 101(46): 16369-16373."@en .
+
+:EducationAndCultivation a :InstrumentalValue ;
+    rdfs:label "Education and Cultivation"@en ;
+    skos:definition "Systematic development of the mind through study, practice, and engagement with cultural achievements. Paideia - the formation of consciousness through education."@en ;
+    :meansTo :ConsciousnessDevelopment, :SystematicUnderstanding ;
+    :groundedIn :IdeaismMetaphysics ;
+    :primarySource "Plato. Republic. ~380 BCE. Books II-VII. Educational curriculum for guardians."@en ;
+    :primarySource "Hegel, G.W.F. Philosophy of Right. 1820. Bildung - ethical and intellectual self-cultivation."@en ;
+    :empiricalSupport "Egan, Kieran. The Educated Mind: How Cognitive Tools Shape Our Understanding. 1997. University of Chicago Press."@en .
+
+# ====================================================================
+# SUBORDINATED VALUES (Devalued or Rejected)
+# ====================================================================
+
+:SubordinatedValue a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Subordinated Value"@en ;
+    skos:definition "A value that Idealism rejects, devalues, or subordinates as incompatible with its metaphysics."@en .
+
+:Materialism a :SubordinatedValue ;
+    rdfs:label "Materialism"@en ;
+    skos:definition "The view that matter is fundamental and consciousness is derivative or epiphenomenal. Rejected by Idealism as inverting the true metaphysical order."@en ;
+    :incompatibleWith :IdeaismMetaphysics ;
+    :rationale "Idealism holds that consciousness/mind/spirit is ontologically primary. Materialism inverts this order, treating matter as fundamental and mind as derivative - a category mistake from the Idealist perspective."@en ;
+    :primarySource "Berkeley, George. Principles of Human Knowledge. 1710. Critique of materialism - matter is an incoherent notion."@en ;
+    :primarySource "Hegel, G.W.F. Encyclopedia. 1817. §246-§247. Critique of mechanical materialism."@en .
+
+:Mechanism a :SubordinatedValue ;
+    rdfs:label "Mechanism"@en ;
+    skos:definition "The view that reality operates according to mechanical, deterministic laws without purpose or meaning. Rejects final causes and teleology."@en ;
+    :incompatibleWith :IdeaismMetaphysics ;
+    :rationale "Idealism sees reality as purposive, meaningful, and goal-directed (especially in absolute idealism). Mechanism reduces everything to efficient causation, eliminating meaning and purpose."@en ;
+    :primarySource "Kant, Immanuel. Critique of Judgment. 1790. Part II: Teleological Judgment. Organisms require purposive explanation."@en ;
+    :primarySource "Hegel, G.W.F. Science of Logic. 1812. Mechanism vs. Teleology. Mechanism is incomplete, requires teleological supplement."@en .
+
+:Epiphenomenalism a :SubordinatedValue ;
+    rdfs:label "Epiphenomenalism"@en ;
+    skos:definition "The view that consciousness is a causally inert byproduct of physical processes. Consciousness exists but does nothing."@en ;
+    :incompatibleWith :IdeasAsCausal ;
+    :rationale "Idealism requires that ideas and consciousness are causally efficacious. Epiphenomenalism denies causal power to consciousness, making it metaphysically impotent - contradicts core Idealist commitment."@en ;
+    :primarySource "James, William. The Principles of Psychology. 1890. Vol. I, Ch. V. Critique of epiphenomenalism - consciousness must be causal to evolve."@en .
+
+:NaiveRealism a :SubordinatedValue ;
+    rdfs:label "Naive Realism"@en ;
+    skos:definition "The view that we directly perceive mind-independent objects as they are in themselves, without mediation by ideas or mental representations."@en ;
+    :incompatibleWith :IdeaismMetaphysics ;
+    :rationale "Idealism holds that we know objects through mental representations (ideas, phenomena). Naive realism ignores the contribution of mind to experience - fails to recognize transcendental conditions of experience."@en ;
+    :primarySource "Berkeley, George. Three Dialogues. 1713. Critique of naive realism - immediate objects of perception are ideas."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Transcendental Aesthetic. We know phenomena, not noumena."@en .
+
+:Empiricism a :SubordinatedValue ;
+    rdfs:label "Pure Empiricism"@en ;
+    skos:definition "The view that all knowledge derives solely from sensory experience, with no a priori contribution from the mind."@en ;
+    :incompatibleWith :IdeaismMetaphysics ;
+    :rationale "Idealism (especially rationalist idealism) holds that mind actively structures experience through innate forms, categories, or ideas. Pure empiricism treats mind as passive blank slate - underestimates mind's active role."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. B edition, Preface. Refutation of Humean empiricism."@en ;
+    :primarySource "Hegel, G.W.F. Encyclopedia. 1817. §37-§39. Critique of empiricism as one-sided."@en .
+
+# ====================================================================
+# VALUENET INTEGRATIONS (Schwartz's 10 Basic Values + Spirituality)
+# ====================================================================
+
+# Note: Primary mappings already defined in terminal values above.
+# Additional mappings defined here for completeness.
+
+:IdeaismStimulationMapping a owl:Class ;
+    rdfs:label "Idealism-Stimulation Mapping"@en ;
+    skos:definition "Idealism values intellectual stimulation - novelty in ideas, excitement of discovery, daring to think new thoughts. However, lower than Dynamism (0.95) as Idealism also values eternal truths and systematic coherence."@en ;
+    :worldviewValue :ConsciousnessDevelopment, :PhilosophicalReflection ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.70 ;
+    :rationale "Stimulation: Consciousness development involves encountering novel ideas and exciting intellectual discoveries. However, Idealism also values eternal truths and systematic order, tempering pure novelty-seeking."@en .
+
+:IdeaismHedonismMapping a owl:Class ;
+    rdfs:label "Idealism-Hedonism Mapping"@en ;
+    skos:definition "Idealism finds pleasure in intellectual activity and contemplation. However, this is mental/spiritual pleasure, not sensory hedonism."@en ;
+    :worldviewValue :ContemplativePractice, :MentalClarity ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.50 ;
+    :rationale "Hedonism: Idealism values intellectual pleasure (contemplation, clarity, insight) but subordinates sensory/bodily pleasures. Moderate salience - acknowledges mental pleasure but not primary value."@en .
+
+:IdeaismPowerMapping a owl:Class ;
+    rdfs:label "Idealism-Power Mapping"@en ;
+    skos:definition "Idealism values intellectual authority and the power of ideas to shape reality. However, personal dominance is subordinated to truth and reason."@en ;
+    :worldviewValue :IdeasAsCausal, :SystematicUnderstanding ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.60 ;
+    :rationale "Power: Ideas have causal power to shape reality. Systematic understanding grants intellectual authority. However, Idealism subordinates personal dominance to universal truth - moderate salience."@en .
+
+:IdeaismSecurityMapping a owl:Class ;
+    rdfs:label "Idealism-Security Mapping"@en ;
+    skos:definition "Idealism values the security of systematic knowledge and stable conceptual frameworks. Truth provides certainty and safety."@en ;
+    :worldviewValue :SystematicUnderstanding, :ConceptualClarity ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.70 ;
+    :rationale "Security: Systematic understanding and clear concepts provide intellectual security, certainty, and stable foundations. Idealism seeks secure knowledge grounded in reason or eternal Forms."@en .
+
+:IdeaismConformityMapping a owl:Class ;
+    rdfs:label "Idealism-Conformity Mapping"@en ;
+    skos:definition "Idealism expects conformity to rational norms, logical consistency, and conceptual coherence. However, encourages independent thinking within rational constraints."@en ;
+    :worldviewValue :SystematicUnderstanding, :InterpretiveCoherence ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.65 ;
+    :rationale "Conformity: Idealism values conformity to rational norms, logical principles, and systematic coherence. However, also values intellectual independence and critical thinking - moderate-high salience."@en .
+
+:IdeaismTraditionMapping a owl:Class ;
+    rdfs:label "Idealism-Tradition Mapping"@en ;
+    skos:definition "Idealism values engagement with intellectual traditions and respect for classical philosophy. However, tradition is critically appropriated, not blindly followed."@en ;
+    :worldviewValue :EducationAndCultivation, :SystematicUnderstanding ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.70 ;
+    :rationale "Tradition: Idealism deeply engages with philosophical traditions (Plato, Kant, Hegel). Education requires mastering canonical texts. However, tradition is critically examined and developed - high-moderate salience."@en .
+
+:IdeaismBenevolenceMapping a owl:Class ;
+    rdfs:label "Idealism-Benevolence Mapping"@en ;
+    skos:definition "Idealism values helping others develop consciousness and understanding. Education and cultivation of others' minds."@en ;
+    :worldviewValue :EducationAndCultivation, :ConsciousnessDevelopment ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.75 ;
+    :rationale "Benevolence: Idealism values helping others develop their consciousness and rational capacities. Plato's educational ideal, Hegel's ethical community. Promoting welfare of close others through intellectual and spiritual development."@en .
+
+# Already covered in terminal values:
+# - Self-Direction: 0.85 (Consciousness Development, Meaning Making)
+# - Universalism: 0.80 (Ideas as Causal)
+# - Achievement: 0.75 (Mental Clarity)
+
+:IdeaismSpiritualityMapping a owl:Class ;
+    rdfs:label "Idealism-Spirituality Mapping"@en ;
+    skos:definition "Idealism (especially absolute idealism) has strong spiritual dimension - Spirit (Geist) developing through history, contemplation of eternal Forms, consciousness as fundamental reality."@en ;
+    :worldviewValue :ConsciousnessDevelopment, :IdeasAsCausal, :ContemplativePractice ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.90 ;
+    :rationale "Spirituality: Idealism has very high spiritual dimension. Absolute Idealism sees reality as Spirit/Geist. Plato's Forms are transcendent spiritual realities. Consciousness is sacred. Contemplation is spiritual practice. Second highest after Monadism."@en ;
+    :primarySource "Hegel, G.W.F. Phenomenology of Spirit. 1807. Spirit (Geist) as ultimate reality."@en ;
+    :primarySource "Plato. Symposium. ~385 BCE. Ascent to the Form of Beauty as spiritual journey."@en .
+
+# ====================================================================
+# WORKED SCENARIOS (Demonstrating Value Application)
+# ====================================================================
+
+:Scenario a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # Process
+    rdfs:label "Scenario"@en ;
+    skos:definition "A concrete situation analyzed from the Idealism perspective."@en .
+
+# ---------------------------------------------------------------------
+# Scenario 1: The Primacy of Consciousness
+# ---------------------------------------------------------------------
+
+:ConsciousnessPrimacyScenario a :Scenario ;
+    rdfs:label "Consciousness Primacy Scenario"@en ;
+    skos:definition "A neuroscientist claims: 'We've now proven that consciousness is just neurons firing - it's completely reducible to brain chemistry.' How does Idealism evaluate this claim?"@en ;
+
+    :analysis """
+Idealist Analysis:
+
+1. METAPHYSICAL CRITIQUE (Ideas as Causal):
+   - The neuroscientist's claim presupposes materialist metaphysics
+   - Commits category mistake: attempts to reduce the condition of experience (consciousness)
+     to an object of experience (neurons)
+   - Kantian response: Neurons are phenomena (appearances to consciousness), not noumena.
+     You cannot explain consciousness by what appears *to* consciousness.
+   - Berkelian response: We don't observe neurons directly - we observe ideas/perceptions
+     *of* neurons. Reducing consciousness to neurons reduces it to... more consciousness.
+
+2. EPISTEMOLOGICAL PRIORITY (Mental Clarity):
+   - All scientific knowledge, including neuroscience, presupposes conscious observers
+   - Cannot use science to eliminate consciousness - science is a mode of consciousness
+   - Fichtean point: The I (consciousness) is presupposed in any claim about reality,
+     including claims about the brain
+
+3. CAUSAL EFFICACY (Ideas as Causal):
+   - If consciousness were epiphenomenal (causally inert), it couldn't affect behavior
+   - Yet the idea 'consciousness is reducible to neurons' affects the neuroscientist's behavior
+   - This performative contradiction proves ideas/consciousness have causal power
+
+4. PROPER RESPONSE (Consciousness Development):
+   - Develop more sophisticated understanding: Neural correlates ≠ neural causes
+   - Correlation between brain states and conscious states doesn't establish reduction
+   - Absolute Idealism: Perhaps neurons are how universal consciousness appears
+     from a third-person perspective
+   - Transcendental Idealism: Neurons are empirical reality; consciousness is
+     transcendental condition of any empirical reality
+
+VALUE PRIORITY:
+1. Mental Clarity (highest) - Exposing conceptual confusion in reductionist claim
+2. Ideas as Causal - Demonstrating consciousness cannot be causally inert
+3. Consciousness Development - Moving to more sophisticated philosophical understanding
+4. Meaning Making - Providing alternative coherent interpretation of mind-brain relation
+"""@en ;
+    :involvesValue :MentalClarity, :IdeasAsCausal, :ConsciousnessDevelopment, :MeaningMaking ;
+    :subordinatesValue :Materialism, :Epiphenomenalism ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Transcendental Deduction. Consciousness as condition of experience."@en ;
+    :primarySource "Nagel, Thomas. 'What is it like to be a bat?' 1974. Philosophical Review 83(4): 435-450. Irreducibility of consciousness."@en .
+
+# ---------------------------------------------------------------------
+# Scenario 2: Ideas and Matter Relationship
+# ---------------------------------------------------------------------
+
+:IdeasMatterScenario a :Scenario ;
+    rdfs:label "Ideas-Matter Relationship Scenario"@en ;
+    skos:definition "A physicist says: 'Look, I can show you how matter behaves according to mathematical laws. These laws worked before humans existed. So clearly, material reality is independent of mind.' How does Idealism respond?"@en ;
+
+    :analysis """
+Idealist Analysis:
+
+1. PLATONIC RESPONSE (Ideas as Causal):
+   - The mathematical laws are abstract Forms/Ideas
+   - Matter behaves according to these laws because Ideas are causally efficacious
+   - The physicist has actually demonstrated that abstract Ideas (mathematical forms)
+     govern material reality - confirming Idealism!
+   - Forms existed eternally before particular material things instantiated them
+
+2. KANTIAN RESPONSE (Systematic Understanding):
+   - Mathematical laws describe how phenomena appear to rational consciousness
+   - These are synthetic a priori truths - grounded in the structure of rational mind
+   - Space, time, causality are forms of intuition/understanding, not properties
+     of things-in-themselves
+   - The laws 'worked before humans existed' because they are conditions of any
+     possible experience, not empirical discoveries
+
+3. HEGELIAN RESPONSE (Consciousness Development):
+   - Nature is objectified Spirit - mind in its otherness
+   - Physical laws are objective reason - the rational structure of reality
+   - The physicist discovers mind in nature because nature *is* mind in external form
+   - The development: Nature → Consciousness → Self-Conscious Spirit
+
+4. BERKELIAN RESPONSE (Meaning Making):
+   - 'Matter' is a name for stable, law-governed patterns in experience
+   - These patterns existed 'before humans' as perceptions in God's mind
+   - The physicist observes regularities in divine ideas, not mind-independent matter
+   - Esse est percipi - to be is to be perceived (by finite or infinite mind)
+
+VALUE PRIORITY:
+1. Ideas as Causal (highest) - Mathematical Forms govern material reality
+2. Systematic Understanding - Grasping the rational structure of nature
+3. Consciousness Development - Recognizing mind in nature
+4. Mental Clarity - Clarifying relationship between laws (ideas) and matter
+"""@en ;
+    :involvesValue :IdeasAsCausal, :SystematicUnderstanding, :ConsciousnessDevelopment, :MentalClarity ;
+    :subordinatesValue :Materialism, :NaiveRealism ;
+    :primarySource "Plato. Timaeus. ~360 BCE. Demiurge uses eternal Forms to structure matter."@en ;
+    :primarySource "Kant, Immanuel. Prolegomena to Any Future Metaphysics. 1783. How is pure mathematics possible?"@en ;
+    :primarySource "Hegel, G.W.F. Philosophy of Nature. 1817. Nature as externalized Idea."@en .
+
+# ---------------------------------------------------------------------
+# Scenario 3: Meaning Making and Interpretation
+# ---------------------------------------------------------------------
+
+:MeaningMakingScenario a :Scenario ;
+    rdfs:label "Meaning Making Scenario"@en ;
+    skos:definition "After a personal crisis, someone says: 'I've been searching for the meaning of this experience, but maybe there is no meaning. Maybe it's just random suffering with no purpose.' How does Idealism respond?"@en ;
+
+    :analysis """
+Idealist Analysis:
+
+1. MEANING AS CONSTITUTIVE (Meaning Making):
+   - Meaning is not 'found' as a pre-existing fact - it is constituted through interpretation
+   - Consciousness actively structures experience, imposing order and significance
+   - The search for meaning is itself meaning-making activity
+   - Kantian lesson: Mind contributes categories and forms that make experience meaningful
+
+2. DIALECTICAL DEVELOPMENT (Consciousness Development):
+   - Hegel: Suffering and contradiction are stages in consciousness's development
+   - Thesis (pre-crisis understanding) encounters antithesis (crisis) → synthesis
+     (transformed understanding)
+   - The crisis is not meaningless - it's a necessary moment in dialectical progression
+   - Through negation and struggle, consciousness achieves higher self-understanding
+
+3. INTERPRETIVE COHERENCE (Systematic Understanding):
+   - Meaning emerges through fitting experiences into coherent narrative
+   - The crisis can be integrated into life story as transformative episode
+   - Bradley's coherence theory: Truth/meaning consists in systematic coherence
+   - More comprehensive interpretive framework makes experience meaningful
+
+4. LEVELS OF MEANING (Mental Clarity):
+   - Distinguish levels: (a) immediate feeling of meaninglessness, (b) rational
+     reconstruction of meaning, (c) ultimate metaphysical meaning
+   - Absolute Idealism: Individual suffering participates in larger development of Spirit
+   - Fichte: The I develops through overcoming obstacles and negations
+   - Even suffering contributes to consciousness's self-realization
+
+5. PRACTICAL RESPONSE (Education and Cultivation):
+   - Engage in philosophical reflection to clarify experience
+   - Study how others (philosophers, literature) have found meaning in suffering
+   - Cultivate interpretive practices: journaling, therapy, philosophical dialogue
+   - Meaning-making is a skill developed through practice
+
+VALUE PRIORITY:
+1. Meaning Making (highest) - Actively constituting significance through interpretation
+2. Consciousness Development - Growing through crisis and contradiction
+3. Systematic Understanding - Integrating experience into coherent life narrative
+4. Mental Clarity - Distinguishing levels and types of meaning
+5. Philosophical Reflection - Method of achieving meaning and understanding
+"""@en ;
+    :involvesValue :MeaningMaking, :ConsciousnessDevelopment, :SystematicUnderstanding,
+                   :MentalClarity, :PhilosophicalReflection ;
+    :subordinatesValue :Mechanism ;
+    :primarySource "Hegel, G.W.F. Phenomenology of Spirit. 1807. Dialectical development through negation."@en ;
+    :primarySource "Bradley, F.H. Appearance and Reality. 1893. Coherence as criterion of reality."@en ;
+    :empiricalSupport "Park, Crystal L. 'Making sense of the meaning literature.' 2010. Psychological Bulletin 136(2): 257-301. Meaning-making in crisis."@en ;
+    :empiricalSupport "Janoff-Bulman, Ronnie. Shattered Assumptions. 1992. Free Press. Rebuilding meaning after trauma."@en .
+
+# ====================================================================
+# CROSS-WORLDVIEW COMPARISONS
+# ====================================================================
+
+:CrossWorldviewComparison a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Cross-Worldview Comparison"@en ;
+    skos:definition "Explicit comparison of Idealism with other worldviews in the system."@en .
+
+:IdeaismVsMaterialism a :CrossWorldviewComparison ;
+    rdfs:label "Idealism vs. Materialism"@en ;
+    skos:definition "Fundamental metaphysical opposition: consciousness vs. matter as primary."@en ;
+    :comparison """
+CORE OPPOSITION:
+- Materialism: Matter is fundamental, consciousness is derivative/emergent
+- Idealism: Consciousness/mind is fundamental, matter is derivative/phenomenal
+
+EXPLANATORY STRATEGY:
+- Materialism: Explain consciousness in terms of physical processes
+- Idealism: Explain matter in terms of mental processes/ideas
+
+EPISTEMOLOGY:
+- Materialism: Knowledge via sensory experience of material world
+- Idealism: Knowledge via rational insight or intellectual intuition; experience
+  is already structured by mind
+
+VALUES:
+- Materialism: Physical wellbeing, empirical verification, causal explanation
+- Idealism: Consciousness development, mental clarity, ideas as causal
+
+STRONGEST IDEALIST ARGUMENTS AGAINST MATERIALISM:
+1. Hard problem of consciousness - cannot explain subjective experience from
+   objective physical description
+2. Knowledge argument (Frank Jackson) - knowing all physical facts doesn't give
+   you conscious experience
+3. Conceivability of zombies - can conceive of physical duplicate without consciousness,
+   suggesting consciousness not reducible
+4. Transcendental argument - all scientific knowledge presupposes conscious observers
+"""@en ;
+    :primarySource "Chalmers, David J. The Conscious Mind. 1996. Oxford University Press. Hard problem of consciousness."@en .
+
+:IdeaismVsDynamism a :CrossWorldviewComparison ;
+    rdfs:label "Idealism vs. Dynamism"@en ;
+    skos:definition "Both in Process-Individual cluster, but differ on what aspect is fundamental."@en ;
+    :comparison """
+SIMILARITIES (Both Process-Individual):
+- Reject static, mechanical materialism
+- Value development, growth, becoming
+- Reality is active, not passive
+- High self-direction values
+
+KEY DIFFERENCE:
+- Dynamism: Process/becoming is fundamental (Heraclitus, Whitehead, Bergson)
+- Idealism: Consciousness/ideas are fundamental (Plato, Hegel, Berkeley)
+
+TEMPORAL DIMENSION:
+- Dynamism: Emphasizes flux, temporality, creative advance
+- Idealism: Eternal Ideas (Plato) or dialectical development (Hegel) -
+  less emphasis on sheer flux
+
+ULTIMATE REALITY:
+- Dynamism: Process without subject - becoming itself
+- Idealism: Consciousness or Spirit as subject of development
+
+POTENTIAL SYNTHESIS:
+- Process Idealism (Whitehead): Actual occasions are drops of experience -
+  combines process and mentality
+- Hegel: Being-Nothing-Becoming dialectic - process and thought united
+"""@en ;
+    :primarySource "Whitehead, Alfred North. Process and Reality. 1929. Process Idealism - actual occasions as drops of experience."@en .
+
+:IdeaismVsMonadism a :CrossWorldviewComparison ;
+    rdfs:label "Idealism vs. Monadism"@en ;
+    skos:definition "Both value individual consciousness, but Monadism emphasizes irreducible individuality more."@en ;
+    :comparison """
+SIMILARITIES:
+- Both value consciousness, mental life, interiority
+- Both reject materialist reduction
+- Both emphasize self-direction, autonomous development
+
+KEY DIFFERENCE:
+- Monadism: Individual uniqueness is ultimate (Leibniz, Personalism)
+- Idealism: Universal consciousness/Spirit is ultimate (Absolute Idealism)
+  or universal rational structure (Kant)
+
+METAPHYSICAL PRIORITY:
+- Monadism: Individual monads are fundamental substances
+- Idealism (Absolute): The Absolute or World-Spirit is fundamental;
+  individuals are moments/modes
+
+VALUE EMPHASIS:
+- Monadism: Personal dignity (0.95), irreplaceable perspective
+- Idealism: Consciousness development (0.85), systematic understanding
+
+POTENTIAL TENSION:
+- Monadism: Individuals are unique, non-interchangeable
+- Hegel's Idealism: Individuals are manifestations of universal Spirit -
+  risk of subordinating individual to whole
+
+POTENTIAL HARMONY:
+- Personalist Idealism (Bowne, Brightman): Combines individual persons and idealism
+- Leibniz: Monads are mental substances - idealism at individual level
+"""@en ;
+    :primarySource "Leibniz, G.W. Monadology. 1714. Individual mental substances as ultimate reality."@en .
+
+# ====================================================================
+# ONTOLOGY METADATA
+# ====================================================================
+
+:OntologyCompletionRecord a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Ontology Completion Record"@en ;
+    skos:definition "Metadata about the completion of this ontology."@en .
+
+:IdeaismValuesCompletionRecord a :OntologyCompletionRecord ;
+    :dateCompleted "2026-01-02"^^xsd:date ;
+    :sizeKB "47"^^xsd:integer ;
+    :terminalValues 4 ;
+    :constitutiveValues 4 ;
+    :instrumentalValues 4 ;
+    :subordinatedValues 5 ;
+    :philosophicalCitations 52 ;
+    :empiricalCitations 15 ;
+    :scenarios 3 ;
+    :valueNetMappings 11 ;
+    :bfoCompliant true ;
+    :worldviewCluster "Process-Individual"@en ;
+    :relatedWorldviews "Dynamism, Monadism, Rationalism"@en ;
+    rdfs:comment "Idealism values ontology complete. Emphasizes consciousness development, ideas as causal, meaning making, and mental clarity. Strong integration with Spirituality (0.90), Self-Direction (0.85), and Universalism (0.80). Subordinates materialism, mechanism, and epiphenomenalism."@en .

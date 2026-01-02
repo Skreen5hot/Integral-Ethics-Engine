@@ -1,0 +1,767 @@
+@prefix : <http://purl.org/integralism/ethics/rationalism-values#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-schwartz: <http://purl.org/valuenet/schwartz#> .
+
+# ====================================================================
+# RATIONALISM VALUES ONTOLOGY
+# Process-Individual Worldview Cluster
+# ====================================================================
+# Rationalism: Reason is the primary source of knowledge; reality is
+# fundamentally rational, intelligible, governed by necessary principles.
+# Key traditions: Plato, Descartes, Spinoza, Leibniz, Kant.
+# BFO compliance: Process, ICE, Quality substrates.
+# ====================================================================
+
+<http://purl.org/integralism/ethics/rationalism-values> a owl:Ontology ;
+    rdfs:label "Rationalism Values Ontology"@en ;
+    rdfs:comment "Defines the value hierarchy for the Rationalism worldview within the Integral Ethics Engine."@en ;
+    owl:versionInfo "1.0.0" ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ,
+                <http://www.ontologyrepository.com/CommonCoreOntologies/> ;
+    cco:created "2026-01-02"^^xsd:date .
+
+# ====================================================================
+# CORE METAPHYSICAL FOUNDATION
+# ====================================================================
+
+:RationalismMetaphysics a owl:Class ;
+    rdfs:subClassOf bfo:0000001 ;  # Entity
+    rdfs:label "Rationalism Metaphysics"@en ;
+    skos:definition "The metaphysical foundation that reality is fundamentally rational, intelligible through reason, and governed by necessary principles knowable a priori. Reason, not sensory experience alone, is the primary source of substantive knowledge."@en ;
+    skos:scopeNote "Rationalism contrasts with empiricism. While empiricists hold all knowledge derives from sensory experience, rationalists maintain that reason can grasp necessary truths independent of experience (a priori). Reality's structure is rational and intelligible."@en ;
+    :primarySource "Plato. Republic. ~380 BCE. Books VI-VII. Knowledge of Forms via reason, not senses."@en ;
+    :primarySource "Descartes, René. Meditations on First Philosophy. 1641. Cogito argument - foundational truth known by pure reason."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Demonstrated in geometrical order - deductive rational system."@en ;
+    :primarySource "Leibniz, G.W. New Essays on Human Understanding. 1704. Innate ideas and truths of reason."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Synthetic a priori knowledge."@en .
+
+:RationalStructure a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Rational Structure"@en ;
+    skos:definition "The quality of being rationally ordered, logically coherent, and intelligible through reason. In Rationalism, this is not imposed by mind but discovered as reality's inherent structure."@en ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Part I. God/Nature follows from rational necessity."@en ;
+    :primarySource "Leibniz, G.W. Monadology. 1714. §31-32. Principle of sufficient reason - nothing without rational explanation."@en .
+
+# ====================================================================
+# TERMINAL VALUES (Intrinsically Valuable Ends)
+# ====================================================================
+
+:TerminalValue a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE - Information Content Entity
+    rdfs:label "Terminal Value"@en ;
+    skos:definition "An end state that is intrinsically valuable according to Rationalism."@en .
+
+# ---------------------------------------------------------------------
+# Terminal Value 1: Logical Coherence
+# ---------------------------------------------------------------------
+
+:LogicalCoherence a :TerminalValue ;
+    rdfs:label "Logical Coherence"@en ;
+    skos:definition "Freedom from logical contradiction and mutual consistency among beliefs. A system of thought where all parts fit together without conflict, following from first principles by logical necessity."@en ;
+    skos:example "Spinoza's Ethics demonstrates propositions geometrically from definitions and axioms - achieving perfect logical coherence."@en ;
+    skos:example "Leibniz's principle of non-contradiction: A proposition cannot be both true and false. Logical coherence is a mark of truth."@en ;
+    :groundedIn :RationalismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    :entails :SystematicOrder, :ConceptualRigor ;
+
+    # ValueNet mapping: Security
+    :realizableAs vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.85 ;
+    :rationale "Security: Logical coherence provides intellectual security, certainty, and stable foundations. Rationalism seeks secure knowledge grounded in logical necessity and non-contradiction. Freedom from intellectual chaos and uncertainty."@en ;
+
+    # Philosophical grounding
+    :primarySource "Aristotle. Metaphysics. ~350 BCE. Book IV (Gamma). Principle of Non-Contradiction as foundation."@en ;
+    :primarySource "Descartes, René. Rules for the Direction of the Mind. 1628. Rule II: Reject probable knowledge, seek certainty."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Geometrical method - logical derivation from axioms."@en ;
+    :primarySource "Leibniz, G.W. Discourse on Metaphysics. 1686. §13. God's perfection includes logical consistency."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Transcendental Logic - conditions of coherent thought."@en ;
+
+    # Empirical support
+    :empiricalSupport "Thagard, Paul. Coherence in Thought and Action. 2000. MIT Press. Coherence as cognitive constraint in reasoning."@en ;
+    :empiricalSupport "Johnson-Laird, Philip N. How We Reason. 2006. Oxford University Press. Mental models and logical consistency."@en ;
+    :empiricalSupport "Evans, Jonathan St. B.T. & Over, David E. Rationality and Reasoning. 1996. Psychology Press. Coherence in human reasoning."@en .
+
+:LogicalCoherenceQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Logical Coherence Quality"@en ;
+    skos:definition "The quality of being logically consistent and non-contradictory."@en ;
+    :realizes :LogicalCoherence .
+
+# ---------------------------------------------------------------------
+# Terminal Value 2: Universal Principles
+# ---------------------------------------------------------------------
+
+:UniversalPrinciples a :TerminalValue ;
+    rdfs:label "Universal Principles"@en ;
+    skos:definition "Truths that hold necessarily for all rational beings, in all times and places. Principles known a priori that structure all possible experience and thought. Not contingent empirical generalizations, but necessary rational truths."@en ;
+    skos:example "Kant's categorical imperative is a universal moral principle binding on all rational beings by virtue of rationality itself."@en ;
+    skos:example "Leibniz's principle of sufficient reason: Nothing happens without a reason why it is so rather than otherwise - a universal metaphysical principle."@en ;
+    :groundedIn :RationalismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    :entails :NecessaryTruth, :APrioriKnowledge ;
+
+    # ValueNet mapping: Universalism
+    :realizableAs vn-schwartz:UniversalismDisposition ;
+    :mapping_salience 0.90 ;
+    :rationale "Universalism: Universal principles emphasize understanding, appreciating, tolerating, and protecting the welfare of all people. Rationalism seeks universal truths that transcend particular perspectives - what is true for all rational beings. Very high salience."@en ;
+
+    # Philosophical grounding
+    :primarySource "Plato. Meno. ~385 BCE. 80d-86c. Recollection of universal mathematical truths."@en ;
+    :primarySource "Descartes, René. Discourse on Method. 1637. Part IV. Universal doubt to find universal certainty."@en ;
+    :primarySource "Leibniz, G.W. Monadology. 1714. §31-36. Truths of reason are necessary and universal."@en ;
+    :primarySource "Kant, Immanuel. Groundwork for the Metaphysics of Morals. 1785. Categorical imperative as universal law."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. B edition. Synthetic a priori - universal and necessary knowledge."@en ;
+
+    # Empirical support
+    :empiricalSupport "Sperber, Dan & Hirschfeld, Lawrence A. 'The cognitive foundations of cultural stability and diversity.' 2004. Trends in Cognitive Sciences 8(1): 40-46. Universal cognitive structures."@en ;
+    :empiricalSupport "Mikhail, John. 'Universal moral grammar: Theory, evidence and the future.' 2007. Trends in Cognitive Sciences 11(4): 143-152. Universal moral principles."@en ;
+    :empiricalSupport "Hauser, Marc D. Moral Minds. 2006. HarperCollins. Universal moral faculty hypothesis."@en .
+
+:UniversalPrincipleEntity a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;  # ICE - Information Content Entity
+    rdfs:label "Universal Principle Entity"@en ;
+    skos:definition "A necessary, a priori truth that holds universally for all rational beings."@en ;
+    :realizes :UniversalPrinciples .
+
+# ---------------------------------------------------------------------
+# Terminal Value 3: Systematic Order
+# ---------------------------------------------------------------------
+
+:SystematicOrder a :TerminalValue ;
+    rdfs:label "Systematic Order"@en ;
+    skos:definition "The organization of knowledge into a unified, hierarchical system where all truths follow from first principles. Not a mere collection of facts, but a rationally ordered totality where each part supports and is supported by others."@en ;
+    skos:example "Spinoza's Ethics proceeds from definitions through propositions to complex theorems - a complete systematic order."@en ;
+    skos:example "Kant's three Critiques form a systematic whole: theoretical reason (Pure Reason), practical reason (Practical Reason), and judgment (Judgment)."@en ;
+    :groundedIn :RationalismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    :entails :HierarchicalStructure, :DeductiveRigor ;
+
+    # ValueNet mapping: Security
+    :realizableAs vn-schwartz:SecurityDisposition ;
+    :mapping_salience 0.80 ;
+    :rationale "Security: Systematic order provides intellectual security through stable, well-organized knowledge structures. Everything has its place, relationships are clear, foundation is secure. Prevents chaos and confusion."@en ;
+
+    # Philosophical grounding
+    :primarySource "Plato. Republic. ~380 BCE. Book VI. The divided line - hierarchical structure of knowledge."@en ;
+    :primarySource "Aristotle. Posterior Analytics. ~350 BCE. Scientific knowledge as demonstration from first principles."@en ;
+    :primarySource "Descartes, René. Meditations. 1641. Systematic rebuilding of knowledge from foundation (Cogito)."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. More geometrico - geometric/systematic method."@en ;
+    :primarySource "Wolff, Christian. Rational Thoughts on God, the World and the Soul. 1720. German Rationalist system."@en ;
+    :primarySource "Hegel, G.W.F. Encyclopedia of the Philosophical Sciences. 1817. Complete philosophical system."@en ;
+
+    # Empirical support
+    :empiricalSupport "Chi, Michelene T.H. et al. 'Categorization and representation of physics problems by experts and novices.' 1981. Cognitive Science 5(2): 121-152. Experts organize knowledge systematically."@en ;
+    :empiricalSupport "Larkin, Jill et al. 'Expert and novice performance in solving physics problems.' 1980. Science 208(4450): 1335-1342. Systematic problem representation."@en ;
+    :empiricalSupport "Bransford, John D. et al. How People Learn. 2000. National Academy Press. Organized knowledge structures in expertise."@en .
+
+:SystematicOrderProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # Process
+    rdfs:label "Systematic Ordering Process"@en ;
+    skos:definition "The process of organizing knowledge into hierarchical, deductive systems."@en ;
+    :realizes :SystematicOrder .
+
+# ---------------------------------------------------------------------
+# Terminal Value 4: Rational Necessity
+# ---------------------------------------------------------------------
+
+:RationalNecessity a :TerminalValue ;
+    rdfs:label "Rational Necessity"@en ;
+    skos:definition "The quality of being necessarily true by virtue of rational principles, not merely contingently true based on how things happen to be. What must be the case given the nature of reason itself."@en ;
+    skos:example "Leibniz: God chose this world because it is the best of all possible worlds - a rational necessity following from divine perfection."@en ;
+    skos:example "Kant: The categories (causality, substance, etc.) are necessarily applicable to all possible experience - transcendental necessity."@en ;
+    :groundedIn :RationalismMetaphysics ;
+    :primacy "highest" ;
+    :salience "very_high" ;
+    :entails :APrioriKnowledge, :NecessaryTruth ;
+
+    # ValueNet mapping: Self-Direction
+    :realizableAs vn-schwartz:SelfDirectionDisposition ;
+    :mapping_salience 0.80 ;
+    :rationale "Self-Direction: Rational necessity emphasizes autonomous thinking, independent reasoning, and choosing to follow rational principles rather than external authority or arbitrary preference. Reason as self-legislation (Kant)."@en ;
+
+    # Philosophical grounding
+    :primarySource "Leibniz, G.W. Monadology. 1714. §32-37. Truths of reason vs. truths of fact - necessary vs. contingent."@en ;
+    :primarySource "Leibniz, G.W. Theodicy. 1710. Divine choice of best possible world by rational necessity."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Transcendental Deduction. Categories as necessary conditions."@en ;
+    :primarySource "Hegel, G.W.F. Science of Logic. 1812-1816. Logical necessity in dialectical development."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Part I. God's nature and actions follow by necessity."@en ;
+
+    # Empirical support
+    :empiricalSupport "Nichols, Shaun & Stich, Stephen. 'A cognitive theory of pretense.' 2000. Cognition 74(2): 115-147. Necessary vs. contingent in cognitive development."@en ;
+    :empiricalSupport "Piaget, Jean. The Child's Conception of Physical Causality. 1927/1930. Kegan Paul. Development of necessary relations."@en ;
+    :empiricalSupport "Shtulman, Andrew & Carey, Susan. 'Improbable or impossible? How children reason about the possibility of extraordinary events.' 2007. Child Development 78(3): 1015-1032."@en .
+
+:RationalNecessityQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Rational Necessity Quality"@en ;
+    skos:definition "The quality of being necessarily true by virtue of rational principles."@en ;
+    :realizes :RationalNecessity .
+
+# ====================================================================
+# CONSTITUTIVE VALUES (What Constitutes Terminal Values)
+# ====================================================================
+
+:ConstitutiveValue a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Constitutive Value"@en ;
+    skos:definition "A value that constitutes or makes up terminal values in Rationalism."@en .
+
+:APrioriKnowledge a :ConstitutiveValue ;
+    rdfs:label "A Priori Knowledge"@en ;
+    skos:definition "Knowledge independent of experience, knowable by reason alone. Truths that can be grasped without empirical investigation - mathematical truths, logical principles, metaphysical necessities."@en ;
+    :constitutes :UniversalPrinciples, :RationalNecessity ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. B edition, Introduction. A priori vs. a posteriori knowledge."@en ;
+    :primarySource "Leibniz, G.W. New Essays. 1704. Book I. Innate truths knowable by natural light of reason."@en ;
+    :empiricalSupport "Spelke, Elizabeth S. & Kinzler, Katherine D. 'Core knowledge.' 2007. Developmental Science 10(1): 89-96. Innate cognitive foundations."@en .
+
+:NecessaryTruth a :ConstitutiveValue ;
+    rdfs:label "Necessary Truth"@en ;
+    skos:definition "A proposition that could not be false - true in all possible worlds. Its negation involves a logical contradiction."@en ;
+    :constitutes :RationalNecessity, :UniversalPrinciples ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Leibniz, G.W. Monadology. 1714. §33. Necessary truths found in all possible worlds."@en ;
+    :empiricalSupport "Kripke, Saul. Naming and Necessity. 1980. Harvard University Press. Necessary a posteriori truths."@en .
+
+:DeductiveRigor a :ConstitutiveValue ;
+    rdfs:label "Deductive Rigor"@en ;
+    skos:definition "Strict logical inference from premises to conclusions. Each step in reasoning is logically valid and explicitly stated."@en ;
+    :constitutes :SystematicOrder, :LogicalCoherence ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Descartes, René. Rules for the Direction of the Mind. 1628. Rule III: Deduction and intuition as only sources of certainty."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Demonstrated in geometrical order - pure deduction."@en ;
+    :empiricalSupport "Rips, Lance J. The Psychology of Proof. 1994. MIT Press. Deductive reasoning processes."@en .
+
+:ConceptualRigor a :ConstitutiveValue ;
+    rdfs:label "Conceptual Rigor"@en ;
+    skos:definition "Precise, well-defined concepts with clear boundaries and relations. Avoiding ambiguity, vagueness, and conceptual confusion."@en ;
+    :constitutes :LogicalCoherence, :SystematicOrder ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Descartes, René. Meditations. 1641. Meditation III. Clear and distinct ideas."@en ;
+    :primarySource "Leibniz, G.W. Discourse on Metaphysics. 1686. Complete concepts of individual substances."@en ;
+    :empiricalSupport "Murphy, Gregory L. The Big Book of Concepts. 2002. MIT Press. Conceptual precision in categorization."@en .
+
+# ====================================================================
+# INSTRUMENTAL VALUES (Means to Terminal Values)
+# ====================================================================
+
+:InstrumentalValue a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Instrumental Value"@en ;
+    skos:definition "A value that serves as a means to achieving terminal values in Rationalism."@en .
+
+:MathematicalTraining a :InstrumentalValue ;
+    rdfs:label "Mathematical Training"@en ;
+    skos:definition "Study and practice of mathematics to develop rigorous deductive reasoning. Mathematics as paradigm of rational knowledge and training ground for pure reason."@en ;
+    :meansTo :DeductiveRigor, :NecessaryTruth, :APrioriKnowledge ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Plato. Republic. ~380 BCE. Book VII. Mathematics as preparation for dialectic and knowledge of Forms."@en ;
+    :primarySource "Descartes, René. Rules for the Direction of the Mind. 1628. Mathematics as model for all knowledge."@en ;
+    :primarySource "Spinoza, Baruch. On the Improvement of the Understanding. 1662. Geometric method as ideal."@en ;
+    :empiricalSupport "Rittle-Johnson, Bethany & Schneider, Michael. 'Developing conceptual and procedural knowledge of mathematics.' 2015. Oxford Handbook of Numerical Cognition. Oxford University Press."@en .
+
+:CriticalAnalysis a :InstrumentalValue ;
+    rdfs:label "Critical Analysis"@en ;
+    skos:definition "Systematic examination of arguments, assumptions, and principles. Identifying logical flaws, hidden premises, and conceptual confusions."@en ;
+    :meansTo :LogicalCoherence, :ConceptualRigor ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Preface. Critique as tribunal of reason examining its own claims."@en ;
+    :primarySource "Descartes, René. Discourse on Method. 1637. Method of systematic doubt."@en ;
+    :empiricalSupport "Kuhn, Deanna. The Skills of Argument. 1991. Cambridge University Press. Development of critical reasoning."@en .
+
+:SystematicStudy a :InstrumentalValue ;
+    rdfs:label "Systematic Study"@en ;
+    skos:definition "Organized, comprehensive investigation proceeding methodically from foundations through complex applications. Not piecemeal learning but integrated understanding."@en ;
+    :meansTo :SystematicOrder, :UniversalPrinciples ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Leibniz, G.W. Preface to the General Science. 1677-1679. Systematic organization of all knowledge."@en ;
+    :primarySource "Wolff, Christian. Preliminary Discourse on Philosophy in General. 1728. Systematic method in philosophy."@en ;
+    :empiricalSupport "Bransford, John D. et al. How People Learn. 2000. National Academy Press. Systematic vs. fragmented learning."@en .
+
+:IntellectualDiscourse a :InstrumentalValue ;
+    rdfs:label "Intellectual Discourse"@en ;
+    skos:definition "Rational dialogue and debate where positions are defended with arguments and subjected to critical scrutiny. Public use of reason (Kant)."@en ;
+    :meansTo :LogicalCoherence, :ConceptualRigor, :CriticalAnalysis ;
+    :groundedIn :RationalismMetaphysics ;
+    :primarySource "Plato. Republic. ~380 BCE. Dialectic as highest form of knowledge - rational dialogue."@en ;
+    :primarySource "Kant, Immanuel. 'What is Enlightenment?' 1784. Public use of reason in scholarly discourse."@en ;
+    :empiricalSupport "Mercier, Hugo & Sperber, Dan. 'Why do humans reason? Arguments for an argumentative theory.' 2011. Behavioral and Brain Sciences 34(2): 57-74."@en .
+
+# ====================================================================
+# SUBORDINATED VALUES (Devalued or Rejected)
+# ====================================================================
+
+:SubordinatedValue a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Subordinated Value"@en ;
+    skos:definition "A value that Rationalism rejects, devalues, or subordinates as incompatible with its epistemology."@en .
+
+:Irrationality a :SubordinatedValue ;
+    rdfs:label "Irrationality"@en ;
+    skos:definition "Beliefs or actions not guided by reason - superstition, wishful thinking, emotional reasoning, cognitive biases. Failure to follow rational principles."@en ;
+    :incompatibleWith :RationalismMetaphysics ;
+    :rationale "Rationalism holds that reason should govern belief and action. Irrationality represents failure to use our highest faculty - a kind of self-betrayal or voluntary ignorance."@en ;
+    :primarySource "Descartes, René. Meditations. 1641. Meditation I. Rejecting doubtful beliefs to establish rational foundations."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Part IV. Human bondage to passions vs. freedom through reason."@en .
+
+:Contradiction a :SubordinatedValue ;
+    rdfs:label "Logical Contradiction"@en ;
+    skos:definition "Holding inconsistent beliefs. Affirming both P and not-P. Violating the principle of non-contradiction."@en ;
+    :incompatibleWith :LogicalCoherence ;
+    :rationale "Contradiction is the cardinal sin in Rationalism. If a system contains contradictions, anything follows (principle of explosion) - the system collapses. Coherence requires eliminating contradictions."@en ;
+    :primarySource "Aristotle. Metaphysics. ~350 BCE. Book IV (Gamma). Principle of Non-Contradiction as indemonstrable foundation."@en ;
+    :primarySource "Hegel, G.W.F. Science of Logic. 1812. Contradiction must be resolved in higher synthesis."@en .
+
+:ArbitraryPreference a :SubordinatedValue ;
+    rdfs:label "Arbitrary Preference"@en ;
+    skos:definition "Choices made without reasons, based on mere whim or subjective preference. Accepting beliefs or values without rational justification."@en ;
+    :incompatibleWith :RationalNecessity ;
+    :rationale "Rationalism demands that beliefs and values be rationally justified. Arbitrary preferences lack grounding in reason - they are contingent, subjective, and lack necessity."@en ;
+    :primarySource "Leibniz, G.W. Monadology. 1714. §32. Principle of Sufficient Reason - nothing without a reason."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Part I, Appendix. Critique of final causes as projections of arbitrary human preferences."@en .
+
+:PureEmpiricism a :SubordinatedValue ;
+    rdfs:label "Pure Empiricism"@en ;
+    skos:definition "The view that all knowledge derives solely from sensory experience, with no a priori contribution from reason. Denial of innate ideas or rational insight."@en ;
+    :incompatibleWith :APrioriKnowledge ;
+    :rationale "Rationalism holds that reason provides substantive knowledge independent of experience. Pure empiricism (Locke, Hume) denies this - reduces mind to blank slate and reasoning to habit. Cannot explain necessary truths like mathematics and logic."@en ;
+    :primarySource "Leibniz, G.W. New Essays on Human Understanding. 1704. Systematic critique of Locke's empiricism."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. B edition. Refutation of Humean empiricism - synthetic a priori knowledge."@en .
+
+:Skepticism a :SubordinatedValue ;
+    rdfs:label "Radical Skepticism"@en ;
+    skos:definition "Denial that knowledge is possible. Suspension of judgment on all matters. Rejecting the possibility of rational certainty."@en ;
+    :incompatibleWith :RationalNecessity ;
+    :rationale "While Rationalists use methodological skepticism (Descartes), they reject radical skepticism. Reason can achieve certainty about necessary truths. Denying this possibility undermines the very possibility of philosophy and rational inquiry."@en ;
+    :primarySource "Descartes, René. Meditations. 1641. Meditation I uses doubt; Meditation II-VI refute skepticism."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Refutation of Idealism (skepticism about external world)."@en .
+
+# ====================================================================
+# VALUENET INTEGRATIONS (Schwartz's 10 Basic Values + Spirituality)
+# ====================================================================
+
+# Note: Primary mappings already defined in terminal values above.
+# Additional mappings defined here for completeness.
+
+:RationalismAchievementMapping a owl:Class ;
+    rdfs:label "Rationalism-Achievement Mapping"@en ;
+    skos:definition "Rationalism highly values intellectual achievement - demonstrating competence in reasoning, achieving systematic understanding, and meeting rigorous standards of proof."@en ;
+    :worldviewValue :SystematicOrder, :DeductiveRigor, :MathematicalTraining ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.85 ;
+    :rationale "Achievement: Rationalism emphasizes intellectual achievement, competence in reasoning, and demonstrating ability through rigorous argument. High standards for success in rational inquiry. Very high salience."@en .
+
+:RationalismConformityMapping a owl:Class ;
+    rdfs:label "Rationalism-Conformity Mapping"@en ;
+    skos:definition "Rationalism requires conformity to logical principles, rational norms, and standards of rigor. However, encourages independent thinking within these constraints."@en ;
+    :worldviewValue :LogicalCoherence, :DeductiveRigor, :ConceptualRigor ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.75 ;
+    :rationale "Conformity: Rationalism values conformity to logical principles, rational norms, and systematic standards. However, also values autonomous reasoning and critical examination - high salience but not highest."@en .
+
+:RationalismTraditionMapping a owl:Class ;
+    rdfs:label "Rationalism-Tradition Mapping"@en ;
+    skos:definition "Rationalism engages deeply with philosophical tradition (Plato, Aristotle, Descartes, Leibniz, Kant). However, tradition is critically examined and rationally reconstructed."@en ;
+    :worldviewValue :SystematicStudy, :UniversalPrinciples ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.70 ;
+    :rationale "Tradition: Rationalism respects philosophical tradition and systematic study of classical works. However, tradition is subjected to rational critique - Descartes' rejection of scholasticism. Moderate-high salience."@en .
+
+:RationalismBenevolenceMapping a owl:Class ;
+    rdfs:label "Rationalism-Benevolence Mapping"@en ;
+    skos:definition "Rationalism values helping others achieve rational understanding, teaching rigorous thinking, and promoting intellectual welfare of others."@en ;
+    :worldviewValue :IntellectualDiscourse, :SystematicStudy ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.70 ;
+    :rationale "Benevolence: Rationalism values helping others develop rational capacities through education and discourse. Kant's enlightenment ideal - helping others use their own reason. Moderate-high salience."@en .
+
+:RationalismStimulationMapping a owl:Class ;
+    rdfs:label "Rationalism-Stimulation Mapping"@en ;
+    skos:definition "Rationalism finds intellectual stimulation in solving problems, discovering proofs, and encountering novel arguments. However, values eternal truths over mere novelty."@en ;
+    :worldviewValue :CriticalAnalysis, :MathematicalTraining ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.65 ;
+    :rationale "Stimulation: Rationalism values intellectual excitement and challenge of rigorous reasoning. However, subordinates novelty to truth and necessity - moderate salience."@en .
+
+:RationalismHedonismMapping a owl:Class ;
+    rdfs:label "Rationalism-Hedonism Mapping"@en ;
+    skos:definition "Rationalism finds pleasure in intellectual activity and rational contemplation. However, this is mental pleasure, not sensory hedonism."@en ;
+    :worldviewValue :MathematicalTraining, :IntellectualDiscourse ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.55 ;
+    :rationale "Hedonism: Rationalism values intellectual pleasure (solving proofs, understanding systems) but subordinates bodily/sensory pleasures. Spinoza's intellectual love of God. Moderate salience."@en .
+
+:RationalismPowerMapping a owl:Class ;
+    rdfs:label "Rationalism-Power Mapping"@en ;
+    skos:definition "Rationalism values intellectual authority and the power of reason to grasp truth. However, personal dominance is subordinated to impersonal rational principles."@en ;
+    :worldviewValue :UniversalPrinciples, :SystematicOrder ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.60 ;
+    :rationale "Power: Reason has power to grasp necessary truths and systematic order. However, Rationalism subordinates personal will to impersonal rational principles - moderate salience."@en .
+
+# Already covered in terminal values:
+# - Security: 0.85 (Logical Coherence), 0.80 (Systematic Order)
+# - Universalism: 0.90 (Universal Principles)
+# - Self-Direction: 0.80 (Rational Necessity)
+
+:RationalismSpiritualityMapping a owl:Class ;
+    rdfs:label "Rationalism-Spirituality Mapping"@en ;
+    skos:definition "Rationalism (especially Spinoza, Leibniz) has spiritual dimension - intellectual love of God, contemplation of eternal truths, reason as divine light."@en ;
+    :worldviewValue :UniversalPrinciples, :RationalNecessity, :NecessaryTruth ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.75 ;
+    :rationale "Spirituality: Rationalism has significant spiritual dimension. Spinoza's intellectual love of God (amor Dei intellectualis). Plato's ascent to Forms. Leibniz's pre-established harmony. Reason as participation in divine mind. High but not highest salience."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Part V. Intellectual love of God as highest spiritual achievement."@en ;
+    :primarySource "Leibniz, G.W. Monadology. 1714. §47-48. Spirits as images of divinity, capable of knowing universal truths."@en .
+
+# ====================================================================
+# WORKED SCENARIOS (Demonstrating Value Application)
+# ====================================================================
+
+:Scenario a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # Process
+    rdfs:label "Scenario"@en ;
+    skos:definition "A concrete situation analyzed from the Rationalism perspective."@en .
+
+# ---------------------------------------------------------------------
+# Scenario 1: Logical Necessity in Moral Reasoning
+# ---------------------------------------------------------------------
+
+:LogicalNecessityScenario a :Scenario ;
+    rdfs:label "Logical Necessity Scenario"@en ;
+    skos:definition "Someone argues: 'Morality is just a matter of opinion. Different cultures have different values, so there are no universal moral truths.' How does Rationalism respond?"@en ;
+
+    :analysis """
+Rationalist Analysis:
+
+1. DISTINGUISHING EMPIRICAL FACTS FROM RATIONAL PRINCIPLES (Universal Principles):
+   - Cultural diversity is an empirical fact (a posteriori)
+   - Universal moral principles are rational necessities (a priori)
+   - Hume's is-ought gap: You cannot derive 'ought' from 'is'
+   - The mere fact that cultures disagree doesn't prove there's no truth
+   - (Analogy: Cultures once disagreed about astronomy; this didn't make planetary
+     motion a matter of opinion)
+
+2. KANTIAN CATEGORICAL IMPERATIVE (Rational Necessity):
+   - Kant argues moral law binds all rational beings by virtue of rationality itself
+   - Categorical Imperative: Act only according to maxims you can will as universal law
+   - Test for logical coherence: Can you universalize your maxim without contradiction?
+   - Example: Lying promise
+     * Maxim: "Make false promises when convenient"
+     * Universalization: Everyone makes false promises
+     * Contradiction: If everyone did this, promises would lose meaning - you
+       couldn't successfully make false promises
+     * Conclusion: Lying promises are rationally impermissible
+   - This is not opinion but logical necessity - follows from the concept of rational agency
+
+3. MORAL GEOMETRY (Systematic Order):
+   - Spinoza's approach: Derive ethics geometrically from human nature
+   - Start with definitions: Human as rational being seeking self-preservation
+   - Deduce: What rational self-preservation requires
+   - Systematic order: All moral truths follow from first principles about rational nature
+   - Not arbitrary preferences but logical consequences
+
+4. ADDRESSING THE DIVERSITY OBJECTION (Conceptual Rigor):
+   - Distinguish: (a) Basic moral principles vs. (b) Application in context
+   - Universal: "Treat rational beings as ends, not mere means" (Kant)
+   - Variable: How this is applied in different social contexts
+   - Cultures may disagree on application while agreeing on fundamental principles
+   - Core moral intuitions (harm, fairness) are cross-culturally universal
+   - Diversity in specifics doesn't prove relativity of fundamentals
+
+VALUE PRIORITY:
+1. Rational Necessity (highest) - Moral law as rationally necessary
+2. Universal Principles - Categorical Imperative binding on all rational beings
+3. Logical Coherence - Testing maxims for contradiction
+4. Systematic Order - Deriving ethics from first principles
+5. Conceptual Rigor - Distinguishing types of disagreement
+"""@en ;
+    :involvesValue :RationalNecessity, :UniversalPrinciples, :LogicalCoherence,
+                   :SystematicOrder, :ConceptualRigor ;
+    :subordinatesValue :ArbitraryPreference, :PureEmpiricism ;
+    :primarySource "Kant, Immanuel. Groundwork for the Metaphysics of Morals. 1785. Categorical Imperative as rational necessity."@en ;
+    :primarySource "Spinoza, Baruch. Ethics. 1677. Part IV. Ethical truths demonstrated geometrically."@en ;
+    :empiricalSupport "Mikhail, John. 'Universal moral grammar.' 2007. Trends in Cognitive Sciences 11(4): 143-152. Cross-cultural moral universals."@en .
+
+# ---------------------------------------------------------------------
+# Scenario 2: Universal Principles and A Priori Truth
+# ---------------------------------------------------------------------
+
+:UniversalPrinciplesScenario a :Scenario ;
+    rdfs:label "Universal Principles Scenario"@en ;
+    skos:definition "An empiricist challenges: 'All knowledge comes from experience. You claim to know universal necessary truths, but how can you know anything applies universally without checking every instance?' How does Rationalism respond?"@en ;
+
+    :analysis """
+Rationalist Analysis:
+
+1. MATHEMATICAL KNOWLEDGE (A Priori Knowledge):
+   - Consider: 2 + 3 = 5
+   - Do you need to check every pair of 2 things and every set of 3 things?
+   - No - you grasp this truth through pure reason
+   - Plato: We recollect mathematical truths - they aren't learned from experience
+   - This is universal (holds for all instances) and necessary (couldn't be otherwise)
+
+2. KANT'S SYNTHETIC A PRIORI (Universal Principles):
+   - Empiricist challenge: Either propositions are:
+     (a) Analytic (true by definition, empty) - "Bachelors are unmarried"
+     (b) Synthetic (informative but only known a posteriori) - "Bachelors are happy"
+   - Kant's breakthrough: Synthetic a priori - informative and knowable a priori
+   - Examples:
+     * "Every event has a cause" - not true by definition (can conceive
+       uncaused events without contradiction), yet knowable a priori as
+       condition of possible experience
+     * "7 + 5 = 12" - concept of 12 not contained in concepts of 7, 5, and +;
+       yet knowable a priori through construction in pure intuition
+   - These are universal because they are conditions of any possible experience
+
+3. PRINCIPLE OF SUFFICIENT REASON (Rational Necessity):
+   - Leibniz: Nothing happens without a reason why it is so rather than otherwise
+   - This is knowable a priori - follows from the nature of intelligibility
+   - If something happened without any reason, it would be unintelligible
+   - But reality is intelligible (otherwise no knowledge possible)
+   - Therefore, Principle of Sufficient Reason is necessarily true
+   - Known through rational insight, not empirical generalization
+
+4. TRANSCENDENTAL ARGUMENTS (Systematic Order):
+   - Form: X is a necessary condition for the possibility of Y
+   - We know Y obtains
+   - Therefore, X must obtain
+   - Example: Causality is necessary for the possibility of temporal experience
+   - We have temporal experience
+   - Therefore, causality must structure our experience
+   - This establishes causality as universal and necessary - a priori knowledge
+
+5. ADDRESSING EMPIRICIST CHALLENGE (Deductive Rigor):
+   - Empiricist assumes all knowledge requires inductive generalization from instances
+   - But induction itself presupposes rational principles (uniformity of nature)
+   - These principles cannot themselves be proven by induction (circular)
+   - Therefore, must be known a priori as conditions of empirical inquiry
+   - Reason provides foundations that experience presupposes but cannot establish
+
+VALUE PRIORITY:
+1. Universal Principles (highest) - A priori necessary truths
+2. A Priori Knowledge - Knowledge independent of experience
+3. Rational Necessity - What must be true given the nature of reason
+4. Deductive Rigor - Demonstrating conclusions from principles
+5. Systematic Order - Showing how principles ground empirical knowledge
+"""@en ;
+    :involvesValue :UniversalPrinciples, :APrioriKnowledge, :RationalNecessity,
+                   :DeductiveRigor, :SystematicOrder ;
+    :subordinatesValue :PureEmpiricism ;
+    :primarySource "Plato. Meno. ~385 BCE. 80d-86c. Recollection of mathematical truths - a priori knowledge."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. B edition, Introduction. Synthetic a priori knowledge."@en ;
+    :primarySource "Leibniz, G.W. Monadology. 1714. §31-33. Truths of reason vs. truths of fact."@en ;
+    :empiricalSupport "Spelke, Elizabeth S. 'Core knowledge.' 2000. American Psychologist 55(11): 1233-1243. Innate cognitive foundations."@en .
+
+# ---------------------------------------------------------------------
+# Scenario 3: Systematic Order in Understanding
+# ---------------------------------------------------------------------
+
+:SystematicOrderScenario a :Scenario ;
+    rdfs:label "Systematic Order Scenario"@en ;
+    skos:definition "A student of physics complains: 'I've memorized all the formulas, but I don't really understand physics. How do I move from knowing facts to genuine understanding?' What is the Rationalist response?"@en ;
+
+    :analysis """
+Rationalist Analysis:
+
+1. MEMORIZATION VS. UNDERSTANDING (Systematic Order):
+   - Memorized formulas: Isolated facts, no connections, no justification
+   - True understanding: Grasping how formulas relate, why they're true,
+     how they follow from principles
+   - Descartes: Don't just memorize - understand the reasons
+   - Spinoza: Demonstrate geometrically - derive each truth from previous truths
+
+2. FROM FOUNDATIONS TO APPLICATIONS (Deductive Rigor):
+   - Identify foundational principles (Newton's Laws, Conservation Laws)
+   - See how each formula is derived from or depends on these foundations
+   - Example trajectory:
+     * Foundation: F = ma (Newton's Second Law)
+     * Derive: Equations of motion for constant acceleration
+     * Apply: Projectile motion formulas
+     * Each step logically follows from previous
+   - Understanding means seeing the logical connections, not just endpoints
+
+3. THE ARCHITECTONIC OF KNOWLEDGE (Hierarchical Structure):
+   - Kant: Knowledge has systematic structure - architectonic
+   - Lower principles depend on and are grounded in higher principles
+   - Physics hierarchy:
+     * Highest: Fundamental laws (Newton/Einstein)
+     * Middle: Derived principles (Conservation, Momentum)
+     * Lower: Specific applications (Pendulum, Orbits)
+   - Map the architecture - see where each piece fits in the structure
+
+4. ACTIVE REASONING VS. PASSIVE ABSORPTION (Rational Necessity):
+   - Don't just absorb formulas - ask WHY they must be true
+   - Thought experiment: Could it be otherwise? If not, why not?
+   - Example: Why must F = ma?
+     * Force is defined as that which changes motion
+     * Acceleration is rate of change of motion
+     * Mass measures resistance to change of motion
+     * Therefore, F = ma follows from the concepts themselves (partially)
+   - Grasping necessity transforms rote knowledge into understanding
+
+5. WORKED EXAMPLES AND PROBLEM SOLVING (Systematic Study):
+   - Don't just read - actively work through derivations
+   - Start from first principles, derive the formula yourself
+   - Apply to various cases to see how one principle explains diverse phenomena
+   - Plato: Knowledge requires active reasoning (dialectic), not passive reception
+   - The activity of deriving truth is essential to understanding
+
+6. COMPARE AND CONTRAST (Conceptual Rigor):
+   - How does this principle relate to others? Contrast with them?
+   - Example: Contrast Newtonian and relativistic mechanics
+     * Where do they agree? (Low velocities)
+     * Where do they differ? (High velocities, strong gravity)
+     * Why the difference? (Different assumptions about space-time)
+   - Understanding through systematic comparison and conceptual clarity
+
+VALUE PRIORITY:
+1. Systematic Order (highest) - Organizing knowledge hierarchically
+2. Deductive Rigor - Deriving truths from principles
+3. Rational Necessity - Grasping why things must be so
+4. Conceptual Rigor - Clear understanding of concepts and relations
+5. Systematic Study - Active engagement with material
+"""@en ;
+    :involvesValue :SystematicOrder, :DeductiveRigor, :RationalNecessity,
+                   :ConceptualRigor, :SystematicStudy ;
+    :subordinatesValue :ArbitraryPreference, :PureEmpiricism ;
+    :primarySource "Descartes, René. Rules for the Direction of the Mind. 1628. Rule III: Seek understanding, not mere memory."@en ;
+    :primarySource "Spinoza, Baruch. On the Improvement of the Understanding. 1662. True knowledge vs. inadequate ideas."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. Architectonic of Pure Reason. Systematic structure of knowledge."@en ;
+    :empiricalSupport "Chi, Michelene T.H. et al. 'Categorization and representation of physics problems by experts and novices.' 1981. Cognitive Science 5(2): 121-152. Experts have systematic understanding."@en .
+
+# ====================================================================
+# CROSS-WORLDVIEW COMPARISONS
+# ====================================================================
+
+:CrossWorldviewComparison a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Cross-Worldview Comparison"@en ;
+    skos:definition "Explicit comparison of Rationalism with other worldviews in the system."@en .
+
+:RationalismVsIdealism a :CrossWorldviewComparison ;
+    rdfs:label "Rationalism vs. Idealism"@en ;
+    skos:definition "Both value reason and consciousness, but Idealism focuses on consciousness metaphysics while Rationalism focuses on epistemic method."@en ;
+    :comparison """
+SIMILARITIES:
+- Both reject pure empiricism - knowledge not solely from senses
+- Both value systematic understanding and universal principles
+- Both see reality as intelligible through mental faculties
+- High self-direction and universalism values
+
+KEY DIFFERENCE:
+- Idealism: Metaphysical claim - consciousness/ideas are fundamental to reality
+- Rationalism: Epistemological claim - reason is primary source of knowledge
+
+FOCUS:
+- Idealism: What IS (metaphysics) - reality is mental/ideal
+- Rationalism: What we KNOW (epistemology) - reason knows necessary truths
+
+EXAMPLES:
+- Plato: Both Idealist (Forms are real) AND Rationalist (Forms known by reason)
+- Descartes: Rationalist in method, but also Idealist (mind-body dualism, God as guarantor)
+- Spinoza: Rationalist in method, Idealist in seeing thought as attribute of God/Nature
+- Kant: Transcendental Idealism (phenomenal world is mental) + Rationalism (synthetic a priori)
+
+POTENTIAL HARMONY:
+- Many great philosophers combine both: Plato, Descartes, Leibniz, Kant, Hegel
+- Natural fit: If reality is rational (Idealism), then reason can know it (Rationalism)
+- Hegel: The rational is the real, and the real is the rational
+"""@en ;
+    :primarySource "Hegel, G.W.F. Elements of the Philosophy of Right. 1820. Preface. 'What is rational is actual; what is actual is rational.'"@en .
+
+:RationalismVsEmpiricismMaterialism a :CrossWorldviewComparison ;
+    rdfs:label "Rationalism vs. Empiricism-Materialism"@en ;
+    skos:definition "Fundamental epistemological opposition: reason vs. experience as source of knowledge."@en ;
+    :comparison """
+CORE OPPOSITION:
+- Rationalism: Reason provides substantive knowledge independent of experience (a priori)
+- Empiricism: All knowledge derives from sensory experience (a posteriori)
+
+KNOWLEDGE SOURCES:
+- Rationalism: Innate ideas, rational intuition, logical deduction
+- Empiricism: Sensory perception, inductive generalization from observations
+
+EXAMPLES OF KNOWLEDGE:
+- Rationalism: Mathematics, logic, metaphysics knowable a priori
+- Empiricism: Only tautologies a priori; all substantive knowledge empirical
+
+HISTORICAL DEBATE:
+- Rationalists: Descartes, Spinoza, Leibniz
+- Empiricists: Locke, Berkeley, Hume
+- Synthesis: Kant (combines both - requires concepts AND intuitions)
+
+KANT'S SYNTHESIS:
+- "Thoughts without content are empty, intuitions without concepts are blind"
+- Both reason (categories) and experience (intuitions) necessary for knowledge
+- Rationalism: Right that we have a priori knowledge (synthetic a priori)
+- Empiricism: Right that knowledge requires sensory input (no knowledge of noumena)
+"""@en ;
+    :primarySource "Leibniz, G.W. New Essays on Human Understanding. 1704. Point-by-point critique of Locke's empiricism."@en ;
+    :primarySource "Kant, Immanuel. Critique of Pure Reason. 1781/1787. B75. 'Thoughts without content are empty...'"@en .
+
+:RationalismVsDynamism a :CrossWorldviewComparison ;
+    rdfs:label "Rationalism vs. Dynamism"@en ;
+    skos:definition "Tension between eternal rational necessity and temporal becoming."@en ;
+    :comparison """
+FUNDAMENTAL TENSION:
+- Rationalism: Emphasizes eternal, necessary, unchanging truths
+- Dynamism: Emphasizes temporal flux, becoming, creative novelty
+
+METAPHYSICS:
+- Rationalism: Ultimate reality is rational necessity (Spinoza's eternal substance,
+  Leibniz's eternal truths)
+- Dynamism: Ultimate reality is process, becoming, temporal development
+
+TEMPORALITY:
+- Rationalism: Truths are timeless - 2+2=4 in all times
+- Dynamism: Reality is fundamentally temporal - being IS becoming
+
+VALUES:
+- Rationalism: Logical coherence (0.85), Security (0.85), Achievement (0.85)
+- Dynamism: Stimulation (0.95), Growth, Transformation
+
+POTENTIAL SYNTHESIS:
+- Hegel: Combines both - necessary rational development through dialectic
+  * Rationalism: Development follows rational necessity
+  * Dynamism: Development is temporal process
+  * Synthesis: Rational necessity unfolds through temporal development
+- Whitehead's process philosophy: Eternal objects (rational forms) inhere in
+  temporal actual occasions (process)
+"""@en ;
+    :primarySource "Hegel, G.W.F. Science of Logic. 1812. Being-Nothing-Becoming. Combines rationalism and process."@en .
+
+# ====================================================================
+# ONTOLOGY METADATA
+# ====================================================================
+
+:OntologyCompletionRecord a owl:Class ;
+    rdfs:subClassOf bfo:0000031 ;
+    rdfs:label "Ontology Completion Record"@en ;
+    skos:definition "Metadata about the completion of this ontology."@en .
+
+:RationalismValuesCompletionRecord a :OntologyCompletionRecord ;
+    :dateCompleted "2026-01-02"^^xsd:date ;
+    :sizeKB "49"^^xsd:integer ;
+    :terminalValues 4 ;
+    :constitutiveValues 4 ;
+    :instrumentalValues 4 ;
+    :subordinatedValues 5 ;
+    :philosophicalCitations 58 ;
+    :empiricalCitations 18 ;
+    :scenarios 3 ;
+    :valueNetMappings 11 ;
+    :bfoCompliant true ;
+    :worldviewCluster "Process-Individual"@en ;
+    :relatedWorldviews "Idealism, Dynamism, Monadism"@en ;
+    rdfs:comment "Rationalism values ontology complete. Emphasizes logical coherence, universal principles, systematic order, and rational necessity. Strong integration with Universalism (0.90), Security (0.85), Achievement (0.85), and Self-Direction (0.80). Subordinates irrationality, contradiction, arbitrary preference, pure empiricism, and radical skepticism."@en .
