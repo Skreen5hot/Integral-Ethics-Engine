@@ -1,0 +1,911 @@
+@prefix : <http://purl.org/integralism/ethics/psychism#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-schwartz: <http://purl.org/valuenet/schwartz#> .
+
+# ====================================================================
+# PSYCHISM VALUES ONTOLOGY
+# Depth-Spiritual Worldview Cluster
+# ====================================================================
+# Psychism: Soul/psyche is fundamental; psychological depth, unconscious,
+# archetypal structures ground human reality and meaning.
+# Key traditions: Jung, Freud, Hillman, depth psychology, psychoanalysis.
+# BFO compliance: Process, ICE, Quality substrates.
+# ====================================================================
+
+<http://purl.org/integralism/ethics/psychism-values> a owl:Ontology ;
+    rdfs:label "Psychism Values Ontology"@en ;
+    rdfs:comment "Defines the value hierarchy for the Psychism worldview within the Integral Ethics Engine."@en ;
+    owl:versionInfo "1.0.0" ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ,
+                <http://www.ontologyrepository.com/CommonCoreOntologies/> ;
+    dcterms:created "2026-01-03"^^xsd:date ;
+    dcterms:creator "Integral Ethics Engine Development Team" ;
+    dcterms:description """
+Psychism grounds value in soul depth, psychological wholeness, and the reality
+of the unconscious. Reality is fundamentally psychic - soul/psyche is the
+foundation from which consciousness emerges. The unconscious is not merely
+absence of consciousness but a positive realm of archetypal structures, symbols,
+and autonomous psychic forces.
+
+Metaphysical Foundation:
+- Soul/psyche as fundamental reality (not reducible to brain/matter)
+- Unconscious as primary; consciousness is derivative or surface phenomenon
+- Archetypal structures as transpersonal organizing principles
+- Psychic reality has its own laws, causality, and teleology
+- Symbolic/imaginal realm as ontologically real
+
+Epistemology:
+- Knowledge through psychological introspection, dream work, active imagination
+- Symbol as primary mode of knowing (not reducible to concept)
+- Amplification, association, and archetypal interpretation
+- Personal unconscious and collective unconscious differentiated
+- Psychic truth vs literal/empirical truth
+
+Value Priority:
+- Psychological wholeness (integration of conscious and unconscious)
+- Emotional authenticity (genuine feeling vs persona)
+- Soul depth (engagement with archetypal structures)
+- Individuation process (becoming one's unique self)
+- Shadow integration (acknowledging repressed aspects)
+
+Worldview Cluster: Depth-Spiritual (Soul/Psyche foundation + Depth dimension)
+
+Key Philosophers:
+- Carl Jung: Analytical psychology, archetypes, individuation
+- Sigmund Freud: Psychoanalysis, unconscious, depth psychology
+- James Hillman: Archetypal psychology, soul-making
+- Marie-Louise von Franz: Jungian psychology, fairy tales
+- Edward Edinger: Ego and archetype
+- Marion Woodman: Body and soul, feminine psychology
+- Robert Johnson: Shadow work, inner work
+- Erich Neumann: Depth psychology, origins of consciousness
+
+Empirical Grounding:
+- Empirical research on Jungian therapy effectiveness
+- Neuroscience of unconscious processing
+- Attachment theory (Bowlby, Ainsworth)
+- Personality psychology (Big Five, depth approaches)
+- Dream research and symbolism studies
+"""@en .
+
+# ====================================================================
+# VALUE CLASSES
+# ====================================================================
+
+:PsychismValue a owl:Class ;
+    rdfs:label "Psychism Value"@en ;
+    skos:definition "A value grounded in soul/psyche as fundamental reality, psychological depth, unconscious processes, and archetypal structures."@en ;
+    rdfs:comment "Psychism values prioritize psychological wholeness, emotional authenticity, soul depth, and individuation. Values are realized through inner work, dream analysis, active imagination, and archetypal engagement."@en .
+
+:TerminalValue a owl:Class ;
+    rdfs:subClassOf :PsychismValue ;
+    rdfs:label "Terminal Value"@en ;
+    skos:definition "An end-state value intrinsically valuable within Psychism - psychological wholeness, soul depth, emotional authenticity, individuation."@en ;
+    dcterms:source "Jung (1933) Modern Man in Search of a Soul; Hillman (1975) Re-Visioning Psychology"@en .
+
+:ConstitutiveValue a owl:Class ;
+    rdfs:subClassOf :PsychismValue ;
+    rdfs:label "Constitutive Value"@en ;
+    skos:definition "A value constituting the nature of psychic reality - archetypal awareness, symbolic consciousness, shadow integration, psychic honesty."@en .
+
+:InstrumentalValue a owl:Class ;
+    rdfs:subClassOf :PsychismValue ;
+    rdfs:label "Instrumental Value"@en ;
+    skos:definition "A value instrumentally valuable for achieving psychological wholeness - dream work, active imagination, psychotherapy, mythological study."@en .
+
+:SubordinatedValue a owl:Class ;
+    rdfs:label "Subordinated Value"@en ;
+    skos:definition "A value subordinated or critiqued within Psychism - surface rationalism, behavioral reductionism, emotional repression, persona identification."@en .
+
+# ====================================================================
+# TERMINAL VALUES (4)
+# ====================================================================
+
+:PsychologicalWholeness a :TerminalValue ;
+    rdfs:label "Psychological Wholeness"@en ;
+    skos:definition "The integration of conscious and unconscious, ego and shadow, achieving psychic totality and balance. Jung's individuation as movement toward Self-realization."@en ;
+    skos:altLabel "Psychic Integration"@en, "Individuation Goal"@en, "Self-Realization"@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:SelfDirectionDisposition ;
+    dcterms:source """
+Jung, C. G. (1933). Modern Man in Search of a Soul. Harcourt.
+Jung, C. G. (1951). Aion: Researches into the Phenomenology of the Self. Princeton University Press.
+Jung, C. G. (1963). Memories, Dreams, Reflections. Random House.
+Edinger, E. (1972). Ego and Archetype: Individuation and the Religious Function of the Psyche. Shambhala.
+Johnson, R. A. (1986). Inner Work: Using Dreams and Active Imagination for Personal Growth. HarperOne.
+Stein, M. (2006). The Principle of Individuation: Toward the Development of Human Consciousness. Chiron Publications.
+"""@en ;
+    rdfs:comment """Psychological wholeness is the supreme terminal value in Psychism. Unlike
+behavioral health or cognitive clarity, wholeness refers to the integration of opposites within
+the psyche - conscious/unconscious, light/shadow, masculine/feminine, rational/irrational.
+
+Jung distinguishes wholeness from perfection: perfection implies flawlessness and exclusion
+of the negative; wholeness embraces totality including the shadow. The Self (capital S) is
+the archetype of wholeness - the totality of conscious and unconscious.
+
+Individuation Process: The lifelong process of becoming one's unique self, differentiating
+from collective norms while integrating unconscious contents. Not self-actualization
+(humanistic psychology) but Self-realization (archetypal psychology).
+
+Empirical Correlates: Well-being, life satisfaction, meaning in life, psychological flexibility.
+However, Psychism subordinates happiness to wholeness - individuation may involve suffering,
+confrontation with the shadow, and dissolution of comfortable illusions.
+
+BFO Modeling: Psychological wholeness is a Quality (bfo:0000019) that inheres in the psyche,
+realized through individuation Processes (bfo:0000015). The degree of wholeness varies along
+a continuum from fragmentation (neurosis) to integration (individuation).
+"""@en .
+
+:EmotionalAuthenticity a :TerminalValue ;
+    rdfs:label "Emotional Authenticity"@en ;
+    skos:definition "Genuine emotional experience and expression, not mediated by persona or social mask. Alignment between inner feeling and outer expression."@en ;
+    skos:altLabel "Emotional Genuineness"@en, "Feeling-Truth"@en, "Persona Transparency"@en ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition, vn-schwartz:BenevolenceDisposition ;
+    dcterms:source """
+Jung, C. G. (1971). Psychological Types. Princeton University Press. [Feeling function]
+Hillman, J. (1975). Re-Visioning Psychology. Harper & Row. [Soul vs spirit dichotomy]
+Woodman, M. (1982). Addiction to Perfection: The Still Unravished Bride. Inner City Books.
+Rogers, C. (1961). On Becoming a Person. Houghton Mifflin. [Congruence, genuineness]
+Greenberg, L. S., & Safran, J. D. (1987). Emotion in Psychotherapy. Guilford Press.
+Fosha, D. (2000). The Transforming Power of Affect. Basic Books.
+"""@en ;
+    rdfs:comment """Emotional authenticity values genuine feeling over social conformity or cognitive
+rationalization. Jung's persona (social mask) vs the authentic personality beneath. Hillman's
+critique of spirit (abstract, transcendent) in favor of soul (concrete, emotional, embodied).
+
+The feeling function (Jung) evaluates based on emotional resonance, not logical coherence.
+Authentic feeling is discriminating - knows what it values - but not reducible to preference
+or arbitrary choice. Feeling has its own rationality (feeling-logic).
+
+Shadow of Authenticity: Not all genuine feelings should be expressed (ethical boundaries).
+Authenticity can become narcissistic self-indulgence if not balanced with relational
+responsibility. Psychism values inner authenticity but recognizes outer persona has adaptive
+function.
+
+Emotional Labor: Hochschild's (1983) concept of emotional labor (managing feelings for work)
+shows cost of inauthenticity. Burnout and dissociation result from chronic suppression of
+genuine feeling.
+
+BFO Modeling: Authenticity is realized as congruence between inner feeling (Quality) and
+outer expression (Process). Persona-identification is a Disposition toward inauthenticity.
+"""@en .
+
+:SoulDepth a :TerminalValue ;
+    rdfs:label "Soul Depth"@en ;
+    skos:definition "Engagement with archetypal structures, symbolic/imaginal realm, and depth dimensions of psyche. Depth vs surface, soul vs ego, imaginal vs literal."@en ;
+    skos:altLabel "Psychic Depth"@en, "Archetypal Engagement"@en, "Depth Dimension"@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:UniversalismDisposition ;
+    dcterms:source """
+Hillman, J. (1975). Re-Visioning Psychology. Harper & Row. [Soul-making, depth psychology]
+Hillman, J. (1989). A Blue Fire: Selected Writings. HarperCollins.
+Jung, C. G. (1968). The Archetypes and the Collective Unconscious. Princeton University Press.
+Corbin, H. (1969). Creative Imagination in the Sufism of Ibn 'Arabi. Princeton. [Imaginal realm]
+Romanyshyn, R. D. (2007). The Wounded Researcher. Spring Journal Books. [Soul in research]
+Sardello, R. (1999). Facing the World with Soul. Lindisfarne Books.
+"""@en ;
+    rdfs:comment """Soul depth refers to engagement with the deeper, archetypal, symbolic dimensions
+of experience - not surface phenomena, behavioral patterns, or ego concerns, but the depth
+substrate from which these emerge.
+
+Hillman distinguishes soul from spirit: Spirit ascends (transcendence, unity, abstraction);
+Soul descends (depth, multiplicity, concreteness). Soul-making (poiesis) is the process of
+deepening, finding meaning through descent into complexity and ambiguity.
+
+Archetypal Structures: Jung's archetypes are not learned patterns but a priori structures
+organizing psychic experience - Mother, Father, Hero, Shadow, Anima/Animus, Self. Engagement
+with archetypes deepens psychic life beyond personal concerns.
+
+Imaginal Realm: Corbin's concept (mundus imaginalis) - an ontologically real intermediary
+realm between material and pure intellect, accessed through active imagination. Not fantasy
+(arbitrary invention) but imagination (discovery of autonomous psychic reality).
+
+Depth vs Surface: Surface is literal, behavioral, ego-focused. Depth is symbolic, archetypal,
+soul-focused. Psychology can be shallow (behavior modification) or deep (archetypal engagement).
+
+BFO Modeling: Depth is a Quality dimension of psychic processes. Archetypal structures are
+Generically Dependent Continuants (bfo:0000031) - patterns that recur across individuals.
+"""@en .
+
+:IndividuationProcess a :TerminalValue ;
+    rdfs:label "Individuation Process"@en ;
+    skos:definition "The lifelong process of becoming one's unique self, differentiating from collective norms while integrating unconscious contents. Jung's central therapeutic goal."@en ;
+    skos:altLabel "Self-Becoming"@en, "Psychological Development"@en, "Unique Selfhood"@en ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition, vn-schwartz:SpiritualityDisposition ;
+    dcterms:source """
+Jung, C. G. (1921/1971). Psychological Types. Princeton University Press.
+Jung, C. G. (1928). The Relations Between the Ego and the Unconscious. In Two Essays on Analytical Psychology.
+von Franz, M.-L. (1964). The Process of Individuation. In Man and His Symbols.
+Neumann, E. (1954). The Origins and History of Consciousness. Princeton University Press.
+Jacobi, J. (1965). The Way of Individuation. Harcourt.
+Stein, M. (2006). The Principle of Individuation. Chiron Publications.
+"""@en ;
+    rdfs:comment """Individuation is the central telos of Psychism - the process by which an individual
+becomes psychologically undivided, whole, and uniquely themselves. Not conformity to social
+norms or archetypal patterns, but discovery and realization of one's unique Self.
+
+Differentiation: Separating from collective identifications (family, culture, archetypes)
+to discover what is authentically one's own. Not isolation but psychological differentiation
+while maintaining relationship.
+
+Integration: Bringing unconscious contents into consciousness, especially the shadow (repressed
+aspects of personality). The Self emerges as integration of conscious and unconscious.
+
+Unique vs Universal: Individuation realizes the universal (Self archetype) through the
+particular (unique individual). Not arbitrary self-invention but discovery of what one is
+called to become.
+
+Stages: Neumann's model - uroboric (undifferentiated), matriarchal (symbiotic), patriarchal
+(ego development), individuation (Self-realization). Jung's stages: confrontation with
+persona, shadow, anima/animus, Self.
+
+Not Self-Actualization: Maslow's self-actualization (humanistic) emphasizes potential and
+growth. Jung's individuation emphasizes wholeness (including shadow) and archetypal encounter
+(numinous, transpersonal).
+
+BFO Modeling: Individuation is an extended Process (bfo:0000015) with stages, transformations,
+and telos. The Self is both archetype (universal) and particular realization (unique individual).
+"""@en .
+
+# ====================================================================
+# CONSTITUTIVE VALUES (4)
+# ====================================================================
+
+:ArchetypalAwareness a :ConstitutiveValue ;
+    rdfs:label "Archetypal Awareness"@en ;
+    skos:definition "Recognition of archetypal patterns, motifs, and structures organizing psychic experience. Seeing through literal to archetypal dimension."@en ;
+    skos:altLabel "Symbolic Seeing"@en, "Archetypal Perception"@en, "Mythological Consciousness"@en ;
+    :realizableAs vn-schwartz:UniversalismDisposition, vn-schwartz:SpiritualityDisposition ;
+    dcterms:source """
+Jung, C. G. (1968). The Archetypes and the Collective Unconscious. Princeton University Press.
+Campbell, J. (1949). The Hero with a Thousand Faces. Pantheon.
+von Franz, M.-L. (1970). The Interpretation of Fairy Tales. Spring Publications.
+Eliade, M. (1954). The Myth of the Eternal Return. Princeton University Press.
+Hillman, J. (1975). Re-Visioning Psychology. Harper & Row.
+Moore, R., & Gillette, D. (1990). King, Warrior, Magician, Lover. HarperCollins.
+"""@en ;
+    rdfs:comment """Archetypal awareness is the capacity to recognize universal patterns (archetypes)
+manifesting in particular experiences, dreams, symptoms, and cultural forms. Not reducing
+particulars to universals, but seeing the archetypal through the particular.
+
+Jung's Archetypes: A priori organizing principles of psychic experience - not learned but
+inherited. Mother, Father, Hero, Trickster, Shadow, Anima/Animus, Self, etc. Archetypes
+structure how we experience fundamental realities (birth, death, relationship, transformation).
+
+Amplification: Method of deepening understanding by connecting personal material to archetypal
+parallels in myth, fairy tale, religion, art. Personal dream of descent amplified through
+Persephone myth, Inanna's descent, Christ's descent to Hell.
+
+Seeing Through: Hillman's practice of "seeing through" literal appearances to archetypal
+depth. A symptom is not just a problem to solve but an expression of psyche's autonomous
+activity, potentially meaningful and purposeful.
+
+Empirical Correlates: Pattern recognition, symbolic thinking, metaphorical intelligence.
+Cognitive science: Conceptual metaphor theory (Lakoff & Johnson) shows embodied basis of
+abstract concepts.
+
+BFO Modeling: Archetypes are Generically Dependent Continuants (bfo:0000031) - patterns that
+inhere in multiple instances. Archetypal awareness is a Quality of consciousness.
+"""@en .
+
+:SymbolicConsciousness a :ConstitutiveValue ;
+    rdfs:label "Symbolic Consciousness"@en ;
+    skos:definition "Consciousness oriented to symbols as primary mode of psychic expression. Symbol as irreducible to sign, concept, or literal meaning - participation in multiple meanings."@en ;
+    skos:altLabel "Symbolic Awareness"@en, "Imaginal Consciousness"@en, "Metaphorical Thinking"@en ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition, vn-schwartz:SpiritualityDisposition ;
+    dcterms:source """
+Jung, C. G. (1916/1957). Symbols of Transformation. Princeton University Press.
+Jung, C. G. (1964). Man and His Symbols. Dell.
+Cassirer, E. (1923-1929). The Philosophy of Symbolic Forms (3 vols). Yale University Press.
+Ricoeur, P. (1970). Freud and Philosophy: An Essay on Interpretation. Yale University Press.
+Corbin, H. (1969). Creative Imagination in the Sufism of Ibn 'Arabi. Princeton.
+Lakoff, G., & Johnson, M. (1980). Metaphors We Live By. University of Chicago Press.
+"""@en ;
+    rdfs:comment """Symbolic consciousness recognizes symbol as the primary mode through which psyche
+expresses itself - not reducible to concept, sign, or literal meaning. Symbol participates
+in what it represents; it mediates between conscious and unconscious, known and unknown.
+
+Symbol vs Sign: Sign points to known meaning (red light = stop). Symbol points beyond itself
+to unknown or unconscious meaning, irreducible to single interpretation. Cross is symbol
+(multiple meanings, numinous) not mere sign.
+
+Living vs Dead Symbol: Living symbol carries psychic energy, evokes numinous response,
+transforms. Dead symbol becomes mere convention or sign (Easter bunny as commercial image
+vs symbol of resurrection/renewal).
+
+Symbol as Transformer: Symbol mediates opposites, reconciles contradictions, enables psychic
+transformation. Alchemical symbols (coniunctio, nigredo, albedo) represent psychological
+processes of dissolution and integration.
+
+Participation Mystique: Lévy-Bruhl's concept adopted by Jung - pre-rational consciousness
+participates in what it perceives, not yet differentiated. Symbolic consciousness recovers
+participation at higher level - not pre-rational but trans-rational.
+
+Empirical Basis: Cognitive linguistics (Lakoff, Johnson) shows thought is fundamentally
+metaphorical. Conceptual metaphor theory: Abstract concepts understood through bodily metaphors
+(time is space, ideas are objects).
+
+BFO Modeling: Symbol is an Information Content Entity (bfo:0000031) that realizes multiple
+meanings simultaneously. Symbolic consciousness is a Quality of awareness.
+"""@en .
+
+:ShadowIntegration a :ConstitutiveValue ;
+    rdfs:label "Shadow Integration"@en ;
+    skos:definition "Acknowledgment and integration of repressed, denied, or rejected aspects of personality. Confronting what ego finds unacceptable but psyche requires for wholeness."@en ;
+    skos:altLabel "Shadow Work"@en, "Dark Side Integration"@en, "Repression Lifting"@en ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition, vn-schwartz:UniversalismDisposition ;
+    dcterms:source """
+Jung, C. G. (1951). Aion: Researches into the Phenomenology of the Self. Princeton.
+Johnson, R. A. (1991). Owning Your Own Shadow: Understanding the Dark Side of the Psyche. HarperOne.
+Zweig, C., & Abrams, J. (1991). Meeting the Shadow: The Hidden Power of the Dark Side of Human Nature. Tarcher.
+Bly, R. (1988). A Little Book on the Human Shadow. HarperOne.
+von Franz, M.-L. (1980). Shadow and Evil in Fairy Tales. Spring Publications.
+Whitmont, E. C. (1969). The Symbolic Quest. Princeton University Press.
+"""@en ;
+    rdfs:comment """Shadow integration is the process of acknowledging and incorporating aspects of
+personality that ego has repressed, denied, or projected. The shadow contains everything
+incompatible with ego's self-image - not just "negative" traits but also undeveloped positive
+potentials.
+
+Personal Shadow: Repressed aspects of personal history - forbidden desires, shameful memories,
+rejected traits. Often projected onto others (what we hate in others reveals our shadow).
+
+Collective Shadow: Cultural repressions - what society deems unacceptable. Different cultures
+have different collective shadows (sexuality in Victorian England, aggression in pacifist
+cultures).
+
+Shadow as Gold: Shadow is not only "dark" - it contains repressed creativity, vitality, power.
+The "inferior function" (Jung) is often in shadow - undeveloped but containing growth potential.
+
+Integration not Expression: Shadow work is not acting out every impulse but acknowledging
+shadow's reality, withdrawing projections, and integrating energy consciously. Ethical
+boundaries remain.
+
+Projection: Shadow is often encountered through projection - seeing in others what we deny
+in ourselves. Strong emotional reactions (fascination or repulsion) indicate projection.
+
+Empirical Research: Projection has empirical support - we attribute our own unacknowledged
+traits to others (social psychology). Self-deception and defense mechanisms (Freud) show
+psychological cost of repression.
+
+BFO Modeling: Shadow is a Disposition (bfo:0000016) toward repressed contents. Integration
+is a Process (bfo:0000015) transforming relationship to shadow from denial to acknowledgment.
+"""@en .
+
+:PsychicHonesty a :ConstitutiveValue ;
+    rdfs:label "Psychic Honesty"@en ;
+    skos:definition "Honest acknowledgment of one's actual psychic state, fantasies, desires, and motives - not rationalization or self-deception. Integrity with psychic reality."@en ;
+    skos:altLabel "Psychological Honesty"@en, "Self-Honesty"@en, "Inner Truth"@en ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition, vn-schwartz:UniversalismDisposition ;
+    dcterms:source """
+Jung, C. G. (1933). Modern Man in Search of a Soul. Harcourt.
+Freud, S. (1915). Repression. In The Standard Edition of the Complete Psychological Works.
+Hillman, J. (1979). The Dream and the Underworld. Harper & Row.
+May, R. (1969). Love and Will. Norton. [Intentionality and honesty]
+Yalom, I. (1980). Existential Psychotherapy. Basic Books. [Authenticity]
+Triandis, H. C. (1989). The self and social behavior in differing cultural contexts. Psychological Review.
+"""@en ;
+    rdfs:comment """Psychic honesty is truthfulness about one's actual psychological state, not
+what one wishes to feel or think one should feel. Acknowledging desire, fantasy, resentment,
+envy - whatever is actually present in psyche, regardless of moral or social acceptability.
+
+Not Moral Judgment: Psychic honesty does not judge psychic contents as good or bad but
+acknowledges what is. One may have murderous fantasies without acting on them. Honesty is
+prerequisite for ethical choice - can only choose responsibly if aware of actual impulses.
+
+Defense Mechanisms: Freud's defense mechanisms (repression, denial, projection, rationalization,
+reaction formation) are forms of psychic dishonesty - protecting ego from unacceptable truths.
+Necessary in childhood, problematic when chronic in adulthood.
+
+Self-Deception: Psychic dishonesty is often unconscious - we genuinely believe our
+rationalizations. Shadow work and analysis make unconscious deceptions conscious.
+
+Cultural Variation: What can be honestly acknowledged varies by culture. Individualist cultures
+(West) may permit acknowledgment of selfish desires; collectivist cultures (East) may require
+harmonious self-presentation. Psychism values honesty but recognizes cultural shaping.
+
+Empirical Support: Social psychology documents self-serving biases, motivated reasoning,
+confirmation bias - ways we deceive ourselves to maintain self-esteem or worldview.
+
+BFO Modeling: Psychic honesty is a Quality of relationship between ego and psychic contents.
+Self-deception is a Process of distortion or denial.
+"""@en .
+
+# ====================================================================
+# INSTRUMENTAL VALUES (4)
+# ====================================================================
+
+:DreamWork a :InstrumentalValue ;
+    rdfs:label "Dream Work"@en ;
+    skos:definition "Systematic engagement with dreams through recording, interpretation, amplification, and active imagination. Dreams as via regia (royal road) to the unconscious."@en ;
+    skos:altLabel "Dream Analysis"@en, "Dream Interpretation"@en, "Dreamwork"@en ;
+    :enablesRealization :PsychologicalWholeness, :SoulDepth, :SymbolicConsciousness ;
+    dcterms:source """
+Freud, S. (1900). The Interpretation of Dreams. In Standard Edition, vols. 4-5.
+Jung, C. G. (1948). General Aspects of Dream Psychology. In The Structure and Dynamics of the Psyche.
+Jung, C. G. (1964). Man and His Symbols. Dell.
+von Franz, M.-L. (1998). Dreams. Shambhala.
+Bosnak, R. (1988). A Little Course in Dreams. Shambhala.
+Bulkeley, K. (1997). An Introduction to the Psychology of Dreaming. Praeger.
+"""@en ;
+    rdfs:comment """Dream work is the systematic practice of engaging dreams to access unconscious
+contents, archetypal structures, and compensatory messages. Dreams reveal what consciousness
+ignores, represses, or cannot yet assimilate.
+
+Freud's Method: Dreams as wish-fulfillment, expressing repressed desires in disguised form.
+Manifest content (literal images) vs latent content (unconscious meaning). Interpretation
+through free association, uncovering hidden wishes.
+
+Jung's Method: Dreams as compensatory to conscious attitude, balancing one-sidedness. Dreams
+use symbols not to disguise but to express what cannot be said literally. Archetypal amplification
+connects personal dream to universal patterns.
+
+Objective vs Subjective Interpretation: Objective - dream figures represent actual people.
+Subjective - all dream figures represent aspects of dreamer's psyche. Both valid depending
+on context.
+
+Dream Series: Single dreams are ambiguous; series of dreams reveal patterns and development.
+Recurring dreams indicate unresolved complex or archetypal constellation.
+
+Empirical Research: REM sleep and dreaming essential for memory consolidation, emotional
+processing. Dream content reflects waking concerns (continuity hypothesis). Some evidence
+for problem-solving in dreams.
+
+BFO Modeling: Dream is a Process (bfo:0000015) occurring during sleep. Dream work is a Process
+of interpretation and integration, transforming dream content into conscious understanding.
+"""@en .
+
+:ActiveImagination a :InstrumentalValue ;
+    rdfs:label "Active Imagination"@en ;
+    skos:definition "Jung's method of engaging unconscious through conscious dialogue with autonomous psychic contents - images, figures, fantasies. Letting unconscious speak."@en ;
+    skos:altLabel "Waking Dream"@en, "Imaginal Dialogue"@en, "Active Fantasy"@en ;
+    :enablesRealization :PsychologicalWholeness, :ShadowIntegration, :SymbolicConsciousness ;
+    dcterms:source """
+Jung, C. G. (1916/1958). The Transcendent Function. In The Structure and Dynamics of the Psyche.
+Jung, C. G. (1935). The Relations Between the Ego and the Unconscious. In Two Essays.
+Hannah, B. (1981). Encounters with the Soul: Active Imagination. Sigo Press.
+Johnson, R. A. (1986). Inner Work: Using Dreams and Active Imagination. HarperOne.
+Chodorow, J. (1997). Jung on Active Imagination. Princeton University Press.
+Watkins, M. (2000). Invisible Guests: The Development of Imaginal Dialogues. Spring Publications.
+"""@en ;
+    rdfs:comment """Active imagination is Jung's distinctive method for engaging the unconscious
+while awake. Not passive fantasy (arbitrary invention) but active dialogue with autonomous
+psychic figures that appear in imagination.
+
+Method: (1) Empty ego, allow image or mood to arise spontaneously. (2) Give image or figure
+attention, let it develop. (3) Enter into dialogue - ask questions, listen to responses.
+(4) Ethical confrontation - don't just accept what unconscious says; engage consciously.
+(5) Integration - live the insights, don't just enjoy the fantasy.
+
+Autonomy of Psyche: Active imagination presupposes unconscious contents have autonomy -
+they are not ego's creations but independent psychic entities with their own intentions.
+Ego does not control but relates.
+
+Transcendent Function: Active imagination activates the transcendent function - uniting
+conscious and unconscious to produce new attitude transcending both. Not compromise but
+genuine third position.
+
+Dangers: Without proper grounding, active imagination can dissolve ego boundaries (psychosis
+risk). Requires strong ego capable of dialogue without inflation or possession. Not for acute
+psychosis.
+
+Empirical Parallels: Gestalt therapy's empty chair technique, psychodrama, internal family
+systems (IFS), voice dialogue. All recognize autonomous subpersonalities or parts.
+
+BFO Modeling: Active imagination is a Process (bfo:0000015) facilitating interaction between
+ego (conscious) and autonomous complexes (unconscious). Produces integration as new psychic
+configuration.
+"""@en .
+
+:PsychotherapyPractice a :InstrumentalValue ;
+    rdfs:label "Psychotherapy Practice"@en ;
+    skos:definition "Engagement in depth psychotherapy (Jungian analysis, psychodynamic therapy, existential therapy) as method of psychological exploration and transformation."@en ;
+    skos:altLabel "Depth Therapy"@en, "Psychological Analysis"@en, "Analytic Work"@en ;
+    :enablesRealization :PsychologicalWholeness, :ShadowIntegration, :IndividuationProcess ;
+    dcterms:source """
+Freud, S. (1912). The Dynamics of Transference. In Standard Edition, vol. 12.
+Jung, C. G. (1946). The Psychology of the Transference. In The Practice of Psychotherapy.
+Rogers, C. (1961). On Becoming a Person. Houghton Mifflin.
+Yalom, I. (1980). Existential Psychotherapy. Basic Books.
+Lambert, M. J., & Barley, D. E. (2001). Research summary on the therapeutic relationship. Psychotherapy, 38(4), 357-361.
+Wampold, B. E. (2015). How important are the common factors in psychotherapy? World Psychiatry, 14(3), 270-277.
+"""@en ;
+    rdfs:comment """Psychotherapy practice, especially depth-oriented therapy, is the primary
+instrumental value for achieving psychological transformation. Not mere symptom reduction but
+fundamental character change and individuation.
+
+Jungian Analysis: Long-term relationship (years) focusing on dreams, active imagination,
+transference, and archetypal amplification. Goal is individuation, not adjustment.
+
+Psychodynamic Therapy: Exploration of unconscious conflicts, defense mechanisms, transference,
+and early relational patterns. Insight leads to change.
+
+Transference: Patient's unconscious projection of early relational patterns onto therapist.
+Not obstacle but therapeutic tool - making unconscious visible and workable.
+
+Therapeutic Relationship: Empirical research shows relationship quality predicts outcomes more
+than specific technique. Common factors (empathy, alliance, positive regard) across approaches.
+
+Limitations: Therapy is not the only path to individuation. Creative work, religious practice,
+relationship, suffering can all serve individuation. Therapy is privileged in Psychism but
+not exclusive.
+
+Cultural Critique: WEIRD bias (Western, Educated, Industrialized, Rich, Democratic). Therapy
+assumes individualist values (autonomy, self-expression). Collectivist cultures may prioritize
+harmony over authenticity.
+
+BFO Modeling: Psychotherapy is an extended Process (bfo:0000015) with roles (therapist, client),
+aims (insight, integration), and transformations (symptom reduction, character change).
+"""@en .
+
+:MythologicalStudy a :InstrumentalValue ;
+    rdfs:label "Mythological Study"@en ;
+    skos:definition "Study of mythology, fairy tales, and archetypal narratives as maps of psychic processes and structures. Myth as collective dream."@en ;
+    skos:altLabel "Myth Study"@en, "Archetypal Reading"@en, "Fairy Tale Analysis"@en ;
+    :enablesRealization :ArchetypalAwareness, :SoulDepth, :SymbolicConsciousness ;
+    dcterms:source """
+Campbell, J. (1949). The Hero with a Thousand Faces. Pantheon.
+Eliade, M. (1963). Myth and Reality. Harper & Row.
+von Franz, M.-L. (1970). The Interpretation of Fairy Tales. Spring Publications.
+Neumann, E. (1954). The Origins and History of Consciousness. Princeton.
+Hillman, J. (1979). The Dream and the Underworld. Harper & Row.
+Bolen, J. S. (1984). Goddesses in Everywoman. Harper & Row.
+"""@en ;
+    rdfs:comment """Mythological study is instrumental for developing archetypal awareness and symbolic
+consciousness. Myths are not primitive explanations but eternal truths about psychic reality,
+expressed symbolically.
+
+Campbell's Monomyth: Hero's journey (separation, initiation, return) as universal pattern
+of psychological transformation. Found across cultures because it maps archetypal process of
+ego development and individuation.
+
+Fairy Tales: Von Franz shows fairy tales as simpler than myths, depicting single psychological
+problems and their resolution. Amplification through fairy tales illuminates personal complexes.
+
+Psychological Reading: Myths are not about external events but internal psychic processes.
+Persephone's abduction is not historical event but symbolic of ego's encounter with unconscious
+(underworld). Every person undergoes this "descent."
+
+Cultural Diversity: Different cultures emphasize different archetypal patterns. Trickster
+prominent in Native American mythology, Mother Goddess in ancient Mediterranean, Warrior-Hero
+in Germanic myths. Psychism values cross-cultural study.
+
+Empirical Basis: Narratives structure memory and identity (narrative psychology). Life stories
+follow mythic patterns (McAdams). Archetypes as evolved psychological modules (evolutionary
+psychology, though reductive).
+
+BFO Modeling: Myths are Information Content Entities (bfo:0000031) encoding archetypal patterns.
+Mythological study is a Process of interpretation connecting personal experience to universal
+patterns.
+"""@en .
+
+# ====================================================================
+# SUBORDINATED VALUES (5)
+# ====================================================================
+
+:SurfaceRationalism a :SubordinatedValue ;
+    rdfs:label "Surface Rationalism"@en ;
+    skos:definition "Exclusive reliance on conscious rationality, ignoring or denying unconscious, irrational, and symbolic dimensions. Ego-consciousness mistaken for whole psyche."@en ;
+    rdfs:comment """Psychism subordinates rationalism that denies the unconscious and treats conscious
+ego as totality of psyche. Jung critiques Enlightenment rationalism for inflating ego and
+repressing soul. Not all rationality subordinated - rational engagement with unconscious is
+valued. But pure rationalism that excludes feeling, intuition, and unconscious is critiqued."""@en .
+
+:BehavioralReductionism a :SubordinatedValue ;
+    rdfs:label "Behavioral Reductionism"@en ;
+    skos:definition "Reducing psychological reality to observable behavior, ignoring inner experience, meaning, and depth. Behaviorism's elimination of psyche."@en ;
+    rdfs:comment """Psychism opposes behaviorism's reduction of psyche to conditioned responses.
+Watson's 'psychology without consciousness' and Skinner's operant conditioning ignore soul,
+meaning, and inner experience. Behavior modification treats symptoms without addressing psychic
+depth. Psychism values behavior but as expression of underlying psychic reality, not as
+totality."""@en .
+
+:EmotionalRepression a :SubordinatedValue ;
+    rdfs:label "Emotional Repression"@en ;
+    skos:definition "Systematic denial or suppression of emotional experience, especially shadow emotions (anger, envy, grief). Victorian emotional constraint."@en ;
+    rdfs:comment """Emotional repression creates neurosis - repressed contents do not disappear but
+return as symptoms, projections, or compulsions. Psychism values emotional authenticity and
+opposes cultures or individuals that systematically repress feeling. However, acknowledging
+emotion (integration) differs from acting out every impulse (inflation)."""@en .
+
+:PersonaIdentification a :SubordinatedValue ;
+    rdfs:label "Persona Identification"@en ;
+    skos:definition "Identifying with social role or mask (persona) as if it were one's authentic self. Confusing appearance with reality."@en ;
+    rdfs:comment """Persona (social mask) is necessary for adaptation but becomes problematic when
+mistaken for whole self. Persona identification loses authentic personality beneath mask.
+'I am a doctor' (persona) vs 'I have a doctor role' (differentiation). Midlife crisis often
+results from persona collapse - realizing one's life has been inauthentic."""@en .
+
+:LiteralismAndConcretism a :SubordinatedValue ;
+    rdfs:label "Literalism and Concretism"@en ;
+    skos:definition "Insisting on literal, concrete interpretation of symbols, myths, and psychic images. Missing symbolic and archetypal dimensions."@en ;
+    rdfs:comment """Literalism treats symbols as signs, myths as primitive science, dreams as random
+brain activity. Concrete thinking cannot grasp symbolic meaning - sees only literal surface.
+Psychism subordinates literalism in favor of symbolic consciousness. However, avoids opposite
+error of 'nothing but' symbolism that ignores concrete reality."""@en .
+
+# ====================================================================
+# BFO PROCESS MODELING
+# ====================================================================
+
+:PsychicProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # Process
+    rdfs:label "Psychic Process"@en ;
+    skos:definition "A process occurring within or involving the psyche - dream, therapy session, active imagination, emotional experience, archetypal encounter."@en .
+
+:IndividuationProcess_BFO a :PsychicProcess ;
+    rdfs:label "Individuation Process (BFO)"@en ;
+    skos:definition "The extended process by which an individual becomes psychologically whole, integrating conscious and unconscious. May span decades."@en ;
+    :hasStage :EgoFormation, :PersonaDevelopment, :ShadowConfrontation, :AnimaAnimusEncounter, :SelfRealization ;
+    rdfs:comment "Individuation is modeled as an extended Process (bfo:0000015) with temporal parts (stages), participant (individual psyche), and telos (Self-realization). Not linear but spiraling - recurring themes at deeper levels."@en .
+
+:TherapeuticProcess a :PsychicProcess ;
+    rdfs:label "Therapeutic Process"@en ;
+    skos:definition "A process of psychotherapeutic engagement, involving transference, interpretation, insight, and integration."@en .
+
+:DreamProcess a :PsychicProcess ;
+    rdfs:label "Dream Process"@en ;
+    skos:definition "A process occurring during sleep in which unconscious contents manifest symbolically. Dream as compensatory or prospective."@en .
+
+# ====================================================================
+# BFO QUALITY SUBSTRATES
+# ====================================================================
+
+:PsychologicalWholenessQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Psychological Wholeness Quality"@en ;
+    skos:definition "A quality that inheres in a psyche, measuring degree of integration between conscious and unconscious, ego and shadow."@en ;
+    rdfs:comment """Wholeness Quality ranges from fragmentation (neurosis, dissociation) to integration
+(individuation). Not binary but continuous. Measured by: capacity for ambivalence (holding
+opposites), shadow awareness, symbolic consciousness, emotional authenticity."""@en .
+
+:ArchetypalAwarenessQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Archetypal Awareness Quality"@en ;
+    skos:definition "A quality of consciousness measuring capacity to recognize archetypal patterns in experience. Ranges from literal concretism to symbolic depth."@en .
+
+:EmotionalAuthenticityQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Emotional Authenticity Quality"@en ;
+    skos:definition "A quality measuring alignment between inner emotional experience and outer expression. Ranges from persona-identification to genuine feeling."@en .
+
+# ====================================================================
+# WORKED SCENARIOS (3)
+# ====================================================================
+
+:Scenario a owl:Class ;
+    rdfs:label "Psychism Value Scenario"@en ;
+    skos:definition "A concrete scenario illustrating how Psychism values guide evaluation, interpretation, and response."@en .
+
+:MidlifeCrisisScenario a :Scenario ;
+    rdfs:label "Midlife Crisis Scenario"@en ;
+    skos:description """
+**Scenario**: A 45-year-old successful lawyer experiences depression, questioning life
+meaning despite outward success. Dreams of being trapped in a concrete building, longing
+for nature.
+
+**Psychism Interpretation**:
+Not chemical imbalance or cognitive distortion but psyche's demand for individuation. Persona
+identification (lawyer role) no longer sufficient - psyche demands authentic life. Dream reveals
+split: Ego identifies with constructed persona (concrete building); unconscious longs for
+instinct and nature (repressed inferior function).
+
+**Value Analysis**:
+- **Terminal Value Violated**: IndividuationProcess (life lived for persona, not authentic self),
+  PsychologicalWholeness (ego-shadow split), EmotionalAuthenticity (performing role, not genuine)
+- **Constitutive Value Needed**: ShadowIntegration (acknowledge repressed desires), PsychicHonesty
+  (admit dissatisfaction despite success), SymbolicConsciousness (read dream symbolically)
+- **Instrumental Response**: DreamWork (explore recurring dream imagery), PsychotherapyPractice
+  (long-term depth work), ActiveImagination (dialogue with nature figure in dream)
+
+**Psychism Recommendation**: Not 'fix depression' (symptom focus) but use crisis as opportunity
+for individuation. Second half of life requires different values than first half (Jung). Shadow
+integration and life restructuring necessary. Suffering has meaning - psyche forcing growth.
+
+**Contrast with Other Worldviews**:
+- Materialism: Chemical imbalance, prescribe antidepressants (subordinates psychic meaning)
+- Rationalism: Cognitive distortion, challenge irrational thoughts (ignores archetypal dimension)
+- Sensationalism: Existential ennui, seek new experiences (surface novelty vs depth)
+"""@en .
+
+:RecurringNightmareScenario a :Scenario ;
+    rdfs:label "Recurring Nightmare Scenario"@en ;
+    skos:description """
+**Scenario**: A woman has recurring nightmares of being chased by a dark male figure. Wakes
+terrified. Avoids sleep, seeks medication to suppress dreams.
+
+**Psychism Interpretation**:
+Dark male figure likely represents shadow (repressed masculine qualities) or animus (unconscious
+masculine aspect in woman). Pursuit indicates shadow's attempt to force recognition - what
+ego rejects, unconscious pursues. Not external threat but internal psychic reality demanding
+integration.
+
+**Value Analysis**:
+- **Terminal Value Threatened**: PsychologicalWholeness (ego-shadow split severe), SoulDepth
+  (ego avoids depth, staying surface)
+- **Constitutive Value Needed**: ShadowIntegration (confront dark figure, not flee), Symbolic
+  Consciousness (see figure as symbol, not literal threat), PsychicHonesty (acknowledge what
+  darkness represents - anger? sexuality? power?)
+- **Instrumental Response**: DreamWork (engage nightmare through active imagination), Active
+  Imagination (while awake, invite figure to speak - ask what it wants), Psychotherapy (explore
+  relational patterns - where is masculine rejected in life?)
+
+**Psychism Recommendation**: Turn and face the figure (Jung's advice for nightmare pursuit).
+Active imagination: Ask "Who are you? What do you want?" Often the pursuer transforms when
+confronted consciously. Shadow integration reduces nightmare intensity - not suppressing but
+integrating. Dream is not problem but attempted solution - psyche trying to heal.
+
+**Suppression Critique**: Medication suppressing dreams prevents psyche's self-healing attempt.
+Symptom (nightmare) removed but underlying psychic split worsens. Psychism values: work with
+dream, not against it.
+
+**Contrast with Other Worldviews**:
+- Materialism: Brain chemistry imbalance, prescribe sleep medication (suppresses psyche)
+- Rationalism: Irrational fear, use exposure therapy (behaviorist, ignores meaning)
+- Phenomenalism: Anxious phenomenology, mindfulness to observe without attachment (helpful but
+  insufficient - doesn't engage shadow)
+"""@en .
+
+:CreativeBlockScenario a :Scenario ;
+    rdfs:label "Creative Block Scenario"@en ;
+    skos:description """
+**Scenario**: An artist experiences creative block lasting months. Previously productive, now
+stares at blank canvas. Feels empty, uninspired. Tries to force creativity through discipline
+- fails.
+
+**Psychism Interpretation**:
+Creative block often signals exhaustion of current archetypal constellation. Previous work
+expressed one archetypal pattern (e.g., Puer - youthful innovation); that pattern now exhausted.
+Fallow period necessary for new archetypal constellation to emerge. Emptiness is not absence
+but pregnant void - womb of new creation (Hillman).
+
+**Value Analysis**:
+- **Terminal Value Challenged**: IndividuationProcess (stuck in old pattern, needs transformation),
+  SoulDepth (soul withdrawn, not available to ego), EmotionalAuthenticity (forcing false
+  creativity)
+- **Constitutive Value Needed**: SymbolicConsciousness (read emptiness symbolically - death/rebirth,
+  not failure), PsychicHonesty (admit current well is dry, not pretend), ArchetypalAwareness
+  (recognize archetypal transition)
+- **Instrumental Response**: DreamWork (what images appear in dreams?), ActiveImagination
+  (descend into emptiness, what's there?), MythologicalStudy (research myths of creative
+  darkness - Inanna's descent, Christ's tomb, alchemical nigredo)
+
+**Psychism Recommendation**: Honor the fallow period. Don't force. Descend into darkness
+(depression as necessary stage - Hillman's 'depression as initiation'). Study myths of death/
+rebirth. Allow old creative identity to die so new can emerge. Emptiness is alchemical nigredo
+(blackening) preceding albedo (whitening) and rubedo (reddening) - necessary dissolution before
+new integration.
+
+**Forcing Critique**: Ego's attempt to control creative process violates soul's autonomy.
+Creativity is gift from psyche, not ego achievement. Spiritual disciplines (fasting, silence,
+solitude) may help - creating space for psyche to speak.
+
+**Contrast with Other Worldviews**:
+- Materialism: Neurochemical fatigue, rest and routine will restore function (mechanistic)
+- Rationalism: Problem-solving failure, analyze block rationally (ego-control, ignores soul)
+- Dynamism: Creative flow blocked, change environment or seek stimulation (surface change vs
+  depth transformation)
+- Spiritualism: Spiritual dryness, pray for inspiration (external divine vs internal psyche)
+"""@en .
+
+# ====================================================================
+# EMPIRICAL GROUNDING (10+ Citations)
+# ====================================================================
+
+:EmpiricalSupport rdfs:comment """
+Psychism's values have empirical support from depth psychology research, neuroscience,
+personality psychology, and clinical outcomes research.
+
+**Jungian Therapy Effectiveness**:
+- Roesler, C. (2013). Evidence for the effectiveness of Jungian psychotherapy: A review of
+  empirical studies. Behavioral Sciences, 3(4), 562-575.
+  → Meta-analysis shows Jungian therapy effective for depression, anxiety, with effect sizes
+     comparable to CBT. Long-term follow-up shows sustained benefits.
+
+**Unconscious Processing**:
+- Bargh, J. A., & Morsella, E. (2008). The unconscious mind. Perspectives on Psychological
+  Science, 3(1), 73-79.
+  → Extensive empirical evidence for unconscious information processing, implicit attitudes,
+     automatic behaviors. Unconscious is not merely absent consciousness but active processor.
+
+**Archetypes and Evolved Psychology**:
+- Stevens, A. (2006). The archetypes. In R. K. Papadopoulos (Ed.), The Handbook of Jungian
+  Psychology (pp. 74-93). Routledge.
+  → Evolutionary psychology provides naturalistic account of archetypes as evolved psychological
+     modules (mother attachment, predator detection, sexual selection).
+
+**Dream Function**:
+- Cartwright, R., Agargun, M. Y., Kirkby, J., & Friedman, J. K. (2006). Relation of dreams to
+  waking concerns. Psychiatry Research, 141(3), 261-270.
+  → Dreams reflect waking emotional concerns and contribute to emotional regulation. Supports
+     compensatory function (though not full Jungian symbolism).
+
+**Shadow Projection**:
+- Pronin, E., Gilovich, T., & Ross, L. (2004). Objectivity in the eye of the beholder:
+  Divergent perceptions of bias in self versus others. Psychological Review, 111(3), 781-799.
+  → People readily see biases in others but not in themselves. Empirical support for projection
+     mechanism - attributing one's own unacknowledged traits to others.
+
+**Therapeutic Relationship**:
+- Norcross, J. C., & Lambert, M. J. (2018). Psychotherapy relationships that work III.
+  Psychotherapy, 55(4), 303-315.
+  → Meta-analysis: Therapeutic alliance accounts for more outcome variance than specific
+     techniques. Supports Jung/Rogers emphasis on relationship over technique.
+
+**Personality Development**:
+- Roberts, B. W., & Mroczek, D. (2008). Personality trait change in adulthood. Current
+  Directions in Psychological Science, 17(1), 31-35.
+  → Personality continues developing throughout adulthood, especially in midlife. Supports
+     Jung's concept of midlife transformation and second half of life development.
+
+**Attachment and Early Relationships**:
+- Bowlby, J. (1969). Attachment and Loss, Vol. 1: Attachment. Basic Books.
+- Ainsworth, M. D. S., et al. (1978). Patterns of Attachment. Erlbaum.
+  → Early relational patterns shape later psychological functioning. Empirical basis for
+     psychodynamic emphasis on childhood and relational templates.
+
+**Narrative Identity**:
+- McAdams, D. P. (2001). The psychology of life stories. Review of General Psychology, 5(2),
+  100-122.
+  → Identity is narrative construction following archetypal patterns (redemption, contamination,
+     hero's journey). Life stories structure experience and meaning.
+
+**Symbolism and Metaphor**:
+- Lakoff, G., & Johnson, M. (1980). Metaphors We Live By. University of Chicago Press.
+  → Conceptual metaphor theory: Abstract thought is fundamentally metaphorical, grounded in
+     bodily experience. Supports symbolic consciousness as fundamental to cognition.
+
+**Mindfulness and Depth**:
+- Creswell, J. D. (2017). Mindfulness interventions. Annual Review of Psychology, 68, 491-516.
+  → Mindfulness (observing inner experience non-judgmentally) shows clinical benefits. Western
+     parallel to Jungian attention to psychic contents.
+
+**Emotional Suppression Costs**:
+- Gross, J. J., & John, O. P. (2003). Individual differences in two emotion regulation processes.
+  Journal of Personality and Social Psychology, 85(2), 348-362.
+  → Chronic emotion suppression associated with reduced well-being, impaired relationships.
+     Supports Psychism's critique of emotional repression.
+"""@en .
+
+# ====================================================================
+# CROSS-REFERENCES AND INTEGRATION
+# ====================================================================
+
+:PsychismWorldview a owl:Class ;
+    rdfs:label "Psychism Worldview"@en ;
+    skos:definition "A worldview grounding reality in soul/psyche as fundamental. The unconscious is not absence but positive reality; archetypes organize experience; symbols are primary mode of expression."@en ;
+    :metaphysicalCluster "Depth-Spiritual"@en ;
+    :foundation "Soul/Psyche"@en ;
+    :epistemology "Introspection, dream analysis, active imagination, symbolic interpretation"@en ;
+    :keyThinkers "Jung, Freud, Hillman, von Franz, Neumann"@en ;
+    :relatedTo :Pneumatism, :Spiritualism, :Idealism ;  # Other depth/spiritual worldviews
+    :contrastsWith :Materialism, :Behavioralism, :SurfaceRationalism .
+
+# ====================================================================
+# PROPERTIES
+# ====================================================================
+
+:realizableAs a owl:ObjectProperty ;
+    rdfs:label "Realizable As"@en ;
+    skos:definition "Links a Psychism value to ValueNet dispositions through which it can be realized."@en ;
+    rdfs:domain :PsychismValue ;
+    rdfs:range vn-schwartz:ValueDisposition .
+
+:enablesRealization a owl:ObjectProperty ;
+    rdfs:label "Enables Realization"@en ;
+    skos:definition "Links an instrumental value to terminal values it helps realize."@en ;
+    rdfs:domain :InstrumentalValue ;
+    rdfs:range :TerminalValue .
+
+:hasStage a owl:ObjectProperty ;
+    rdfs:label "Has Stage"@en ;
+    skos:definition "Links a process to its temporal stages or phases."@en ;
+    rdfs:domain :PsychicProcess .
+
+# ====================================================================
+# END OF PSYCHISM VALUES ONTOLOGY
+# ====================================================================

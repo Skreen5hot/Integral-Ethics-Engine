@@ -113,43 +113,43 @@ export function deriveValues(metaphysics) {
   }
 
   // Depth-Spiritual Cluster
-  if (foundation === 'psyche') {
+  if (foundation === 'psyche' || foundation === 'soul') {
     return {
-      terminal: ['psychological_wholeness', 'emotional_authenticity', 'soul_depth'],
-      constitutive: ['integration', 'shadow_acknowledgment', 'genuine_feeling'],
-      instrumental: ['psychotherapy', 'dream_work', 'individuation', 'depth_psychology'],
-      subordinated: ['repression', 'superficiality', 'social_mask'],
-      reasoning: 'Psychism grounds value in psychological depth and wholeness. The soul is real and requires integration.'
+      terminal: ['psychological_wholeness', 'emotional_authenticity', 'soul_depth', 'individuation'],
+      constitutive: ['archetypal_awareness', 'symbolic_consciousness', 'shadow_integration', 'psychic_honesty'],
+      instrumental: ['dream_work', 'active_imagination', 'psychotherapy', 'mythological_study'],
+      subordinated: ['surface_rationalism', 'behavioral_reductionism', 'emotional_repression', 'persona_identification', 'literalism'],
+      reasoning: 'Psychism grounds value in soul depth and psychological wholeness. Unconscious is primary; consciousness derivative or surface. Archetypal structures organize experience.'
     };
   }
 
-  if (foundation === 'living_spirit') {
+  if (foundation === 'living_spirit' || foundation === 'spirit' || foundation === 'pneuma') {
     return {
-      terminal: ['spiritual_vitality', 'ensouled_cosmos', 'immanent_divinity'],
-      constitutive: ['sacred_presence', 'animate_nature', 'spiritual_ecology'],
-      instrumental: ['ritual', 'sacred_practice', 'nature_reverence'],
-      subordinated: ['dead_matter', 'mechanical_causation', 'desacralization'],
-      reasoning: 'Pneumatism grounds value in the living spirit pervading nature. The cosmos is ensouled, not mechanical.'
+      terminal: ['spiritual_vitality', 'ensouled_cosmos', 'immanent_divinity', 'sacred_presence'],
+      constitutive: ['animate_nature', 'spiritual_ecology', 'ritual_participation', 'sacred_awareness'],
+      instrumental: ['shamanic_practice', 'ritual_ceremony', 'ecological_reciprocity', 'spirit_encounter'],
+      subordinated: ['mechanistic_worldview', 'desacralized_nature', 'spirit_matter_dualism', 'anthropocentrism', 'reductionism'],
+      reasoning: 'Pneumatism grounds value in living spirit (pneuma) pervading nature. Cosmos is ensouled, divine is immanent in natural world. Shamanic spirit encounters, animistic perception.'
     };
   }
 
-  if (foundation === 'transcendent_spirit') {
+  if (foundation === 'transcendent_spirit' || foundation === 'transcendent' || foundation === 'divinity') {
     return {
-      terminal: ['divine_relationship', 'revealed_truth', 'spiritual_hierarchy'],
-      constitutive: ['worship', 'obedience_to_divine', 'transcendent_connection'],
+      terminal: ['divine_relationship', 'revealed_truth', 'spiritual_hierarchy', 'transcendent_connection'],
+      constitutive: ['worship', 'obedience_to_divine', 'sacred_revelation', 'spiritual_submission'],
       instrumental: ['prayer', 'scripture', 'spiritual_practice', 'religious_community'],
-      subordinated: ['secularism', 'immanentism', 'human_autonomy'],
-      reasoning: 'Spiritualism grounds value in relationship to transcendent divinity. Truth is revealed from higher realms.'
+      subordinated: ['secularism', 'immanentism', 'human_autonomy', 'rationalism', 'materialism'],
+      reasoning: 'Spiritualism grounds value in relationship to transcendent divinity. Truth is revealed from higher realms, not discovered by unaided reason. Mystical union with divine is highest good.'
     };
   }
 
-  if (foundation === 'mathematical_form') {
+  if (foundation === 'mathematical_form' || foundation === 'mathematics' || foundation === 'form') {
     return {
-      terminal: ['mathematical_beauty', 'structural_harmony', 'formal_perfection'],
-      constitutive: ['elegance', 'symmetry', 'proportion', 'mathematical_order'],
-      instrumental: ['formal_systems', 'geometric_reasoning', 'mathematical_proof'],
-      subordinated: ['chaos', 'asymmetry', 'formlessness'],
-      reasoning: 'Mathematism grounds value in mathematical structure. Reality is fundamentally mathematical; forms are discovered, not invented.'
+      terminal: ['mathematical_beauty', 'structural_harmony', 'formal_perfection', 'elegant_order'],
+      constitutive: ['platonic_realism', 'logical_necessity', 'abstract_thought', 'universal_structure'],
+      instrumental: ['rigorous_proof', 'symbolic_notation', 'axiomatic_method', 'mathematical_intuition'],
+      subordinated: ['empirical_contingency', 'applied_utility', 'informal_reasoning', 'numerical_approximation', 'constructivism'],
+      reasoning: 'Mathematism grounds value in mathematical beauty, structural harmony, formal perfection. Reality is fundamentally mathematical (Platonic Forms). Mathematical truth is eternal, transcendent, discovered not invented. Beauty guides truth.'
     };
   }
 

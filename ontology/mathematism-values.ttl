@@ -1,0 +1,414 @@
+@prefix : <http://purl.org/integralism/ethics/mathematism-values#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-schwartz: <http://purl.org/valuenet/schwartz#> .
+
+# ====================================================================
+# MATHEMATISM VALUES ONTOLOGY
+# Depth-Spiritual Worldview Cluster
+# ====================================================================
+# Mathematism: Reality is fundamentally mathematical. Value is grounded
+# in mathematical beauty, structural harmony, formal perfection, elegant
+# order. Mathematical form is eternal, transcendent, the deep structure
+# of reality. Key traditions: Pythagoras, Plato, Euclid, modern
+# mathematics (Hardy, Penrose, Tegmark). BFO compliance: Process, ICE,
+# Quality substrates.
+# ====================================================================
+
+<http://purl.org/integralism/ethics/mathematism-values> a owl:Ontology ;
+    rdfs:label "Mathematism Values Ontology"@en ;
+    rdfs:comment "Defines the value hierarchy for the Mathematism worldview within the Integral Ethics Engine."@en ;
+    owl:versionInfo "1.0.0" ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ,
+                <http://www.ontologyrepository.com/CommonCoreOntologies/> ;
+    dcterms:creator "Integral Ethics Engine - Phase 3.4"@en ;
+    dcterms:created "2026-01-04"^^xsd:date ;
+    dcterms:description "Mathematism worldview: reality is fundamentally mathematical, value grounded in mathematical beauty, structural harmony, formal perfection."@en .
+
+# ====================================================================
+# VALUE CLASSES
+# ====================================================================
+
+:TerminalValue a owl:Class ;
+    rdfs:label "Terminal Value"@en ;
+    skos:definition "Intrinsically valuable end state in Mathematism worldview."@en .
+
+:ConstitutiveValue a owl:Class ;
+    rdfs:label "Constitutive Value"@en ;
+    skos:definition "Essential component of mathematical reality."@en .
+
+:InstrumentalValue a owl:Class ;
+    rdfs:label "Instrumental Value"@en ;
+    skos:definition "Means to realize mathematical beauty and formal perfection."@en .
+
+:SubordinatedValue a owl:Class ;
+    rdfs:label "Subordinated Value"@en ;
+    skos:definition "Value de-emphasized or rejected by Mathematism worldview."@en .
+
+:Scenario a owl:Class ;
+    rdfs:label "Scenario"@en ;
+    skos:definition "Worked scenario demonstrating Mathematism value reasoning."@en .
+
+# ====================================================================
+# VALUE PROPERTIES
+# ====================================================================
+
+:realizableAs a owl:ObjectProperty ;
+    rdfs:label "realizable as"@en ;
+    skos:definition "Links worldview value to Schwartz ValueNet disposition."@en .
+
+:metaphysicalGrounding a owl:DatatypeProperty ;
+    rdfs:label "metaphysical grounding"@en ;
+    skos:definition "Metaphysical foundation for this value in Mathematism."@en .
+
+:scenarioDescription a owl:DatatypeProperty ;
+    rdfs:label "scenario description"@en .
+
+:scenarioEvaluation a owl:DatatypeProperty ;
+    rdfs:label "scenario evaluation"@en .
+
+# ====================================================================
+# TERMINAL VALUES (4)
+# ====================================================================
+
+:MathematicalBeauty a :TerminalValue ;
+    rdfs:label "Mathematical Beauty"@en ;
+    skos:definition "Intrinsic aesthetic value of mathematical structures, proofs, patterns. Elegance, simplicity, symmetry in formal systems. Beauty is truth perceived mathematically."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:UniversalismDisposition ;
+    :metaphysicalGrounding "Mathematical beauty is objective, eternal, transcendent. Not subjective preference but recognition of deep structural harmony. Mathematical forms exist independently of human minds (Platonism). Beauty guides discovery of truth."@en ;
+    dcterms:source "Hardy, G.H. (1940). A Mathematician's Apology. Cambridge University Press." ;
+    dcterms:source "Rota, G.-C. (1997). The phenomenology of mathematical beauty. Synthese, 111(2), 171-182." ;
+    dcterms:source "Plato. (c. 380 BCE). Philebus. Translated by R. Hackforth." ;
+    dcterms:source "Poincaré, H. (1908). Science and Method. Translated by F. Maitland." ;
+    bfo:0000019 "Mathematical beauty is quality (bfo:Quality) inhering in formal structures."@en .
+
+:StructuralHarmony a :TerminalValue ;
+    rdfs:label "Structural Harmony"@en ;
+    skos:definition "Coherent unity of mathematical structures. Deep patterns connecting disparate domains. Harmonious relationships (golden ratio, Fibonacci sequence, group symmetries). Universe exhibits mathematical order."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:UniversalismDisposition ;
+    :metaphysicalGrounding "Reality is structured by mathematical harmonies (Pythagorean tradition). Music of the spheres. Physical laws are mathematical harmonies. Structural isomorphisms reveal deep unity of nature."@en ;
+    dcterms:source "Pythagoras (c. 500 BCE). Fragments on Harmony and Number. In G.S. Kirk & J.E. Raven, The Presocratic Philosophers." ;
+    dcterms:source "Livio, M. (2002). The Golden Ratio: The Story of Phi. Broadway Books." ;
+    dcterms:source "Penrose, R. (2004). The Road to Reality: A Complete Guide to the Laws of the Universe. Knopf." ;
+    dcterms:source "Weyl, H. (1952). Symmetry. Princeton University Press." ;
+    bfo:0000019 "Structural harmony is quality (bfo:Quality) of coherent mathematical organization."@en .
+
+:FormalPerfection a :TerminalValue ;
+    rdfs:label "Formal Perfection"@en ;
+    skos:definition "Completeness, consistency, rigor of formal systems. Ideal of axiomatic method (Euclid). Proofs attaining certainty through logical necessity. Perfection of mathematical demonstration."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:AchievementDisposition ;
+    :metaphysicalGrounding "Formal systems can achieve perfection unattainable in empirical domains. Mathematical proofs are eternally true (not contingent). Axiomatic rigor reveals necessary truths. Formal perfection is highest intellectual achievement."@en ;
+    dcterms:source "Euclid. (c. 300 BCE). Elements. Translated by T.L. Heath." ;
+    dcterms:source "Hilbert, D. (1899). Foundations of Geometry. Translated by E.J. Townsend." ;
+    dcterms:source "Russell, B., & Whitehead, A.N. (1910-1913). Principia Mathematica. Cambridge University Press." ;
+    dcterms:source "Gödel, K. (1931). On Formally Undecidable Propositions. Translated by B. Meltzer." ;
+    bfo:0000031 "Formal systems are ICE (bfo:ICE) - information content entities with logical structure."@en .
+
+:ElegantOrder a :TerminalValue ;
+    rdfs:label "Elegant Order"@en ;
+    skos:definition "Simplicity, parsimony, minimal complexity achieving maximal explanatory power. Occam's razor as aesthetic principle. Elegant solutions over brute force. Economy of means."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:SelfDirectionDisposition ;
+    :metaphysicalGrounding "Nature is economical (principle of least action). Simplest explanations are most likely true. Complexity emerges from simple rules (fractals, cellular automata). Elegance reveals deep truth."@en ;
+    dcterms:source "Occam, William of. (c. 1320). Summa Logicae. Translated by M.J. Loux." ;
+    dcterms:source "Feynman, R. (1965). The Character of Physical Law. MIT Press." ;
+    dcterms:source "Wolfram, S. (2002). A New Kind of Science. Wolfram Media." ;
+    dcterms:source "Chaitin, G. (1998). The Limits of Mathematics. Springer." ;
+    bfo:0000019 "Elegance is quality (bfo:Quality) of achieving maximum with minimum."@en .
+
+# ====================================================================
+# CONSTITUTIVE VALUES (4)
+# ====================================================================
+
+:PlatonicRealism a :ConstitutiveValue ;
+    rdfs:label "Platonic Realism"@en ;
+    skos:definition "Mathematical objects exist independently of minds in realm of Forms. Numbers, geometric figures, sets are real entities, not mental constructs. Mathematical truth is discovered, not invented."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:TraditionDisposition ;
+    :metaphysicalGrounding "Platonic Forms are eternal, immutable, transcendent. Physical world is imperfect shadow of mathematical reality. Mind grasps Forms through rational intuition (anamnesis)."@en ;
+    dcterms:source "Plato. (c. 380 BCE). Republic, Book VII (Allegory of the Cave). Translated by G.M.A. Grube." ;
+    dcterms:source "Plato. (c. 360 BCE). Timaeus. Translated by D.J. Zeyl." ;
+    dcterms:source "Gödel, K. (1964). What is Cantor's Continuum Problem? In P. Benacerraf & H. Putnam (Eds.), Philosophy of Mathematics." ;
+    dcterms:source "Tegmark, M. (2014). Our Mathematical Universe. Knopf." ;
+    bfo:0000031 "Platonic Forms are ICE (bfo:ICE) existing independently of physical substrates."@en .
+
+:LogicalNecessity a :ConstitutiveValue ;
+    rdfs:label "Logical Necessity"@en ;
+    skos:definition "Mathematical truths hold by logical necessity in all possible worlds. Not contingent on empirical observation. A priori knowledge through pure reason."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:ConformityDisposition ;
+    :metaphysicalGrounding "Mathematical necessity is highest certainty (Cartesian clear and distinct ideas). Logical contradictions are impossible. Mathematical truths are analytic (Kant) or tautological (Wittgenstein)."@en ;
+    dcterms:source "Descartes, R. (1641). Meditations on First Philosophy. Translated by J. Cottingham." ;
+    dcterms:source "Kant, I. (1781). Critique of Pure Reason. Translated by P. Guyer & A.W. Wood." ;
+    dcterms:source "Wittgenstein, L. (1921). Tractatus Logico-Philosophicus. Translated by C.K. Ogden." ;
+    dcterms:source "Kripke, S. (1980). Naming and Necessity. Harvard University Press." ;
+    bfo:0000031 "Logical necessity constrains all possible ICE (bfo:ICE) configurations."@en .
+
+:AbstractThought a :ConstitutiveValue ;
+    rdfs:label "Abstract Thought"@en ;
+    skos:definition "Capacity to reason beyond sensory particulars to universal principles. Abstraction from concrete to general. Symbolic manipulation, formal systems, pure mathematics."@en ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition, vn-schwartz:StimulationDisposition ;
+    :metaphysicalGrounding "Human intellect can grasp universal Forms (Aristotelian nous). Abstract thought distinguishes humans from animals. Mathematics is purest exercise of rational faculty."@en ;
+    dcterms:source "Aristotle. (c. 350 BCE). Metaphysics, Book XII. Translated by W.D. Ross." ;
+    dcterms:source "Frege, G. (1879). Begriffsschrift. Translated by T.W. Bynum." ;
+    dcterms:source "Husserl, E. (1900-1901). Logical Investigations. Translated by J.N. Findlay." ;
+    dcterms:source "Lakoff, G., & Núñez, R. (2000). Where Mathematics Comes From. Basic Books." ;
+    bfo:0000015 "Abstract thought is process (bfo:Process) of mental activity."@en .
+
+:UniversalStructure a :ConstitutiveValue ;
+    rdfs:label "Universal Structure"@en ;
+    skos:definition "Mathematical structures are universal, not culture-bound. Same mathematics discovered independently across civilizations. Alien intelligences would discover same theorems."@en ;
+    :realizableAs vn-schwartz:UniversalismDisposition, vn-schwartz:SpiritualityDisposition ;
+    :metaphysicalGrounding "Mathematical truth transcends human culture. Universal applicability of mathematics to nature (Wigner's 'unreasonable effectiveness'). Mathematics is language of cosmos."@en ;
+    dcterms:source "Wigner, E. (1960). The Unreasonable Effectiveness of Mathematics in the Natural Sciences. Communications in Pure and Applied Mathematics, 13(1)." ;
+    dcterms:source "Hardy, G.H. (1940). A Mathematician's Apology. Cambridge University Press." ;
+    dcterms:source "Resnik, M. (1997). Mathematics as a Science of Patterns. Oxford University Press." ;
+    dcterms:source "Dehaene, S. (1997). The Number Sense. Oxford University Press." ;
+    bfo:0000019 "Universal structure is quality (bfo:Quality) of mathematical forms."@en .
+
+# ====================================================================
+# INSTRUMENTAL VALUES (4)
+# ====================================================================
+
+:RigorousProof a :InstrumentalValue ;
+    rdfs:label "Rigorous Proof"@en ;
+    skos:definition "Logical demonstration from axioms to theorems. Each step justified by inference rules. No gaps, no appeals to intuition. Standard of mathematical certainty."@en ;
+    :realizableAs vn-schwartz:AchievementDisposition, vn-schwartz:ConformityDisposition ;
+    :metaphysicalGrounding "Proof provides certainty unattainable in empirical sciences. Rigorous method ensures consensus. Mathematical community validates proofs through peer review."@en ;
+    dcterms:source "Euclid. (c. 300 BCE). Elements. Translated by T.L. Heath." ;
+    dcterms:source "Bourbaki, N. (1939-present). Éléments de mathématique. Springer." ;
+    dcterms:source "Thurston, W. (1994). On proof and progress in mathematics. Bulletin of the American Mathematical Society, 30(2), 161-177." ;
+    dcterms:source "Hales, T. (2008). Formal proof. Notices of the AMS, 55(11), 1370-1380." ;
+    bfo:0000015 "Proof construction is process (bfo:Process) of logical derivation."@en .
+
+:SymbolicNotation a :InstrumentalValue ;
+    rdfs:label "Symbolic Notation"@en ;
+    skos:definition "Formal languages for expressing mathematical ideas. Algebra, calculus notation, set theory, category theory. Symbols enable manipulation, computation, communication."@en ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition, vn-schwartz:StimulationDisposition ;
+    :metaphysicalGrounding "Notation is not mere convenience but shapes thought. Well-chosen notation reveals structure (Leibniz's characteristica universalis). Symbolic systems enable discovery."@en ;
+    dcterms:source "Leibniz, G.W. (1666). De Arte Combinatoria. Translated by M.D. Wilson." ;
+    dcterms:source "Whitehead, A.N. (1911). An Introduction to Mathematics. Williams and Norgate." ;
+    dcterms:source "Cajori, F. (1928-1929). A History of Mathematical Notations. Open Court." ;
+    dcterms:source "Mazur, J. (2014). Enlightening Symbols: A Short History of Mathematical Notation. Princeton University Press." ;
+    bfo:0000031 "Symbolic notation is ICE (bfo:ICE) encoding mathematical content."@en .
+
+:AxiomaticMethod a :InstrumentalValue ;
+    rdfs:label "Axiomatic Method"@en ;
+    skos:definition "Building theories from minimal self-evident axioms. Deriving consequences by logical inference. Hilbert's program: axiomatize all mathematics. Formal systems (ZFC, Peano arithmetic)."@en ;
+    :realizableAs vn-schwartz:SelfDirectionDisposition, vn-schwartz:AchievementDisposition ;
+    :metaphysicalGrounding "Axioms capture essential structure. Minimal assumptions maximize generality. Axiomatic method achieves greatest certainty from fewest premises (Spinoza's Ethics as model)."@en ;
+    dcterms:source "Euclid. (c. 300 BCE). Elements. Translated by T.L. Heath." ;
+    dcterms:source "Hilbert, D. (1899). Foundations of Geometry. Translated by E.J. Townsend." ;
+    dcterms:source "Zermelo, E. (1908). Investigations in the foundations of set theory. Translated in J. van Heijenoort (Ed.), From Frege to Gödel." ;
+    dcterms:source "Spinoza, B. (1677). Ethics. Translated by E. Curley." ;
+    bfo:0000015 "Axiomatization is process (bfo:Process) of systematization."@en .
+
+:MathematicalIntuition a :InstrumentalValue ;
+    rdfs:label "Mathematical Intuition"@en ;
+    skos:definition "Direct insight into mathematical truth. Visualization, pattern recognition, aesthetic judgment. Guides conjecture formation. Complements formal proof (Poincaré's intuitionism)."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:StimulationDisposition ;
+    :metaphysicalGrounding "Intuition is rational faculty grasping Forms (Platonic nous). Not mystical but intellectual perception. Trained intuition guides discovery before formal proof."@en ;
+    dcterms:source "Poincaré, H. (1908). Science and Method. Translated by F. Maitland." ;
+    dcterms:source "Hadamard, J. (1945). The Psychology of Invention in the Mathematical Field. Princeton University Press." ;
+    dcterms:source "Brouwer, L.E.J. (1912). Intuitionism and Formalism. Bulletin of the American Mathematical Society, 20(2), 81-96." ;
+    dcterms:source "Gödel, K. (1964). What is Cantor's Continuum Problem? In P. Benacerraf & H. Putnam (Eds.), Philosophy of Mathematics." ;
+    bfo:0000015 "Mathematical intuition is process (bfo:Process) of cognitive insight."@en .
+
+# ====================================================================
+# SUBORDINATED VALUES (5)
+# ====================================================================
+
+:EmpiricalContingency a :SubordinatedValue ;
+    rdfs:label "Empirical Contingency"@en ;
+    skos:definition "Truths dependent on observation, experiment, empirical evidence. Contingent facts about actual world. Mathematism subordinates contingency to necessary truths."@en ;
+    :metaphysicalGrounding "Empirical truths are contingent, could be otherwise. Mathematical truths are necessary, hold in all possible worlds. Mathematics provides foundation for empirical science, not vice versa."@en ;
+    dcterms:source "Kant, I. (1781). Critique of Pure Reason. Translated by P. Guyer & A.W. Wood." ;
+    dcterms:source "Quine, W.V.O. (1951). Two Dogmas of Empiricism. Philosophical Review, 60(1), 20-43." ;
+    bfo:0000015 "Empirical observation is process (bfo:Process) yielding contingent knowledge."@en .
+
+:AppliedUtility a :SubordinatedValue ;
+    rdfs:label "Applied Utility"@en ;
+    skos:definition "Practical usefulness, engineering applications, solving real-world problems. Mathematism values pure mathematics over applied (Hardy's disdain for utility)."@en ;
+    :metaphysicalGrounding "Pure mathematics pursues truth/beauty for its own sake, not utility. Most beautiful mathematics is 'useless' (number theory - though applications emerge later). Utility is side effect, not purpose."@en ;
+    dcterms:source "Hardy, G.H. (1940). A Mathematician's Apology. Cambridge University Press." ;
+    dcterms:source "Rota, G.-C. (1997). The phenomenology of mathematical beauty. Synthese, 111(2), 171-182." ;
+    bfo:0000015 "Applied work is process (bfo:Process) serving external ends."@en .
+
+:InformalReasoning a :SubordinatedValue ;
+    rdfs:label "Informal Reasoning"@en ;
+    skos:definition "Heuristics, plausibility arguments, analogies, rough reasoning. Mathematism values formal rigor over informal justification."@en ;
+    :metaphysicalGrounding "Informal reasoning may guide discovery but cannot establish truth. Only formal proof provides certainty. Heuristics are scaffolding, discarded once proof complete."@en ;
+    dcterms:source "Lakatos, I. (1976). Proofs and Refutations. Cambridge University Press." ;
+    dcterms:source "Polya, G. (1945). How to Solve It. Princeton University Press." ;
+    bfo:0000015 "Informal reasoning is process (bfo:Process) lacking rigor."@en .
+
+:NumericalApproximation a :SubordinatedValue ;
+    rdfs:label "Numerical Approximation"@en ;
+    skos:definition "Computational methods, Monte Carlo simulation, finite precision. Mathematism values exact solutions over approximations."@en ;
+    :metaphysicalGrounding "Approximations are epistemically inferior to exact solutions. Numerical methods acknowledge limits but don't grasp underlying structure. Exact closed forms reveal truth."@en ;
+    dcterms:source "Hamming, R.W. (1980). The unreasonable effectiveness of mathematics. American Mathematical Monthly, 87(2), 81-90." ;
+    dcterms:source "Kline, M. (1980). Mathematics: The Loss of Certainty. Oxford University Press." ;
+    bfo:0000015 "Numerical computation is process (bfo:Process) yielding approximations."@en .
+
+:Constructivism a :SubordinatedValue ;
+    rdfs:label "Constructivism"@en ;
+    skos:definition "Mathematics as human construction (social, cultural, mental). Mathematism subordinates constructivism to Platonic realism."@en ;
+    :metaphysicalGrounding "Mathematics is discovered, not invented. Mathematical objects exist independently. Constructivism confuses epistemology (how we know) with ontology (what exists)."@en ;
+    dcterms:source "Hersh, R. (1997). What is Mathematics, Really? Oxford University Press." ;
+    dcterms:source "Ernest, P. (1998). Social Constructivism as a Philosophy of Mathematics. SUNY Press." ;
+    bfo:0000031 "Constructivist view treats mathematics as ICE (bfo:ICE) dependent on human minds."@en .
+
+# ====================================================================
+# WORKED SCENARIOS (3)
+# ====================================================================
+
+:EulerIdentityScenario a :Scenario ;
+    rdfs:label "Euler's Identity Scenario"@en ;
+    :scenarioDescription """
+A mathematician encounters Euler's identity: e^(iπ) + 1 = 0.
+
+This simple equation unites five fundamental mathematical constants:
+- e (base of natural logarithm)
+- i (imaginary unit)
+- π (ratio of circle's circumference to diameter)
+- 1 (multiplicative identity)
+- 0 (additive identity)
+
+The mathematician experiences profound aesthetic response - described as 'most beautiful theorem in mathematics' (poll of mathematicians). Simplicity, depth, unity of disparate domains (analysis, geometry, algebra, complex numbers).
+"""@en ;
+    :scenarioEvaluation """
+**Mathematism Evaluation**:
+
+1. **Mathematical Beauty** (Terminal): Identity exemplifies beauty - elegant, simple, profound. Unites fundamental constants in unexpected way. Beauty is objective (not subjective preference) - mathematicians across cultures recognize same aesthetic.
+
+2. **Structural Harmony** (Terminal): Reveals deep harmony of mathematical universe. e connects to π through complex plane. Unexpected relationships show underlying unity.
+
+3. **Formal Perfection** (Terminal): Proof is rigorous (Euler's formula, Taylor series). Each step logically necessary. Achieves certainty through pure reason.
+
+4. **Platonic Realism** (Constitutive): Identity is discovered, not invented. Existed eternally before humans. Mathematical objects (e, π, i) are real entities in Platonic realm.
+
+5. **Rigorous Proof** (Instrumental): Identity established by formal derivation from complex analysis axioms. Not empirical observation.
+
+**Value Reasoning**: Euler's identity exemplifies why mathematics is ultimate reality. Pure formal beauty transcending physical world. If universe disappeared, identity would still be true (necessary truth). This is spiritual experience for Mathematism - contact with eternal Forms.
+
+**Contrast with Empiricism**: Empiricist might see identity as interesting pattern in symbol manipulation. Mathematism sees ontological truth - reality is fundamentally mathematical, identity reveals this.
+
+**Subordinated Values**: Identity's beauty is independent of applications (Applied Utility subordinated). Not approximate (Numerical Approximation subordinated). Not cultural construction (Constructivism subordinated).
+"""@en ;
+    dcterms:source "Nahin, P.J. (2006). Dr. Euler's Fabulous Formula. Princeton University Press." ;
+    dcterms:source "Wells, D. (1990). Are these the most beautiful? Mathematical Intelligencer, 12(3), 37-41." .
+
+:FermatsLastTheoremScenario a :Scenario ;
+    rdfs:label "Fermat's Last Theorem Scenario"@en ;
+    :scenarioDescription """
+A mathematician works on Fermat's Last Theorem: For n > 2, no three positive integers a, b, c satisfy a^n + b^n = c^n.
+
+Problem stated in 1637, proved in 1995 (Andrew Wiles). 358 years of effort. Wiles spends 7 years in secret, achieves breakthrough, discovers error, spends another year fixing proof.
+
+Upon completing proof, Wiles describes emotional experience: 'Nothing I ever do again will mean as much.' Describes moment of insight as 'so indescribably beautiful... so simple and so elegant.'
+
+Mathematical community celebrates proof as one of greatest achievements. Complex proof (100+ pages) unites algebraic geometry, modular forms, Galois representations.
+"""@en ;
+    :scenarioEvaluation """
+**Mathematism Evaluation**:
+
+1. **Formal Perfection** (Terminal): Theorem is now proven with certainty. Statement is simple (high school algebra) but proof requires cutting-edge mathematics. Achieving proof is highest intellectual achievement.
+
+2. **Mathematical Beauty** (Terminal): Wiles' aesthetic experience is evidence of objective beauty. Beauty guides discovery - Wiles followed aesthetic sense to solution.
+
+3. **Elegant Order** (Terminal): Simple statement (a^n + b^n ≠ c^n for n > 2) has deep consequences. Economy of expression. Simplicity concealing depth.
+
+4. **Logical Necessity** (Constitutive): Once proven, theorem is necessarily true in all possible worlds. Not contingent on physical universe. Would be true even if cosmos didn't exist.
+
+5. **Rigorous Proof** (Instrumental): Only formal proof provides certainty. Fermat claimed proof but didn't write it down - without rigorous demonstration, uncertain. Wiles achieves gold standard.
+
+6. **Abstract Thought** (Constitutive): Proof requires highest abstraction - modular forms, elliptic curves, Galois representations. Transcends concrete particulars.
+
+**Value Reasoning**: Wiles' devotion (7 years) demonstrates that mathematical truth is ultimate value. Sacrificing other pursuits (social life, easier research) for sake of proving theorem. Community honors this because mathematics is what matters most - not wealth, power, pleasure, but eternal truth.
+
+**Contrast with Pragmatism**: Pragmatist might ask 'What's the use?' Mathematism responds: Theorem's value is intrinsic. Truth/beauty for its own sake. (Ironically, number theory later enables cryptography - but this doesn't justify theorem, which needs no justification beyond beauty.)
+
+**Subordinated Values**: Applied Utility irrelevant. Informal Reasoning insufficient (Fermat's unwritten 'proof' not accepted). Empirical methods useless (can't prove universal statement by checking cases).
+"""@en ;
+    dcterms:source "Singh, S. (1997). Fermat's Enigma: The Epic Quest to Solve the World's Greatest Mathematical Problem. Walker & Company." ;
+    dcterms:source "Wiles, A. (1995). Modular elliptic curves and Fermat's Last Theorem. Annals of Mathematics, 141(3), 443-551." .
+
+:PlatonicSolidsScenario a :Scenario ;
+    rdfs:label "Platonic Solids Scenario"@en ;
+    :scenarioDescription """
+Ancient Greek geometers (Pythagoreans, Plato) study regular polyhedra - three-dimensional solids with congruent faces. Discover exactly 5 exist:
+- Tetrahedron (4 triangular faces)
+- Cube (6 square faces)
+- Octahedron (8 triangular faces)
+- Dodecahedron (12 pentagonal faces)
+- Icosahedron (20 triangular faces)
+
+Proof that only 5 possible uses Euler's polyhedral formula (V - E + F = 2). Mathematical necessity - not contingent observation.
+
+Plato associates solids with elements (fire, earth, air, water, quintessence). Not empirically accurate, but reveals metaphysical intuition: reality is fundamentally geometric/mathematical.
+
+Modern physics (Kepler, crystallography, chemistry) shows symmetries pervasive in nature. Platonic solids appear in crystal structures, viral capsids, molecular geometry.
+"""@en ;
+    :scenarioEvaluation """
+**Mathematism Evaluation**:
+
+1. **Structural Harmony** (Terminal): Solids exhibit perfect symmetry. All faces, edges, vertices identical. Geometric harmony is beautiful.
+
+2. **Logical Necessity** (Constitutive): Only 5 regular polyhedra can exist - proven mathematically. Not discovered empirically (could miss one) but known with certainty through reason.
+
+3. **Platonic Realism** (Constitutive): Solids are eternal Forms. Existed before physical instantiations. Physical crystals are imperfect copies of perfect mathematical objects.
+
+4. **Universal Structure** (Constitutive): Same 5 solids discovered independently in different cultures (Greece, China, Islamic mathematics). Alien geometers would discover same 5. Universal truth.
+
+5. **Formal Perfection** (Terminal): Proof of uniqueness (only 5 exist) is rigorous. Uses Euler's formula plus constraint that faces/vertices/edges must satisfy polyhedral conditions.
+
+6. **Axiomatic Method** (Instrumental): Solids derived from axioms of Euclidean geometry (parallel postulate, etc.). Built from first principles.
+
+7. **Mathematical Beauty** (Terminal): Symmetry is beautiful. Completeness (finding all 5) is satisfying. Simple constraints (regularity) yielding finite enumeration.
+
+**Value Reasoning**: Platonic solids exemplify Mathematism metaphysics. Perfect geometric forms transcending physical world. Plato's association with elements was wrong empirically but right metaphysically - reality IS mathematical, just not in simple way Plato thought.
+
+Modern physics (crystallography, group theory, quantum mechanics) vindicated mathematical worldview: nature is structured by mathematical symmetries (Wigner's 'unreasonable effectiveness'). Platonic solids are first glimpse of this truth.
+
+**Contrast with Empiricism**: Empiricist discovers crystals shaped like polyhedra. Mathematist discovers polyhedra exist necessarily, then recognizes nature instantiates them. Mathematics is prior to physics.
+
+**Subordinated Values**: Empirical Contingency subordinated (solids exist necessarily, not contingently). Constructivism subordinated (solids are discovered, not invented - same 5 across cultures proves this).
+"""@en ;
+    dcterms:source "Plato. (c. 360 BCE). Timaeus. Translated by D.J. Zeyl." ;
+    dcterms:source "Euclid. (c. 300 BCE). Elements, Book XIII. Translated by T.L. Heath." ;
+    dcterms:source "Coxeter, H.S.M. (1973). Regular Polytopes (3rd ed.). Dover." ;
+    dcterms:source "Cromwell, P. (1997). Polyhedra. Cambridge University Press." .
+
+# ====================================================================
+# EMPIRICAL GROUNDING
+# ====================================================================
+
+:EmpiricalGrounding a owl:Class ;
+    rdfs:label "Empirical Grounding for Mathematism"@en ;
+    skos:definition "Empirical research on mathematical cognition, aesthetics, and effectiveness in science."@en ;
+    dcterms:description """
+While Mathematism makes metaphysical claims (Platonic realism), research supports psychological/scientific correlates:
+
+1. **Neuroscience of Mathematical Beauty**: Semir Zeki's fMRI studies show beautiful mathematical equations activate same brain regions (medial orbitofrontal cortex) as beautiful art/music. Suggests aesthetic response to mathematics is genuine, not metaphorical.
+
+2. **Cross-Cultural Mathematical Cognition**: Stanislas Dehaene's research shows number sense is innate, universal across cultures. Core mathematical abilities (subitizing, approximate arithmetic) are biological, not culturally constructed. Supports universality of mathematical structure.
+
+3. **Unreasonable Effectiveness of Mathematics**: Eugene Wigner's observation that mathematics is 'unreasonably effective' in describing physical reality. Physical laws are mathematical (Maxwell's equations, Einstein's field equations, Schrödinger equation). Suggests nature is fundamentally mathematical.
+
+4. **Mathematical Platonism Among Mathematicians**: Surveys show majority of research mathematicians are Platonic realists - experience mathematics as discovery of pre-existing truths, not invention. This is phenomenological evidence (though not proof) of mathematical realism.
+
+5. **Psychology of Mathematical Intuition**: Jacques Hadamard's research on mathematical invention documents role of aesthetic judgment, unconscious insight, sudden illumination in mathematical discovery. Poincaré, Gauss, Ramanujan report similar experiences.
+
+6. **Symmetry in Nature**: Physics reveals symmetries at all scales (crystallography, conservation laws from Noether's theorem, gauge symmetries in particle physics). Suggests structural harmony is not human projection but feature of reality.
+
+7. **Computational Irreducibility**: Stephen Wolfram's research on cellular automata shows simple rules generate complex behavior. Suggests elegance/simplicity at foundation (though Gödel's theorems show limits of formal systems).
+
+These findings don't prove Platonic realism (metaphysical question) but show mathematical experience has objective correlates and mathematics genuinely describes nature.
+"""@en ;
+    dcterms:source "Zeki, S., Romaya, J.P., Benincasa, D.M., & Atiyah, M.F. (2014). The experience of mathematical beauty and its neural correlates. Frontiers in Human Neuroscience, 8, 68." ;
+    dcterms:source "Dehaene, S. (1997). The Number Sense: How the Mind Creates Mathematics. Oxford University Press." ;
+    dcterms:source "Wigner, E. (1960). The Unreasonable Effectiveness of Mathematics in the Natural Sciences. Communications in Pure and Applied Mathematics, 13(1)." ;
+    dcterms:source "Hadamard, J. (1945). The Psychology of Invention in the Mathematical Field. Princeton University Press." ;
+    dcterms:source "Weinberg, S. (1993). Dreams of a Final Theory. Vintage." .

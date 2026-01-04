@@ -1,0 +1,1021 @@
+@prefix : <http://purl.org/integralism/ethics/pneumatism#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://www.w3.org/dc/terms/> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-schwartz: <http://purl.org/valuenet/schwartz#> .
+
+# ====================================================================
+# PNEUMATISM VALUES ONTOLOGY
+# Depth-Spiritual Worldview Cluster
+# ====================================================================
+# Pneumatism: Living spirit (pneuma) pervades nature; cosmos is ensouled,
+# animated by vital force. Reality is fundamentally alive, not dead matter.
+# Key traditions: Animism, shamanism, vitalism, indigenous philosophies.
+# BFO compliance: Process, ICE, Quality substrates.
+# ====================================================================
+
+<http://purl.org/integralism/ethics/pneumatism-values> a owl:Ontology ;
+    rdfs:label "Pneumatism Values Ontology"@en ;
+    rdfs:comment "Defines the value hierarchy for the Pneumatism worldview within the Integral Ethics Engine."@en ;
+    owl:versionInfo "1.0.0" ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ,
+                <http://www.ontologyrepository.com/CommonCoreOntologies/> ;
+    dcterms:created "2026-01-03"^^xsd:date ;
+    dcterms:creator "Integral Ethics Engine Development Team" ;
+    dcterms:description """
+Pneumatism grounds value in living spirit (pneuma, breath, life-force) that
+pervades and animates nature. Reality is fundamentally alive - cosmos is ensouled,
+not composed of dead matter mechanically interacting. Spirit is immanent in nature,
+not transcendent or separate.
+
+Metaphysical Foundation:
+- Pneuma (spirit/breath/life-force) as fundamental reality
+- Cosmos as living organism, not dead mechanism
+- Anima mundi (world-soul) pervading all things
+- Nature as sacred, animate, spiritually alive
+- Vital force (élan vital) driving evolution and growth
+
+Epistemology:
+- Knowledge through participation in spiritual ecology
+- Ritual as mode of communion with spirit in nature
+- Shamanic vision, ecstatic experience, spirit encounter
+- Indigenous knowledge systems, oral tradition
+- Feeling/sensing spirit presence in natural world
+
+Value Priority:
+- Spiritual vitality (living energy, life-force)
+- Ensouled cosmos (world as sacred living being)
+- Immanent divinity (divine present in nature, not remote)
+- Sacred presence (awareness of spiritual dimension in immediate environment)
+- Ecological reciprocity (humans as part of animate nature)
+
+Worldview Cluster: Depth-Spiritual (Spirit foundation + Immanent depth)
+
+Key Philosophers and Traditions:
+- Henri Bergson: Élan vital, creative evolution, duration
+- F.W.J. Schelling: Naturphilosophie, living nature, absolute idealism
+- Alfred North Whitehead: Process philosophy, organic mechanism
+- Baruch Spinoza: Deus sive Natura (God or Nature), immanent divinity
+- Giordano Bruno: Infinite universe, world-soul, panpsychism
+- Thales, Anaximander: Pre-Socratic hylozoism (matter is alive)
+- Animism: Tylor, Hallowell, Bird-David, Harvey
+- Indigenous philosophies: Native American, Aboriginal, African traditional
+- Shamanism: Eliade, Harner, Vitebsky
+- Deep Ecology: Arne Naess, Joanna Macy
+- Gaia Hypothesis: James Lovelock, Lynn Margulis
+- Vitalism: Hans Driesch, Henri Bergson
+
+Empirical Grounding:
+- Gaia hypothesis: Earth as self-regulating living system
+- Biophilia hypothesis: Innate human affinity for life
+- Ecological psychology: Affordances, organism-environment mutuality
+- Systems theory: Holistic organization, emergent properties
+- Indigenous ecological knowledge: Sustainable practices, biodiversity
+"""@en .
+
+# ====================================================================
+# VALUE CLASSES
+# ====================================================================
+
+:PneumatismValue a owl:Class ;
+    rdfs:label "Pneumatism Value"@en ;
+    skos:definition "A value grounded in living spirit pervading nature, ensouled cosmos, and immanent divinity."@en ;
+    rdfs:comment "Pneumatism values prioritize spiritual vitality, sacred presence in nature, and participation in living cosmos. Values realized through ritual, ecological reciprocity, and shamanic practice."@en .
+
+:TerminalValue a owl:Class ;
+    rdfs:subClassOf :PneumatismValue ;
+    rdfs:label "Terminal Value"@en ;
+    skos:definition "An end-state value intrinsically valuable within Pneumatism - spiritual vitality, ensouled cosmos, immanent divinity, sacred presence."@en ;
+    dcterms:source "Bergson (1907) Creative Evolution; Eliade (1964) Shamanism: Archaic Techniques of Ecstasy"@en .
+
+:ConstitutiveValue a owl:Class ;
+    rdfs:subClassOf :PneumatismValue ;
+    rdfs:label "Constitutive Value"@en ;
+    skos:definition "A value constituting the nature of pneumatic reality - animate nature, spiritual ecology, ritual participation, sacred awareness."@en .
+
+:InstrumentalValue a owl:Class ;
+    rdfs:subClassOf :PneumatismValue ;
+    rdfs:label "Instrumental Value"@en ;
+    skos:definition "A value instrumentally valuable for realizing spiritual vitality - shamanic practice, ritual ceremony, ecological reciprocity, spirit encounter."@en .
+
+:SubordinatedValue a owl:Class ;
+    rdfs:label "Subordinated Value"@en ;
+    skos:definition "A value subordinated or critiqued within Pneumatism - mechanistic worldview, desacralized nature, spirit-matter dualism, anthropocentrism."@en .
+
+# ====================================================================
+# TERMINAL VALUES (4)
+# ====================================================================
+
+:SpiritualVitality a :TerminalValue ;
+    rdfs:label "Spiritual Vitality"@en ;
+    skos:definition "Living spiritual energy (pneuma, chi, prana, life-force) pervading cosmos. Vitality as fundamental reality, not reducible to chemical energy."@en ;
+    skos:altLabel "Life Force"@en, "Élan Vital"@en, "Pneuma"@en, "Chi/Qi"@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:StimulationDisposition ;
+    dcterms:source """
+Bergson, H. (1907). Creative Evolution. Henry Holt.
+Bergson, H. (1911). Matter and Memory. George Allen & Unwin.
+Driesch, H. (1908). The Science and Philosophy of the Organism. A. & C. Black.
+Schelling, F.W.J. (1797/1988). Ideas for a Philosophy of Nature. Cambridge University Press.
+Whitehead, A.N. (1929). Process and Reality. Macmillan.
+Traditional Chinese Medicine: Concept of Qi (life energy).
+Ayurveda: Concept of Prana (vital breath, life force).
+"""@en ;
+    rdfs:comment """Spiritual vitality is the living energy that pervades and animates all
+reality. Not reducible to biochemical ATP or physical energy - pneuma is spiritual force
+manifesting as life, growth, creativity, and evolutionary drive.
+
+Bergson's Élan Vital: Creative life-force driving evolution, not mechanistic natural selection
+alone. Evolution as creative emergence, not predetermined unfolding. Life transcends matter
+through creative vital impulse.
+
+Vitalism vs Mechanism: Vitalism holds life cannot be explained by physics/chemistry alone -
+requires vital force or organizing principle. Rejected by modern biology as scientifically
+unnecessary, but phenomenologically significant - living systems exhibit properties (purpose,
+self-organization, reproduction) qualitatively different from non-living.
+
+Cross-Cultural Concepts:
+- Pneuma (Greek): Breath, spirit, vital air
+- Chi/Qi (Chinese): Life energy circulating through meridians
+- Prana (Sanskrit): Vital breath, life force in yoga/Ayurveda
+- Orenda (Iroquois): Spiritual force in all things
+- Mana (Polynesian): Spiritual power/energy
+
+Empirical Correlates: While vitalism per se is rejected, living systems do exhibit emergent
+properties - autopoiesis (self-production), far-from-equilibrium thermodynamics, complex
+adaptive systems. Systems biology studies holistic organization.
+
+BFO Modeling: Spiritual vitality is a Quality (bfo:0000019) that inheres in living beings,
+realized through life processes (bfo:0000015). Degree of vitality varies - vibrant health
+to illness to death.
+"""@en .
+
+:EnsouledCosmos a :TerminalValue ;
+    rdfs:label "Ensouled Cosmos"@en ;
+    skos:definition "Universe as living organism with world-soul (anima mundi), not dead mechanism. Cosmos is sacred, sentient, spiritually alive."@en ;
+    skos:altLabel "World Soul"@en, "Anima Mundi"@en, "Living Universe"@en, "Gaia"@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:UniversalismDisposition ;
+    dcterms:source """
+Plato. (c. 360 BCE). Timaeus. [World-soul as cosmic principle]
+Bruno, G. (1584). On the Infinite Universe and Worlds. [Infinite ensouled cosmos]
+Schelling, F.W.J. (1800). System of Transcendental Idealism. University of Virginia Press.
+Whitehead, A.N. (1929). Process and Reality. [Organism as fundamental]
+Lovelock, J. (1979). Gaia: A New Look at Life on Earth. Oxford University Press.
+Margulis, L., & Sagan, D. (1995). What Is Life? University of California Press.
+Sheldrake, R. (1981). A New Science of Life. Blond & Briggs. [Morphic resonance]
+Swimme, B., & Berry, T. (1992). The Universe Story. HarperCollins.
+"""@en ;
+    rdfs:comment """Ensouled cosmos is the vision of universe as living being, not dead matter
+obeying mechanical laws. Cosmos has soul (anima mundi), purpose, interiority - not merely
+external material processes.
+
+Plato's Timaeus: World-soul (psyche tou pantos) as ordering principle of cosmos. Universe
+as living creature (zoon), rational and ensouled. Planets and stars as divine living beings.
+
+Giordano Bruno: Infinite universe filled with innumerable worlds, all alive and ensouled.
+Rejected Aristotelian finite cosmos. Universe as manifestation of infinite divine life.
+
+Schelling's Naturphilosophie: Nature as living totality, not dead object. Spirit and nature
+unified - nature is visible spirit, spirit is invisible nature. Polarity, productivity, and
+self-organization as fundamental.
+
+Gaia Hypothesis: Earth as self-regulating living system (Lovelock & Margulis). Biosphere
+maintains homeostasis (temperature, atmospheric composition). Controversial whether Gaia is
+literally alive or metaphorically organic. Empirical support for planetary self-regulation.
+
+Deep Ecology: Arne Naess - intrinsic value of all life, ecological self expanding to identify
+with nature. Not anthropocentric resource management but biocentric reverence for living Earth.
+
+Critique of Mechanism: Descartes' mechanical philosophy reduces nature to res extensa (extended
+thing) without soul or purpose. Pneumatism rejects this desacralization - nature is sacred,
+alive, spiritually significant.
+
+BFO Modeling: Ensouled cosmos is realized in ecological processes (bfo:0000015) exhibiting
+self-organization, purpose (teleology), and unity. Gaia as organism-like system.
+"""@en .
+
+:ImmanentDivinity a :TerminalValue ;
+    rdfs:label "Immanent Divinity"@en ;
+    skos:definition "Divine spirit present within nature, not transcendent or separate. God/Spirit as immanent in cosmos, not external creator."@en ;
+    skos:altLabel "Divine Immanence"@en, "Panentheism"@en, "Deus Sive Natura"@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:UniversalismDisposition ;
+    dcterms:source """
+Spinoza, B. (1677). Ethics. [Deus sive Natura - God or Nature]
+Bruno, G. (1584). On Cause, Principle and Unity. [Divine immanent in all things]
+Schelling, F.W.J. (1809). Philosophical Investigations into the Essence of Human Freedom.
+Hartshorne, C. (1948). The Divine Relativity. Yale University Press. [Process theology]
+Tillich, P. (1951). Systematic Theology, Vol. 1. [God as Ground of Being]
+Indigenous traditions: Divine spirits in mountains, rivers, trees, animals.
+Shinto: Kami (spirits/gods) in natural phenomena.
+Taoism: Tao as immanent principle in nature.
+"""@en ;
+    rdfs:comment """Immanent divinity locates divine spirit within nature itself, not as external
+transcendent creator standing outside cosmos. Divine is the life, soul, and spiritual depth
+of natural world - Deus sive Natura (God or Nature).
+
+Spinoza's Immanence: Only one substance - Deus sive Natura (God or Nature). God is not
+transcendent person but immanent infinite substance of which all things are modes. Natura
+naturans (naturing nature) vs natura naturata (natured nature). Intellectual love of God
+(amor Dei intellectualis) is understanding necessity of Nature.
+
+Panentheism vs Pantheism:
+- Pantheism: God = Nature (total identity)
+- Panentheism: God in Nature but also transcends it (God in all, all in God)
+Pneumatism tends toward pantheism or panentheism - divine fully present in nature.
+
+Indigenous Animism: Spirits (kami, manitou, orenda) dwelling in natural features - mountains,
+rivers, trees, animals. Not external gods manipulating nature but spiritual essences constituting
+nature's aliveness. Relationship with spirit-beings, not worship of remote deity.
+
+Contrast with Transcendent Monotheism: Abrahamic religions (Judaism, Christianity, Islam)
+emphasize God as transcendent creator, ontologically distinct from creation. Pneumatism rejects
+this dualism - spirit and nature are unified, not separate.
+
+Ecological Ethics: If nature is divine, desecration of nature is sacrilege. Environmental
+destruction is spiritual violence. Contrast with dominion theology (Genesis 1:28) licensing
+exploitation. Pneumatism: reverence, reciprocity, sacred relationship.
+
+BFO Modeling: Immanent divinity is Quality (bfo:0000019) inhering in natural entities,
+manifest in processes exhibiting creativity, self-organization, and beauty.
+"""@en .
+
+:SacredPresence a :TerminalValue ;
+    rdfs:label "Sacred Presence"@en ;
+    skos:definition "Awareness of spiritual dimension in immediate environment. Sense of sacred pervading ordinary reality, not confined to special times/places."@en ;
+    skos:altLabel "Numinous Experience"@en, "Spirit Awareness"@en, "Sacred Perception"@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:TraditionDisposition ;
+    dcterms:source """
+Otto, R. (1917). The Idea of the Holy. Oxford University Press. [Numinous experience]
+Eliade, M. (1957). The Sacred and the Profane. Harcourt. [Hierophany, sacred space/time]
+Buber, M. (1923). I and Thou. Charles Scribner's Sons. [I-Thou relationship with nature]
+Merleau-Ponty, M. (1945). Phenomenology of Perception. [Embodied perception]
+Abram, D. (1996). The Spell of the Sensuous. Pantheon. [Animistic perception]
+Indigenous traditions: Constant awareness of spirit presences.
+Shinto: Kami awareness in daily life.
+"""@en ;
+    rdfs:comment """Sacred presence is the experienced reality of spiritual dimension pervading
+ordinary life and natural environment. Not reserved for religious buildings or rituals but
+present in mountains, forests, rivers, animals, weather - all of nature vibrates with spiritual
+presence.
+
+Rudolf Otto's Numinous: Experience of the holy (das Heilige) as mysterium tremendum et
+fascinans - mystery both terrifying and fascinating. Numinous evokes awe, dread, and attraction.
+Not reducible to morality or rationality - sui generis religious experience.
+
+Eliade's Hierophany: Manifestation of the sacred (hierophany) in profane world. Sacred space
+(axis mundi - center of world) vs profane space. Sacred time (illud tempus - primordial time
+of origins) vs profane time. Traditional societies oriented to sacred.
+
+Animistic Perception: David Abram - perception itself is participatory, reciprocal encounter
+with animate world. Before alphabetic writing, humans experienced natural world as speaking,
+spiritually alive. Modern alienation from nature stems from abstraction, not perception.
+
+Buber's I-Thou: Genuine encounter with nature as "Thou" (spiritual being) not "It" (object).
+I-Thou relation is mutual, present, unmediated. Trees, animals, landscape can be encountered
+as Thou - sacred presence in natural beings.
+
+Contrast with Disenchantment: Max Weber's "disenchantment" (Entzauberung) - modern rationalization
+strips world of magic, spirit, meaning. Pneumatism re-enchants: recognizes sacred presence
+never truly absent, only ignored.
+
+Empirical Dimension: Peak experiences (Maslow), flow states (Csikszentmihalyi), awe (Keltner &
+Haidt) - moments of profound connection, transcendence, unity with larger whole. While not
+proving metaphysical claims, these experiences are phenomenologically real.
+
+BFO Modeling: Sacred presence is Quality of experience (bfo:0000019) arising in perceptual
+processes (bfo:0000015) when attending to spiritual dimension of reality.
+"""@en .
+
+# ====================================================================
+# CONSTITUTIVE VALUES (4)
+# ====================================================================
+
+:AnimateNature a :ConstitutiveValue ;
+    rdfs:label "Animate Nature"@en ;
+    skos:definition "Nature as fundamentally alive, ensouled, spiritually animate - not dead matter. Hylozoism: matter itself is alive."@en ;
+    skos:altLabel "Living Nature"@en, "Hylozoism"@en, "Ensouled Matter"@en ;
+    :realizableAs vn-schwartz:UniversalismDisposition, vn-schwartz:SpiritualityDisposition ;
+    dcterms:source """
+Thales (c. 624-546 BCE). "All things are full of gods." [Early hylozoism]
+Schelling, F.W.J. (1799). First Outline of a System of the Philosophy of Nature.
+Whitehead, A.N. (1929). Process and Reality. [Organisms all the way down]
+Naess, A. (1973). The shallow and the deep, long-range ecology movement. Inquiry, 16(1), 95-100.
+Abram, D. (1996). The Spell of the Sensuous. Pantheon.
+Harvey, G. (2005). Animism: Respecting the Living World. Columbia University Press.
+Bird-David, N. (1999). "Animism" revisited. Current Anthropology, 40(S1), S67-S91.
+"""@en ;
+    rdfs:comment """Animate nature affirms that nature is fundamentally alive - not dead matter
+mechanically moved by external forces, but living, self-moving, ensouled reality.
+
+Hylozoism: Greek hyle (matter) + zoe (life). Ancient view that matter itself is alive, not
+inert substance requiring external animator. Thales: "All things are full of gods." Early
+cosmologies saw cosmos as living organism.
+
+Contrast with Mechanism: Cartesian mechanism treats nature as res extensa - inert extended
+substance. Motion explained by contact causation, not inner principle. Life itself mechanized
+in molecular biology (DNA as code, cell as machine). Pneumatism rejects this reduction.
+
+Whitehead's Panpsychism: Ultimate units of reality ("actual occasions") have inner experience,
+purpose, creativity. Organisms all the way down - even atoms have primitive subjectivity.
+Not anthropomorphism but recognition of interiority in nature.
+
+Indigenous Animism: Traditional societies relate to animals, plants, rivers, mountains as
+persons - beings with agency, interiority, spirit. Not primitive error but sophisticated
+relational ontology. Reciprocity with other-than-human persons.
+
+Contemporary Animism: Graham Harvey - animism as relational epistemology and ontology. Not
+belief that everything has soul, but practice of relating to world as alive, relational,
+composed of persons (not all human). Ecological and ethical implications.
+
+Empirical Correlate: While scientific naturalism rejects vitalism, complexity science reveals
+emergent properties of living systems - autopoiesis, self-organization, anticipation, agency.
+Life exhibits qualities irreducible to physics alone.
+
+BFO Modeling: Animate nature describes Quality (bfo:0000019) of aliveness inhering in natural
+entities, realized in self-organizing processes (bfo:0000015) exhibiting purpose and creativity.
+"""@en .
+
+:SpiritualEcology a :ConstitutiveValue ;
+    rdfs:label "Spiritual Ecology"@en ;
+    skos:definition "Ecological relationships understood spiritually - reciprocity with spirit-beings, sacred interdependence, not mere resource management."@en ;
+    skos:altLabel "Sacred Ecology"@en, "Ecotheology"@en, "Deep Ecology"@en ;
+    :realizableAs vn-schwartz:UniversalismDisposition, vn-schwartz:TraditionDisposition ;
+    dcterms:source """
+Naess, A. (1989). Ecology, Community and Lifestyle. Cambridge University Press.
+Berry, T. (1999). The Great Work: Our Way into the Future. Bell Tower.
+Macy, J. (1991). World as Lover, World as Self. Parallax Press.
+Kimmerer, R.W. (2013). Braiding Sweetgrass: Indigenous Wisdom, Scientific Knowledge. Milkweed.
+Berkes, F. (2012). Sacred Ecology (3rd ed.). Routledge.
+Nelson, R. (1983). Make Prayers to the Raven. University of Chicago Press.
+"""@en ;
+    rdfs:comment """Spiritual ecology sees ecological relationships as sacred reciprocity between
+spirit-beings, not merely material resource flows or ecosystem services. Humans participate
+in living cosmos, not dominate dead nature.
+
+Deep Ecology: Arne Naess - shift from anthropocentric to biocentric/ecocentric perspective.
+Ecological self expands to identify with all life. Intrinsic value of all beings, not merely
+instrumental value for humans. Eight principles including self-realization and biospheric
+egalitarianism.
+
+Indigenous Ecological Knowledge: Traditional societies maintain sustainable relationships with
+environment through spiritual ecology - rituals of gratitude, reciprocity with animal spirits,
+taboos protecting sacred groves, seasonal ceremonies. Robin Wall Kimmerer (Braiding Sweetgrass):
+Indigenous science as complementary to Western science, emphasizing gift economy and gratitude.
+
+Sacred Reciprocity: Not one-way extraction but mutual exchange. Hunters offer prayers/gifts
+to animal spirits. Gatherers leave offerings for plant spirits. Reciprocity maintains balance,
+prevents exploitation. Contrast with modern resource extraction.
+
+Ecological Crisis as Spiritual Crisis: Thomas Berry - environmental destruction stems from
+loss of sense of sacred, communion with Earth. Solution requires "New Story" re-enchanting
+cosmos, recovering Earth as primary revelation of divine. Economic growth theology vs Earth
+spirituality.
+
+Empirical Support: Traditional ecological knowledge (TEK) demonstrates effectiveness of
+indigenous practices - sustainable fisheries, forest management, biodiversity conservation.
+Spiritual worldview supports ecological sustainability more than purely economic rationality.
+
+BFO Modeling: Spiritual ecology is realized in reciprocal processes (bfo:0000015) between
+humans and other-than-human beings, governed by sacred Qualities (bfo:0000019) of respect,
+gratitude, and kinship.
+"""@en .
+
+:RitualParticipation a :ConstitutiveValue ;
+    rdfs:label "Ritual Participation"@en ;
+    skos:definition "Participation in spiritual reality through ritual, ceremony, shamanic practice. Ritual as genuine communion with spirit, not mere symbolism."@en ;
+    skos:altLabel "Ceremonial Communion"@en, "Sacred Ritual"@en, "Shamanic Practice"@en ;
+    :realizableAs vn-schwartz:TraditionDisposition, vn-schwartz:SpiritualityDisposition ;
+    dcterms:source """
+Eliade, M. (1964). Shamanism: Archaic Techniques of Ecstasy. Princeton University Press.
+Turner, V. (1969). The Ritual Process: Structure and Anti-Structure. Aldine.
+Rappaport, R. (1999). Ritual and Religion in the Making of Humanity. Cambridge.
+Harner, M. (1980). The Way of the Shaman. Harper & Row.
+Vitebsky, P. (1995). The Shaman. Little, Brown.
+Van Gennep, A. (1909). The Rites of Passage. University of Chicago Press.
+"""@en ;
+    rdfs:comment """Ritual participation is active engagement with spiritual dimension through
+ceremony, shamanic journey, ecstatic practice. Not symbolic representation but actual encounter
+with spirit beings, forces, and realities.
+
+Shamanism: Eliade defines shaman as "technician of ecstasy" - practitioner who journeys to
+spirit worlds in altered states (trance, drumming, entheogens). Universal patterns: initiatory
+crisis, dismemberment/death/rebirth, animal helpers, world tree/axis mundi. Shaman mediates
+between human and spirit worlds.
+
+Ritual Efficacy: Rituals are performative, not merely symbolic. Saying/doing makes it so
+(Austin's performatives). Ritual creates sacred time and space, transforms participants,
+maintains cosmic order. Roy Rappaport: ritual establishes convention, enacts commitment,
+constitutes sacred.
+
+Rites of Passage: Van Gennep - rituals marking life transitions (birth, puberty, marriage,
+death). Three phases: separation, liminality (threshold), reincorporation. Victor Turner:
+liminality as anti-structure, communitas, transformation. Ritual death and rebirth literally
+experienced.
+
+Participatory Knowing: Rituals provide knowledge unavailable to detached observation. Must
+participate to understand. Initiation conveys gnosis (experiential knowing), not just doctrine.
+Shamanic journeys reveal spirit geography, plant knowledge, healing techniques.
+
+Critique of Functionalism: Functionalist anthropology (Durkheim, Malinowski) reduces ritual
+to social function - solidarity, anxiety reduction. Pneumatism: rituals genuinely contact
+spiritual realities, not merely express social structure. Phenomenology takes participant
+perspective seriously.
+
+Empirical Dimension: Ritual effectiveness documented - altered states produce healing, ecstatic
+experience, psychological transformation. While not proving ontological claims, rituals have
+real psycho-spiritual effects.
+
+BFO Modeling: Rituals are extended Processes (bfo:0000015) with participants (human and spirit),
+transformative outcomes, and sacred spatial-temporal locations. Ritual creates liminal ICE
+(bfo:0000031) - sacred time/space.
+"""@en .
+
+:SacredAwareness a :ConstitutiveValue ;
+    rdfs:label "Sacred Awareness"@en ;
+    skos:definition "Perceptual/embodied awareness of sacred dimension in immediate experience. Sensing spirit presences, feeling life-force, perceiving animate world."@en ;
+    skos:altLabel "Spirit Sensing"@en, "Animistic Perception"@en, "Numinous Awareness"@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:SelfDirectionDisposition ;
+    dcterms:source """
+Merleau-Ponty, M. (1945). Phenomenology of Perception. Routledge.
+Abram, D. (1996). The Spell of the Sensuous. Pantheon.
+Gibson, J.J. (1979). The Ecological Approach to Visual Perception. Houghton Mifflin.
+Hallowell, A.I. (1960). Ojibwa ontology, behavior, and world view. In S. Diamond (Ed.), Culture in History.
+Viveiros de Castro, E. (1998). Cosmological deixis and Amerindian perspectivism. JRAI, 4(3), 469-488.
+Ingold, T. (2000). The Perception of the Environment. Routledge.
+"""@en ;
+    rdfs:comment """Sacred awareness is embodied, perceptual consciousness of spiritual dimension
+in immediate environment - sensing spirit presences, feeling life-force, perceiving nature as
+alive and ensouled. Not intellectual belief but lived experience.
+
+Animistic Perception: David Abram - pre-alphabetic cultures experienced nature as reciprocally
+communicative, spiritually alive. Oral cultures: mountains speak, rivers have moods, animals
+are persons. Literacy abstracted consciousness from sensuous immediacy. Modern task: recover
+participation without rejecting literacy.
+
+Merleau-Ponty's Embodiment: Perception is not passive reception but active participation.
+Body as lived (Leib) not merely physical object (Körper). Reversibility: touching/touched,
+seeing/seen. Natural world is co-participant, not inert object. Flesh (chair) - intertwining
+of perceiver and perceived.
+
+Ecological Perception: Gibson's affordances - environment affords opportunities for action
+(climbing, grasping, sheltering). Perception is direct, not mediated by mental representations.
+Pneumatism extends: environment also affords spiritual engagement - prayer, offering, communion.
+
+Ojibwa Ontology: A. Irving Hallowell - Ojibwa distinguish "persons" (human and other-than-human)
+from "things." Stones can be persons if they manifest agency, power. Personhood is relational,
+contextual, not species-based. Animism as sophisticated ontology, not primitive error.
+
+Perspectivism: Eduardo Viveiros de Castro - Amazonian cosmologies: all beings see themselves
+as human, others as prey/predators/spirits. Humans see humans as humans, jaguars as animals;
+jaguars see jaguars as humans, humans as prey. Reality perspectival, not fixed.
+
+Critique of Disenchantment: Modern consciousness "disenchanted" (Weber) - strips world of
+spirit, magic, meaning. Pneumatism: re-enchantment through recovering participatory perception,
+seeing world as alive.
+
+BFO Modeling: Sacred awareness is Quality (bfo:0000019) of perceptual experience, arising
+in embodied processes (bfo:0000015) of sensing, feeling, attending to spiritual dimension.
+"""@en .
+
+# ====================================================================
+# INSTRUMENTAL VALUES (4)
+# ====================================================================
+
+:ShamanicPractice a :InstrumentalValue ;
+    rdfs:label "Shamanic Practice"@en ;
+    skos:definition "Shamanic techniques for encountering spirit world - journeying, drumming, vision quest, ecstatic trance. Methods for direct spirit contact."@en ;
+    skos:altLabel "Spirit Journeying"@en, "Shamanic Ecstasy"@en, "Vision Quest"@en ;
+    :enablesRealization :SpiritualVitality, :SacredPresence, :RitualParticipation ;
+    dcterms:source """
+Eliade, M. (1964). Shamanism: Archaic Techniques of Ecstasy. Princeton University Press.
+Harner, M. (1980). The Way of the Shaman. Harper & Row.
+Vitebsky, P. (2001). Shamanism. University of Oklahoma Press.
+Halifax, J. (1979). Shamanic Voices. E.P. Dutton.
+Tedlock, B. (2005). The Woman in the Shaman's Body. Bantam.
+Walsh, R. (1990). The Spirit of Shamanism. Tarcher/Putnam.
+"""@en ;
+    rdfs:comment """Shamanic practice encompasses techniques for directly encountering spirit
+realities - journeying to upper/lower worlds, communicating with spirit helpers, retrieving
+lost souls, healing through spiritual power.
+
+Core Shamanic Techniques (Harner):
+- Drumming/Rattling: Sonic driving induces trance (4-7 Hz theta rhythms)
+- Spirit Journey: Traveling to non-ordinary reality via tunnel, flight, descent
+- Power Animals: Spirit helpers in animal form, sources of power and guidance
+- Soul Retrieval: Recovering fragmented soul parts lost through trauma
+- Extraction: Removing spiritual intrusions causing illness
+- Divination: Consulting spirits for guidance, hidden knowledge
+
+Vision Quest: Indigenous North American practice - fasting, isolation in wilderness, seeking
+vision from spirit world. Rite of passage providing spiritual name, life direction, power.
+Contemporary practice adapted by non-indigenous seekers.
+
+Altered States: Shamanic consciousness (SSC - shamanic state of consciousness) distinct from
+ordinary waking. Induced by drumming, dancing, fasting, entheogens (ayahuasca, peyote, psilocybin),
+breathwork. Trance allows perception of spirit dimension.
+
+Empirical Research: Anthropology documents universality of shamanic patterns across cultures.
+Neuropsychology studies trance states - EEG changes, theta rhythms, hallucinations. Efficacy
+research on shamanic healing shows positive outcomes (placebo-controlled studies difficult).
+
+Cultural Appropriation Concerns: Non-indigenous adoption of shamanic practices raises ethical
+issues - commodification, decontextualization, exploitation. Respectful engagement requires
+humility, permission, reciprocity with indigenous communities.
+
+BFO Modeling: Shamanic practice is extended Process (bfo:0000015) involving trance induction,
+spirit journey, and return. Encounters spirit-beings (agents in spirit realm), retrieves
+information or power (ICE - bfo:0000031).
+"""@en .
+
+:RitualCeremony a :InstrumentalValue ;
+    rdfs:label "Ritual Ceremony"@en ;
+    skos:definition "Ceremonial practices honoring spirits, marking sacred times, maintaining cosmic order. Rituals of gratitude, offering, seasonal celebration."@en ;
+    skos:altLabel "Sacred Ceremony"@en, "Ritual Observance"@en, "Seasonal Festivals"@en ;
+    :enablesRealization :EnsouledCosmos, :ImmanentDivinity, :RitualParticipation ;
+    dcterms:source """
+Turner, V. (1969). The Ritual Process. Aldine.
+Rappaport, R. (1999). Ritual and Religion in the Making of Humanity. Cambridge.
+Grimes, R.L. (2014). The Craft of Ritual Studies. Oxford University Press.
+Bell, C. (1992). Ritual Theory, Ritual Practice. Oxford University Press.
+Eliade, M. (1959). The Sacred and the Profane. Harcourt.
+"""@en ;
+    rdfs:comment """Ritual ceremony includes all structured practices for engaging sacred -
+seasonal festivals, rites of passage, offerings to spirits, purification rituals, sacred dances.
+
+Functions of Ritual:
+- Cosmological: Maintaining cosmic order, renewing world (Eliade's illud tempus)
+- Social: Creating solidarity, marking transitions, resolving conflicts
+- Psychological: Managing anxiety, facilitating transformation, inducing ecstasy
+- Spiritual: Communing with spirits, honoring deities, receiving blessings
+
+Seasonal Rituals: Agricultural societies celebrate seasonal cycles - planting, harvest, solstices,
+equinoxes. Rituals align human community with natural rhythms. Example: Spring planting ceremonies
+asking blessing from earth/corn spirits. Autumn harvest festivals offering gratitude.
+
+Rites of Passage: Birth, puberty, marriage, death marked by rituals. Van Gennep's structure:
+separation (leaving old status), liminality (threshold/transition), incorporation (new status).
+Initiations transform identity - boy becomes man, maiden becomes woman, living becomes ancestor.
+
+Offerings and Sacrifice: Gifts to spirits - food, drink, tobacco, objects. Sacrifice (making
+sacred) through giving. Reciprocity with spirit world. Potlatch (Pacific Northwest): ceremonial
+giving demonstrating wealth and status, redistributing resources.
+
+Performative Ritual: Roy Rappaport - rituals establish convention, display acceptance, enact
+commitment. Saying "I do" in wedding creates marriage. Ritual is performative utterance
+(Austin), not merely expressive.
+
+BFO Modeling: Rituals are temporally extended Processes (bfo:0000015) with participants,
+locations, and outcomes. Create sacred ICE (bfo:0000031) - sacred time and space distinct
+from profane.
+"""@en .
+
+:EcologicalReciprocity a :InstrumentalValue ;
+    rdfs:label "Ecological Reciprocity"@en ;
+    skos:definition "Reciprocal exchange with nature - giving gifts, expressing gratitude, sustainable harvesting. Mutual relationship, not one-way extraction."@en ;
+    skos:altLabel "Gift Economy with Nature"@en, "Sacred Reciprocity"@en, "Ecological Mutuality"@en ;
+    :enablesRealization :EnsouledCosmos, :SpiritualEcology, :AnimateNature ;
+    dcterms:source """
+Kimmerer, R.W. (2013). Braiding Sweetgrass. Milkweed Editions.
+Mauss, M. (1925). The Gift. Routledge. [Gift economy]
+Hyde, L. (1983). The Gift: Imagination and the Erotic Life of Property. Random House.
+Berkes, F. (2012). Sacred Ecology (3rd ed.). Routledge.
+Nelson, R. (1983). Make Prayers to the Raven. University of Chicago Press. [Koyukon reciprocity]
+"""@en ;
+    rdfs:comment """Ecological reciprocity is practice of mutual exchange with natural world -
+offering gifts to plant/animal spirits, expressing gratitude for harvests, taking only what
+is needed, giving back. Not one-directional extraction but circular relationship.
+
+Gift Economy: Marcel Mauss - gifts create obligations, social bonds. Three obligations: give,
+receive, return. Gift economies contrast with commodity markets - gifts circulate, create
+relationships, carry spirit of giver (hau in Maori). Kimmerer: relationship with Earth as
+gift economy, not property/commodity.
+
+Honorable Harvest: Indigenous principles for sustainable harvesting (Kimmerer):
+- Ask permission, listen for answer
+- Take only what you need, leave some for others
+- Never take first or last plant
+- Harvest in way that minimizes harm
+- Use everything you take
+- Share what you have
+- Give thanks, give gifts
+- Reciprocate the gift
+- Sustain the ones who sustain you
+
+Prayers and Offerings: Hunters offer prayers/tobacco to animal spirits before hunt. Gatherers
+ask permission from plant spirits. Fishers offer first fish back to water. These practices
+acknowledge agency of other-than-human beings, maintain reciprocal relationship, prevent
+over-exploitation.
+
+Empirical Support: Indigenous resource management sustains ecosystems for millennia - salmon
+fisheries (Pacific Northwest), buffalo management (Plains), forest gardens (Amazon). Spiritual
+reciprocity correlates with sustainable practices. Contrast with industrial extraction causing
+ecosystem collapse.
+
+Contrast with Modern Extractivism: Capitalism treats nature as resource pool for extraction,
+not partner in relationship. Unlimited taking without giving back. Ecological crisis stems
+from broken reciprocity - one-way flow from nature to humans.
+
+BFO Modeling: Reciprocity is realized in cyclical Processes (bfo:0000015) of giving-receiving
+between humans and natural beings. Gifts are material entities transferred with spiritual
+Qualities (bfo:0000019) of gratitude and respect.
+"""@en .
+
+:SpiritEncounter a :InstrumentalValue ;
+    rdfs:label "Spirit Encounter"@en ;
+    skos:definition "Direct personal encounter with spirit beings - nature spirits, ancestors, animal helpers. Meeting spirits in dreams, visions, sacred places."@en ;
+    skos:altLabel "Spirit Contact"@en, "Numinous Encounter"@en, "Theophany"@en ;
+    :enablesRealization :SacredPresence, :ImmanentDivinity, :SpiritualVitality ;
+    dcterms:source """
+Otto, R. (1917). The Idea of the Holy. Oxford University Press.
+Eliade, M. (1957). The Sacred and the Profane. Harcourt.
+James, W. (1902). The Varieties of Religious Experience. Longmans, Green.
+Stace, W.T. (1960). Mysticism and Philosophy. Macmillan.
+Hood, R.W. (2001). Dimensions of mystical experiences. Journal of Scientific Study of Religion.
+"""@en ;
+    rdfs:comment """Spirit encounter is direct personal meeting with spiritual beings - nature
+spirits (dryads, kami, manitou), ancestors, animal helpers, angels, deities. Encountered in
+dreams, visions, sacred places, altered states, or ordinary life.
+
+Numinous Experience: Rudolf Otto - encounter with the holy (das Heilige) as mysterium
+tremendum et fascinans. Overwhelming mystery, dread (tremendum), fascination (fascinans).
+Creature-feeling - sense of dependence before ultimate power. Cannot be reduced to ethics or
+rationality.
+
+Hierophany: Mircea Eliade - manifestation of sacred in profane world. Sacred breaks through
+ordinary reality - burning bush, sacred mountain, world tree. Sacred space: axis mundi (center
+of world), oriented to transcendent. Sacred time: illud tempus (primordial time of origins).
+
+William James: Mystical experience has four marks - ineffability, noetic quality (conviction
+of truth), transiency, passivity. "Something not ourselves" is experienced. Varieties include
+nature mysticism, theistic visions, monistic absorption.
+
+Types of Spirit Encounter:
+- Nature Spirits: Dryads in trees, naiads in springs, mountain kami, river spirits
+- Animal Helpers: Power animals in shamanic practice (bear, eagle, snake)
+- Ancestors: Deceased relatives continuing presence, guidance
+- Deities: Gods/goddesses of particular places, functions
+- Angels/Demons: Intermediary spirits between divine and human
+
+Empirical Research: Psychology of religious experience documents universal patterns - sense
+of presence, awe, unity, ineffability. Neuroscience studies mystical states (Newberg). While
+not proving ontology, experiences are phenomenologically real.
+
+BFO Modeling: Spirit encounter is Process (bfo:0000015) of meeting between human and spirit-being.
+Spirit-beings are agents (continuants) with own intentions. Encounter transforms human participant
+(new Quality of spiritual awareness).
+"""@en .
+
+# ====================================================================
+# SUBORDINATED VALUES (5)
+# ====================================================================
+
+:MechanisticWorldview a :SubordinatedValue ;
+    rdfs:label "Mechanistic Worldview"@en ;
+    skos:definition "Worldview reducing nature to dead mechanism, denying life-force, soul, or spiritual dimension. Cartesian dualism separating spirit from matter."@en ;
+    rdfs:comment """Pneumatism opposes mechanistic philosophy (Descartes, Newton) that reduces
+nature to res extensa - dead matter mechanically moved by contact causation. Denies anima,
+soul, vital force. Pneumatism affirms nature is alive, spiritually animate, ensouled."""@en .
+
+:DesacralizedNature a :SubordinatedValue ;
+    rdfs:label "Desacralized Nature"@en ;
+    skos:definition "Treating nature as profane resource for exploitation, stripped of sacred dimension. Disenchantment (Weber), commodification of natural world."@en ;
+    rdfs:comment """Pneumatism critiques modern disenchantment (Weber's Entzauberung) - rationalization
+stripping world of magic, spirit, sacred meaning. Nature reduced to resource, commodity, standing
+reserve (Heidegger's Bestand). Pneumatism: nature is sacred, not mere resource."""@en .
+
+:SpiritMatterDualism a :SubordinatedValue ;
+    rdfs:label "Spirit-Matter Dualism"@en ;
+    skos:definition "Radical separation of spirit from matter, treating them as ontologically distinct substances. Cartesian dualism, Platonic otherworldliness."@en ;
+    rdfs:comment """Pneumatism rejects dualism separating spirit from nature. Descartes: res cogitans
+(thinking substance) vs res extensa (extended substance). Plato: eternal Forms vs changing
+material world. Pneumatism: spirit immanent in matter, not separate. Monism or panentheism,
+not dualism."""@en .
+
+:Anthropocentrism a :SubordinatedValue ;
+    rdfs:label "Anthropocentrism"@en ;
+    skos:definition "Human-centered worldview treating non-human nature as existing solely for human benefit. Dominion theology, instrumental value only."@en ;
+    rdfs:comment """Pneumatism opposes anthropocentrism - humans as measure of all value, nature
+existing for human use. Genesis dominion (1:28), Baconian mastery, resource economics. Pneumatism:
+biocentrism or ecocentrism - intrinsic value of all life. Humans as participants, not dominators."""@en .
+
+:ReductionismAndAtomism a :SubordinatedValue ;
+    rdfs:label "Reductionism and Atomism"@en ;
+    skos:definition "Reducing wholes to parts, denying holistic organization and emergent properties. Atomistic metaphysics treating wholes as mere aggregates."@en ;
+    rdfs:comment """Pneumatism critiques reductionism explaining wholes by parts alone (molecular
+biology reducing life to molecules). Atomism: wholes are aggregates of independent atoms.
+Pneumatism: holism - whole is more than parts, emergent properties, living systems irreducible.
+Organism, not mechanism."""@en .
+
+# ====================================================================
+# BFO PROCESS MODELING
+# ====================================================================
+
+:PneumaticProcess a owl:Class ;
+    rdfs:subClassOf bfo:0000015 ;  # Process
+    rdfs:label "Pneumatic Process"@en ;
+    skos:definition "A process involving living spirit - shamanic journey, ritual ceremony, spirit encounter, ecological exchange."@en .
+
+:ShamanicJourney a :PneumaticProcess ;
+    rdfs:label "Shamanic Journey"@en ;
+    skos:definition "Process of traveling to non-ordinary reality, encountering spirit beings, retrieving knowledge or power, and returning."@en ;
+    :hasStage :TranceInduction, :Descent, :SpiritEncounter_Process, :Return, :Integration ;
+    rdfs:comment "Shamanic journey modeled as Process (bfo:0000015) with temporal parts (stages), participants (shaman and spirits), and outcomes (healing, knowledge)."@en .
+
+:RitualProcess a :PneumaticProcess ;
+    rdfs:label "Ritual Process"@en ;
+    skos:definition "Extended ceremonial process creating sacred time/space, invoking spirits, transforming participants."@en .
+
+:EcologicalExchange a :PneumaticProcess ;
+    rdfs:label "Ecological Exchange"@en ;
+    skos:definition "Reciprocal process of giving and receiving between humans and nature spirits - offerings, harvests, prayers, blessings."@en .
+
+# ====================================================================
+# BFO QUALITY SUBSTRATES
+# ====================================================================
+
+:SpiritualVitalityQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Spiritual Vitality Quality"@en ;
+    skos:definition "Quality measuring degree of life-force, spiritual energy, or vital pneuma inhering in a being."@en ;
+    rdfs:comment """Vitality Quality ranges from death (no vitality) through illness (diminished
+vitality) to vibrant health (high vitality). Spiritual vitality distinct from mere biological
+function - includes psychic energy, creative power, connection to source."""@en .
+
+:SacredPresenceQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Sacred Presence Quality"@en ;
+    skos:definition "Quality of numinous or spiritual presence inhering in places, beings, or experiences."@en .
+
+:AnimatenessQuality a owl:Class ;
+    rdfs:subClassOf bfo:0000019 ;  # Quality
+    rdfs:label "Animateness Quality"@en ;
+    skos:definition "Quality of being alive, ensouled, spiritually animate. Degree to which entity manifests interiority, agency, spiritual dimension."@en .
+
+# ====================================================================
+# WORKED SCENARIOS (3)
+# ====================================================================
+
+:Scenario a owl:Class ;
+    rdfs:label "Pneumatism Value Scenario"@en ;
+    skos:definition "A concrete scenario illustrating how Pneumatism values guide evaluation, interpretation, and response."@en .
+
+:EcologicalCrisisScenario a :Scenario ;
+    rdfs:label "Ecological Crisis Scenario"@en ;
+    skos:description """
+**Scenario**: A corporation plans to clear-cut old-growth forest for timber profit. Environmental
+impact statement shows species habitat loss, water pollution, carbon release. Indigenous
+community opposes, citing sacred mountain, ancestral spirits dwelling in forest.
+
+**Pneumatism Interpretation**:
+Not merely resource management issue but spiritual violation. Forest is ensouled, sacred -
+home to spirits, ancestors, living beings with intrinsic value. Clear-cutting is sacrilege,
+violence against living cosmos, breaking reciprocal relationship with nature.
+
+**Value Analysis**:
+- **Terminal Value Violated**: EnsouledCosmos (treating living forest as dead commodity),
+  ImmanentDivinity (destroying sacred presence), SacredPresence (eliminating spiritual habitat)
+- **Constitutive Value Violated**: AnimateNature (denying forest's aliveness), SpiritualEcology
+  (breaking reciprocity), SacredAwareness (ignoring spiritual dimension)
+- **Instrumental Response**: RitualCeremony (ceremonies honoring forest spirits, asking guidance),
+  EcologicalReciprocity (if harvest needed, take minimally with offerings and gratitude),
+  SpiritEncounter (seeking vision/guidance from forest spirits)
+
+**Pneumatism Recommendation**: Oppose clear-cutting. If any harvest necessary, selective logging
+with ritual protocols - prayers to tree spirits, offerings, gratitude, replanting. Protect
+sacred groves entirely. Recognize indigenous sovereignty over ancestral lands. Economic value
+subordinate to spiritual and ecological value.
+
+**Contrast with Other Worldviews**:
+- Materialism: Cost-benefit analysis - timber profit vs habitat loss (purely material calculation)
+- Rationalism: Kantian duty - respect for nature as rational system, sustainable use principles
+- Psychism: Forest as symbol of unconscious, collective psyche - psychological significance
+- Spiritualism (transcendent): God's creation to steward, not exploit - dominion with care
+
+**Pneumatism Unique Contribution**: Recognizes forest as living spiritual community of beings
+(trees, animals, spirits, ancestors). Relationship with forest is I-Thou, not I-It. Reciprocity,
+not domination. Sacred presence in nature itself, not mediated through transcendent deity.
+"""@en .
+
+:HealingRitualScenario a :Scenario ;
+    rdfs:label "Healing Ritual Scenario"@en ;
+    skos:description """
+**Scenario**: Person suffers chronic illness unresponsive to medical treatment. Shaman diagnoses
+spiritual cause - soul-loss from trauma, intrusion by harmful spirit. Recommends healing
+ceremony involving drumming, soul retrieval, extraction, community support.
+
+**Pneumatism Interpretation**:
+Illness has spiritual dimension, not merely physical pathology. Soul fragmentation and spiritual
+intrusion cause physical symptoms. Healing requires addressing spiritual root, not just treating
+symptoms. Shaman as mediator between human and spirit worlds.
+
+**Value Analysis**:
+- **Terminal Value Pursued**: SpiritualVitality (restoring life-force, wholeness), SacredPresence
+  (reconnecting with spiritual dimension)
+- **Constitutive Value Engaged**: RitualParticipation (ceremony as genuine spirit contact),
+  SacredAwareness (sensing spirit helpers and intrusions)
+- **Instrumental Action**: ShamanicPractice (journeying to retrieve soul parts, extract intrusions),
+  RitualCeremony (community ceremony supporting healing), SpiritEncounter (working with power
+  animals and helping spirits)
+
+**Pneumatism Healing Process**:
+1. Diagnostic journey - shaman enters trance, journeys to spirit world, diagnoses spiritual causes
+2. Soul retrieval - shaman travels to where soul parts are stuck (past trauma), retrieves them,
+   returns them to patient
+3. Extraction - shaman removes spiritual intrusions (harmful energies, spirits)
+4. Power restoration - shaman brings back power animal or spiritual power
+5. Integration - patient receives soul parts, commitments to life changes preventing re-injury
+6. Community support - circle holds space, provides prayers, offers ongoing support
+
+**Empirical Outcomes**: Shamanic healing shows efficacy in some studies - reduced symptoms,
+improved well-being, psychological transformation. Mechanisms may include: meaning-making,
+social support, placebo/expectancy, altered states accessing self-healing capacities.
+
+**Contrast with Other Worldviews**:
+- Materialism: Illness is biological pathology, treat with medicine/surgery (spiritual dimension
+  denied or dismissed as placebo)
+- Psychism: Illness reflects psychological conflicts, use psychotherapy (symbolic/archetypal
+  interpretation, not literal spirits)
+- Rationalism: Psychosomatic illness - mind affects body through known mechanisms (stress,
+  immune system), rational explanation without spirits
+- Spiritualism (transcendent): Pray to transcendent God for healing, faith healing (vertical
+  relationship with deity, not horizontal with nature spirits)
+
+**Pneumatism Unique Contribution**: Takes spirit-world literally, not symbolically. Shaman
+genuinely encounters spirits, retrieves soul parts. Not psychological metaphor but ontological
+reality. Healing through restoring right relationship with spiritual ecology.
+"""@en .
+
+:VisionQuestScenario a :Scenario ;
+    rdfs:label "Vision Quest Scenario"@en ;
+    skos:description """
+**Scenario**: Young person at life transition (graduation, career crossroads) seeks direction.
+Undertakes vision quest - 4 days fasting alone in wilderness, praying for vision from spirits.
+Receives encounter with eagle spirit offering guidance and power.
+
+**Pneumatism Interpretation**:
+Vision quest is genuine spiritual initiation, not merely psychological exercise. Fasting, isolation,
+and prayer create conditions for spirit contact. Eagle spirit is real being offering teaching,
+not projection of unconscious. Vision provides authentic guidance for life path.
+
+**Value Analysis**:
+- **Terminal Value Realized**: SacredPresence (direct encounter with spirit in wilderness),
+  SpiritualVitality (receiving power from eagle spirit), ImmanentDivinity (divine guidance
+  through nature spirit)
+- **Constitutive Value Engaged**: AnimateNature (wilderness as alive, communicative), Sacred
+  Awareness (perceiving spirit presence), RitualParticipation (vision quest as ritual initiation)
+- **Instrumental Practice**: SpiritEncounter (meeting eagle spirit), ShamanicPractice (fasting,
+  prayer, vision-seeking), RitualCeremony (departure and return ceremonies, integration with
+  community)
+
+**Vision Quest Process**:
+1. Preparation - fasting, purification, setting intention, receiving instructions from elder
+2. Departure ceremony - community sends quester off with prayers, sage blessing
+3. Isolation - 4 days alone in wilderness, no food/water, constant prayer, awaiting vision
+4. Spirit encounter - eagle appears in vision/dream, offers teaching, may give name or power
+5. Return - quester returns to community, shares vision with elder
+6. Integration - living vision's teaching, incorporating eagle power into daily life
+
+**Vision Content Examples**:
+- Eagle teaches to see from high perspective, not get caught in details
+- Eagle offers name "Soaring Spirit" representing life purpose
+- Eagle shows future path - becoming teacher, healer, protector
+- Eagle gives power - courage to take risks, trust in spiritual support
+
+**Empirical Understanding**: Psychology: vision quest facilitates identity development,
+meaning-making, psychological transformation. Wilderness solo reduces external stimulation,
+heightens introspection, can induce hallucinations. Ritual structure provides safe container
+for transformation.
+
+**Contrast with Other Worldviews**:
+- Materialism: Hallucinations from fasting/isolation, no objective reality (brain chemistry,
+  not spirits)
+- Psychism: Vision as archetypal encounter from collective unconscious, not literal spirit
+  (eagle as symbol of transcendence, not actual being)
+- Rationalism: Vision as product of rational reflection, isolated from social noise (clarity
+  of reason, not supernatural contact)
+- Spiritualism (transcendent): Vision as answer to prayer from transcendent God, not nature
+  spirit (vertical divine-human relationship)
+
+**Pneumatism Unique Contribution**: Eagle spirit is real autonomous being, not symbol or
+hallucination. Nature is sacred medium for divine encounter. Spirit guidance comes through
+immanent presence in wilderness, not transcendent intervention. Reciprocal relationship with
+eagle spirit ongoing, not one-time message.
+"""@en .
+
+# ====================================================================
+# EMPIRICAL GROUNDING (10+ Citations)
+# ====================================================================
+
+:EmpiricalSupport rdfs:comment """
+Pneumatism's values have empirical support from ecology, systems theory, indigenous knowledge,
+and anthropology of religion.
+
+**Gaia Hypothesis**:
+- Lovelock, J., & Margulis, L. (1974). Atmospheric homeostasis by and for the biosphere.
+  Tellus, 26(1-2), 2-10.
+  → Earth's biosphere maintains homeostasis (temperature, atmospheric composition) through
+     feedback loops. Planet functions as integrated living system.
+
+**Biophilia Hypothesis**:
+- Wilson, E.O. (1984). Biophilia. Harvard University Press.
+  → Humans have innate tendency to focus on life and lifelike processes. Evolutionary basis
+     for affinity with nature. Psychological benefits of nature contact.
+
+**Indigenous Ecological Knowledge**:
+- Berkes, F., Colding, J., & Folke, C. (2000). Rediscovery of traditional ecological knowledge.
+  Ecological Applications, 10(5), 1251-1262.
+  → Traditional practices sustain ecosystems - sacred groves protect biodiversity, seasonal
+     rituals prevent overharvesting. Spiritual worldview supports conservation.
+
+**Ecological Psychology**:
+- Gibson, J.J. (1979). The Ecological Approach to Visual Perception. Houghton Mifflin.
+  → Perception as direct attunement to affordances. Organism-environment mutuality, not
+     subject-object separation. Supports participatory epistemology.
+
+**Systems Theory**:
+- Bertalanffy, L. von (1968). General System Theory. George Braziller.
+  → Living systems exhibit holistic organization, emergence, teleology. Reductionism insufficient
+     for understanding life. Supports organismic worldview.
+
+**Shamanic Healing Efficacy**:
+- Winkelman, M. (2010). Shamanism: A Biopsychosocial Paradigm of Consciousness and Healing.
+  ABC-CLIO.
+  → Cross-cultural studies show shamanic healing effective for some conditions. Mechanisms:
+     social support, meaning-making, altered states, expectancy.
+
+**Ritual Effectiveness**:
+- Sosis, R., & Alcorta, C. (2003). Signaling, solidarity, and the sacred. Evolutionary
+  Anthropology, 12(6), 264-274.
+  → Costly rituals enhance group cohesion, commitment, cooperation. Evolutionary function
+     of religious ritual. Supports ritual participation value.
+
+**Mystical Experience**:
+- Hood, R.W., Hill, P.C., & Spilka, B. (2009). The Psychology of Religion: An Empirical
+  Approach (4th ed.). Guilford Press.
+  → Universal patterns of mystical experience - unity, transcendence, noetic quality. While
+     not proving ontology, experiences are phenomenologically real.
+
+**Awe and Transcendence**:
+- Keltner, D., & Haidt, J. (2003). Approaching awe, a moral, spiritual, and aesthetic emotion.
+  Cognition & Emotion, 17(2), 297-314.
+  → Awe evoked by vastness and accommodation (need for new schema). Natural environments
+     (mountains, oceans, forests) prime sources of awe.
+
+**Ethnobotany and Sacred Plants**:
+- Schultes, R.E., & Hofmann, A. (1992). Plants of the Gods. Healing Arts Press.
+  → Indigenous use of psychoactive plants (ayahuasca, peyote, psilocybin) in spiritual
+     contexts. Pharmacology + ritual = religious experience. Sacred plant knowledge systems.
+
+**Nature Connectedness and Well-being**:
+- Capaldi, C.A., Dopko, R.L., & Zelenski, J.M. (2014). The relationship between nature
+  connectedness and happiness. Frontiers in Psychology, 5, 976.
+  → Feeling connected to nature correlates with well-being, life satisfaction, vitality.
+     Supports sacred relationship with nature.
+
+**Attachment to Place**:
+- Altman, I., & Low, S.M. (Eds.). (1992). Place Attachment. Springer.
+  → Emotional bonds to landscapes, sacred sites. Place as more than physical location -
+     repository of meaning, memory, identity. Supports sacred geography.
+"""@en .
+
+# ====================================================================
+# CROSS-REFERENCES AND INTEGRATION
+# ====================================================================
+
+:PneumatismWorldview a owl:Class ;
+    rdfs:label "Pneumatism Worldview"@en ;
+    skos:definition "A worldview grounding reality in living spirit (pneuma) pervading nature. Cosmos is ensouled, divine is immanent, nature is sacred and alive."@en ;
+    :metaphysicalCluster "Depth-Spiritual"@en ;
+    :foundation "Living Spirit/Pneuma"@en ;
+    :epistemology "Ritual participation, shamanic practice, spirit encounter, sacred awareness"@en ;
+    :keyThinkers "Bergson, Schelling, Whitehead, Spinoza, animism, shamanism"@en ;
+    :relatedTo :Psychism, :Spiritualism, :Idealism ;
+    :contrastsWith :Materialism, :Mechanism, :Anthropocentrism .
+
+# ====================================================================
+# PROPERTIES
+# ====================================================================
+
+:realizableAs a owl:ObjectProperty ;
+    rdfs:label "Realizable As"@en ;
+    skos:definition "Links a Pneumatism value to ValueNet dispositions through which it can be realized."@en ;
+    rdfs:domain :PneumatismValue ;
+    rdfs:range vn-schwartz:ValueDisposition .
+
+:enablesRealization a owl:ObjectProperty ;
+    rdfs:label "Enables Realization"@en ;
+    skos:definition "Links an instrumental value to terminal values it helps realize."@en ;
+    rdfs:domain :InstrumentalValue ;
+    rdfs:range :TerminalValue .
+
+:hasStage a owl:ObjectProperty ;
+    rdfs:label "Has Stage"@en ;
+    skos:definition "Links a process to its temporal stages or phases."@en ;
+    rdfs:domain :PneumaticProcess .
+
+# ====================================================================
+# END OF PNEUMATISM VALUES ONTOLOGY
+# ====================================================================

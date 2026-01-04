@@ -1,0 +1,302 @@
+@prefix : <http://purl.org/integralism/ethics/spiritualism-values#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix vn-schwartz: <http://purl.org/valuenet/schwartz#> .
+
+# ====================================================================
+# SPIRITUALISM VALUES ONTOLOGY
+# Depth-Spiritual Worldview Cluster
+# ====================================================================
+# Spiritualism: Transcendent divinity, revealed truth, spiritual hierarchy.
+# Divine reality exists beyond/above natural world. Truth is revealed
+# from higher realms through scripture, prophecy, mystical experience.
+# Key traditions: Theistic religions, Mysticism, Neoplatonism, Sufism.
+# BFO compliance: Process, ICE, Quality substrates.
+# ====================================================================
+
+<http://purl.org/integralism/ethics/spiritualism-values> a owl:Ontology ;
+    rdfs:label "Spiritualism Values Ontology"@en ;
+    rdfs:comment "Defines the value hierarchy for the Spiritualism worldview within the Integral Ethics Engine."@en ;
+    owl:versionInfo "1.0.0" ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ,
+                <http://www.ontologyrepository.com/CommonCoreOntologies/> ;
+    dcterms:creator "Integral Ethics Engine - Phase 3.3"@en ;
+    dcterms:created "2026-01-03"^^xsd:date ;
+    dcterms:description "Spiritualism worldview: Transcendent spirit, revealed truth, divine hierarchy. Value grounded in relationship to transcendent divinity."@en .
+
+# ====================================================================
+# VALUE HIERARCHY CLASSES
+# ====================================================================
+
+:TerminalValue a owl:Class ;
+    rdfs:label "Terminal Value"@en ;
+    skos:definition "Ultimate end pursued for its own sake in Spiritualism worldview."@en .
+
+:ConstitutiveValue a owl:Class ;
+    rdfs:label "Constitutive Value"@en ;
+    skos:definition "Essential component that constitutes good life in Spiritualism worldview."@en .
+
+:InstrumentalValue a owl:Class ;
+    rdfs:label "Instrumental Value"@en ;
+    skos:definition "Means or practice valued for achieving terminal values in Spiritualism worldview."@en .
+
+:SubordinatedValue a owl:Class ;
+    rdfs:label "Subordinated Value"@en ;
+    skos:definition "Value demoted or rejected in Spiritualism worldview due to conflict with transcendent orientation."@en .
+
+# ====================================================================
+# TERMINAL VALUES (4)
+# ====================================================================
+
+:DivineRelationship a :TerminalValue ;
+    rdfs:label "Divine Relationship"@en ;
+    skos:definition "Personal relationship with transcendent God/Absolute. Communion, dialogue, mystical union with divine reality beyond natural world. Love of God, being loved by God."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:BenevolenceDisposition ;
+    :metaphysicalGrounding "Transcendent divinity is ultimate reality. Relationship to God is highest good, surpassing all earthly goods."@en ;
+    dcterms:source "Buber, M. (1923). I and Thou. T. & T. Clark." ;
+    dcterms:source "Teresa of Avila. (1577). The Interior Castle. Translated by E. Allison Peers." ;
+    dcterms:source "Al-Ghazali. (c. 1100). The Revival of the Religious Sciences. Translated by T.J. Winter." ;
+    bfo:0000015 "Divine relationship is ongoing process (bfo:Process) of communion, not static state."@en .
+
+:RevealedTruth a :TerminalValue ;
+    rdfs:label "Revealed Truth"@en ;
+    skos:definition "Truth disclosed by transcendent source (God, Absolute) through scripture, prophecy, mystical insight. Not discovered by unaided reason but given from above."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:TraditionDisposition ;
+    :metaphysicalGrounding "Ultimate truth originates in transcendent realm. Human reason is limited; divine revelation is necessary."@en ;
+    dcterms:source "Aquinas, T. (1265-1274). Summa Theologica. Translated by Fathers of the English Dominican Province." ;
+    dcterms:source "Maimonides, M. (1190). The Guide for the Perplexed. Translated by M. Friedländer." ;
+    dcterms:source "Otto, R. (1917). The Idea of the Holy. Oxford University Press." ;
+    bfo:0000031 "Revelation is ICE (bfo:ICE) - information content entity from transcendent source."@en .
+
+:SpiritualHierarchy a :TerminalValue ;
+    rdfs:label "Spiritual Hierarchy"@en ;
+    skos:definition "Ordered levels of being from highest (God/Absolute) descending through angels/intermediaries to material world. Great Chain of Being. Spiritual advancement means ascent toward divine."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:SecurityDisposition ;
+    :metaphysicalGrounding "Reality is hierarchically ordered. Divine is ontologically superior to natural. Salvation/enlightenment is ascent toward transcendent."@en ;
+    dcterms:source "Pseudo-Dionysius the Areopagite. (c. 500). The Celestial Hierarchy. Translated by J. Parker." ;
+    dcterms:source "Plotinus. (c. 250). Enneads. Translated by S. MacKenna." ;
+    dcterms:source "Lovejoy, A.O. (1936). The Great Chain of Being. Harvard University Press." ;
+    bfo:0000019 "Hierarchy involves qualities (bfo:Quality) of greater/lesser participation in divine being."@en .
+
+:TranscendentConnection a :TerminalValue ;
+    rdfs:label "Transcendent Connection"@en ;
+    skos:definition "Bond with reality beyond natural/material world. Mystical experience, prayer, sacrament connecting finite self to infinite. Vertical dimension transcending horizontal social/natural relations."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:UniversalismDisposition ;
+    :metaphysicalGrounding "Human essence is oriented toward transcendent. Connection to divine is natural telos, not optional addition."@en ;
+    dcterms:source "James, W. (1902). The Varieties of Religious Experience. Longmans, Green, and Co." ;
+    dcterms:source "Underhill, E. (1911). Mysticism: A Study in the Nature and Development of Man's Spiritual Consciousness. Methuen." ;
+    dcterms:source "Heschel, A.J. (1951). Man Is Not Alone: A Philosophy of Religion. Farrar, Straus and Giroux." ;
+    bfo:0000015 "Transcendent connection is dynamic process (bfo:Process), not static possession."@en .
+
+# ====================================================================
+# CONSTITUTIVE VALUES (4)
+# ====================================================================
+
+:Worship a :ConstitutiveValue ;
+    rdfs:label "Worship"@en ;
+    skos:definition "Reverent adoration of transcendent divine. Prayer, liturgy, ritual honoring God/Absolute as supreme reality deserving ultimate allegiance."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:TraditionDisposition ;
+    :enablesRealization :DivineRelationship, :TranscendentConnection ;
+    dcterms:source "Tillich, P. (1957). Dynamics of Faith. Harper & Row." ;
+    bfo:0000015 "Worship is process (bfo:Process) of ritual action and interior devotion."@en .
+
+:ObedienceToDivine a :ConstitutiveValue ;
+    rdfs:label "Obedience to Divine Will"@en ;
+    skos:definition "Submission to transcendent will of God/Absolute. Divine command takes precedence over autonomous human will. Surrender of ego to higher wisdom."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:ConformityDisposition ;
+    :enablesRealization :DivineRelationship, :SpiritualHierarchy ;
+    dcterms:source "Kierkegaard, S. (1843). Fear and Trembling. Translated by H.V. Hong & E.H. Hong." ;
+    dcterms:source "Ibn Arabi. (c. 1200). The Bezels of Wisdom. Translated by R.W.J. Austin." ;
+    bfo:0000015 "Obedience is ongoing process (bfo:Process) of aligning will with divine will."@en .
+
+:SacredRevelation a :ConstitutiveValue ;
+    rdfs:label "Sacred Revelation"@en ;
+    skos:definition "Receptivity to truth disclosed from transcendent source. Scripture, prophecy, mystical insight as authoritative knowledge surpassing ordinary cognition."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:SecurityDisposition ;
+    :enablesRealization :RevealedTruth, :TranscendentConnection ;
+    dcterms:source "Barth, K. (1932). Church Dogmatics. T&T Clark." ;
+    bfo:0000031 "Revelation is ICE (bfo:ICE) - information from transcendent source inscribed in scripture/tradition."@en .
+
+:SpiritualSubmission a :ConstitutiveValue ;
+    rdfs:label "Spiritual Submission"@en ;
+    skos:definition "Humble recognition of finite human status before infinite divine. Surrender of pride, self-will. Acknowledgment that creature depends on Creator."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:BenevolenceDisposition ;
+    :enablesRealization :DivineRelationship, :SpiritualHierarchy ;
+    dcterms:source "Pascal, B. (1670). Pensées. Translated by W.F. Trotter." ;
+    dcterms:source "Rumi, J. (c. 1260). The Masnavi. Translated by E.H. Whinfield." ;
+    bfo:0000019 "Submission involves quality (bfo:Quality) of humility before transcendent."@en .
+
+# ====================================================================
+# INSTRUMENTAL VALUES (4)
+# ====================================================================
+
+:Prayer a :InstrumentalValue ;
+    rdfs:label "Prayer"@en ;
+    skos:definition "Communication with transcendent divine through petitionary, contemplative, or mystical prayer. Means of establishing and deepening divine relationship."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition ;
+    :servesRealization :DivineRelationship, :TranscendentConnection, :Worship ;
+    dcterms:source "Foster, R.J. (1992). Prayer: Finding the Heart's True Home. HarperSanFrancisco." ;
+    bfo:0000015 "Prayer is process (bfo:Process) of intentional communion with divine."@en .
+
+:Scripture a :InstrumentalValue ;
+    rdfs:label "Scripture Study"@en ;
+    skos:definition "Study of sacred texts as revealed word of God/Absolute. Torah, Bible, Quran, Upanishads as authoritative sources of divine truth."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:TraditionDisposition ;
+    :servesRealization :RevealedTruth, :SacredRevelation ;
+    dcterms:source "Ricoeur, P. (1975). Biblical Hermeneutics. Semeia." ;
+    bfo:0000031 "Scripture is ICE (bfo:ICE) encoding revealed truth."@en .
+
+:SpiritualPractice a :InstrumentalValue ;
+    rdfs:label "Spiritual Practice"@en ;
+    skos:definition "Disciplined practices cultivating transcendent connection: meditation, fasting, pilgrimage, asceticism, contemplation."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:SelfDirectionDisposition ;
+    :servesRealization :TranscendentConnection, :SpiritualHierarchy ;
+    dcterms:source "McGinn, B. (1991). The Foundations of Mysticism. Crossroad." ;
+    bfo:0000015 "Spiritual practice is ongoing process (bfo:Process) of disciplined cultivation."@en .
+
+:ReligiousCommunity a :InstrumentalValue ;
+    rdfs:label "Religious Community"@en ;
+    skos:definition "Community of believers sharing faith in transcendent. Church, synagogue, mosque, sangha as context for worship, mutual support, transmission of tradition."@en ;
+    :realizableAs vn-schwartz:SpiritualityDisposition, vn-schwartz:BenevolenceDisposition, vn-schwartz:TraditionDisposition ;
+    :servesRealization :Worship, :SacredRevelation ;
+    dcterms:source "Durkheim, E. (1912). The Elementary Forms of Religious Life. Translated by K.E. Fields." ;
+    bfo:0000015 "Religious community is social process (bfo:Process) of collective worship and tradition-bearing."@en .
+
+# ====================================================================
+# SUBORDINATED VALUES (5)
+# ====================================================================
+
+:Secularism a :SubordinatedValue ;
+    rdfs:label "Secularism"@en ;
+    skos:definition "Worldview restricting reality/value to natural/material realm, excluding transcendent. Spiritualism subordinates secularism as incomplete, denying divine dimension."@en ;
+    :incompatibleWith :DivineRelationship, :RevealedTruth, :TranscendentConnection ;
+    dcterms:source "Taylor, C. (2007). A Secular Age. Belknap Press." .
+
+:Immanentism a :SubordinatedValue ;
+    rdfs:label "Immanentism"@en ;
+    skos:definition "Doctrine that divine is fully contained within world (pantheism, panentheism), denying transcendence. Spiritualism requires God beyond world."@en ;
+    :incompatibleWith :SpiritualHierarchy, :TranscendentConnection ;
+    dcterms:source "Smith, J.K.A. (2013). How (Not) To Be Secular. Eerdmans." .
+
+:HumanAutonomy a :SubordinatedValue ;
+    rdfs:label "Human Autonomy as Supreme"@en ;
+    skos:definition "Doctrine that human reason/will is self-legislating, requiring no divine guidance. Spiritualism subordinates autonomy to divine authority."@en ;
+    :incompatibleWith :ObedienceToDivine, :RevealedTruth, :SpiritualSubmission ;
+    dcterms:source "Kant, I. (1785). Groundwork of the Metaphysics of Morals. (Contrast: Spiritualism rejects Kantian autonomy as supreme.)" .
+
+:Rationalism a :SubordinatedValue ;
+    rdfs:label "Rationalism as Sole Authority"@en ;
+    skos:definition "Doctrine that unaided human reason can attain all truth. Spiritualism subordinates reason to revelation, recognizing limits of finite intellect."@en ;
+    :incompatibleWith :RevealedTruth, :SacredRevelation ;
+    dcterms:source "Plantinga, A. (2000). Warranted Christian Belief. Oxford University Press." .
+
+:Materialism a :SubordinatedValue ;
+    rdfs:label "Materialism"@en ;
+    skos:definition "Doctrine that only matter/energy exists, denying spiritual reality. Spiritualism subordinates material to spiritual as lower to higher in ontological hierarchy."@en ;
+    :incompatibleWith :SpiritualHierarchy, :TranscendentConnection, :DivineRelationship ;
+    dcterms:source "Hart, D.B. (2013). The Experience of God: Being, Consciousness, Bliss. Yale University Press." .
+
+# ====================================================================
+# WORKED SCENARIOS (3)
+# ====================================================================
+
+:Scenario a owl:Class ;
+    rdfs:label "Spiritualism Value Scenario"@en ;
+    skos:definition "A concrete scenario illustrating how Spiritualism values guide evaluation, interpretation, and response."@en .
+
+:ConversionExperienceScenario a :Scenario ;
+    rdfs:label "Conversion Experience Scenario"@en ;
+    skos:definition """
+**Scenario**: Person experiences profound mystical encounter interpreted as divine presence. Sudden overwhelming sense of being loved by transcendent reality. Leads to radical life reorientation.
+
+**Spiritualism Evaluation**:
+- **Transcendent Connection** (terminal): Mystical experience is genuine contact with divine reality, not mere psychology.
+- **Divine Relationship** (terminal): Conversion establishes I-Thou relationship with God, transforming self-understanding.
+- **Spiritual Submission** (constitutive): Proper response is surrender to divine will, not resistance.
+- **Prayer** (instrumental): Ongoing prayer deepens relationship initiated in conversion.
+- **Religious Community** (instrumental): Join community sharing faith for mutual support, guidance.
+
+**Contrast with Materialism**: Materialism reduces mystical experience to neurochemistry (dopamine, serotonin). Spiritualism affirms transcendent causation.
+
+**Contrast with Pneumatism**: Pneumatism interprets experience as immanent spirit pervading nature. Spiritualism emphasizes transcendent source beyond nature.
+
+**BFO Grounding**: Conversion is process (bfo:0000015) initiated by transcendent cause, resulting in quality (bfo:0000019) of transformed orientation.
+"""@en ;
+    :involvesTerminalValue :DivineRelationship, :TranscendentConnection ;
+    :involvesConstitutiveValue :SpiritualSubmission ;
+    :involvesInstrumentalValue :Prayer, :ReligiousCommunity ;
+    :subordinatesValue :Materialism .
+
+:PropheticCallScenario a :Scenario ;
+    rdfs:label "Prophetic Call Scenario"@en ;
+    skos:definition """
+**Scenario**: Person receives what they interpret as divine call to prophetic vocation. Inner conviction that transcendent source commands speaking truth to power, regardless of personal cost.
+
+**Spiritualism Evaluation**:
+- **Revealed Truth** (terminal): Prophetic call discloses divine will for specific historical moment.
+- **Obedience to Divine** (constitutive): Must obey divine command even if socially costly, dangerous.
+- **Spiritual Hierarchy** (terminal): Divine authority trumps human authority (political, religious institutions).
+- **Scripture** (instrumental): Prophetic tradition (Amos, Jeremiah, Isaiah) provides models.
+- **Worship** (constitutive): Prophetic vocation is form of worship - honoring God through obedience.
+
+**Contrast with Rationalism**: Rationalism requires rational justification for moral claims. Spiritualism grounds authority in divine command, surpassing autonomous reason.
+
+**Contrast with Psychism**: Psychism might interpret prophetic call as archetypal activation from collective unconscious. Spiritualism affirms transcendent source.
+
+**BFO Grounding**: Prophetic call is ICE (bfo:0000031) - information content from transcendent source - guiding process (bfo:0000015) of prophetic action.
+"""@en ;
+    :involvesTerminalValue :RevealedTruth, :SpiritualHierarchy ;
+    :involvesConstitutiveValue :ObedienceToDivine, :Worship ;
+    :involvesInstrumentalValue :Scripture ;
+    :subordinatesValue :Rationalism, :HumanAutonomy .
+
+:MysticalUnionScenario a :Scenario ;
+    rdfs:label "Mystical Union Scenario"@en ;
+    skos:definition """
+**Scenario**: Contemplative practitioner experiences mystical union - sense of ego dissolving into infinite divine reality. Loss of self-other boundary with transcendent Absolute.
+
+**Spiritualism Evaluation**:
+- **Transcendent Connection** (terminal): Mystical union is highest realization of human telos - communion with divine.
+- **Divine Relationship** (terminal): Union does not erase distinction (not pantheism) but achieves intimate participation in divine life.
+- **Spiritual Practice** (instrumental): Contemplative disciplines (meditation, prayer, fasting) prepare soul for mystical grace.
+- **Spiritual Hierarchy** (terminal): Union represents ascent to highest level of spiritual hierarchy - direct contact with Absolute.
+- **Spiritual Submission** (constitutive): Union requires total surrender of ego, self-will.
+
+**Contrast with Idealism**: Idealism might interpret union as realization that consciousness is fundamental. Spiritualism emphasizes transcendent OTHER, not monistic identity.
+
+**Contrast with Secularism**: Secularism reduces mystical experience to altered brain states. Spiritualism affirms genuine contact with transcendent reality.
+
+**BFO Grounding**: Mystical union is process (bfo:0000015) of participatory relationship with transcendent, involving quality (bfo:0000019) of transformed consciousness.
+"""@en ;
+    :involvesTerminalValue :TranscendentConnection, :DivineRelationship, :SpiritualHierarchy ;
+    :involvesConstitutiveValue :SpiritualSubmission ;
+    :involvesInstrumentalValue :SpiritualPractice ;
+    :subordinatesValue :Secularism, :Immanentism .
+
+# ====================================================================
+# EMPIRICAL GROUNDING
+# ====================================================================
+
+:EmpiricalGrounding a owl:Class ;
+    rdfs:label "Empirical Grounding for Spiritualism"@en ;
+    skos:definition "Empirical research supporting psychological/social benefits of transcendent spiritual orientation."@en ;
+    dcterms:description """
+While Spiritualism makes metaphysical claims beyond empirical verification, research supports psychological/social correlates:
+
+1. **Religious Experience Research**: William James documented cross-cultural patterns of mystical experience with common phenomenology (ineffability, noetic quality, transiency, passivity).
+
+2. **Health Benefits of Religiosity**: Harold Koenig's research shows religious involvement correlates with lower depression, better cardiovascular health, increased longevity (correlation, not proof of transcendent causation).
+
+3. **Social Capital of Religious Community**: Robert Putnam found religious communities provide social support, civic engagement, charitable giving.
+
+4. **Meaning and Purpose**: Viktor Frankl's logotherapy research shows transcendent meaning (spiritual dimension) supports psychological resilience.
+
+5. **Cross-Cultural Universality**: Anthropological research (Émile Durkheim, Mircea Eliade) documents universal human orientation toward sacred/transcendent across cultures.
+
+6. **Neuroscience of Mystical Experience**: Andrew Newberg's neuroimaging studies show distinct brain activity during mystical states (parietal lobe changes, frontal activation) - but neural correlates don't disprove transcendent causation.
+"""@en .

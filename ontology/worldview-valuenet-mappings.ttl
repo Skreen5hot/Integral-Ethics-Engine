@@ -986,6 +986,455 @@
     :metaphysicalGrounding "Spinoza: Highest pleasure is intellectual love of God (amor Dei intellectualis). Plato: Rational pleasures higher than bodily pleasures. But pleasure subordinated to truth." .
 
 # ============================================================================
+# PSYCHISM → ValueNet Mappings
+# ============================================================================
+# Source: psychism-values.ttl
+# Metaphysics: Soul/psyche is fundamental; unconscious as primary reality
+# Epistemology: Introspection, dream work, active imagination, symbolic interpretation
+# Priority: Psychological wholeness, emotional authenticity, soul depth, individuation
+# Cluster: Depth-Spiritual (Soul/Psyche foundation + Depth dimension)
+# ============================================================================
+
+:PsychismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Psychism ;
+    dcterms:source "psychism-values.ttl" ;
+    rdfs:comment "Psychism prioritizes spirituality (soul as sacred reality), self-direction (individuation process), and benevolence (authentic relating). High depth/soul values, moderate social values, lower conformity and power." ;
+    :valueProfileSummary [
+        :highPriority "Spirituality (0.90), Self-direction (0.90), Benevolence (0.75)" ;
+        :moderate "Universalism (0.75), Stimulation (0.70), Security (0.65)" ;
+        :low "Hedonism (0.60), Achievement (0.60), Tradition (0.55), Conformity (0.50), Power (0.45)"
+    ] .
+
+# Spirituality Disposition - Soul/psyche as sacred, transpersonal depth
+:PsychismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :PsychologicalWholeness, :SoulDepth, :ArchetypalAwareness ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.90 ;
+    :rationale "Spirituality: Psychism has very high spiritual dimension. Soul/psyche is sacred, not reducible to brain chemistry. Archetypal structures are transpersonal, numinous realities. Jung's encounter with the numinous, Hillman's soul-making as sacred activity. Individuation is spiritual journey. Second highest spirituality after potential Spiritualism (0.95)." ;
+    :metaphysicalGrounding "Jung: Psyche contains spiritual dimension - Self archetype as imago Dei (image of God). Hillman: Soul-making is sacred work. Archetypes are numinous - evoke religious awe. Transpersonal psychology: Consciousness includes spiritual dimensions beyond ego." .
+
+# Self-direction Disposition - Individuation and autonomous development
+:PsychismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :IndividuationProcess, :EmotionalAuthenticity, :PsychicHonesty ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.90 ;
+    :rationale "Self-direction: Individuation process is autonomous development of unique self, independent thought, choosing one's own psychological path. Emotional authenticity requires self-directed feeling vs social conformity. Psychic honesty is autonomous relationship to inner truth. Very high - individuation is core value." ;
+    :metaphysicalGrounding "Jung: Individuation is becoming one's unique self, not conforming to collective norms. Self-directed relationship to unconscious, not following external authority. Hillman: Soul has its own telos, not imposed from outside." .
+
+# Benevolence Disposition - Authentic relating and empathic connection
+:PsychismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :EmotionalAuthenticity, :ShadowIntegration, :PsychicHonesty ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.75 ;
+    :rationale "Benevolence: Emotional authenticity enables genuine care for close others. Shadow integration reduces projection, increasing capacity for real relationship. Psychic honesty prevents using others for unconscious needs. Depth psychology emphasizes relational healing. High salience - relationships matter for individuation." ;
+    :metaphysicalGrounding "Analytical psychology: Relationship as container for individuation. Transference shows relational unconscious. Attachment theory (Bowlby): Early relationships shape psyche. Buber's I-Thou: Authentic relating requires whole self, not persona." .
+
+# Universalism Disposition - Archetypal universality and collective unconscious
+:PsychismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :ArchetypalAwareness, :SoulDepth ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.75 ;
+    :rationale "Universalism: Archetypal structures are universal across cultures (collective unconscious). Soul depth transcends individual ego, connecting to shared humanity. Cross-cultural understanding through recognizing common archetypal patterns. Jung's emphasis on comparative religion and mythology." ;
+    :metaphysicalGrounding "Jung: Collective unconscious is universal substrate beneath personal unconscious. Archetypes recur across cultures - Mother, Hero, Shadow found worldwide. Cross-cultural mythology reveals shared psychic structures. Transpersonal dimension transcends cultural boundaries." .
+
+# Stimulation Disposition - Psychological exploration and discovery
+:PsychismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :DreamWork, :ActiveImagination, :ShadowIntegration ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.70 ;
+    :rationale "Stimulation: Dream work and active imagination provide exciting psychological discovery. Encountering unconscious contents is stimulating (and terrifying). Shadow integration challenges comfortable self-image. However, also values depth and stability over pure novelty. Moderate-high salience." ;
+    :metaphysicalGrounding "Jung: Unconscious encounter is adventure into unknown. Active imagination provides excitement of discovery. But Psychism also values integrating discoveries, not just collecting experiences. Depth over breadth." .
+
+# Security Disposition - Psychological integration provides inner security
+:PsychismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :PsychologicalWholeness, :ShadowIntegration ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.65 ;
+    :rationale "Security: Psychological wholeness provides inner security and stability. Shadow integration reduces anxiety from repression. Knowing oneself (psychic honesty) prevents unconscious sabotage. However, individuation often requires insecurity (dissolving comfortable persona). Moderate salience - values security but not avoiding necessary chaos." ;
+    :metaphysicalGrounding "Jung: Wholeness provides stable foundation, but achieving it requires insecurity of transformation. Shadow integration makes unconscious conscious, reducing anxiety of repression. But also: 'neurosis is suffering not yet transformed into meaning' - insecurity can be growth." .
+
+# Hedonism Disposition - Psychological pleasure but subordinate to wholeness
+:PsychismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :EmotionalAuthenticity, :SoulDepth ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.60 ;
+    :rationale "Hedonism: Psychism values authentic emotional experience including pleasure. Depth psychology acknowledges instinct, desire, eros. However, subordinates pleasure to wholeness - individuation may require suffering. Moderate salience - pleasure is real but not ultimate value." ;
+    :metaphysicalGrounding "Freud: Pleasure principle is fundamental drive. Jung: Eros (desire, connection) is psychic energy. However, individuation transcends pleasure-seeking - may require suffering, shadow confrontation. Wholeness > happiness." .
+
+# Achievement Disposition - Psychological mastery and individuation achievement
+:PsychismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :IndividuationProcess, :PsychologicalWholeness ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.60 ;
+    :rationale "Achievement: Individuation is psychological achievement - becoming whole self is accomplishment. Demonstrating competence in self-knowledge and inner work. However, achievement is inner (psychological) not outer (social success). Moderate salience - values accomplishment but critiques ego inflation." ;
+    :metaphysicalGrounding "Jung: Individuation is lifelong achievement, realizing Self. But warns against inflation - psychological achievement belongs to Self, not ego. Hillman: Soul-making is achievement but anti-heroic - descent not ascent." .
+
+# Tradition Disposition - Mythological and depth psychology tradition
+:PsychismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :MythologicalStudy, :ArchetypalAwareness ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.55 ;
+    :rationale "Tradition: Psychism deeply values mythological traditions as expressions of archetypal wisdom. Jung's engagement with alchemy, Gnosticism, Eastern religions. However, also critiques traditions that repress psyche (Victorian moral constraints). Moderate salience - honors depth traditions, critiques repressive ones." ;
+    :metaphysicalGrounding "Jung: Ancient wisdom traditions (alchemy, mythology, religion) encode psychological truths. Respect for traditional symbols and rituals. However, individuated relationship to tradition - personal appropriation, not blind conformity." .
+
+# Conformity Disposition - Low conformity, values individuation over social norms
+:PsychismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :IndividuationProcess, :EmotionalAuthenticity ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.50 ;
+    :rationale "Conformity: Psychism critiques conformity to social norms (persona identification, repression of authentic self). Individuation requires differentiating from collective. However, not anti-social - values authentic social participation. Moderate-low salience - conformity acceptable when not repressive." ;
+    :metaphysicalGrounding "Jung: Individuation differentiates from collective identifications. Persona (social mask) necessary for adaptation but problematic when identified with. Psychological development requires separating from mass psychology while maintaining ethical relationship to society." .
+
+# Power Disposition - Inner authority, not outer dominance
+:PsychismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Psychism ;
+    :worldviewValue :PsychicHonesty, :ShadowIntegration ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.45 ;
+    :rationale "Power: Psychism values inner authority (self-knowledge, psychic honesty) over outer dominance. Shadow integration includes owning personal power. However, critiques ego inflation and power-seeking. Low-moderate salience - values empowerment but subordinates to wholeness." ;
+    :metaphysicalGrounding "Jung: Personal power emerges from individuation and shadow integration. But warns against inflation - confusing ego with Self. Adler: Power drive can dominate psyche pathologically. Psychism values power integrated, not power-over-others." .
+
+# ============================================================================
+# PNEUMATISM → ValueNet Mappings
+# ============================================================================
+# Source: pneumatism-values.ttl
+# Metaphysics: Living spirit (pneuma) pervades nature; cosmos is ensouled
+# Epistemology: Ritual participation, shamanic practice, spirit encounter, sacred awareness
+# Priority: Spiritual vitality, ensouled cosmos, immanent divinity, sacred presence
+# Cluster: Depth-Spiritual (Living Spirit foundation + Immanent depth)
+# ============================================================================
+
+:PneumatismValueProfile a :WorldviewValueProfile ;
+    :forWorldview :Pneumatism ;
+    dcterms:source "pneumatism-values.ttl" ;
+    rdfs:comment "Pneumatism prioritizes spirituality (living cosmos), universalism (world-soul), and tradition (ritual/sacred practices). Very high spiritual and ecological values, moderate social values, lower conformity and power." ;
+    :valueProfileSummary [
+        :highPriority "Spirituality (0.95), Universalism (0.85), Tradition (0.85)" ;
+        :moderate "Benevolence (0.75), Self-direction (0.70), Stimulation (0.70)" ;
+        :low "Security (0.65), Achievement (0.55), Hedonism (0.50), Conformity (0.50), Power (0.40)"
+    ] .
+
+# Spirituality Disposition - Living cosmos, immanent divinity, sacred nature
+:PneumatismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :SpiritualVitality, :EnsouledCosmos, :ImmanentDivinity, :SacredPresence ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.95 ;
+    :rationale "Spirituality: Pneumatism has the highest spiritual dimension of all worldviews. Living spirit (pneuma) pervades all nature - cosmos is ensouled, divine is immanent in natural world. Spiritual vitality, sacred presence in immediate environment. Shamanic spirit encounters, animistic worldview. Ultimate spiritual priority." ;
+    :metaphysicalGrounding "Bergson: Élan vital as spiritual life-force. Spinoza: Deus sive Natura (God or Nature) - divine immanent in cosmos. Animism: All nature alive with spirits. Schelling: Nature as living spirit. Whitehead: Organisms all the way down - spiritual dimension universal." .
+
+# Universalism Disposition - World-soul, ecological interdependence, all life sacred
+:PneumatismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :EnsouledCosmos, :SpiritualEcology, :AnimateNature ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.85 ;
+    :rationale "Universalism: Ensouled cosmos (anima mundi - world-soul) unites all beings in living totality. Spiritual ecology recognizes interdependence and intrinsic value of all life. Understanding and protecting welfare of all beings (human and other-than-human). Biocentric/ecocentric ethics, not anthropocentric. Very high salience." ;
+    :metaphysicalGrounding "Plato: World-soul (anima mundi) as cosmic unity. Gaia hypothesis (Lovelock): Earth as integrated living system. Deep ecology (Naess): Intrinsic value of all life, ecological self expanding to encompass nature. Indigenous cosmologies: Kinship with all beings." .
+
+# Tradition Disposition - Ritual, ceremony, indigenous wisdom, sacred practices
+:PneumatismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :RitualParticipation, :SacredPresence, :EcologicalReciprocity ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.85 ;
+    :rationale "Tradition: Very high value on ritual, ceremony, and sacred traditions. Indigenous wisdom preserves spiritual ecology, shamanic practices, seasonal ceremonies. Tradition transmits sacred knowledge, maintains reciprocal relationship with spirits. Oral traditions, initiation rites, ancestral teachings. However, living tradition that adapts, not rigid dogma." ;
+    :metaphysicalGrounding "Indigenous traditions: Oral transmission of sacred knowledge across generations. Shamanism: Initiatory lineages preserving spirit-world knowledge. Ritual as maintaining cosmic order (Eliade). Sacred ecology practices (Berkes) sustained for millennia." .
+
+# Benevolence Disposition - Reciprocity with all beings, care for living world
+:PneumatismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :EcologicalReciprocity, :SpiritualEcology, :SacredAwareness ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.75 ;
+    :rationale "Benevolence: Caring for all beings (human and other-than-human) through ecological reciprocity. Giving gifts to nature spirits, expressing gratitude, sustainable practices. Benevolence extends beyond humans to all living world. However, focus on intimate relationships (family, community, local ecosystem) more than abstract universal welfare." ;
+    :metaphysicalGrounding "Gift economy with nature (Kimmerer): Reciprocal giving-receiving with plant/animal spirits. Indigenous ethics: Care for seven generations. Honorable harvest principles. Buber's I-Thou: Caring relationship with nature, not I-It exploitation." .
+
+# Self-direction Disposition - Shamanic autonomy, personal spirit encounters
+:PneumatismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :SpiritEncounter, :ShamanicPractice, :SacredAwareness ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.70 ;
+    :rationale "Self-direction: Shamanic practice values personal spirit encounters, vision quests, autonomous seeking. Each person must find own relationship with spirits, power animals, sacred places. However, balanced by communal traditions, elder guidance, ritual protocols. Moderate-high salience - autonomy within traditional framework." ;
+    :metaphysicalGrounding "Vision quest: Personal seeking for spiritual guidance, unique vision. Shamanic initiation: Individual called by spirits, not choosing rationally. But guided by elders, integrated into community. Balance of autonomy and tradition." .
+
+# Stimulation Disposition - Spirit encounters, shamanic ecstasy, altered states
+:PneumatismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :SpiritEncounter, :ShamanicPractice, :RitualParticipation ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.70 ;
+    :rationale "Stimulation: Shamanic practice provides exciting spirit encounters, ecstatic trance, visionary experiences. Altered states through drumming, fasting, entheogens. Ritual creates numinous experiences - awe, wonder, terror. However, also values stability of cosmic order, seasonal cycles. Moderate-high salience - excitement balanced by tradition." ;
+    :metaphysicalGrounding "Shamanic ecstasy (Eliade): Technician of ecstasy - flight to spirit worlds, transformative visions. Rudolf Otto: Numinous as tremendum et fascinans - terrifying and fascinating. Peak experiences in nature (Maslow). But cyclical time (Eliade) provides stability." .
+
+# Security Disposition - Cosmic order, ritual maintenance, reciprocal relationships
+:PneumatismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :RitualParticipation, :EcologicalReciprocity, :EnsouledCosmos ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.65 ;
+    :rationale "Security: Rituals maintain cosmic order, reciprocity ensures continued blessing from spirits, harmonious relationship with living world provides stability. However, also acknowledges unpredictability of spirit world, natural forces. Moderate salience - security sought through right relationship, not control." ;
+    :metaphysicalGrounding "Ritual maintaining cosmic order (Eliade): Reenacting creation, preventing chaos. Reciprocity preventing punishment from offended spirits. Indigenous security through respectful relationship with land, not technological mastery. Balance, not domination." .
+
+# Achievement Disposition - Shamanic mastery, ritual competence
+:PneumatismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :ShamanicPractice, :RitualCeremony, :SpiritEncounter ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.55 ;
+    :rationale "Achievement: Shamanic mastery demonstrates competence - successful healing, powerful visions, communication with spirits. Ritual competence shown through proper ceremony performance. However, achievement is service to community and spirits, not personal glory. Lower-moderate salience - competence valued but subordinate to humility and reciprocity." ;
+    :metaphysicalGrounding "Shamanic training: Years of apprenticeship achieving mastery of trance, spirit communication, healing. But power comes from spirits, not ego. Achievement as channel for spiritual power, not personal accomplishment. Humility required." .
+
+# Hedonism Disposition - Ecstatic experience, vitality, but subordinate to sacred
+:PneumatismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :SpiritualVitality, :SpiritEncounter ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.50 ;
+    :rationale "Hedonism: Spiritual vitality (life-force, élan vital) includes pleasure, joy, ecstatic experience. Shamanic trance can be pleasurable. However, also involves fasting, suffering, ordeal. Pleasure subordinate to spiritual purpose, not pursued for itself. Moderate salience - acknowledges pleasure but not ultimate value." ;
+    :metaphysicalGrounding "Bergson: Élan vital as creative joy. Ecstatic experiences in shamanic trance, spirit encounter. However, initiation involves ordeal - suffering, dismemberment, death/rebirth. Fasting and austerity for vision quest. Pleasure present but not primary." .
+
+# Conformity Disposition - Ritual protocols, taboos, but not rigid rules
+:PneumatismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :RitualParticipation, :EcologicalReciprocity ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.50 ;
+    :rationale "Conformity: Rituals have proper protocols, taboos protect sacred, reciprocity norms guide behavior. However, spirit encounters can be unpredictable, visions may demand breaking conventions. Personal spiritual calling can override social norms. Moderate salience - conformity to sacred law, not arbitrary social convention." ;
+    :metaphysicalGrounding "Ritual protocols: Proper performance required (Victor Turner). Taboos protecting sacred groves, totems, sacred times. However, shamanic calling can require transgressing norms. Spirit world unpredictable. Balance of tradition and spontaneity." .
+
+# Power Disposition - Spiritual power for healing/service, not domination
+:PneumatismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Pneumatism ;
+    :worldviewValue :SpiritualVitality, :ShamanicPractice ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.40 ;
+    :rationale "Power: Shamans possess spiritual power for healing, protection, influencing spirits. However, power is channeled from spirits, not personal possession. Used for community service, not domination. Sorcery (harmful use of power) condemned. Low-moderate salience - power present but subordinate to service and humility." ;
+    :metaphysicalGrounding "Shamanic power: Derives from spirit helpers (power animals, plant spirits), not ego. Used for healing, guiding, protecting community. Sorcery (malevolent use) is perversion. Power requires humility - shaman as hollow reed for spiritual force. Reciprocity, not dominance." .
+
+# ============================================================================
+# PHASE 3.3: SPIRITUALISM VALUENET MAPPINGS (11 total)
+# ============================================================================
+
+# Spirituality Disposition - HIGHEST (tied with Pneumatism)
+:SpiritualismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :DivineRelationship, :RevealedTruth, :SpiritualHierarchy, :TranscendentConnection ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.95 ;
+    :rationale "Spirituality: Spiritualism has HIGHEST Spirituality (tied with Pneumatism 0.95). Transcendent divine relationship, revealed truth, mystical union. Spiritual dimension is ultimate reality, not epiphenomenal." ;
+    :metaphysicalGrounding "Transcendent divinity is supreme reality. Relationship to God is highest good. Mystical experience is genuine contact with divine, not reducible to psychology." .
+
+# Tradition Disposition - Very high (scripture, religious tradition)
+:SpiritualismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :RevealedTruth, :SacredRevelation, :ReligiousCommunity, :Scripture ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.90 ;
+    :rationale "Tradition: Spiritualism highly values tradition. Revealed truth transmitted through scripture, religious community, sacred tradition. Respect for elders, religious authority, established practices." ;
+    :metaphysicalGrounding "Divine revelation inscribed in scripture/tradition. Religious community bears living tradition across generations." .
+
+# Conformity Disposition - High (obedience to divine will)
+:SpiritualismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :ObedienceToDivine, :SpiritualSubmission ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.75 ;
+    :rationale "Conformity: Spiritualism values conformity to divine will. Obedience to God's commands, religious law, spiritual discipline. Restraint of impulses conflicting with sacred norms." ;
+    :metaphysicalGrounding "Divine command provides ultimate normative standard. Human will must conform to transcendent will." .
+
+# Security Disposition - Moderate-high (divine providence, stable hierarchy)
+:SpiritualismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :SpiritualHierarchy, :SacredRevelation ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.70 ;
+    :rationale "Security: Spiritualism provides spiritual security. Stable ontological hierarchy, revealed truth as certain foundation, divine providence protecting faithful." ;
+    :metaphysicalGrounding "Transcendent order provides ultimate security. Divine hierarchy is stable, not chaotic." .
+
+# Benevolence Disposition - High (divine love, compassion)
+:SpiritualismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :DivineRelationship, :ReligiousCommunity, :SpiritualSubmission ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.80 ;
+    :rationale "Benevolence: Spiritualism emphasizes compassion, charity as divine command. Love of neighbor grounded in love of God. Religious community as context for mutual care." ;
+    :metaphysicalGrounding "Divine love for humanity grounds human love for each other. Compassion flows from divine relationship." .
+
+# Universalism Disposition - Moderate-high (divine love for all)
+:SpiritualismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :TranscendentConnection, :DivineRelationship ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.75 ;
+    :rationale "Universalism: Spiritualism can support universalism. Divine love extends to all creation, transcending tribal boundaries. Mystical traditions emphasize underlying unity in divine." ;
+    :metaphysicalGrounding "Transcendent God is creator of all, valuing all beings. Universal human dignity grounded in divine image." .
+
+# Self-Direction Disposition - Moderate (spiritual autonomy vs divine authority)
+:SpiritualismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :SpiritualPractice, :Prayer ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.60 ;
+    :rationale "Self-direction: Spiritualism has MODERATE self-direction. Spiritual practice requires discipline, autonomy in prayer/contemplation. But subordinated to divine authority - not autonomous self-legislation." ;
+    :metaphysicalGrounding "Spiritual journey requires personal initiative, but ultimate guidance comes from transcendent source." .
+
+# Stimulation Disposition - Moderate (mystical novelty vs routine practice)
+:SpiritualismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :TranscendentConnection, :SpiritualPractice ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.55 ;
+    :rationale "Stimulation: Spiritualism has moderate stimulation. Mystical experience is profoundly novel, exciting. But spiritual discipline often requires routine, asceticism over novelty-seeking." ;
+    :metaphysicalGrounding "Mystical encounter with divine is ultimate excitement. But spiritual path requires patience, not constant novelty." .
+
+# Hedonism Disposition - Low (spiritual joy vs sensory pleasure)
+:SpiritualismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :SpiritualSubmission ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.35 ;
+    :rationale "Hedonism: Spiritualism subordinates sensory pleasure to spiritual goods. Ascetic traditions renounce pleasure; mystical joy is spiritual, not sensory." ;
+    :metaphysicalGrounding "Material pleasure is lower good. Spiritual joy transcends/surpasses sensory pleasure." .
+
+# Achievement Disposition - Moderate (spiritual progress, but grace-dependent)
+:SpiritualismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :SpiritualHierarchy ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.50 ;
+    :rationale "Achievement: Spiritualism has moderate achievement orientation. Spiritual advancement (ascent toward divine) valued, but achievement grounded in grace, not autonomous competence." ;
+    :metaphysicalGrounding "Spiritual progress is real, but ultimately gift of divine grace, not self-made accomplishment." .
+
+# Power Disposition - Low (humility before God)
+:SpiritualismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Spiritualism ;
+    :worldviewValue :SpiritualSubmission, :ObedienceToDivine ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.30 ;
+    :rationale "Power: Spiritualism SUBORDINATES power over others. Spiritual submission, humility before God. Power belongs to divine, not human ego. Religious authority serves divine will, not personal dominance." ;
+    :metaphysicalGrounding "Ultimate power belongs to transcendent God. Human power is derivative, must be exercised in service to divine will." .
+
+# ============================================================================
+# MATHEMATISM VALUENET MAPPINGS (Phase 3.4)
+# ============================================================================
+# Mathematism worldview: Mathematical form as foundation of reality
+# Terminal values: Mathematical beauty, structural harmony, formal perfection, elegant order
+# Foundation: Reality is fundamentally mathematical (Pythagoras, Plato, modern mathematics)
+# 11 mappings (one per Schwartz value + Spirituality)
+# ============================================================================
+
+# Spirituality Disposition - Highest (mathematical beauty is spiritual experience)
+:MathematismSpiritualityMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :MathematicalBeauty, :StructuralHarmony, :FormalPerfection, :ElegantOrder ;
+    :valueNetDisposition vn-schwartz:SpiritualityDisposition ;
+    :salience 0.95 ;
+    :rationale "Spirituality: Mathematism has HIGHEST Spirituality (tied with Pneumatism, Spiritualism). Mathematical beauty is transcendent, eternal. Contact with Platonic Forms is spiritual experience. Hardy: 'The mathematician's patterns, like the painter's or poet's, must be beautiful; the ideas, like the colors or the words, must fit together in a harmonious way.' Mathematics reveals eternal truths beyond physical world." ;
+    :metaphysicalGrounding "Mathematical Forms exist in transcendent Platonic realm. Experiencing mathematical beauty is communion with eternal truth. Mathematics is what remains when universe disappears." .
+
+# Universalism Disposition - Very High (universal truth transcends cultures)
+:MathematismUniversalismMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :UniversalStructure, :MathematicalBeauty, :LogicalNecessity ;
+    :valueNetDisposition vn-schwartz:UniversalismDisposition ;
+    :salience 0.90 ;
+    :rationale "Universalism: Mathematism highly values universalism. Mathematical truths are universal - same theorems discovered independently across civilizations. Understanding, tolerance, appreciation for all cultures' mathematical contributions (Chinese, Islamic, Indian mathematics). Mathematics is language transcending human divisions." ;
+    :metaphysicalGrounding "Mathematical truth transcends culture, nationality, species. Alien intelligences would discover same mathematics. Universality is evidence of objective reality." .
+
+# Self-direction Disposition - High (independent thought, creativity in proof discovery)
+:MathematismSelfDirectionMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :AbstractThought, :MathematicalIntuition, :ElegantOrder ;
+    :valueNetDisposition vn-schwartz:SelfDirectionDisposition ;
+    :salience 0.85 ;
+    :rationale "Self-direction: Mathematism values independent thinking. Original proofs, creative insights, autonomous exploration. Mathematician follows own aesthetic judgment, not external authority. Freedom to pursue pure mathematics (Hardy's 'useless' number theory). Choosing own research direction." ;
+    :metaphysicalGrounding "Mathematical discovery requires autonomous rational thought. Authority in mathematics comes from proof, not tradition or power. Each mathematician can verify proofs independently." .
+
+# Achievement Disposition - High (proving theorems, solving hard problems)
+:MathematismAchievementMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :FormalPerfection, :RigorousProof, :AxiomaticMethod ;
+    :valueNetDisposition vn-schwartz:AchievementDisposition ;
+    :salience 0.85 ;
+    :rationale "Achievement: Mathematism highly values achievement. Proving difficult theorems, solving open problems, demonstrating competence. Wiles' 7-year quest for Fermat's Last Theorem. Achievement measured by contribution to mathematical knowledge, peer recognition." ;
+    :metaphysicalGrounding "Mathematical achievement is highest intellectual accomplishment. Proving theorem establishes eternal truth. Achievement endures (Euclid's theorems still true 2300 years later)." .
+
+# Stimulation Disposition - Moderate-High (intellectual challenge, novel ideas)
+:MathematismStimulationMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :AbstractThought, :MathematicalIntuition, :SymbolicNotation ;
+    :valueNetDisposition vn-schwartz:StimulationDisposition ;
+    :salience 0.70 ;
+    :rationale "Stimulation: Mathematism moderately values stimulation. Excitement of discovery, intellectual challenge, novel problems. But excitement is disciplined by rigor - not thrill-seeking for its own sake. Stimulation serves pursuit of truth." ;
+    :metaphysicalGrounding "Mathematical discovery provides intellectual excitement. Novel ideas, unexpected connections stimulate. But stimulation is byproduct of truth-seeking, not end in itself." .
+
+# Conformity Disposition - Moderate-High (conformity to logical rules, not social norms)
+:MathematismConformityMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :LogicalNecessity, :RigorousProof, :AxiomaticMethod ;
+    :valueNetDisposition vn-schwartz:ConformityDisposition ;
+    :salience 0.70 ;
+    :rationale "Conformity: Mathematism values conformity to logical rules, mathematical standards. Restraint of speculation that violates proof standards. Obedience to mathematical necessity (can't violate axioms). But NOT conformity to social convention - mathematical truth transcends social norms." ;
+    :metaphysicalGrounding "Logical necessity constrains thought. Cannot assert contradictions. Mathematical proof requires conformity to inference rules. Discipline of formal method." .
+
+# Tradition Disposition - Moderate (respect for classical mathematics, building on foundations)
+:MathematismTraditionMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :PlatonicRealism, :UniversalStructure ;
+    :valueNetDisposition vn-schwartz:TraditionDisposition ;
+    :salience 0.65 ;
+    :rationale "Tradition: Mathematism moderately values tradition. Respect for classical mathematics (Euclid, Euler, Gauss). Building on established foundations. But mathematics progresses beyond tradition - revolutions (non-Euclidean geometry, set theory) overthrow old assumptions when necessary." ;
+    :metaphysicalGrounding "Mathematical tradition preserves cumulative knowledge. Standing on shoulders of giants (Newton). But tradition is justified by proof, not authority - can be overturned." .
+
+# Security Disposition - Moderate (certainty, stable foundations, consistency)
+:MathematismSecurityMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :LogicalNecessity, :FormalPerfection, :AxiomaticMethod ;
+    :valueNetDisposition vn-schwartz:SecurityDisposition ;
+    :salience 0.65 ;
+    :rationale "Security: Mathematism moderately values security. Mathematical certainty provides epistemic security. Stable foundations (axioms), consistency of systems. Hilbert's program sought security through formalization. But Gödel's theorems show limits - complete security unattainable." ;
+    :metaphysicalGrounding "Mathematical proof provides certainty unattainable elsewhere. Secure foundations sought through axiomatization. But foundations are ultimately self-evident axioms, not empirical bedrock." .
+
+# Benevolence Disposition - Moderate (sharing knowledge, collaboration, teaching)
+:MathematismBenevolenceMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :UniversalStructure, :RigorousProof ;
+    :valueNetDisposition vn-schwartz:BenevolenceDisposition ;
+    :salience 0.60 ;
+    :rationale "Benevolence: Mathematism moderately values benevolence. Sharing proofs, teaching students, collaborative research. Mathematical community preserves/transmits knowledge. But benevolence is instrumental to mathematical progress, not ultimate end. Hardy: 'A mathematician is a maker of patterns.'" ;
+    :metaphysicalGrounding "Mathematical knowledge is public good. Sharing proofs benefits humanity. But mathematics pursued for truth/beauty, not altruism. Benevolence serves mathematical ends." .
+
+# Hedonism Disposition - Moderate (aesthetic pleasure in mathematical beauty)
+:MathematismHedonismMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :MathematicalBeauty, :ElegantOrder ;
+    :valueNetDisposition vn-schwartz:HedonismDisposition ;
+    :salience 0.55 ;
+    :rationale "Hedonism: Mathematism moderately values pleasure - specifically intellectual/aesthetic pleasure in mathematical beauty. Enjoyment of elegant proofs, satisfaction of solving problems. But pleasure is response to objective beauty, not subjective gratification. Pleasure serves recognition of truth." ;
+    :metaphysicalGrounding "Mathematical beauty provides genuine pleasure (Zeki's neuroscience shows same brain regions as art/music). But pleasure is byproduct of truth, not goal. Hedonistic pursuit of pleasure is subordinated." .
+
+# Power Disposition - Low (truth over social dominance)
+:MathematismPowerMapping a :WorldviewValueNetMapping ;
+    :worldview :Mathematism ;
+    :worldviewValue :LogicalNecessity, :RigorousProof ;
+    :valueNetDisposition vn-schwartz:PowerDisposition ;
+    :salience 0.35 ;
+    :rationale "Power: Mathematism SUBORDINATES power over others. Mathematical authority comes from proof, not social dominance. Hardy: 'A mathematician, like a painter or poet, is a maker of patterns. If his patterns are more permanent than theirs, it is because they are made with ideas.' Power is irrelevant - proof convinces regardless of mathematician's status." ;
+    :metaphysicalGrounding "Mathematical truth is independent of power. Proof from unknown mathematician is as valid as proof from famous one. Power structures don't determine truth." .
+
+# ============================================================================
 # Mapping Properties and Classes
 # ============================================================================
 
