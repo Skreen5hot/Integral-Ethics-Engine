@@ -7,6 +7,7 @@ on:
     branches: [ "main", "dev" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build-and-test:
@@ -81,7 +82,7 @@ jobs:
   # Deploys main to root (/) and dev to /dev/ subdirectory
   # Only deploys from main branch to avoid concurrent deployments
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     needs: build-and-test
     runs-on: ubuntu-latest
     permissions:
@@ -96,6 +97,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -109,6 +112,9 @@ jobs:
       - name: Prepare deployment structure
         run: |
           mkdir -p _site
+
+          # Ensure we start from main branch for root deployment
+          git checkout main || git checkout -b main origin/main
 
           echo "📦 Building multi-environment deployment for Integral Ethics Engine"
           echo "  - Main branch → / (root)"
