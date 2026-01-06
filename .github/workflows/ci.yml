@@ -105,9 +105,6 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install dependencies
-        run: npm install
-
       # Prepare combined deployment directory with both main and dev versions
       - name: Prepare deployment structure
         run: |
@@ -119,6 +116,7 @@ jobs:
           git checkout main || git checkout -b main origin/main
           
           echo "📦 Building Main Branch..."
+          rm -rf node_modules
           npm install
           npm run build
           
@@ -137,6 +135,7 @@ jobs:
           if git rev-parse --verify origin/dev >/dev/null 2>&1; then
             git checkout origin/dev
             echo "📦 Building Dev Branch..."
+            rm -rf node_modules
             npm install
             npm run build
             
