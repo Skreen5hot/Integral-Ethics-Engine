@@ -109,6 +109,7 @@ jobs:
       - name: Prepare deployment structure
         run: |
           mkdir -p _site
+          touch _site/.nojekyll
 
           # ---------------------------------------------------------
           # 1. DEPLOY MAIN BRANCH TO ROOT (/)
@@ -118,7 +119,7 @@ jobs:
           echo "📦 Building Main Branch..."
           rm -rf node_modules
           npm install
-          npm run build
+          BASE_PATH=/Integral-Ethics-Engine npm run build
           
           # Copy SvelteKit build output to _site
           cp -r build/* _site/
@@ -137,7 +138,7 @@ jobs:
             echo "📦 Building Dev Branch..."
             rm -rf node_modules
             npm install
-            npm run build
+            BASE_PATH=/Integral-Ethics-Engine/dev npm run build
             
             mkdir -p _site/dev
             cp -r build/* _site/dev/
