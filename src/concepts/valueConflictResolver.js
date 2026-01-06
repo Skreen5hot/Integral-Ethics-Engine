@@ -482,7 +482,7 @@ export function identifyMinorityViews(evaluations, integration) {
 export function assessConfidence(evaluations, weights) {
   if (!evaluations || evaluations.length === 0) {
     return {
-      level: 'very-low',
+      level: 'low',
       score: 0,
       factors: ['No worldview evaluations provided'],
       uncertainties: ['Cannot assess without worldview perspectives']
@@ -492,12 +492,11 @@ export function assessConfidence(evaluations, weights) {
   const integration = integrateJudgments(evaluations, weights);
   const confidenceScore = integration.confidence;
 
-  // Determine confidence level
-  let level = 'very-low';
-  if (confidenceScore >= 0.9) level = 'very-high';
-  else if (confidenceScore >= 0.75) level = 'high';
-  else if (confidenceScore >= 0.6) level = 'moderate';
-  else if (confidenceScore >= 0.4) level = 'low';
+  // Determine confidence level (low, moderate, high)
+  let level = 'low';
+  if (confidenceScore >= 0.75) level = 'high';
+  else if (confidenceScore >= 0.5) level = 'moderate';
+  else level = 'low';
 
   // Identify confidence factors
   const factors = [];

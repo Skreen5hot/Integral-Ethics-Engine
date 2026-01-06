@@ -31,7 +31,10 @@
       "Bash(dir:*)",
       "Bash(node examples/basic-usage.js:*)",
       "Bash(powershell -Command \"\\(Get-Item realism-values.ttl\\).Length\")",
-      "Bash(npm test)"
+      "Bash(npm test)",
+      "Bash(timeout 10 npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)"
     ]
   }
 }

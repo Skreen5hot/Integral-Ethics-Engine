@@ -29,38 +29,137 @@ export function matchScenarioToValues(scenario, values) {
 
   // Extract scenario components
   const { action, context, agents, artifacts } = scenario;
+  const actionLower = action?.toLowerCase() || '';
 
-  // Match terminal values
+  // Match terminal values - EXPANDED for comprehensive coverage
   if (values.terminal) {
     values.terminal.forEach(value => {
-      // Physical wellbeing relevant when bodily harm/benefit involved
-      if (value === 'physical_wellbeing' &&
-          (action.includes('harm') || action.includes('health') || context.physicalImpact)) {
-        relevant.push({ value, type: 'terminal', salience: 'high' });
+      let matched = false;
+      let salience = 'medium';
+
+      // MATERIAL-EMPIRICAL CLUSTER
+      if (value === 'physical_wellbeing' || value === 'material_security') {
+        if (context.physicalImpact ||
+            artifacts?.some(a => a.type === 'life' || a.type === 'health') ||
+            actionLower.match(/harm|health|pain|suffer|dying|terminal|cancer|treatment|medical|life support/)) {
+          matched = true;
+          salience = 'high';
+        }
       }
 
-      // Empirical truth relevant when facts/evidence involved
-      if (value === 'empirical_truth' &&
-          (action.includes('claim') || action.includes('assert') || context.factsInvolved)) {
-        relevant.push({ value, type: 'terminal', salience: 'high' });
+      if (value === 'empirical_truth') {
+        if (context.factsInvolved || context.expertise ||
+            actionLower.match(/evidence|data|research|study|proven|medical fact/)) {
+          matched = true;
+          salience = 'high';
+        }
       }
 
-      // Experiential richness relevant for aesthetic/sensory scenarios
-      if (value === 'experiential_richness' &&
-          (context.aesthetic || context.sensory)) {
-        relevant.push({ value, type: 'terminal', salience: 'high' });
+      if (value === 'experiential_richness' || value === 'hedonic_quality' || value === 'aesthetic_beauty') {
+        if (context.aesthetic || context.sensory ||
+            actionLower.match(/experience|quality of life|pleasure|beauty|aesthetic/)) {
+          matched = true;
+          salience = context.aesthetic ? 'high' : 'medium';
+        }
       }
 
-      // Objective truth relevant when correspondence to reality matters
-      if (value === 'objective_truth' &&
-          (action.includes('claim') || context.truthClaims)) {
-        relevant.push({ value, type: 'terminal', salience: 'high' });
+      if (value === 'interpretive_honesty' || value === 'lived_experience' || value === 'phenomenological_depth') {
+        if (context.sensory || context.personsInvolved ||
+            agents?.some(a => a.role === 'self' || a.role === 'patient') ||
+            actionLower.match(/experience|feel|perspective|interpret|prefer/)) {
+          matched = true;
+          salience = 'medium';
+        }
       }
 
-      // Individual uniqueness relevant when personhood at stake
-      if (value === 'individual_uniqueness' &&
-          (agents?.length > 0 || context.personsInvolved)) {
-        relevant.push({ value, type: 'terminal', salience: 'high' });
+      if (value === 'objective_truth' || value === 'correspondence_to_reality' || value === 'natural_law') {
+        if (context.truthClaims || context.factsInvolved ||
+            actionLower.match(/fact|truth|reality|objective|evidence/)) {
+          matched = true;
+          salience = 'high';
+        }
+      }
+
+      // PROCESS-INDIVIDUAL CLUSTER
+      if (value === 'growth' || value === 'transformation' || value === 'vital_energy' || value === 'creative_becoming') {
+        if (context.futureImpact ||
+            actionLower.match(/grow|develop|transform|evolve|change|progress/)) {
+          matched = true;
+          salience = 'medium';
+        }
+      }
+
+      if (value === 'individual_uniqueness' || value === 'personal_identity' || value === 'authentic_selfhood') {
+        if (context.personsInvolved || agents?.length > 0 ||
+            actionLower.match(/individual|person|patient|self|identity|autonomy|dignity/)) {
+          matched = true;
+          salience = agents?.some(a => a.role === 'self') ? 'high' : 'medium';
+        }
+      }
+
+      // DEPTH-IDEAL CLUSTER
+      if (value === 'conceptual_coherence' || value === 'rational_order' || value === 'ideal_form') {
+        if (context.moralConflict ||
+            actionLower.match(/principle|concept|ideal|should|ought|right|wrong/)) {
+          matched = true;
+          salience = 'medium';
+        }
+      }
+
+      if (value === 'logical_consistency' || value === 'systematic_knowledge' || value === 'rational_certainty') {
+        if (context.moralConflict || context.expertise ||
+            actionLower.match(/rational|logic|reason|systematic|coherent|consistent/)) {
+          matched = true;
+          salience = 'medium';
+        }
+      }
+
+      if (value === 'consciousness_evolution' || value === 'psychic_depth' || value === 'interiority') {
+        if (context.personsInvolved || context.moralConflict ||
+            actionLower.match(/conscious|awareness|inner|mental|psychological|emotional/)) {
+          matched = true;
+          salience = 'medium';
+        }
+      }
+
+      if (value === 'spiritual_transcendence' || value === 'sacred_meaning' || value === 'divine_purpose') {
+        if (context.truthClaims ||
+            actionLower.match(/spirit|sacred|divine|soul|religious|faith|meaning|purpose/)) {
+          matched = true;
+          salience = 'medium';
+        }
+      }
+
+      if (value === 'eternal_truth' || value === 'unchanging_principle' || value === 'absolute_order') {
+        if (context.truthClaims || context.moralConflict ||
+            actionLower.match(/eternal|absolute|universal|principle|truth|law/)) {
+          matched = true;
+          salience = 'medium';
+        }
+      }
+
+      // UNIVERSAL HIGH-SALIENCE: Autonomy and dignity
+      if (value.match(/autonomy|dignity|respect|freedom|liberty|rights/)) {
+        if (context.autonomyAtStake || context.personsInvolved ||
+            agents?.length > 0 ||
+            actionLower.match(/decide|choice|freedom|autonomy|consent|force|require/)) {
+          matched = true;
+          salience = 'high';
+        }
+      }
+
+      // UNIVERSAL MEDIUM-SALIENCE: Justice, fairness, care
+      if (value.match(/justice|fairness|equity|care|compassion|wellbeing/)) {
+        if (context.personsInvolved || context.resourceScarcity || context.moralConflict ||
+            actionLower.match(/fair|just|care|compassion|allocate|distribute/)) {
+          matched = true;
+          salience = 'medium';
+        }
+      }
+
+      // Add if matched
+      if (matched) {
+        relevant.push({ value, type: 'terminal', salience });
       }
     });
   }
@@ -68,8 +167,21 @@ export function matchScenarioToValues(scenario, values) {
   // Always include instrumental values as lower salience
   if (values.instrumental) {
     values.instrumental.forEach(value => {
-      relevant.push({ value, type: 'instrumental', salience: 'medium' });
+      relevant.push({ value, type: 'instrumental', salience: 'low' });
     });
+  }
+
+  // Fallback: If NO terminal values matched but scenario has context, include at least some instrumental
+  if (relevant.filter(v => v.type === 'terminal').length === 0 && values.terminal && values.terminal.length > 0) {
+    // Emergency fallback: if physicalImpact context, assume physical wellbeing matters
+    if (context.physicalImpact && values.terminal.includes('physical_wellbeing')) {
+      relevant.push({ value: 'physical_wellbeing', type: 'terminal', salience: 'high' });
+    }
+    // If persons involved, assume individual matters
+    if (context.personsInvolved && values.terminal.find(v => v.match(/individual|person|dignity/))) {
+      const personalValue = values.terminal.find(v => v.match(/individual|person|dignity/));
+      relevant.push({ value: personalValue, type: 'terminal', salience: 'medium' });
+    }
   }
 
   return relevant;
