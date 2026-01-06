@@ -113,79 +113,36 @@ jobs:
         run: |
           mkdir -p _site
 
-          # Ensure we start from main branch for root deployment
+          # ---------------------------------------------------------
+          # 1. DEPLOY MAIN BRANCH TO ROOT (/)
+          # ---------------------------------------------------------
           git checkout main || git checkout -b main origin/main
+          
+          echo "📦 Building Main Branch..."
+          npm install
+          npm run build
+          
+          # Copy SvelteKit build output to _site
+          cp -r build/* _site/
+          
+          # Copy static resources that might not be in static/ folder yet
+          [ -d ontology ] && cp -r ontology _site/
+          [ -d examples ] && cp -r examples _site/
 
-          echo "📦 Building multi-environment deployment for Integral Ethics Engine"
-          echo "  - Main branch → / (root)"
-          echo "  - Dev branch → /dev/"
-
-          # Deploy main branch (current checkout) to root
-          echo "Deploying main IEE to root..."
-
-          # Copy core application files
-          cp -r src _site/
-          cp -r ontology _site/
-          cp -r examples _site/
-          cp manifest.json _site/
-          cp service-worker.js _site/
-          cp offline.html _site/
-
-          # Copy any index.html if it exists, otherwise create one
-          if [ -f index.html ]; then
-            cp index.html _site/
-          else
-            echo "Creating default index.html..."
-            cat > _site/index.html << 'INDEXEOF'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Integral Ethics Engine</title>
-            <link rel="manifest" href="manifest.json">
-            <meta name="theme-color" content="#2c5aa0">
-            <style>
-              body { font-family: system-ui; max-width: 800px; margin: 50px auto; padding: 20px; }
-              h1 { color: #2c5aa0; }
-              code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
-            </style>
-          </head>
-          <body>
-            <h1>Integral Ethics Engine</h1>
-            <p>Multi-perspectival moral reasoning system based on twelve archetypal worldviews.</p>
-            <h2>Available Resources</h2>
-            <ul>
-              <li><a href="examples/basic-usage.js">Basic Usage Example</a></li>
-              <li><a href="FOUNDATION_COMPLETE.md">Foundation Documentation</a></li>
-              <li><a href="TEST_RESULTS.md">Test Results</a></li>
-            </ul>
-            <script type="module" src="src/manifest-generator.js"></script>
-          </body>
-          </html>
-          INDEXEOF
-          fi
-
-          # Fetch and deploy dev branch to /dev/
+          # ---------------------------------------------------------
+          # 2. DEPLOY DEV BRANCH TO /dev/
+          # ---------------------------------------------------------
           git fetch origin dev || echo "Dev branch not yet created"
 
           if git rev-parse --verify origin/dev >/dev/null 2>&1; then
             git checkout origin/dev
-
-            echo "Deploying dev IEE to /dev/..."
+            echo "📦 Building Dev Branch..."
+            npm install
+            npm run build
+            
             mkdir -p _site/dev
-
-            # Copy dev version
-            cp -r src _site/dev/
-            cp -r ontology _site/dev/
-            cp -r examples _site/dev/
-            cp manifest.json _site/dev/
-            cp service-worker.js _site/dev/
-            cp offline.html _site/dev/
-
-            if [ -f index.html ]; then
-              cp index.html _site/dev/
-            fi
+            cp -r build/* _site/dev/
+            [ -d ontology ] && cp -r ontology _site/dev/
           else
             echo "Dev branch does not exist yet, skipping dev deployment"
             mkdir -p _site/dev
@@ -201,20 +158,6 @@ jobs:
           </html>
           DEVEOF
           fi
-
-          # Add base tag to dev index.html for proper path resolution
-          REPO_NAME="${{ github.repository }}"
-          REPO_NAME="${REPO_NAME#*/}"  # Remove owner/ prefix
-          BASE_PATH="/${REPO_NAME}/dev/"
-
-          echo "📍 Setting base path to: ${BASE_PATH}"
-
-          # Insert base tag after </title>
-          awk -v base="$BASE_PATH" '/<\/title>/ {print; print "    <base href=\"" base "\">"; next} 1' _site/dev/index.html > _site/dev/index.html.tmp
-          mv _site/dev/index.html.tmp _site/dev/index.html
-
-          echo "✅ Base tag added to dev index.html"
-          grep -A 1 "</title>" _site/dev/index.html | head -2
 
           # Create environments index for easy navigation
           cat > _site/environments.html << 'EOF'
