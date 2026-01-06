@@ -127,6 +127,7 @@ jobs:
           # Copy static resources that might not be in static/ folder yet
           [ -d ontology ] && cp -r ontology _site/
           [ -d examples ] && cp -r examples _site/
+          [ -f manifest.json ] && cp manifest.json _site/
 
           # ---------------------------------------------------------
           # 2. DEPLOY DEV BRANCH TO /dev/
@@ -143,6 +144,7 @@ jobs:
             mkdir -p _site/dev
             cp -r build/* _site/dev/
             [ -d ontology ] && cp -r ontology _site/dev/
+            [ -f manifest.json ] && cp manifest.json _site/dev/
           else
             echo "Dev branch does not exist yet, skipping dev deployment"
             mkdir -p _site/dev
@@ -184,13 +186,13 @@ jobs:
             <p>Multi-perspectival moral reasoning system</p>
             <ul>
               <li>
-                <a href="/">
+                <a href="/Integral-Ethics-Engine/">
                   <strong>Production</strong> <span class="badge prod">MAIN</span>
                   <br><small>Stable version from main branch</small>
                 </a>
               </li>
               <li>
-                <a href="/dev/">
+                <a href="/Integral-Ethics-Engine/dev/">
                   <strong>Development</strong> <span class="badge dev">DEV</span>
                   <br><small>Preview of latest dev branch features</small>
                 </a>
