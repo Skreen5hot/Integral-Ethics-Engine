@@ -119,7 +119,11 @@ jobs:
           echo "📦 Building Main Branch..."
           rm -rf node_modules
           npm install
+          echo "🔹 Building with BASE_PATH=/Integral-Ethics-Engine"
           BASE_PATH=/Integral-Ethics-Engine npm run build
+          
+          echo "📂 Listing Main Build Output:"
+          ls -la build/
           
           # Copy SvelteKit build output to _site
           cp -r build/* _site/
@@ -139,7 +143,11 @@ jobs:
             echo "📦 Building Dev Branch..."
             rm -rf node_modules
             npm install
+            echo "🔹 Building with BASE_PATH=/Integral-Ethics-Engine/dev"
             BASE_PATH=/Integral-Ethics-Engine/dev npm run build
+            
+            echo "📂 Listing Dev Build Output:"
+            ls -la build/
             
             mkdir -p _site/dev
             cp -r build/* _site/dev/
@@ -201,6 +209,9 @@ jobs:
           </body>
           </html>
           EOF
+          
+          echo "📂 Final _site directory structure:"
+          ls -R _site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
