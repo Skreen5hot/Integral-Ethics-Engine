@@ -21,7 +21,7 @@ const CHROME_PATH = process.env.CHROME_PATH ||
     : '/usr/bin/google-chrome-stable');
 
 // Path to gitDataPOC index.html (relative to test file)
-const APP_PATH = path.resolve(__dirname, '../../gitDataPOC/index.html');
+const APP_PATH = path.resolve(__dirname, '../../../../gitDataPOC/index.html');
 const APP_URL = `file://${APP_PATH.replace(/\\/g, '/')}`;
 
 // Helper to ensure clean state before each test
