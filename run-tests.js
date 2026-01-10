@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const testsDir = join(__dirname, 'unit-tests');
+const testsDir = join(__dirname, 'testing/frameworks/unit-tests');
 
 async function findTestFiles(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
