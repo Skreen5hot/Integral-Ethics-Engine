@@ -1,1 +1,1 @@
-let e="/Integral-Ethics-Engine",a=e;const n="_app",i=!0,t={base:e,assets:a};function o(s){e=s.base,a=s.assets}function r(){e=t.base,a=t.assets}function c(s){a=t.assets=s}export{a,e as b,n as c,r as d,o,i as r,c as s};
+let a="",e=a;const n="_app",i=!0,t={base:a,assets:e};function o(s){a=s.base,e=s.assets}function r(){a=t.base,e=t.assets}function c(s){e=t.assets=s}export{e as a,a as b,n as c,r as d,o,i as r,c as s};

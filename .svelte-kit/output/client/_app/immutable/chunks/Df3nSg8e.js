@@ -1,1 +1,0 @@
-import{c as a,b as n}from"./D1ATb3b7.js";import"./BGg7sefH.js";import{aT as l}from"./kfStWTRK.js";import{s}from"./BfvnS5lj.js";const i=!0,m="always",d=Object.freeze(Object.defineProperty({__proto__:null,prerender:i,trailingSlash:m},Symbol.toStringTag,{value:"Module"}));function _(t,r){var o=a(),e=l(o);s(e,r,"default",{},null),n(t,o)}export{_ as component,d as universal};

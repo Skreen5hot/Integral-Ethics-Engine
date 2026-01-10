@@ -30,7 +30,6 @@ declare module '$env/static/private' {
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
 	export const APPLICATION_INSIGHTS_NO_STATSBEAT: string;
-	export const BASE_PATH: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
 	export const CLAUDECODE: string;
 	export const CLAUDE_AGENT_SDK_VERSION: string;
@@ -69,7 +68,6 @@ declare module '$env/static/private' {
 	export const MSYSTEM_CARCH: string;
 	export const MSYSTEM_CHOST: string;
 	export const MSYSTEM_PREFIX: string;
-	export const MSYS_NO_PATHCONV: string;
 	export const NODE: string;
 	export const NoDefaultCurrentDirectoryInExePath: string;
 	export const NODE_ENV: string;
@@ -91,6 +89,7 @@ declare module '$env/static/private' {
 	export const npm_package_name: string;
 	export const npm_package_version: string;
 	export const NUMBER_OF_PROCESSORS: string;
+	export const OLDPWD: string;
 	export const OneDrive: string;
 	export const OneDriveConsumer: string;
 	export const OnlineServices: string;
@@ -176,7 +175,6 @@ declare module '$env/dynamic/private' {
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
 		APPLICATION_INSIGHTS_NO_STATSBEAT: string;
-		BASE_PATH: string;
 		CHROME_CRASHPAD_PIPE_NAME: string;
 		CLAUDECODE: string;
 		CLAUDE_AGENT_SDK_VERSION: string;
@@ -215,7 +213,6 @@ declare module '$env/dynamic/private' {
 		MSYSTEM_CARCH: string;
 		MSYSTEM_CHOST: string;
 		MSYSTEM_PREFIX: string;
-		MSYS_NO_PATHCONV: string;
 		NODE: string;
 		NoDefaultCurrentDirectoryInExePath: string;
 		NODE_ENV: string;
@@ -237,6 +234,7 @@ declare module '$env/dynamic/private' {
 		npm_package_name: string;
 		npm_package_version: string;
 		NUMBER_OF_PROCESSORS: string;
+		OLDPWD: string;
 		OneDrive: string;
 		OneDriveConsumer: string;
 		OnlineServices: string;
