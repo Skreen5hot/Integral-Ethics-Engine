@@ -67,13 +67,13 @@ jobs:
       - name: Install UI test framework dependencies
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
         run: |
-          cd ui-test-framework
+          cd testing/frameworks/ui-test-framework
           npm install
 
       - name: Run UI tests (headless)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
         run: |
-          cd ui-test-framework
+          cd testing/frameworks/ui-test-framework
           export CHROME_PATH=$(which chrome)
           npm test
         env:
