@@ -8,7 +8,7 @@
  */
 
 import { describe, test, beforeEach } from './test-utils.js';
-import assert from '../src/assert.js';
+import assert from '../../../src/assert.js';
 
 const { ok, strictEqual } = assert;
 
@@ -212,7 +212,7 @@ class MockIndexedDB {
 global.indexedDB = new MockIndexedDB();
 
 // Now import the storage concept
-import { storageConcept } from '../src/concepts/storageConcept.js';
+import { storageConcept } from '../../../src/concepts/storageConcept.js';
 
 describe('Storage Concept - Initialization', () => {
   beforeEach(() => {

@@ -10,8 +10,8 @@
  */
 
 import { describe, test, beforeEach } from './test-utils.js';
-import assert from '../src/assert.js';
-import { exampleConcept } from '../src/concepts/exampleConcept.js';
+import assert from '../../../src/assert.js';
+import { exampleConcept } from '../../../src/concepts/exampleConcept.js';
 
 // Helper functions for readability
 const { ok, strictEqual } = assert;

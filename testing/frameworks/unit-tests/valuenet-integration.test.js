@@ -9,13 +9,13 @@
  */
 
 import { describe, test, beforeEach } from './test-utils.js';
-import { ok, strictEqual, deepStrictEqual } from '../src/assert.js';
+import { ok, strictEqual, deepStrictEqual } from '../../../src/assert.js';
 import {
   ontologyLoader,
   extractValueNetDispositions,
   extractValueNetMappings,
   parseTTL
-} from '../src/concepts/ontologyLoader.js';
+} from '../../../src/concepts/ontologyLoader.js';
 
 // ============================================================================
 // TEST SETUP

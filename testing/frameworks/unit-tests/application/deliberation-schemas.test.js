@@ -15,7 +15,7 @@ import {
   validateWorldviewEvaluation,
   validateDeliberationResult,
   validateDeliberationOptions
-} from '../../src/application/schemas/deliberation-schemas.js';
+} from '../../../../src/application/schemas/deliberation-schemas.js';
 
 // ============================================================================
 // SCENARIO INPUT VALIDATION

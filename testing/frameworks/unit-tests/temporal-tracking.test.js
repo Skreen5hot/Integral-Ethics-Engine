@@ -13,7 +13,7 @@ import {
   calculateGrowth,
   detectTransformation,
   calculateTrajectory
-} from '../src/concepts/processTracker.js';
+} from '../../../src/concepts/processTracker.js';
 
 import {
   characterModel,
@@ -21,7 +21,7 @@ import {
   calculateSincerity,
   evaluateConsistency,
   detectMoralDevelopment
-} from '../src/concepts/characterModel.js';
+} from '../../../src/concepts/characterModel.js';
 
 // ============================================================================
 // PROCESS TRACKER CONCEPT TESTS

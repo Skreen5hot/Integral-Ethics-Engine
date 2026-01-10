@@ -8,9 +8,9 @@
  */
 
 import { describe, test, beforeEach } from './test-utils.js';
-import { strictEqual, ok } from '../src/assert.js';
-import { worldviewManager } from '../src/concepts/worldviewManager.js';
-import { moralReasoner } from '../src/concepts/moralReasoner.js';
+import { strictEqual, ok } from '../../../src/assert.js';
+import { worldviewManager } from '../../../src/concepts/worldviewManager.js';
+import { moralReasoner } from '../../../src/concepts/moralReasoner.js';
 
 // ============================================================================
 // END-TO-END SCENARIO EVALUATION TESTS

@@ -6,7 +6,7 @@
  */
 
 import { describe, test, beforeEach } from './test-utils.js';
-import { strictEqual, deepStrictEqual, ok, throws } from '../src/assert.js';
+import { strictEqual, deepStrictEqual, ok, throws } from '../../../src/assert.js';
 import {
   matchScenarioToValues,
   detectValueConflicts,
@@ -15,7 +15,7 @@ import {
   calculateConfidence,
   applyWorldviewToScenario,
   moralReasoner
-} from '../src/concepts/moralReasoner.js';
+} from '../../../src/concepts/moralReasoner.js';
 
 // ============================================================================
 // PURE FUNCTION TESTS

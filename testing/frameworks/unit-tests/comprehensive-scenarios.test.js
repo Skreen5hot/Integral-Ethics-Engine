@@ -10,7 +10,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import valueConflictResolver from '../src/concepts/valueConflictResolver.js';
+import valueConflictResolver from '../../../src/concepts/valueConflictResolver.js';
 import {
   detectConflicts,
   getDomainWeights,
@@ -18,7 +18,7 @@ import {
   identifyMinorityViews,
   assessConfidence,
   generateJustification
-} from '../src/concepts/valueConflictResolver.js';
+} from '../../../src/concepts/valueConflictResolver.js';
 
 // ============================================================================
 // SCENARIO 1: END-OF-LIFE CARE (Healthcare Domain)

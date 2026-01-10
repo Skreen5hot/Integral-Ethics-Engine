@@ -12,7 +12,7 @@ import assert from 'node:assert/strict';
 import {
   getDomainWeights,
   getDomainWeightJustification
-} from '../src/concepts/valueConflictResolver.js';
+} from '../../../src/concepts/valueConflictResolver.js';
 
 // ============================================================================
 // DOMAIN WEIGHT APPROPRIATENESS TESTS

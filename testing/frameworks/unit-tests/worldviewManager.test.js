@@ -6,13 +6,13 @@
  */
 
 import { describe, test, beforeEach } from './test-utils.js';
-import { strictEqual, deepStrictEqual, ok, throws } from '../src/assert.js';
+import { strictEqual, deepStrictEqual, ok, throws } from '../../../src/assert.js';
 import {
   deriveValues,
   determineCluster,
   generateWorldview,
   worldviewManager
-} from '../src/concepts/worldviewManager.js';
+} from '../../../src/concepts/worldviewManager.js';
 
 // ============================================================================
 // PURE FUNCTION TESTS

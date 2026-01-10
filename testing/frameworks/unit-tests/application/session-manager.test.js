@@ -22,7 +22,7 @@ import {
   sessionManager,
   MemoryStorageAdapter,
   LocalStorageAdapter
-} from '../../src/application/sessionManager.js';
+} from '../../../../src/application/sessionManager.js';
 
 // ============================================================================
 // PURE FUNCTION TESTS - Session Creation and Manipulation

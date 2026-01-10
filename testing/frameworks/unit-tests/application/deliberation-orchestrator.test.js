@@ -21,7 +21,7 @@ import {
   selectWorldviews,
   formatDeliberationResult,
   deliberationOrchestrator
-} from '../../src/application/deliberationOrchestrator.js';
+} from '../../../../src/application/deliberationOrchestrator.js';
 
 // ============================================================================
 // PURE FUNCTION TESTS - Domain Detection

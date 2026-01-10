@@ -12,7 +12,7 @@
 
 import { describe, test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { worldviewManager, deriveValues } from '../src/concepts/worldviewManager.js';
+import { worldviewManager, deriveValues } from '../../../src/concepts/worldviewManager.js';
 import fs from 'fs';
 import path from 'path';
 
