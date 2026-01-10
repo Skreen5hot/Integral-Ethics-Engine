@@ -14,7 +14,7 @@
  * server dependencies and improve performance/reliability.
  */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';  // Increment on deployment to force cache refresh
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `dynamic-${CACHE_VERSION}`;
 
