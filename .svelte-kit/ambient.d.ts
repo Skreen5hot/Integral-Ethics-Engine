@@ -30,6 +30,7 @@ declare module '$env/static/private' {
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
 	export const APPLICATION_INSIGHTS_NO_STATSBEAT: string;
+	export const BASE_PATH: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
 	export const CLAUDECODE: string;
 	export const CLAUDE_AGENT_SDK_VERSION: string;
@@ -47,6 +48,8 @@ declare module '$env/static/private' {
 	export const EDITOR: string;
 	export const ELECTRON_RUN_AS_NODE: string;
 	export const EXEPATH: string;
+	export const FPS_BROWSER_APP_PROFILE_STRING: string;
+	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GIT_EDITOR: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
@@ -66,6 +69,7 @@ declare module '$env/static/private' {
 	export const MSYSTEM_CARCH: string;
 	export const MSYSTEM_CHOST: string;
 	export const MSYSTEM_PREFIX: string;
+	export const MSYS_NO_PATHCONV: string;
 	export const NODE: string;
 	export const NoDefaultCurrentDirectoryInExePath: string;
 	export const NODE_ENV: string;
@@ -172,6 +176,7 @@ declare module '$env/dynamic/private' {
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
 		APPLICATION_INSIGHTS_NO_STATSBEAT: string;
+		BASE_PATH: string;
 		CHROME_CRASHPAD_PIPE_NAME: string;
 		CLAUDECODE: string;
 		CLAUDE_AGENT_SDK_VERSION: string;
@@ -189,6 +194,8 @@ declare module '$env/dynamic/private' {
 		EDITOR: string;
 		ELECTRON_RUN_AS_NODE: string;
 		EXEPATH: string;
+		FPS_BROWSER_APP_PROFILE_STRING: string;
+		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GIT_EDITOR: string;
 		HOME: string;
 		HOMEDRIVE: string;
@@ -208,6 +215,7 @@ declare module '$env/dynamic/private' {
 		MSYSTEM_CARCH: string;
 		MSYSTEM_CHOST: string;
 		MSYSTEM_PREFIX: string;
+		MSYS_NO_PATHCONV: string;
 		NODE: string;
 		NoDefaultCurrentDirectoryInExePath: string;
 		NODE_ENV: string;
