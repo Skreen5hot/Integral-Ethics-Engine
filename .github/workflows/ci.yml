@@ -123,13 +123,22 @@ jobs:
           echo "🔍 Checking vite installation:"
           npm list vite || echo "⚠️ vite not listed in dependencies"
           echo ""
-          echo "🔍 Testing vite command:"
-          which vite || echo "❌ vite not in PATH"
-          npx vite --version || echo "❌ npx vite failed"
-          ./node_modules/.bin/vite --version || echo "❌ direct vite binary failed"
-          echo ""
-          echo "🔍 File permissions on vite:"
+          echo "🔍 File permissions on vite BEFORE fix:"
           ls -l node_modules/.bin/vite || echo "❌ Cannot check vite permissions"
+          file node_modules/.bin/vite || echo "❌ Cannot check vite file type"
+
+      - name: Fix node_modules binaries permissions
+        run: |
+          echo "🔧 Fixing permissions on node_modules/.bin/ executables..."
+          chmod -R +x node_modules/.bin/ || echo "⚠️ chmod failed"
+          echo ""
+          echo "🔍 File permissions on vite AFTER fix:"
+          ls -l node_modules/.bin/vite
+          echo ""
+          echo "🔍 Testing vite command after permission fix:"
+          which vite || echo "❌ vite not in PATH"
+          ./node_modules/.bin/vite --version || echo "❌ direct vite binary still failed"
+          npx vite --version || echo "❌ npx vite still failed"
 
       - name: Build with correct base path
         id: build
