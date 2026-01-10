@@ -1,4 +1,4 @@
-import { SetupError, TeardownError } from '../shared-test-utils/errors.js';
+import { SetupError, TeardownError } from '../../shared-test-utils/errors.js';
 
 export function describe(name, fn) {
   console.log(`\n${name}`);

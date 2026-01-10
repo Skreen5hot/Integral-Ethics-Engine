@@ -4,7 +4,7 @@
  * and a comprehensive assertion library (`assert`) for the test suite.
  */
 
-import { AssertionError, SetupError, TeardownError } from '../shared-test-utils/errors.js';
+import { AssertionError, SetupError, TeardownError } from '../../shared-test-utils/errors.js';
 
 export const assert = {
   ok(value, message) {
