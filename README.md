@@ -144,43 +144,72 @@ Following the **Concepts + Synchronizations** architecture (Jackson & Meng, 2025
 
 ```
 .
-├── theoretical-foundations/
-│   ├── integral-ethics.md              # 12-worldview framework
-│   ├── line-in-the-sand.md             # Non-commodifiable personhood
-│   ├── Moral-Character-Model.md        # BFO/CCO modeling patterns
-│   └── Reclaiming-Process-Qualities.md # Process philosophy integration
+├── docs/                                # Core documentation
+│   ├── philosophy/                      # Philosophical foundations
+│   │   ├── integral-ethics.md          # 12-worldview framework
+│   │   ├── line-in-the-sand.md         # Non-commodifiable personhood
+│   │   └── Reclaiming-Process-Qualities.md
+│   ├── architecture/                    # Technical architecture
+│   │   ├── ARCHITECTURE.md             # System design
+│   │   ├── GITHUB_PAGES_PWA.md         # Deployment guide
+│   │   └── Integration-Procedure.md    # 7-step deliberation process
+│   ├── models/                          # Domain models
+│   │   ├── Moral-Character-Model.md    # BFO/CCO character modeling
+│   │   └── Domain-Contextualization.md # Context-aware evaluation
+│   └── archon/                          # ARCHON specifications
+│       ├── ARCHON.md
+│       └── ARCHON_Functional_Requirments.md
 │
-├── ontology/
-│   ├── value-hierarchies.ttl           # 12 worldview value systems
-│   ├── moral-character.ttl             # Character disposition models
-│   ├── integration-patterns.ttl        # Value conflict resolution
-│   └── bfo-extensions.ttl              # Processual & contextual extensions
+├── src/                                 # Application source code
+│   ├── lib/                            # Core libraries
+│   │   ├── components/                 # Svelte UI components
+│   │   └── stores/                     # Application state
+│   ├── routes/                         # SvelteKit routes
+│   ├── concepts/                       # Modular reasoning components
+│   │   ├── worldviewManager.js
+│   │   ├── moralReasoner.js
+│   │   ├── characterModel.js
+│   │   └── valueConflictResolver.js
+│   ├── application/                    # Application layer
+│   └── utils/                          # Utility functions
 │
-├── concepts/                            # Modular reasoning components
-│   ├── worldviewManager.js
-│   ├── moralReasoner.js
-│   ├── characterModel.js
-│   ├── valueConflictResolver.js
-│   ├── contextualizer.js
-│   └── justificationGenerator.js
+├── ontology/                            # Ontology files
+│   ├── bfo-core.ttl                    # Basic Formal Ontology
+│   └── [additional ontologies]
 │
-├── synchronizations.js                 # Declarative integration rules
+├── testing/                             # Test frameworks & scenarios
+│   ├── strategy/                       # Test strategies
+│   ├── scenarios/                      # Test scenarios
+│   ├── results/                        # Test results
+│   └── frameworks/                     # Test implementations
+│       ├── ui-test-framework/          # Playwright UI tests
+│       └── unit-tests/                 # Unit test suite
 │
-├── knowledge/                           # Sample knowledge bases
-│   ├── scenario-corpus.ttl             # Test scenarios
-│   └── character-examples.ttl          # Character trait instances
+├── planning/                            # Active project management
+│   ├── STATUS_SUMMARY.md               # Current status
+│   ├── stratigicRoadmap.md             # High-level roadmap
+│   ├── agenticDevlopment.md            # Development methodology
+│   └── VALUENET_INTEGRATION.md         # Integration plans
 │
-├── tests/                               # Verification suite
-│   ├── worldview-purity.test.js        # Pure value derivation
-│   ├── integration-procedures.test.js   # Conflict resolution
-│   ├── character-models.test.js         # Disposition realization
-│   └── synchronizations.test.js         # Cross-concept coordination
+├── collaborations/                      # External team workspaces
+│   └── tagteam/                        # TagTeam semantic parser
+│       ├── deliverables/               # Received from TagTeam
+│       ├── requirements/               # Specs we provide
+│       ├── communication/              # Correspondence
+│       ├── data/                       # Shared data artifacts
+│       └── dist/                       # Distributable bundles
 │
-└── docs/
-    ├── README.md                        # This file
-    ├── stratigicRoadmap.md              # Development phases
-    ├── agenticDevelopment.md            # C+S architecture guide
-    └── examples/                         # Usage demonstrations
+├── archive/                             # Completed phase documentation
+│   └── phases/                         # Historical phase docs
+│       ├── phase1/                     # Foundation (complete)
+│       ├── phase2/                     # Worldviews (complete)
+│       ├── phase3/                     # Relationships (complete)
+│       └── phase4/                     # UI/UX (complete)
+│
+├── valueNet/                            # ValueNet integration
+├── examples/                            # Usage examples
+├── static/                              # Static assets
+└── build/                               # Build output
 ```
 
 ---

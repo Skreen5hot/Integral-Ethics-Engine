@@ -40,7 +40,8 @@
       "Bash(BASE_PATH=\"\" npm run build)",
       "Bash(BASE_PATH=/Integral-Ethics-Engine node:*)",
       "Bash(export BASE_PATH=/Integral-Ethics-Engine)",
-      "Bash(MSYS_NO_PATHCONV=1 BASE_PATH=/Integral-Ethics-Engine npm run build:*)"
+      "Bash(MSYS_NO_PATHCONV=1 BASE_PATH=/Integral-Ethics-Engine npm run build:*)",
+      "Bash(wc:*)"
     ]
   }
 }
