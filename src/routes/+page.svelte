@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { session } from '$lib/stores';
+	import { base } from '$app/paths';
 
 	let recentHistory = [];
 	let isLoading = true;
@@ -68,14 +69,14 @@
 			<section class="card" style="background: var(--color-surface);">
 				<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
 					<h3 style="margin: 0;">Recent Deliberations</h3>
-					<a href="/history" style="font-size: var(--font-size-sm); color: var(--color-primary);">
+					<a href="{base}/history" style="font-size: var(--font-size-sm); color: var(--color-primary);">
 						View All →
 					</a>
 				</div>
 
 				<div class="flex-col gap-sm">
 					{#each recentHistory as deliberation}
-						<a href="/history" class="recent-item">
+						<a href="{base}/history" class="recent-item">
 							<div class="recent-header">
 								<span
 									class="judgment-badge"
@@ -118,14 +119,14 @@
 		</section>
 
 		<section class="flex gap-md" style="margin-top: var(--spacing-lg);">
-			<a href="/deliberate" class="button">
+			<a href="{base}/deliberate" class="button">
 				Start Deliberation
 			</a>
-			<a href="/worldviews" class="button button-secondary">
+			<a href="{base}/worldviews" class="button button-secondary">
 				Explore Worldviews
 			</a>
 			{#if recentHistory.length > 0}
-				<a href="/history" class="button button-secondary">
+				<a href="{base}/history" class="button button-secondary">
 					View History
 				</a>
 			{/if}

@@ -78,11 +78,10 @@ jobs:
         env:
           CI: true
 
-  # 🎯 UNIFIED DEPLOYMENT JOB
-  # Deploys main to root (/) and dev to /dev/ subdirectory
-  # Only deploys from main branch to avoid concurrent deployments
+  # 🎯 SIMPLIFIED DEPLOYMENT JOB
+  # Deploys only from main branch to avoid complexity
   deploy:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/main'
     needs: build-and-test
     runs-on: ubuntu-latest
     permissions:
@@ -97,121 +96,33 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22'
 
-      # Prepare combined deployment directory with both main and dev versions
-      - name: Prepare deployment structure
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build with correct base path
+        run: npm run build
+        env:
+          BASE_PATH: /Integral-Ethics-Engine
+          NODE_ENV: production
+
+      - name: Add .nojekyll to build output
+        run: touch build/.nojekyll
+
+      - name: List build output for debugging
         run: |
-          mkdir -p _site
-          touch _site/.nojekyll
-
-          # ---------------------------------------------------------
-          # 1. DEPLOY MAIN BRANCH TO ROOT (/)
-          # ---------------------------------------------------------
-          git checkout main || git checkout -b main origin/main
-          
-          echo "📦 Building Main Branch..."
-          rm -rf node_modules
-          npm install
-          echo "🔹 Building with BASE_PATH=/Integral-Ethics-Engine"
-          BASE_PATH=/Integral-Ethics-Engine npm run build
-          
-          echo "📂 Listing Main Build Output:"
+          echo "📂 Build directory contents:"
           ls -la build/
-          
-          # Copy SvelteKit build output to _site
-          cp -r build/* _site/
-          
-          # Copy static resources that might not be in static/ folder yet
-          [ -d ontology ] && cp -r ontology _site/
-          [ -d examples ] && cp -r examples _site/
-          [ -f manifest.json ] && cp manifest.json _site/
-
-          # ---------------------------------------------------------
-          # 2. DEPLOY DEV BRANCH TO /dev/
-          # ---------------------------------------------------------
-          git fetch origin dev || echo "Dev branch not yet created"
-
-          if git rev-parse --verify origin/dev >/dev/null 2>&1; then
-            git checkout origin/dev
-            echo "📦 Building Dev Branch..."
-            rm -rf node_modules
-            npm install
-            echo "🔹 Building with BASE_PATH=/Integral-Ethics-Engine/dev"
-            BASE_PATH=/Integral-Ethics-Engine/dev npm run build
-            
-            echo "📂 Listing Dev Build Output:"
-            ls -la build/
-            
-            mkdir -p _site/dev
-            cp -r build/* _site/dev/
-            [ -d ontology ] && cp -r ontology _site/dev/
-            [ -f manifest.json ] && cp manifest.json _site/dev/
-          else
-            echo "Dev branch does not exist yet, skipping dev deployment"
-            mkdir -p _site/dev
-            cat > _site/dev/index.html << 'DEVEOF'
-          <!DOCTYPE html>
-          <html>
-          <head><title>Dev Environment - Coming Soon</title></head>
-          <body>
-            <h1>Development Environment</h1>
-            <p>The dev branch has not been created yet. Create it to enable dev environment.</p>
-            <p><a href="/">Return to Production</a></p>
-          </body>
-          </html>
-          DEVEOF
-          fi
-
-          # Create environments index for easy navigation
-          cat > _site/environments.html << 'EOF'
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>IEE Environments</title>
-            <style>
-              body { font-family: system-ui; max-width: 600px; margin: 100px auto; padding: 20px; }
-              h1 { color: #2c5aa0; }
-              ul { list-style: none; padding: 0; }
-              li { margin: 15px 0; }
-              a { display: block; padding: 15px; background: #f5f5f5; border-radius: 8px; text-decoration: none; color: #2c5aa0; transition: background 0.2s; }
-              a:hover { background: #e0e0e0; }
-              .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; margin-left: 10px; }
-              .prod { background: #28a745; color: white; }
-              .dev { background: #ffc107; color: #333; }
-            </style>
-          </head>
-          <body>
-            <h1>🎯 Integral Ethics Engine Environments</h1>
-            <p>Multi-perspectival moral reasoning system</p>
-            <ul>
-              <li>
-                <a href="/Integral-Ethics-Engine/">
-                  <strong>Production</strong> <span class="badge prod">MAIN</span>
-                  <br><small>Stable version from main branch</small>
-                </a>
-              </li>
-              <li>
-                <a href="/Integral-Ethics-Engine/dev/">
-                  <strong>Development</strong> <span class="badge dev">DEV</span>
-                  <br><small>Preview of latest dev branch features</small>
-                </a>
-              </li>
-            </ul>
-          </body>
-          </html>
-          EOF
-          
-          echo "📂 Final _site directory structure:"
-          ls -R _site/
+          echo ""
+          echo "📂 Checking for critical files:"
+          ls -la build/index.html || echo "❌ index.html missing!"
+          ls -la build/_app/ || echo "❌ _app directory missing!"
+          ls -la build/.nojekyll || echo "❌ .nojekyll missing!"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -219,7 +130,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './_site'
+          path: './build'
 
       - name: Deploy to GitHub Pages
         id: deployment

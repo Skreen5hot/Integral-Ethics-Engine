@@ -1,5 +1,6 @@
 <script>
 	import { WorldviewComparison } from '$lib/components';
+	import { base } from '$app/paths';
 
 	const worldviews = [
 		{
@@ -212,8 +213,8 @@
 
 	<!-- Back Button -->
 	<div style="margin-top: var(--spacing-2xl); text-align: center;">
-		<a href="/" class="button button-secondary">← Back to Home</a>
-		<a href="/deliberate" class="button" style="margin-left: var(--spacing-md);">Start Deliberation →</a>
+		<a href="{base}/" class="button button-secondary">← Back to Home</a>
+		<a href="{base}/deliberate" class="button" style="margin-left: var(--spacing-md);">Start Deliberation →</a>
 	</div>
 </div>
 

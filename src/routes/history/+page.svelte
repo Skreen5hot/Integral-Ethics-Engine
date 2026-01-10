@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { session } from '$lib/stores';
 	import { HistoryTable, DeliberationComparison } from '$lib/components';
+	import { base } from '$app/paths';
 
 	let history = [];
 	let selectedDeliberation = null;
@@ -124,7 +125,7 @@
 						You haven't performed any ethical deliberations yet.
 						Start by describing a scenario on the Deliberate page.
 					</p>
-					<a href="/deliberate" class="button">
+					<a href="{base}/deliberate" class="button">
 						Begin Deliberation
 					</a>
 				</div>
@@ -259,7 +260,7 @@
 
 				<!-- Actions -->
 				<div style="margin-top: var(--spacing-lg); display: flex; gap: var(--spacing-md); flex-wrap: wrap;">
-					<a href="/deliberate" class="button button-secondary">
+					<a href="{base}/deliberate" class="button button-secondary">
 						New Deliberation
 					</a>
 					<button
