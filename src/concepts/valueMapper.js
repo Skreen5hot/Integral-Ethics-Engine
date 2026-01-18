@@ -30,11 +30,17 @@ export const tagteamToWorldviewValueMap = {
   // ==========================================
 
   'Autonomy': [
-    'self_determination',
-    'freedom',
-    'agency',
-    'independence',
-    'liberty'
+    // Actual worldview values that relate to autonomy/self-determination
+    'autonomous_agency',           // Monadism - individual sovereignty
+    'consciousness_development',   // Idealism - mental autonomy
+    'individual_uniqueness',       // Monadism - irreducible individuality
+    'authentic_individuality',     // Monadism/Psychism - true self
+    'personal_dignity',            // Realism - inherent worth
+    'self_actualization',          // Psychism - realizing potential
+    'intentional_directedness',    // Phenomenalism - self-directed consciousness
+    'unique_essence',              // Monadism - individual essence
+    'personal_development',        // Psychism - growth of autonomy
+    'individuation'                // Psychism - becoming oneself
   ],
 
   'Justice': [
@@ -46,10 +52,14 @@ export const tagteamToWorldviewValueMap = {
   ],
 
   'Equality': [
-    'fairness',
-    'equal_treatment',
-    'parity',
-    'non_discrimination'
+    // Actual worldview values that relate to equality/fairness
+    'natural_law',                 // Realism - objective moral law applies equally
+    'universal_principles',        // Mathematism/Rationalism - same rules for all
+    'universal_structure',         // Mathematism - structural equality
+    'objective_truth',             // Realism - truth is same for all
+    'ontological_fidelity',        // Realism - reality doesn't play favorites
+    'personal_dignity',            // Realism - equal inherent worth
+    'perspective_acknowledgment'   // Phenomenalism - all perspectives valid
   ],
 
   'Human Rights': [
@@ -181,11 +191,17 @@ export const tagteamToWorldviewValueMap = {
   ],
 
   'Generosity': [
-    'benevolence',
-    'charity',
-    'giving',
-    'altruism',
-    'kindness'
+    // Actual worldview values that relate to generosity/giving
+    'divine_relationship',         // Pneumatism/Spiritualism - giving to/from divine
+    'spiritual_vitality',          // Spiritualism - vital life-giving force
+    'ensouled_cosmos',             // Spiritualism - generous interconnection
+    'ecological_reciprocity',      // Spiritualism - mutual giving in nature
+    'life_force',                  // Dynamism/Sensationalism - vital energy shared
+    'vital_energy',                // Dynamism - dynamic giving
+    'animate_nature',              // Spiritualism - nature's generosity
+    'immanent_divinity',           // Spiritualism - divine presence as gift
+    'religious_community',         // Pneumatism - communal giving
+    'spiritual_ecology'            // Spiritualism - ecosystem generosity
   ],
 
   // ==========================================
@@ -268,11 +284,17 @@ export const tagteamToWorldviewValueMap = {
   ],
 
   'Patience': [
-    'forbearance',
-    'endurance',
-    'tolerance',
-    'perseverance',
-    'restraint'
+    // Actual worldview values that relate to patience/forbearance
+    'contemplation',               // Spiritualism/Pneumatism - patient waiting
+    'spiritual_practice',          // Spiritualism - patient cultivation
+    'cultivation',                 // Dynamism/Psychism - patient growth
+    'developmental_potential',     // Dynamism - allowing time for development
+    'growth',                      // Psychism/Dynamism - patient unfolding
+    'transformation',              // Psychism/Pneumatism - gradual change
+    'obedience_to_divine',         // Pneumatism - patient submission
+    'ritual_participation',        // Spiritualism - patient practice
+    'phenomenological_reduction',  // Phenomenalism - patient observation
+    'hermeneutic_fidelity'         // Phenomenalism/Idealism - patient interpretation
   ],
 
   // ==========================================
