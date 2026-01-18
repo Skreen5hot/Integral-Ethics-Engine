@@ -10,9 +10,9 @@
       "_server.js"
     ]
   },
-  "_DeliberationComparison.DU2awhuG.css": {
-    "file": "_app/immutable/assets/DeliberationComparison.DU2awhuG.css",
-    "src": "_DeliberationComparison.DU2awhuG.css"
+  "_SemanticAnalysisCard.BNaf6jEk.css": {
+    "file": "_app/immutable/assets/SemanticAnalysisCard.BNaf6jEk.css",
+    "src": "_SemanticAnalysisCard.BNaf6jEk.css"
   },
   "_context.js": {
     "file": "chunks/context.js",
@@ -160,7 +160,7 @@
     ],
     "css": [
       "_app/immutable/assets/_page.DfxP3qrs.css",
-      "_app/immutable/assets/DeliberationComparison.DU2awhuG.css"
+      "_app/immutable/assets/SemanticAnalysisCard.BNaf6jEk.css"
     ]
   },
   "src/routes/history/+page.svelte": {
@@ -175,7 +175,7 @@
     ],
     "css": [
       "_app/immutable/assets/_page.CELJr5JH.css",
-      "_app/immutable/assets/DeliberationComparison.DU2awhuG.css"
+      "_app/immutable/assets/SemanticAnalysisCard.BNaf6jEk.css"
     ]
   },
   "src/routes/settings/+page.svelte": {
@@ -204,7 +204,7 @@
     ],
     "css": [
       "_app/immutable/assets/_page.CgI8_nwX.css",
-      "_app/immutable/assets/DeliberationComparison.DU2awhuG.css"
+      "_app/immutable/assets/SemanticAnalysisCard.BNaf6jEk.css"
     ]
   }
 }

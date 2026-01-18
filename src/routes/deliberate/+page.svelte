@@ -5,7 +5,8 @@
 		ConflictMap,
 		IntegratedJudgment,
 		WorldviewCard,
-		ScenarioTemplates
+		ScenarioTemplates,
+		SemanticAnalysisCard
 	} from '$lib/components';
 
 	let scenario = {
@@ -167,6 +168,13 @@
 						conflictsDetected={result.metadata?.conflictsCount || conflicts.length}
 					/>
 				</section>
+
+				<!-- Semantic Analysis (TagTeam Detection) -->
+				{#if result.semanticAnalysis}
+					<section>
+						<SemanticAnalysisCard semanticAnalysis={result.semanticAnalysis} />
+					</section>
+				{/if}
 
 				<!-- Conflict Map Visualization (Radial Chart - MDI v2.0 compliant) -->
 				{#if worldviewsForChart.length > 0}

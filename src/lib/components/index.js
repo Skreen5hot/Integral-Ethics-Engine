@@ -12,3 +12,4 @@ export { default as HistoryTable } from './HistoryTable.svelte';
 export { default as ScenarioTemplates } from './ScenarioTemplates.svelte';
 export { default as WorldviewComparison } from './WorldviewComparison.svelte';
 export { default as DeliberationComparison } from './DeliberationComparison.svelte';
+export { default as SemanticAnalysisCard } from './SemanticAnalysisCard.svelte';
