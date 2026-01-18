@@ -251,6 +251,10 @@ export function detectValueConflicts(relevantValues, scenario) {
  * Evaluates an action against a set of values.
  * PURE FUNCTION - deterministic judgment.
  *
+ * Uses polarity to determine if values are upheld (+1) or violated (-1).
+ * When TagTeam provides polarity, we use it directly.
+ * Otherwise, we infer from context that detected values are likely upheld.
+ *
  * @param {string} action - The action being evaluated
  * @param {Array} relevantValues - Values to evaluate against
  * @returns {string} Judgment: 'right', 'wrong', 'neutral', 'complex'
@@ -266,21 +270,41 @@ export function evaluateAgainstValues(action, relevantValues) {
     return 'neutral'; // Only instrumental values = contextual
   }
 
-  // Simple heuristic: if action aligns with high-salience terminal values
-  // This will be expanded with more sophisticated logic
+  // Count values by polarity (if available from TagTeam)
+  const valuesWithPolarity = terminalValues.filter(v => v.polarity !== undefined && v.polarity !== 0);
+
+  if (valuesWithPolarity.length > 0) {
+    // Use TagTeam polarity for judgment
+    const upheld = valuesWithPolarity.filter(v => v.polarity === 1);
+    const violated = valuesWithPolarity.filter(v => v.polarity === -1);
+
+    if (violated.length > 0 && upheld.length === 0) {
+      return 'wrong'; // Only violations, no upholding
+    }
+
+    if (upheld.length > 0 && violated.length === 0) {
+      return 'right'; // Only upholding, no violations
+    }
+
+    if (violated.length > 0 && upheld.length > 0) {
+      return 'complex'; // Mixed - some values upheld, others violated
+    }
+  }
+
+  // Fallback: no polarity information (keyword matching only)
+  // Infer that action engages values, generally in positive way unless context suggests otherwise
   const highSalience = terminalValues.filter(v => v.salience === 'high');
 
-  if (highSalience.length > 1) {
-    return 'complex'; // Multiple high-salience values suggest complexity
+  if (highSalience.length === 0) {
+    return 'neutral'; // No high-salience values = unclear
   }
 
   if (highSalience.length === 1) {
-    // Single clear value - need domain-specific evaluation
-    // For now, return 'complex' to indicate further analysis needed
-    return 'complex';
+    return 'right'; // Single clear value engaged = generally permissible
   }
 
-  return 'neutral';
+  // Multiple high-salience values = potential conflict
+  return 'complex';
 }
 
 /**
