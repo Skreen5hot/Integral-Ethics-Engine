@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IEE Deliberation Test</title>
+    <style>
+        body { font-family: sans-serif; max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+        textarea { width: 100%; height: 150px; font-size: 14px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; border: 1px solid #ccc; background: #f5f5f5; }
+        .worldview { margin: 10px 0; padding: 10px; border-left: 3px solid #4f46e5; background: white; }
+        .error { color: red; font-weight: bold; }
+        pre { white-space: pre-wrap; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>Integral Ethics Engine - Deliberation Test</h1>
+
+    <h2>Test Scenario</h2>
+    <textarea id="scenario">A hospital must decide whether to give a scarce donor organ to a 25-year-old patient with excellent long-term survival odds, or a 65-year-old patient who has been on the waiting list longer and lives locally. Both patients have equal medical urgency.</textarea>
+
+    <p>
+        <label>Domain:
+            <select id="domain">
+                <option value="">Auto-detect</option>
+                <option value="healthcare" selected>Healthcare</option>
+                <option value="business">Business</option>
+                <option value="personal">Personal</option>
+            </select>
+        </label>
+    </p>
+
+    <button onclick="runDeliberation()">Run Deliberation</button>
+
+    <div id="output"></div>
+
+    <script type="module">
+        import { deliberateOnScenario } from './src/application/deliberationOrchestrator.js';
+        import { worldviewManager } from './src/concepts/worldviewManager.js';
+
+        // Initialize worldviews
+        worldviewManager.actions.loadAllWorldviews();
+        console.log('✅ Worldviews loaded:', Object.keys(worldviewManager.state.worldviews));
+
+        window.runDeliberation = async function() {
+            const scenario = document.getElementById('scenario').value;
+            const domain = document.getElementById('domain').value;
+            const output = document.getElementById('output');
+
+            output.innerHTML = '<p>⏳ Running deliberation...</p>';
+
+            try {
+                const result = await deliberateOnScenario({
+                    description: scenario,
+                    domain: domain || undefined
+                });
+
+                console.log('📊 Deliberation result:', result);
+
+                let html = '<div class="result">';
+                html += '<h2>Result</h2>';
+                html += `<p><strong>Judgment:</strong> ${result.judgment}</p>`;
+                html += `<p><strong>Confidence:</strong> ${(result.confidence * 100).toFixed(0)}%</p>`;
+                html += `<p><strong>Domain:</strong> ${result.domain}</p>`;
+
+                if (result.tagteamAnalysis) {
+                    html += '<h3>TagTeam Semantic Analysis</h3>';
+                    html += `<p><strong>Values detected:</strong> ${result.tagteamAnalysis.values?.length || 0}</p>`;
+                    if (result.tagteamAnalysis.values) {
+                        html += '<ul>';
+                        result.tagteamAnalysis.values.forEach(v => {
+                            html += `<li>${v.name} (salience: ${v.salience})</li>`;
+                        });
+                        html += '</ul>';
+                    }
+                } else {
+                    html += '<p class="error">⚠️ TagTeam not available - using keyword matching only</p>';
+                }
+
+                html += `<h3>Worldview Evaluations (${result.worldviews.length})</h3>`;
+                result.worldviews.forEach(wv => {
+                    html += `<div class="worldview">`;
+                    html += `<h4>${wv.worldview}</h4>`;
+                    html += `<p><strong>Judgment:</strong> ${wv.judgment}</p>`;
+                    html += `<p><strong>Confidence:</strong> ${(wv.confidence * 100).toFixed(0)}%</p>`;
+                    html += `<p><strong>Values:</strong> ${wv.values?.length || 0} detected</p>`;
+                    html += `<p>${wv.reasoning}</p>`;
+                    html += `</div>`;
+                });
+
+                html += '<h3>Full Result (JSON)</h3>';
+                html += `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+                html += '</div>';
+
+                output.innerHTML = html;
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                output.innerHTML = `<div class="result error">
+                    <h2>Error</h2>
+                    <p>${error.message}</p>
+                    <pre>${error.stack}</pre>
+                </div>`;
+            }
+        };
+    </script>
+</body>
+</html>

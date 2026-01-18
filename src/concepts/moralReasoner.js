@@ -33,8 +33,10 @@ export function matchScenarioToValues(scenario, values, tagteamResult = null) {
   const tagteamDetectedValues = new Set();
 
   // PRIORITY 1: Use TagTeam's detected values for high-confidence matches
-  if (tagteamResult?.ethicalProfile?.values && Array.isArray(tagteamResult.ethicalProfile.values)) {
-    for (const detectedValue of tagteamResult.ethicalProfile.values) {
+  // semanticAnalyzer returns values in detectedValues array (not ethicalProfile.values)
+  const tagteamValues = tagteamResult?.detectedValues || tagteamResult?.ethicalProfile?.values;
+  if (tagteamValues && Array.isArray(tagteamValues)) {
+    for (const detectedValue of tagteamValues) {
       const matches = findWorldviewMatches(detectedValue.name, values);
 
       for (const match of matches) {
