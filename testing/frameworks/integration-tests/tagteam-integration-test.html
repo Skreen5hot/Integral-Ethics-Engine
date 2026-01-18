@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TagTeam-IEE Integration Test</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f9fafb;
+    }
+
+    h1 {
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #1e40af;
+      margin-top: 30px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+    }
+
+    .version {
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .test-section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .test-result {
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #10b981;
+      background: #f0fdf4;
+    }
+
+    .test-result.failed {
+      border-left-color: #ef4444;
+      background: #fef2f2;
+    }
+
+    .test-result.warning {
+      border-left-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    .metric {
+      display: inline-block;
+      margin: 5px 10px 5px 0;
+      padding: 5px 12px;
+      background: #e0e7ff;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .metric.good { background: #d1fae5; color: #065f46; }
+    .metric.warning { background: #fef3c7; color: #92400e; }
+    .metric.bad { background: #fee2e2; color: #991b1b; }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+      transition: background 0.2s;
+    }
+
+    button:hover { background: #1d4ed8; }
+    button:disabled { background: #9ca3af; cursor: not-allowed; }
+
+    pre {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 13px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .summary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .summary h3 { margin: 0 0 15px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    th {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+
+    .status-pass { color: #10b981; font-weight: bold; }
+    .status-fail { color: #ef4444; font-weight: bold; }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .comparison-panel {
+      background: #f9fafb;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .comparison-panel h4 {
+      margin: 0 0 10px 0;
+      color: #1f2937;
+    }
+
+    .value-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .value-list li {
+      padding: 5px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .value-list li:last-child {
+      border-bottom: none;
+    }
+
+    .code-snippet {
+      background: #f3f4f6;
+      padding: 10px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔗 TagTeam-IEE Integration Test Suite</h1>
+  <div class="version">
+    TagTeam v<span id="tagteam-version">Loading...</span> ×
+    IEE Deliberation Engine
+  </div>
+
+  <!-- Test Controls -->
+  <div class="test-section">
+    <h2>Test Suite</h2>
+    <p>This test page validates the integration between TagTeam's semantic analysis and IEE's deliberation engine.</p>
+
+    <button onclick="runTest1()">1. TagTeam Load Test</button>
+    <button onclick="runTest2()">2. Value Mapper Test</button>
+    <button onclick="runTest3()">3. Semantic Analyzer Test</button>
+    <button onclick="runTest4()">4. Integration Pipeline Test</button>
+    <button onclick="runAllTests()">▶ Run All Tests</button>
+  </div>
+
+  <!-- Test Results -->
+  <div id="test-results"></div>
+
+  <!-- Summary -->
+  <div id="summary"></div>
+
+  <!-- Load TagTeam Bundle -->
+  <script src="../../../collaborations/tagteam/dist/tagteam.js"></script>
+
+  <!-- Load Value Mapper (as ES module) -->
+  <script type="module">
+    import {
+      findWorldviewMatches,
+      mapSalienceToLevel,
+      mapTagteamDomainToIEEDomain,
+      tagteamToWorldviewValueMap
+    } from '../../../src/concepts/valueMapper.js';
+
+    // Make available globally for tests
+    window.valueMapper = {
+      findWorldviewMatches,
+      mapSalienceToLevel,
+      mapTagteamDomainToIEEDomain,
+      tagteamToWorldviewValueMap
+    };
+
+    console.log('✅ Value Mapper loaded');
+  </script>
+
+  <!-- Test Suite -->
+  <script>
+    let testResults = {
+      total: 0,
+      passed: 0,
+      failed: 0,
+      tests: []
+    };
+
+    // Display TagTeam version
+    window.addEventListener('load', () => {
+      if (typeof TagTeam !== 'undefined') {
+        document.getElementById('tagteam-version').textContent = TagTeam.version;
+        console.log('✅ TagTeam loaded:', TagTeam.version);
+      } else {
+        document.getElementById('tagteam-version').textContent = 'ERROR: Not loaded';
+      }
+    });
+
+    // ==========================================
+    // TEST 1: TagTeam Load Test
+    // ==========================================
+    function runTest1() {
+      clearResults();
+      addTestHeader('Test 1: TagTeam Bundle Loading');
+
+      const test = {
+        name: 'TagTeam Bundle Loading',
+        status: 'running',
+        checks: []
+      };
+
+      try {
+        // Check 1: TagTeam is defined
+        if (typeof TagTeam === 'undefined') {
+          throw new Error('TagTeam is not defined');
+        }
+        test.checks.push({ name: 'TagTeam defined', passed: true });
+
+        // Check 2: TagTeam.parse is a function
+        if (typeof TagTeam.parse !== 'function') {
+          throw new Error('TagTeam.parse is not a function');
+        }
+        test.checks.push({ name: 'TagTeam.parse is function', passed: true });
+
+        // Check 3: Parse simple text
+        const result = TagTeam.parse("A doctor provides treatment");
+        if (!result) {
+          throw new Error('TagTeam.parse returned null');
+        }
+        test.checks.push({ name: 'TagTeam.parse executes', passed: true });
+
+        // Check 4: Result has expected structure
+        if (!result.version || !result.ethicalProfile || !result.agent) {
+          throw new Error('Result missing expected fields');
+        }
+        test.checks.push({ name: 'Result structure valid', passed: true });
+
+        // Check 5: Version is 2.0
+        if (result.version !== '2.0') {
+          throw new Error(`Expected version 2.0, got ${result.version}`);
+        }
+        test.checks.push({ name: 'Version is 2.0', passed: true });
+
+        test.status = 'passed';
+        testResults.passed++;
+
+        displayTestResult(test, {
+          version: result.version,
+          agent: result.agent.text,
+          valuesDetected: result.ethicalProfile.values.length
+        });
+
+      } catch (error) {
+        test.status = 'failed';
+        test.error = error.message;
+        testResults.failed++;
+        displayTestResult(test);
+      }
+
+      testResults.total++;
+      testResults.tests.push(test);
+    }
+
+    // ==========================================
+    // TEST 2: Value Mapper Test
+    // ==========================================
+    function runTest2() {
+      clearResults();
+      addTestHeader('Test 2: Value Mapper Integration');
+
+      const test = {
+        name: 'Value Mapper Integration',
+        status: 'running',
+        checks: []
+      };
+
+      try {
+        // Wait for value mapper to load
+        if (typeof window.valueMapper === 'undefined') {
+          throw new Error('Value Mapper not loaded yet. Refresh page and try again.');
+        }
+
+        const { findWorldviewMatches, mapSalienceToLevel, mapTagteamDomainToIEEDomain } = window.valueMapper;
+
+        // Check 1: Find matches for Autonomy
+        const worldviewValues = {
+          terminal: ['self_determination', 'fairness'],
+          constitutive: ['freedom'],
+          instrumental: ['choice']
+        };
+
+        const matches = findWorldviewMatches('Autonomy', worldviewValues);
+        if (matches.length === 0) {
+          throw new Error('No matches found for Autonomy');
+        }
+        test.checks.push({ name: 'Autonomy matches found', passed: true, count: matches.length });
+
+        // Check 2: Terminal match quality is high
+        const terminalMatch = matches.find(m => m.type === 'terminal');
+        if (!terminalMatch || terminalMatch.matchQuality !== 'high') {
+          throw new Error('Terminal match quality not high');
+        }
+        test.checks.push({ name: 'Terminal match quality: high', passed: true });
+
+        // Check 3: Salience mapping
+        const highSalience = mapSalienceToLevel(0.8);
+        const mediumSalience = mapSalienceToLevel(0.5);
+        const lowSalience = mapSalienceToLevel(0.2);
+
+        if (highSalience !== 'high' || mediumSalience !== 'medium' || lowSalience !== 'low') {
+          throw new Error('Salience mapping incorrect');
+        }
+        test.checks.push({ name: 'Salience level mapping', passed: true });
+
+        // Check 4: Domain mapping
+        const healthcareDomain = mapTagteamDomainToIEEDomain('Care');
+        const spiritualDomain = mapTagteamDomainToIEEDomain('Transcendence');
+
+        if (healthcareDomain !== 'healthcare' || spiritualDomain !== 'spiritual') {
+          throw new Error('Domain mapping incorrect');
+        }
+        test.checks.push({ name: 'Domain mapping', passed: true });
+
+        test.status = 'passed';
+        testResults.passed++;
+
+        displayTestResult(test, {
+          matchesFound: matches.length,
+          terminalMatches: matches.filter(m => m.type === 'terminal').length,
+          constitutiveMatches: matches.filter(m => m.type === 'constitutive').length,
+          instrumentalMatches: matches.filter(m => m.type === 'instrumental').length
+        });
+
+      } catch (error) {
+        test.status = 'failed';
+        test.error = error.message;
+        testResults.failed++;
+        displayTestResult(test);
+      }
+
+      testResults.total++;
+      testResults.tests.push(test);
+    }
+
+    // ==========================================
+    // TEST 3: Semantic Analyzer Test
+    // ==========================================
+    function runTest3() {
+      clearResults();
+      addTestHeader('Test 3: Semantic Analysis Pipeline');
+
+      const test = {
+        name: 'Semantic Analysis Pipeline',
+        status: 'running',
+        checks: []
+      };
+
+      try {
+        // Parse a healthcare scenario
+        const scenarioText = "A doctor provides evidence-based medical treatment to alleviate patient suffering.";
+        const result = TagTeam.parse(scenarioText);
+
+        // Check 1: Agent detection
+        if (!result.agent || result.agent.text !== 'doctor') {
+          throw new Error(`Expected agent 'doctor', got '${result.agent?.text}'`);
+        }
+        test.checks.push({ name: 'Agent detection: doctor', passed: true });
+
+        // Check 2: Action detection
+        if (!result.action || result.action.verb !== 'provides') {
+          throw new Error(`Expected action 'provides', got '${result.action?.verb}'`);
+        }
+        test.checks.push({ name: 'Action detection: provides', passed: true });
+
+        // Check 3: Semantic frame
+        if (!result.semanticFrame) {
+          throw new Error('No semantic frame detected');
+        }
+        test.checks.push({ name: `Semantic frame: ${result.semanticFrame}`, passed: true });
+
+        // Check 4: Context intensity
+        if (!result.contextIntensity) {
+          throw new Error('No context intensity detected');
+        }
+        test.checks.push({ name: 'Context intensity present', passed: true });
+
+        // Check 5: Ethical values detected
+        if (!result.ethicalProfile.values || result.ethicalProfile.values.length === 0) {
+          throw new Error('No ethical values detected');
+        }
+        test.checks.push({ name: `Values detected: ${result.ethicalProfile.values.length}`, passed: true });
+
+        // Check 6: Top value is relevant to healthcare
+        const topValue = result.ethicalProfile.topValues[0];
+        if (!topValue) {
+          throw new Error('No top value');
+        }
+        test.checks.push({ name: `Top value: ${topValue.name} (${topValue.salience.toFixed(2)})`, passed: true });
+
+        // Check 7: Domain detection
+        if (!result.ethicalProfile.dominantDomain) {
+          throw new Error('No dominant domain');
+        }
+        test.checks.push({ name: `Dominant domain: ${result.ethicalProfile.dominantDomain}`, passed: true });
+
+        test.status = 'passed';
+        testResults.passed++;
+
+        displayTestResult(test, result);
+
+      } catch (error) {
+        test.status = 'failed';
+        test.error = error.message;
+        testResults.failed++;
+        displayTestResult(test);
+      }
+
+      testResults.total++;
+      testResults.tests.push(test);
+    }
+
+    // ==========================================
+    // TEST 4: Integration Pipeline Test
+    // ==========================================
+    function runTest4() {
+      clearResults();
+      addTestHeader('Test 4: Full Integration Pipeline');
+
+      const test = {
+        name: 'Full Integration Pipeline',
+        status: 'running',
+        checks: []
+      };
+
+      try {
+        // Step 1: Run TagTeam analysis
+        const scenarioText = "The family must decide whether to continue treatment for their unconscious father.";
+        const tagteamResult = TagTeam.parse(scenarioText);
+
+        test.checks.push({ name: 'TagTeam analysis complete', passed: true });
+
+        // Step 2: Map to worldview values
+        if (typeof window.valueMapper === 'undefined') {
+          throw new Error('Value Mapper not loaded');
+        }
+
+        const { findWorldviewMatches, mapTagteamDomainToIEEDomain } = window.valueMapper;
+
+        // Simulate a worldview (Materialism - healthcare focused)
+        const worldviewValues = {
+          terminal: ['physical_wellbeing', 'self_determination', 'fairness'],
+          constitutive: ['health', 'freedom', 'dignity'],
+          instrumental: ['medicine', 'treatment', 'choice']
+        };
+
+        // Step 3: Map detected values to worldview
+        const mappedValues = [];
+        for (const detectedValue of tagteamResult.ethicalProfile.values) {
+          const matches = findWorldviewMatches(detectedValue.name, worldviewValues);
+          for (const match of matches) {
+            mappedValues.push({
+              tagteamValue: detectedValue.name,
+              worldviewValue: match.value,
+              type: match.type,
+              salience: detectedValue.salience,
+              polarity: detectedValue.polarity,
+              matchQuality: match.matchQuality
+            });
+          }
+        }
+
+        if (mappedValues.length === 0) {
+          throw new Error('No values mapped to worldview');
+        }
+        test.checks.push({ name: `Values mapped: ${mappedValues.length}`, passed: true });
+
+        // Step 4: Domain suggestion
+        const suggestedDomain = mapTagteamDomainToIEEDomain(tagteamResult.ethicalProfile.dominantDomain);
+        test.checks.push({ name: `Suggested IEE domain: ${suggestedDomain}`, passed: true });
+
+        // Step 5: Conflict detection
+        const hasConflicts = tagteamResult.ethicalProfile.conflicts.length > 0;
+        test.checks.push({ name: `Conflicts detected: ${hasConflicts ? 'Yes' : 'No'}`, passed: true });
+
+        test.status = 'passed';
+        testResults.passed++;
+
+        displayIntegrationResult(test, {
+          tagteamResult,
+          mappedValues,
+          suggestedDomain
+        });
+
+      } catch (error) {
+        test.status = 'failed';
+        test.error = error.message;
+        testResults.failed++;
+        displayTestResult(test);
+      }
+
+      testResults.total++;
+      testResults.tests.push(test);
+    }
+
+    // ==========================================
+    // Run All Tests
+    // ==========================================
+    async function runAllTests() {
+      clearResults();
+      testResults = { total: 0, passed: 0, failed: 0, tests: [] };
+
+      await runTest1();
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      await runTest2();
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      await runTest3();
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      await runTest4();
+
+      displaySummary();
+    }
+
+    // ==========================================
+    // Display Functions
+    // ==========================================
+    function clearResults() {
+      document.getElementById('test-results').innerHTML = '';
+      document.getElementById('summary').innerHTML = '';
+    }
+
+    function addTestHeader(title) {
+      const container = document.getElementById('test-results');
+      container.innerHTML += `<div class="test-section"><h2>${title}</h2><div id="current-test"></div></div>`;
+    }
+
+    function displayTestResult(test, data = null) {
+      const container = document.getElementById('current-test') || document.getElementById('test-results');
+
+      let html = `<div class="test-result ${test.status === 'failed' ? 'failed' : ''}">`;
+      html += `<h4>${test.status === 'passed' ? '✅' : '❌'} ${test.name}</h4>`;
+
+      // Display checks
+      if (test.checks.length > 0) {
+        html += '<ul>';
+        test.checks.forEach(check => {
+          html += `<li>${check.passed ? '✓' : '✗'} ${check.name}</li>`;
+        });
+        html += '</ul>';
+      }
+
+      // Display error
+      if (test.error) {
+        html += `<p style="color: #dc2626;"><strong>Error:</strong> ${test.error}</p>`;
+      }
+
+      // Display data
+      if (data) {
+        html += '<details><summary>View Details</summary>';
+        html += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        html += '</details>';
+      }
+
+      html += '</div>';
+      container.innerHTML += html;
+    }
+
+    function displayIntegrationResult(test, { tagteamResult, mappedValues, suggestedDomain }) {
+      const container = document.getElementById('current-test') || document.getElementById('test-results');
+
+      let html = `<div class="test-result">`;
+      html += `<h4>✅ ${test.name}</h4>`;
+
+      // Display checks
+      html += '<ul>';
+      test.checks.forEach(check => {
+        html += `<li>✓ ${check.name}</li>`;
+      });
+      html += '</ul>';
+
+      // Comparison view
+      html += '<div class="comparison">';
+
+      // TagTeam Output
+      html += '<div class="comparison-panel">';
+      html += '<h4>📊 TagTeam Output</h4>';
+      html += '<ul class="value-list">';
+      tagteamResult.ethicalProfile.values.forEach(v => {
+        html += `<li><strong>${v.name}</strong> - salience: ${v.salience.toFixed(2)}, polarity: ${v.polarity > 0 ? '+' : ''}${v.polarity}</li>`;
+      });
+      html += '</ul>';
+      html += `<div class="metric">Domain: ${tagteamResult.ethicalProfile.dominantDomain}</div>`;
+      html += `<div class="metric">Confidence: ${tagteamResult.ethicalProfile.confidence.toFixed(2)}</div>`;
+      html += '</div>';
+
+      // IEE Mapping
+      html += '<div class="comparison-panel">';
+      html += '<h4>🔗 Mapped to IEE Worldview</h4>';
+      html += '<ul class="value-list">';
+      mappedValues.forEach(v => {
+        html += `<li><strong>${v.worldviewValue}</strong> (${v.type}) ← ${v.tagteamValue} [${v.matchQuality}]</li>`;
+      });
+      html += '</ul>';
+      html += `<div class="metric good">IEE Domain: ${suggestedDomain}</div>`;
+      html += '</div>';
+
+      html += '</div>';
+
+      // Full details
+      html += '<details style="margin-top: 15px;"><summary>View Full TagTeam Output</summary>';
+      html += `<pre>${JSON.stringify(tagteamResult, null, 2)}</pre>`;
+      html += '</details>';
+
+      html += '</div>';
+      container.innerHTML += html;
+    }
+
+    function displaySummary() {
+      const container = document.getElementById('summary');
+      const passRate = testResults.total > 0 ? (testResults.passed / testResults.total * 100).toFixed(1) : 0;
+
+      let html = '<div class="summary">';
+      html += '<h3>📊 Test Summary</h3>';
+      html += `<div class="metric">Total Tests: ${testResults.total}</div>`;
+      html += `<div class="metric ${testResults.failed === 0 ? 'good' : 'bad'}">Passed: ${testResults.passed}</div>`;
+      html += `<div class="metric ${testResults.failed === 0 ? 'good' : 'bad'}">Failed: ${testResults.failed}</div>`;
+      html += `<div class="metric ${parseFloat(passRate) === 100 ? 'good' : 'warning'}">Pass Rate: ${passRate}%</div>`;
+      html += '</div>';
+
+      container.innerHTML = html;
+    }
+
+    // Auto-run Test 1 on load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        console.log('Auto-running Test 1...');
+        runTest1();
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

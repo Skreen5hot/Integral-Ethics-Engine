@@ -1,1 +1,12 @@
+# Test outputs
 unit-test-results.json
+
+# Claude Code internal
+.claude/
+
+# SvelteKit generated files
+.svelte-kit/generated/
+.svelte-kit/ambient.d.ts
+
+# Temporary files
+nul
