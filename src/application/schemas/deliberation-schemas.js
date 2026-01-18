@@ -356,18 +356,18 @@ export function validateWorldviewEvaluation(evaluation) {
 
   // Required: worldview
   const validWorldviews = [
-    'Materialism',
-    'Sensationalism',
-    'Phenomenalism',
-    'Realism',
-    'Dynamism',
-    'Monadism',
-    'Idealism',
-    'Rationalism',
-    'Psychism',
-    'Pneumatism',
-    'Spiritualism',
-    'Mathematism'
+    'materialism',
+    'sensationalism',
+    'phenomenalism',
+    'realism',
+    'dynamism',
+    'monadism',
+    'idealism',
+    'rationalism',
+    'psychism',
+    'pneumatism',
+    'spiritualism',
+    'mathematism'
   ];
 
   if (!evaluation.worldview) {
@@ -604,18 +604,18 @@ export function validateDeliberationOptions(options) {
       errors.push('worldviews must be an array');
     } else {
       const validWorldviews = [
-        'Materialism',
-        'Sensationalism',
-        'Phenomenalism',
-        'Realism',
-        'Dynamism',
-        'Monadism',
-        'Idealism',
-        'Rationalism',
-        'Psychism',
-        'Pneumatism',
-        'Spiritualism',
-        'Mathematism'
+        'materialism',
+        'sensationalism',
+        'phenomenalism',
+        'realism',
+        'dynamism',
+        'monadism',
+        'idealism',
+        'rationalism',
+        'psychism',
+        'pneumatism',
+        'spiritualism',
+        'mathematism'
       ];
 
       const invalidWorldviews = options.worldviews.filter(wv => !validWorldviews.includes(wv));
