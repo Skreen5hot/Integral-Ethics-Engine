@@ -20,6 +20,15 @@
 	export let domain = '';
 	export let conflictsCount = 0;
 
+	// PHASE 4: Hybrid integration metadata
+	export let isContested = false;
+	export let margin = null;
+	export let marginPercent = null;
+	export let secondPlace = null;
+	export let secondPlaceScore = null;
+	export let agreement = null;
+	export let quorum = null;
+
 	// Judgment colors (divergent palette)
 	const judgmentColors = {
 		permissible: '#4f46e5', // Indigo
@@ -116,8 +125,42 @@
 			</p>
 		</div>
 
+		<!-- PHASE 4: Contested Judgment Badge -->
+		{#if isContested}
+			<div class="contested-notice">
+				<div class="contested-header">
+					<span class="contested-icon">⚠️</span>
+					<strong>Contested Judgment Detected</strong>
+				</div>
+				<p>
+					This is a <strong>close call</strong>, not a clear consensus. The winning judgment
+					(<strong>{judgment}</strong>) narrowly prevails over the runner-up
+					(<strong>{secondPlace || 'alternative'}</strong>) by only
+					<strong>{marginPercent !== null ? Math.round(marginPercent * 100) : '~'}%</strong>.
+				</p>
+				<p class="contested-explanation">
+					<em>In ethics, narrow margins signal a <strong>crisis of competing values</strong>,
+					not a decisive answer. This judgment requires careful consideration and may vary
+					with context.</em>
+				</p>
+				{#if agreement !== null && quorum !== null}
+					<div class="contested-metadata">
+						<span class="metadata-item">
+							Agreement: {Math.round(agreement * 100)}%
+						</span>
+						<span class="metadata-item">
+							Quorum: {Math.round(quorum * 100)}%
+						</span>
+						<span class="metadata-item">
+							Margin: {marginPercent !== null ? Math.round(marginPercent * 100) : '~'}%
+						</span>
+					</div>
+				{/if}
+			</div>
+		{/if}
+
 		<!-- Conflicts Notice (tension highlighting per MDI v2.0) -->
-		{#if conflictsCount > 0}
+		{#if conflictsCount > 0 && !isContested}
 			<div class="tension-notice">
 				<p>
 					⚡ <strong>Tension Identified:</strong> {conflictsCount} {conflictsCount === 1 ? 'conflict' : 'conflicts'} detected between worldviews.
@@ -255,6 +298,60 @@
 		margin: 0;
 		font-size: var(--font-size-sm);
 		color: var(--color-text-muted);
+	}
+
+	/* PHASE 4: Contested Judgment Styles */
+	.contested-notice {
+		margin-top: var(--spacing-md);
+		padding: var(--spacing-lg);
+		background: rgba(251, 146, 60, 0.1); /* Orange background */
+		border: 2px solid rgba(251, 146, 60, 0.4); /* Orange border */
+		border-left-width: 6px;
+		border-radius: var(--radius-md);
+	}
+
+	.contested-header {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-sm);
+		margin-bottom: var(--spacing-sm);
+		font-size: var(--font-size-lg);
+		color: #ea580c; /* Orange-600 */
+	}
+
+	.contested-icon {
+		font-size: var(--font-size-xl);
+	}
+
+	.contested-notice p {
+		margin: var(--spacing-sm) 0;
+		font-size: var(--font-size-sm);
+		color: var(--color-text);
+		line-height: var(--line-height-relaxed);
+	}
+
+	.contested-explanation {
+		padding: var(--spacing-sm);
+		background: rgba(255, 255, 255, 0.6);
+		border-radius: var(--radius-sm);
+		font-size: var(--font-size-xs);
+	}
+
+	.contested-metadata {
+		display: flex;
+		gap: var(--spacing-md);
+		margin-top: var(--spacing-md);
+		padding-top: var(--spacing-sm);
+		border-top: 1px solid rgba(251, 146, 60, 0.3);
+	}
+
+	.metadata-item {
+		padding: var(--spacing-xs) var(--spacing-sm);
+		background: rgba(255, 255, 255, 0.8);
+		border-radius: var(--radius-sm);
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-medium);
+		color: var(--color-text);
 	}
 
 	.tension-notice {

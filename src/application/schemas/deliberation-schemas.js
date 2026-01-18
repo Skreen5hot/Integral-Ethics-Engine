@@ -238,8 +238,77 @@ export const DeliberationResultSchema = {
         completedAt: {
           type: 'string',
           format: 'date-time'
+        },
+        // PHASE 3: Hybrid integration metadata (optional)
+        isContested: {
+          type: 'boolean'
+        },
+        margin: {
+          type: 'number',
+          minimum: 0
+        },
+        agreement: {
+          type: 'number',
+          minimum: 0,
+          maximum: 1
+        },
+        quorum: {
+          type: 'number',
+          minimum: 0,
+          maximum: 1
         }
       }
+    },
+    // PHASE 3: Top-level hybrid metadata fields (optional for backward compatibility)
+    margin: {
+      type: 'number',
+      minimum: 0
+    },
+    marginPercent: {
+      type: 'number',
+      minimum: 0,
+      maximum: 1
+    },
+    isContested: {
+      type: 'boolean'
+    },
+    secondPlace: {
+      type: 'string'
+    },
+    secondPlaceScore: {
+      type: 'number',
+      minimum: 0
+    },
+    agreement: {
+      type: 'number',
+      minimum: 0,
+      maximum: 1
+    },
+    quorum: {
+      type: 'number',
+      minimum: 0,
+      maximum: 1
+    },
+    contestationPenalty: {
+      type: 'number',
+      minimum: 0,
+      maximum: 1
+    },
+    definitiveCount: {
+      type: 'number',
+      minimum: 0
+    },
+    uncertainCount: {
+      type: 'number',
+      minimum: 0
+    },
+    totalDefinitiveWeight: {
+      type: 'number',
+      minimum: 0
+    },
+    totalUncertainWeight: {
+      type: 'number',
+      minimum: 0
     }
   }
 };
@@ -576,7 +645,83 @@ export function validateDeliberationResult(result) {
           errors.push('metadata.completedAt must be a valid ISO 8601 date-time string');
         }
       }
+
+      // PHASE 3: Validate optional hybrid metadata (non-breaking)
+      if (result.metadata.isContested !== undefined && typeof result.metadata.isContested !== 'boolean') {
+        errors.push('metadata.isContested must be a boolean');
+      }
+      if (result.metadata.margin !== undefined && typeof result.metadata.margin !== 'number') {
+        errors.push('metadata.margin must be a number');
+      }
+      if (result.metadata.agreement !== undefined) {
+        if (typeof result.metadata.agreement !== 'number') {
+          errors.push('metadata.agreement must be a number');
+        } else if (result.metadata.agreement < 0 || result.metadata.agreement > 1) {
+          errors.push('metadata.agreement must be between 0 and 1');
+        }
+      }
+      if (result.metadata.quorum !== undefined) {
+        if (typeof result.metadata.quorum !== 'number') {
+          errors.push('metadata.quorum must be a number');
+        } else if (result.metadata.quorum < 0 || result.metadata.quorum > 1) {
+          errors.push('metadata.quorum must be between 0 and 1');
+        }
+      }
     }
+  }
+
+  // PHASE 3: Validate optional top-level hybrid metadata fields (non-breaking)
+  if (result.margin !== undefined && typeof result.margin !== 'number') {
+    errors.push('margin must be a number');
+  }
+  if (result.marginPercent !== undefined) {
+    if (typeof result.marginPercent !== 'number') {
+      errors.push('marginPercent must be a number');
+    } else if (result.marginPercent < 0 || result.marginPercent > 1) {
+      errors.push('marginPercent must be between 0 and 1');
+    }
+  }
+  if (result.isContested !== undefined && typeof result.isContested !== 'boolean') {
+    errors.push('isContested must be a boolean');
+  }
+  if (result.secondPlace !== undefined && typeof result.secondPlace !== 'string') {
+    errors.push('secondPlace must be a string');
+  }
+  if (result.secondPlaceScore !== undefined && typeof result.secondPlaceScore !== 'number') {
+    errors.push('secondPlaceScore must be a number');
+  }
+  if (result.agreement !== undefined) {
+    if (typeof result.agreement !== 'number') {
+      errors.push('agreement must be a number');
+    } else if (result.agreement < 0 || result.agreement > 1) {
+      errors.push('agreement must be between 0 and 1');
+    }
+  }
+  if (result.quorum !== undefined) {
+    if (typeof result.quorum !== 'number') {
+      errors.push('quorum must be a number');
+    } else if (result.quorum < 0 || result.quorum > 1) {
+      errors.push('quorum must be between 0 and 1');
+    }
+  }
+  if (result.contestationPenalty !== undefined) {
+    if (typeof result.contestationPenalty !== 'number') {
+      errors.push('contestationPenalty must be a number');
+    } else if (result.contestationPenalty < 0 || result.contestationPenalty > 1) {
+      errors.push('contestationPenalty must be between 0 and 1');
+    }
+  }
+  if (result.definitiveCount !== undefined && typeof result.definitiveCount !== 'number') {
+    errors.push('definitiveCount must be a number');
+  }
+  if (result.uncertainCount !== undefined && typeof result.uncertainCount !== 'number') {
+    errors.push('uncertainCount must be a number');
+  }
+  if (result.totalDefinitiveWeight !== undefined && typeof result.totalDefinitiveWeight !== 'number') {
+    errors.push('totalDefinitiveWeight must be a number');
+  }
+  if (result.totalUncertainWeight !== undefined && typeof result.totalUncertainWeight !== 'number') {
+    errors.push('totalUncertainWeight must be a number');
   }
 
   return {

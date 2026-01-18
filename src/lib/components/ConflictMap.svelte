@@ -20,6 +20,13 @@
 	export let width = 600;
 	export let height = 600;
 
+	// PHASE 4: Contested judgment visualization
+	export let isContested = false;
+	export let winningJudgment = null; // The winning judgment (permissible/impermissible/uncertain)
+	export let secondPlace = null; // The second-place judgment
+	export let margin = null; // Absolute margin
+	export let marginPercent = null; // Margin as percentage
+
 	let svgElement;
 
 	// Cluster definitions (for subtle background shading)
@@ -120,6 +127,10 @@
 			// High uncertainty creates dashed arcs (internal tension)
 			const isDashed = uncertainty > 0.4;
 
+			// PHASE 4: Contested judgment styling
+			const isWinningJudgment = isContested && wv.judgment === winningJudgment;
+			const isSecondPlaceJudgment = isContested && wv.judgment === secondPlace;
+
 			// Draw arc
 			const arc = d3.arc()
 				.innerRadius(radius * 0.3) // Inner ring
@@ -131,13 +142,29 @@
 				.attr('d', arc)
 				.attr('fill', color)
 				.attr('opacity', opacity)
-				.attr('stroke', color)
-				.attr('stroke-width', 2)
-				.attr('class', 'worldview-arc');
+				.attr('stroke', isWinningJudgment ? '#fb923c' : (isSecondPlaceJudgment ? '#fbbf24' : color)) // Orange for winner, amber for second
+				.attr('stroke-width', isWinningJudgment ? 4 : (isSecondPlaceJudgment ? 3 : 2))
+				.attr('class', `worldview-arc ${isWinningJudgment ? 'contested-winner' : ''} ${isSecondPlaceJudgment ? 'contested-second' : ''}`);
 
 			if (isDashed) {
 				path.attr('stroke-dasharray', '5,5');
 			}
+
+			// PHASE 4: Add tooltip on hover
+			path.append('title')
+				.text(() => {
+					let tooltip = `${wv.worldview}\nJudgment: ${wv.judgment}\nConfidence: ${(wv.confidence * 100).toFixed(0)}%\nWeight: ${(wv.weight * 100).toFixed(0)}%`;
+					if (isContested) {
+						tooltip += `\n\nContested Judgment:`;
+						tooltip += `\nMargin: ${marginPercent !== null ? (marginPercent * 100).toFixed(1) : '~'}%`;
+						if (isWinningJudgment) {
+							tooltip += `\n(Winner by narrow margin)`;
+						} else if (isSecondPlaceJudgment) {
+							tooltip += `\n(Second place)`;
+						}
+					}
+					return tooltip;
+				});
 
 			// Worldview label
 			const labelAngle = angle + (angleStep / 2);
@@ -256,6 +283,16 @@
 				<div class="legend-swatch" style="background: #ef4444; opacity: 0.6;"></div>
 				<span>Red Lines = Conflicts</span>
 			</div>
+			{#if isContested}
+				<div class="legend-item contested-indicator">
+					<div class="legend-swatch" style="background: #fb923c; border: 3px solid #fb923c;"></div>
+					<span>Orange Stroke = Winner (Contested)</span>
+				</div>
+				<div class="legend-item contested-indicator">
+					<div class="legend-swatch" style="background: #fbbf24; border: 2px solid #fbbf24;"></div>
+					<span>Amber Stroke = Second Place</span>
+				</div>
+			{/if}
 		</div>
 	</div>
 </div>
@@ -346,5 +383,23 @@
 
 	:global(.conflict-line) {
 		pointer-events: none;
+	}
+
+	/* PHASE 4: Contested judgment styles */
+	:global(.contested-winner) {
+		stroke: #fb923c !important;
+		stroke-width: 4px !important;
+		filter: drop-shadow(0 0 4px rgba(251, 146, 60, 0.6));
+	}
+
+	:global(.contested-second) {
+		stroke: #fbbf24 !important;
+		stroke-width: 3px !important;
+		filter: drop-shadow(0 0 3px rgba(251, 191, 36, 0.5));
+	}
+
+	.contested-indicator {
+		font-weight: var(--font-weight-semibold);
+		color: #ea580c;
 	}
 </style>

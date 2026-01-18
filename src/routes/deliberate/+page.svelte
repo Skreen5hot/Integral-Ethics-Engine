@@ -166,6 +166,13 @@
 						minorityViews={result.minorityViews || []}
 						worldviewsConsulted={result.metadata?.evaluationsCount || result.worldviews?.length || 0}
 						conflictsDetected={result.metadata?.conflictsCount || conflicts.length}
+						isContested={result.isContested || false}
+						margin={result.margin}
+						marginPercent={result.marginPercent}
+						secondPlace={result.secondPlace}
+						secondPlaceScore={result.secondPlaceScore}
+						agreement={result.agreement}
+						quorum={result.quorum}
 					/>
 				</section>
 
@@ -184,6 +191,11 @@
 							conflicts={conflictsForChart}
 							width={700}
 							height={700}
+							isContested={result.isContested || false}
+							winningJudgment={result.judgment}
+							secondPlace={result.secondPlace}
+							margin={result.margin}
+							marginPercent={result.marginPercent}
 						/>
 					</section>
 				{/if}

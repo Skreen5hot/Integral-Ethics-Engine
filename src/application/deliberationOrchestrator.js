@@ -190,12 +190,31 @@ export function formatDeliberationResult(resolution, evaluations, domain, scenar
     supportingWorldviews: resolution.supportingWorldviews,
     justification: resolution.justification,
     steps: stepNames,
+    // PHASE 3: Hybrid integration metadata exposure
+    // Pass through all new metadata from valueConflictResolver
+    margin: resolution.margin,
+    marginPercent: resolution.marginPercent,
+    isContested: resolution.isContested,
+    secondPlace: resolution.secondPlace,
+    secondPlaceScore: resolution.secondPlaceScore,
+    agreement: resolution.agreement,
+    quorum: resolution.quorum,
+    contestationPenalty: resolution.contestationPenalty,
+    definitiveCount: resolution.definitiveCount,
+    uncertainCount: resolution.uncertainCount,
+    totalDefinitiveWeight: resolution.totalDefinitiveWeight,
+    totalUncertainWeight: resolution.totalUncertainWeight,
     metadata: {
       evaluationsCount: evaluations.length,
       conflictsCount: resolution.conflicts,
       minorityViewsCount: resolution.minorityViews.length,
       completedAt: resolution.timestamp,
-      semanticAnalysisUsed: !!tagteamResult
+      semanticAnalysisUsed: !!tagteamResult,
+      // Hybrid formula metadata
+      isContested: resolution.isContested,
+      margin: resolution.margin,
+      agreement: resolution.agreement,
+      quorum: resolution.quorum
     }
   };
 
@@ -303,6 +322,18 @@ export const deliberationOrchestrator = {
           tagteamResult: tagteamResult
         });
         deliberationOrchestrator.emit('conflictsResolved', { resolution });
+
+        // PHASE 3: Emit contested judgment event if applicable
+        if (resolution.isContested) {
+          deliberationOrchestrator.emit('contestedJudgment', {
+            judgment: resolution.judgment,
+            margin: resolution.margin,
+            marginPercent: resolution.marginPercent,
+            secondPlace: resolution.secondPlace,
+            confidence: resolution.confidence,
+            message: `Contested judgment detected: ${resolution.judgment} vs ${resolution.secondPlace} (margin: ${Math.round(resolution.marginPercent * 100)}%)`
+          });
+        }
 
         // Step 6: Format complete result (include semantic metadata)
         const result = formatDeliberationResult(resolution, evaluations, domain, scenario, tagteamResult);

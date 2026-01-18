@@ -405,47 +405,66 @@ export function integrateJudgments(evaluations, weights) {
     }
   }
 
-  // Calculate confidence based on agreement among OPINIONATED worldviews
-  // (i.e., those with definitive judgments)
+  // Calculate confidence using HYBRID FORMULA from philosophy document
+  // Reference: docs/philosophy/hybrid_jusdgemtn_integration.md Section X
+  //
+  // Hybrid Formula: confidence = agreement × √quorum × contestationPenalty
+  //
+  // Where:
+  // - agreement = maxScore / totalDefinitiveWeight (how much winning judgment dominates)
+  // - quorum = √(totalDefinitiveWeight / totalWeight) (participation softening)
+  // - contestationPenalty = 0.7 if contested, 1.0 otherwise (narrow margin penalty)
   const totalDefinitiveWeight = Object.values(weightedScores).reduce((sum, score) => sum + score, 0);
+  const totalUncertainWeight = uncertainEvaluations.reduce((sum, evaluation) => {
+    return sum + (weights[evaluation.worldview] || 0.5);
+  }, 0);
+  const totalWeight = totalDefinitiveWeight + totalUncertainWeight;
+
   let confidence = 0;
   let margin = 0;
+  let marginPercent = 0;
   let isContested = false;
+  let agreement = 0;
+  let quorum = 0;
+  let contestationPenalty = 1.0;
 
   if (totalDefinitiveWeight > 0) {
-    // Confidence = (winning score) / (total weight of worldviews with opinions)
-    confidence = maxScore / totalDefinitiveWeight;
-
-    // Calculate margin between top two judgments (if applicable)
+    // STEP 1: Calculate margin and contested status
     margin = maxScore - secondMaxScore;
-    const marginPercent = margin / totalDefinitiveWeight;
+    marginPercent = margin / totalDefinitiveWeight;
 
     // Flag as "contested" if top two judgments are within 15% of each other
     // This prevents "tyranny of narrow majority" - a 51/49 split is a CRISIS, not a win
     isContested = sortedScores.length > 1 && marginPercent < 0.15;
 
-    // Penalize confidence based on proportion of uncertain worldviews
-    const totalUncertainWeight = uncertainEvaluations.reduce((sum, evaluation) => {
-      return sum + (weights[evaluation.worldview] || 0.5);
-    }, 0);
-    const totalWeight = totalDefinitiveWeight + totalUncertainWeight;
-    const uncertaintyProportion = totalUncertainWeight / totalWeight;
+    // STEP 2: Calculate hybrid confidence components
+    // Agreement: How strongly does the winning judgment dominate among definitive judgments?
+    agreement = maxScore / totalDefinitiveWeight;
 
-    // Reduce confidence by uncertainty proportion
-    // If 50% of worldviews are uncertain, reduce confidence by 50%
-    // This ensures significant uncertainty lowers confidence meaningfully
-    confidence = confidence * (1 - uncertaintyProportion);
+    // Quorum: What proportion of worldviews have definitive opinions?
+    // Use sqrt to soften penalty - inspired by vector space thinking
+    // If 50% uncertain: quorum = √0.5 ≈ 0.71 (not as harsh as 0.5)
+    // If 75% uncertain: quorum = √0.25 = 0.5 (significant penalty)
+    quorum = Math.sqrt(totalDefinitiveWeight / totalWeight);
 
-    // Further reduce confidence if contested (narrow margin between top judgments)
-    if (isContested) {
-      confidence = confidence * 0.7; // 30% penalty for contested judgments
-    }
+    // Contestation Penalty: 30% reduction for narrow margins
+    contestationPenalty = isContested ? 0.7 : 1.0;
 
-    confidence = Math.max(confidence, 0.1); // Minimum confidence if we have any definitive judgment
+    // STEP 3: Apply hybrid formula
+    confidence = agreement * quorum * contestationPenalty;
+
+    // STEP 4: Clamp to reasonable bounds
+    // Minimum confidence if we have any definitive judgment
+    confidence = Math.max(confidence, 0.1);
+    confidence = Math.min(confidence, 1.0); // Should never exceed 1.0
+
   } else {
     // NO definitive judgments - all worldviews are uncertain
     integratedJudgment = 'uncertain';
     confidence = 0.1; // Low confidence because nobody has an opinion
+    agreement = 0;
+    quorum = 0;
+    contestationPenalty = 1.0;
   }
 
   // Generate integrated reasoning
@@ -460,12 +479,22 @@ export function integrateJudgments(evaluations, weights) {
     supportingWorldviews: supportingEvals.map(e => e.worldview),
     contributingWorldviews: evaluations.map(e => e.worldview),
     weightedScore: maxScore,
-    totalWeight: totalDefinitiveWeight + (uncertainEvaluations.reduce((sum, e) => sum + (weights[e.worldview] || 0.5), 0)),
-    // Tension/margin metadata to detect contested judgments
+    totalWeight: totalWeight,
+    // Hybrid formula components (for transparency and debugging)
+    agreement: Math.round(agreement * 100) / 100,
+    quorum: Math.round(quorum * 100) / 100,
+    contestationPenalty: contestationPenalty,
+    // Margin metadata to detect contested judgments
     margin: Math.round(margin * 100) / 100,
+    marginPercent: Math.round(marginPercent * 100) / 100,
     isContested: isContested,
     secondPlace: sortedScores.length > 1 ? sortedScores[1][0] : null,
-    secondPlaceScore: Math.round(secondMaxScore * 100) / 100
+    secondPlaceScore: Math.round(secondMaxScore * 100) / 100,
+    // Participation metadata
+    definitiveCount: Object.values(definitiveCategories).flat().length,
+    uncertainCount: uncertainEvaluations.length,
+    totalDefinitiveWeight: Math.round(totalDefinitiveWeight * 100) / 100,
+    totalUncertainWeight: Math.round(totalUncertainWeight * 100) / 100
   };
 }
 
