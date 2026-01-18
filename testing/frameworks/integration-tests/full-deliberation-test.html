@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Deliberation Pipeline Test - TagTeam Integration</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f9fafb;
+    }
+
+    h1 { color: #2563eb; }
+    h2 { color: #1e40af; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin-top: 30px; }
+    h3 { color: #4b5563; }
+
+    .test-section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .test-result {
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #10b981;
+      background: #f0fdf4;
+    }
+
+    .test-result.failed {
+      border-left-color: #ef4444;
+      background: #fef2f2;
+    }
+
+    .metric {
+      display: inline-block;
+      margin: 5px 10px 5px 0;
+      padding: 5px 12px;
+      background: #e0e7ff;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .metric.good { background: #d1fae5; color: #065f46; }
+    .metric.warning { background: #fef3c7; color: #92400e; }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    button:hover { background: #1d4ed8; }
+
+    pre {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 13px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .comparison-panel {
+      background: #f9fafb;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .comparison-panel h4 {
+      margin: 0 0 10px 0;
+      color: #1f2937;
+    }
+
+    .summary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .summary h3 { margin: 0 0 15px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    th {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔬 Full Deliberation Pipeline Test</h1>
+  <div style="color: #6b7280; margin-bottom: 20px;">
+    End-to-end test of IEE deliberation with TagTeam semantic analysis integration
+  </div>
+
+  <!-- Test Controls -->
+  <div class="test-section">
+    <h2>Test Scenarios</h2>
+    <button onclick="runHealthcareTest()">1. Healthcare Scenario</button>
+    <button onclick="runConflictTest()">2. Conflict Scenario</button>
+    <button onclick="runComparisonTest()">3. With/Without TagTeam Comparison</button>
+  </div>
+
+  <!-- Test Results -->
+  <div id="test-results"></div>
+
+  <!-- Summary -->
+  <div id="summary"></div>
+
+  <!-- Load TagTeam Bundle -->
+  <script src="../../../collaborations/tagteam/dist/tagteam.js"></script>
+
+  <!-- Load IEE modules as ES modules -->
+  <script type="module">
+    import { deliberationOrchestrator } from '../../../src/application/deliberationOrchestrator.js';
+
+    // Make available globally for tests
+    window.deliberationOrchestrator = deliberationOrchestrator;
+
+    console.log('✅ IEE Deliberation Orchestrator loaded');
+    console.log('✅ TagTeam loaded:', typeof TagTeam !== 'undefined' ? TagTeam.version : 'ERROR');
+
+    // Display load status
+    window.addEventListener('load', () => {
+      if (typeof TagTeam !== 'undefined' && window.deliberationOrchestrator) {
+        console.log('All modules loaded successfully');
+      } else {
+        console.error('Module loading failed');
+      }
+    });
+  </script>
+
+  <!-- Test Suite -->
+  <script>
+    // ==========================================
+    // TEST 1: Healthcare Scenario
+    // ==========================================
+    async function runHealthcareTest() {
+      const container = document.getElementById('test-results');
+      container.innerHTML = '<div class="test-section"><h2>Test 1: Healthcare Scenario with TagTeam</h2><div id="current-test">Running...</div></div>';
+
+      const scenario = {
+        description: "A doctor provides evidence-based medical treatment to alleviate patient suffering."
+      };
+
+      try {
+        console.log('Starting deliberation...');
+        const result = await window.deliberationOrchestrator.actions.deliberateOnScenario(scenario, {
+          useSemanticAnalysis: true
+        });
+
+        console.log('Deliberation complete:', result);
+
+        // Display results
+        let html = '<div class="test-result">';
+        html += '<h3>✅ Deliberation Complete</h3>';
+
+        // Basic info
+        html += `<div class="metric">Judgment: ${result.judgment}</div>`;
+        html += `<div class="metric">Confidence: ${result.confidence.toFixed(2)}</div>`;
+        html += `<div class="metric">Domain: ${result.domain}</div>`;
+        html += `<div class="metric ${result.metadata.semanticAnalysisUsed ? 'good' : 'warning'}">`;
+        html += `Semantic Analysis: ${result.metadata.semanticAnalysisUsed ? 'Used ✅' : 'Not Used'}`;
+        html += `</div>`;
+
+        // Semantic analysis details
+        if (result.semanticAnalysis) {
+          html += '<h4 style="margin-top: 20px;">Semantic Analysis</h4>';
+          html += `<div class="metric">Agent: ${result.semanticAnalysis.agent?.text || 'N/A'}</div>`;
+          html += `<div class="metric">Action: ${result.semanticAnalysis.action?.verb || 'N/A'}</div>`;
+          html += `<div class="metric">Frame: ${result.semanticAnalysis.semanticFrame || 'N/A'}</div>`;
+          html += `<div class="metric">Values Detected: ${result.semanticAnalysis.detectedValues?.length || 0}</div>`;
+          html += `<div class="metric">Domain: ${result.semanticAnalysis.dominantDomain || 'N/A'}</div>`;
+
+          if (result.semanticAnalysis.detectedValues && result.semanticAnalysis.detectedValues.length > 0) {
+            html += '<h4 style="margin-top: 15px;">Detected Values</h4>';
+            html += '<ul>';
+            result.semanticAnalysis.detectedValues.forEach(v => {
+              html += `<li><strong>${v.name}</strong> - salience: ${v.salience.toFixed(2)}, polarity: ${v.polarity}</li>`;
+            });
+            html += '</ul>';
+          }
+        }
+
+        // Worldview evaluations
+        html += '<h4 style="margin-top: 20px;">Worldview Evaluations</h4>';
+        html += `<div class="metric">Count: ${result.worldviews.length}</div>`;
+        html += `<div class="metric">Supporting: ${result.supportingWorldviews.length}</div>`;
+        html += `<div class="metric">Minority Views: ${result.minorityViews.length}</div>`;
+
+        // Full result
+        html += '<details style="margin-top: 15px;"><summary>View Full Result</summary>';
+        html += `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        html += '</details>';
+
+        html += '</div>';
+        document.getElementById('current-test').innerHTML = html;
+
+      } catch (error) {
+        document.getElementById('current-test').innerHTML = `
+          <div class="test-result failed">
+            <h3>❌ Test Failed</h3>
+            <p><strong>Error:</strong> ${error.message}</p>
+            <pre>${error.stack}</pre>
+          </div>
+        `;
+      }
+    }
+
+    // ==========================================
+    // TEST 2: Conflict Scenario
+    // ==========================================
+    async function runConflictTest() {
+      const container = document.getElementById('test-results');
+      container.innerHTML = '<div class="test-section"><h2>Test 2: Conflict Scenario</h2><div id="current-test">Running...</div></div>';
+
+      const scenario = {
+        description: "The family must decide whether to continue treatment for their unconscious father who has no advance directive."
+      };
+
+      try {
+        const result = await window.deliberationOrchestrator.actions.deliberateOnScenario(scenario, {
+          useSemanticAnalysis: true
+        });
+
+        // Display results focusing on conflicts
+        let html = '<div class="test-result">';
+        html += '<h3>✅ Deliberation Complete</h3>';
+
+        html += `<div class="metric">Judgment: ${result.judgment}</div>`;
+        html += `<div class="metric">Domain: ${result.domain}</div>`;
+        html += `<div class="metric">Conflicts: ${result.conflicts.length}</div>`;
+
+        // Semantic analysis
+        if (result.semanticAnalysis) {
+          html += '<h4 style="margin-top: 20px;">Semantic Analysis</h4>';
+          html += `<div class="metric">Values: ${result.semanticAnalysis.detectedValues?.length || 0}</div>`;
+          html += `<div class="metric">Conflict Score: ${result.semanticAnalysis.conflictScore?.toFixed(2) || 'N/A'}</div>`;
+
+          if (result.semanticAnalysis.valueConflicts && result.semanticAnalysis.valueConflicts.length > 0) {
+            html += '<h4 style="margin-top: 15px;">Value Conflicts (TagTeam)</h4>';
+            html += '<ul>';
+            result.semanticAnalysis.valueConflicts.forEach(c => {
+              html += `<li>${c.value1} vs ${c.value2} (tension: ${c.tension || 'N/A'})</li>`;
+            });
+            html += '</ul>';
+          }
+        }
+
+        // All conflicts (TagTeam + IEE)
+        if (result.conflicts && result.conflicts.length > 0) {
+          html += '<h4 style="margin-top: 20px;">All Detected Conflicts</h4>';
+          html += '<ul>';
+          result.conflicts.forEach(c => {
+            const sourceLabel = c.source === 'semantic_detection' ? '🔍 TagTeam' : '🧠 IEE';
+            html += `<li><strong>${sourceLabel}</strong> - ${c.type}: ${c.description}</li>`;
+          });
+          html += '</ul>';
+        }
+
+        // Full result
+        html += '<details style="margin-top: 15px;"><summary>View Full Result</summary>';
+        html += `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        html += '</details>';
+
+        html += '</div>';
+        document.getElementById('current-test').innerHTML = html;
+
+      } catch (error) {
+        document.getElementById('current-test').innerHTML = `
+          <div class="test-result failed">
+            <h3>❌ Test Failed</h3>
+            <p><strong>Error:</strong> ${error.message}</p>
+            <pre>${error.stack}</pre>
+          </div>
+        `;
+      }
+    }
+
+    // ==========================================
+    // TEST 3: Comparison Test (With/Without TagTeam)
+    // ==========================================
+    async function runComparisonTest() {
+      const container = document.getElementById('test-results');
+      container.innerHTML = '<div class="test-section"><h2>Test 3: With/Without TagTeam Comparison</h2><div id="current-test">Running...</div></div>';
+
+      const scenario = {
+        description: "A doctor provides evidence-based medical treatment to alleviate patient suffering."
+      };
+
+      try {
+        // Run with TagTeam
+        console.log('Running WITH TagTeam...');
+        const withTagteam = await window.deliberationOrchestrator.actions.deliberateOnScenario(scenario, {
+          useSemanticAnalysis: true
+        });
+
+        // Run without TagTeam
+        console.log('Running WITHOUT TagTeam...');
+        const withoutTagteam = await window.deliberationOrchestrator.actions.deliberateOnScenario(scenario, {
+          useSemanticAnalysis: false
+        });
+
+        // Display comparison
+        let html = '<div class="test-result">';
+        html += '<h3>✅ Comparison Complete</h3>';
+
+        html += '<div class="comparison">';
+
+        // With TagTeam panel
+        html += '<div class="comparison-panel">';
+        html += '<h4>With TagTeam</h4>';
+        html += `<div class="metric good">Semantic Analysis: ✅</div><br>`;
+        html += `<div class="metric">Judgment: ${withTagteam.judgment}</div>`;
+        html += `<div class="metric">Confidence: ${withTagteam.confidence.toFixed(2)}</div>`;
+        html += `<div class="metric">Domain: ${withTagteam.domain}</div>`;
+
+        if (withTagteam.semanticAnalysis) {
+          html += `<br><strong>Detected Values:</strong><ul>`;
+          (withTagteam.semanticAnalysis.detectedValues || []).forEach(v => {
+            html += `<li>${v.name} (${v.salience.toFixed(2)})</li>`;
+          });
+          html += `</ul>`;
+        }
+        html += '</div>';
+
+        // Without TagTeam panel
+        html += '<div class="comparison-panel">';
+        html += '<h4>Without TagTeam</h4>';
+        html += `<div class="metric warning">Semantic Analysis: ❌</div><br>`;
+        html += `<div class="metric">Judgment: ${withoutTagteam.judgment}</div>`;
+        html += `<div class="metric">Confidence: ${withoutTagteam.confidence.toFixed(2)}</div>`;
+        html += `<div class="metric">Domain: ${withoutTagteam.domain}</div>`;
+        html += `<br><strong>Keyword-based only</strong>`;
+        html += '</div>';
+
+        html += '</div>'; // end comparison
+
+        // Differences
+        html += '<h4 style="margin-top: 20px;">Key Differences</h4>';
+        html += '<ul>';
+
+        if (withTagteam.judgment !== withoutTagteam.judgment) {
+          html += `<li>Judgment changed: ${withoutTagteam.judgment} → ${withTagteam.judgment}</li>`;
+        } else {
+          html += `<li>Judgment same: ${withTagteam.judgment}</li>`;
+        }
+
+        const confidenceDiff = (withTagteam.confidence - withoutTagteam.confidence).toFixed(2);
+        html += `<li>Confidence difference: ${confidenceDiff > 0 ? '+' : ''}${confidenceDiff}</li>`;
+
+        if (withTagteam.domain !== withoutTagteam.domain) {
+          html += `<li>Domain changed: ${withoutTagteam.domain} → ${withTagteam.domain}</li>`;
+        }
+
+        html += '</ul>';
+
+        // Full results
+        html += '<details style="margin-top: 15px;"><summary>View Full Comparison Data</summary>';
+        html += '<h5>With TagTeam:</h5>';
+        html += `<pre>${JSON.stringify(withTagteam, null, 2)}</pre>`;
+        html += '<h5>Without TagTeam:</h5>';
+        html += `<pre>${JSON.stringify(withoutTagteam, null, 2)}</pre>`;
+        html += '</details>';
+
+        html += '</div>';
+        document.getElementById('current-test').innerHTML = html;
+
+      } catch (error) {
+        document.getElementById('current-test').innerHTML = `
+          <div class="test-result failed">
+            <h3>❌ Test Failed</h3>
+            <p><strong>Error:</strong> ${error.message}</p>
+            <pre>${error.stack}</pre>
+          </div>
+        `;
+      }
+    }
+
+    // Auto-run healthcare test on load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        console.log('Auto-running healthcare test...');
+        runHealthcareTest();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
