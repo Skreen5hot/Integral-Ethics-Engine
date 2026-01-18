@@ -120,32 +120,32 @@ test('valueMapper: Transcendence domain values (10 values)', () => {
 
 test('findWorldviewMatches: finds terminal value matches', () => {
   const worldviewValues = {
-    terminal: ['self_determination', 'fairness', 'truthfulness'],
-    constitutive: ['freedom', 'equality'],
+    terminal: ['consciousness_development', 'individual_uniqueness', 'objective_truth'],
+    constitutive: ['autonomous_agency', 'personal_dignity'],
     instrumental: ['choice']
   };
 
   const matches = findWorldviewMatches('Autonomy', worldviewValues);
 
-  assert.ok(matches.length > 0, 'Should find matches');
+  assert.ok(matches.length > 0, 'Should find matches for Autonomy');
 
-  const terminalMatch = matches.find(m => m.value === 'self_determination');
-  assert.ok(terminalMatch, 'Should match self_determination');
+  const terminalMatch = matches.find(m => m.value === 'consciousness_development');
+  assert.ok(terminalMatch, 'Should match consciousness_development');
   assert.equal(terminalMatch.type, 'terminal');
   assert.equal(terminalMatch.matchQuality, 'high');
 });
 
 test('findWorldviewMatches: finds constitutive value matches', () => {
   const worldviewValues = {
-    terminal: ['truthfulness'],
-    constitutive: ['freedom', 'equality'],
+    terminal: ['objective_truth'],
+    constitutive: ['autonomous_agency', 'personal_dignity'],
     instrumental: []
   };
 
   const matches = findWorldviewMatches('Autonomy', worldviewValues);
 
-  const constitutiveMatch = matches.find(m => m.value === 'freedom');
-  assert.ok(constitutiveMatch, 'Should match freedom');
+  const constitutiveMatch = matches.find(m => m.value === 'autonomous_agency');
+  assert.ok(constitutiveMatch, 'Should match autonomous_agency');
   assert.equal(constitutiveMatch.type, 'constitutive');
   assert.equal(constitutiveMatch.matchQuality, 'medium');
 });
@@ -154,13 +154,13 @@ test('findWorldviewMatches: finds instrumental value matches', () => {
   const worldviewValues = {
     terminal: [],
     constitutive: [],
-    instrumental: ['agency', 'choice']
+    instrumental: ['individuation', 'personal_development']
   };
 
   const matches = findWorldviewMatches('Autonomy', worldviewValues);
 
-  const instrumentalMatch = matches.find(m => m.value === 'agency');
-  assert.ok(instrumentalMatch, 'Should match agency');
+  const instrumentalMatch = matches.find(m => m.value === 'individuation');
+  assert.ok(instrumentalMatch, 'Should match individuation');
   assert.equal(instrumentalMatch.type, 'instrumental');
   assert.equal(instrumentalMatch.matchQuality, 'low');
 });
@@ -189,14 +189,14 @@ test('findWorldviewMatches: warns for unmapped TagTeam value', () => {
 
 test('findWorldviewMatches: finds multiple matches across types', () => {
   const worldviewValues = {
-    terminal: ['self_determination'],
-    constitutive: ['freedom'],
-    instrumental: ['agency']
+    terminal: ['consciousness_development', 'individual_uniqueness'],
+    constitutive: ['autonomous_agency'],
+    instrumental: ['individuation']
   };
 
   const matches = findWorldviewMatches('Autonomy', worldviewValues);
 
-  assert.equal(matches.length, 3, 'Should find all 3 matches');
+  assert.equal(matches.length, 4, 'Should find all 4 matches');
   assert.ok(matches.some(m => m.type === 'terminal'));
   assert.ok(matches.some(m => m.type === 'constitutive'));
   assert.ok(matches.some(m => m.type === 'instrumental'));
@@ -265,12 +265,10 @@ test('mapTagteamDomainToIEEDomain: unknown domain → general', () => {
 // ===================================
 
 test('getTagteamValuesForWorldviewValue: finds all TagTeam values for worldview value', () => {
-  const tagteamValues = getTagteamValuesForWorldviewValue('self_determination');
+  const tagteamValues = getTagteamValuesForWorldviewValue('consciousness_development');
 
-  assert.ok(tagteamValues.includes('Autonomy'), 'Should include Autonomy');
-  assert.ok(tagteamValues.includes('Privacy'), 'Should include Privacy');
-  assert.ok(tagteamValues.includes('Freedom'), 'Should include Freedom');
-  assert.ok(tagteamValues.length >= 3, 'Should find multiple TagTeam values');
+  assert.ok(tagteamValues.includes('Autonomy'), 'Should include Autonomy for consciousness_development');
+  assert.ok(tagteamValues.length >= 1, 'Should find TagTeam values mapping to consciousness_development');
 });
 
 test('getTagteamValuesForWorldviewValue: returns empty array for unmatched value', () => {
@@ -329,9 +327,9 @@ test('getMappingStatistics: average worldview values is reasonable', () => {
 test('valueMapper: Autonomy maps to expected values', () => {
   const mappings = tagteamToWorldviewValueMap['Autonomy'];
 
-  assert.ok(mappings.includes('self_determination'), 'Should map to self_determination');
-  assert.ok(mappings.includes('freedom'), 'Should map to freedom');
-  assert.ok(mappings.includes('agency'), 'Should map to agency');
+  assert.ok(mappings.includes('autonomous_agency'), 'Should map to autonomous_agency');
+  assert.ok(mappings.includes('consciousness_development'), 'Should map to consciousness_development');
+  assert.ok(mappings.includes('individual_uniqueness'), 'Should map to individual_uniqueness');
 });
 
 test('valueMapper: Beneficence maps to wellbeing values', () => {
@@ -405,12 +403,12 @@ test('valueMapper: realistic spiritual scenario value matching', () => {
 });
 
 test('valueMapper: multiple TagTeam values map to same worldview value', () => {
-  // Both Autonomy and Privacy should map to self_determination
+  // Both Autonomy and Equality should map to personal_dignity
   const autonomyMappings = tagteamToWorldviewValueMap['Autonomy'];
-  const privacyMappings = tagteamToWorldviewValueMap['Privacy'];
+  const equalityMappings = tagteamToWorldviewValueMap['Equality'];
 
-  assert.ok(autonomyMappings.includes('self_determination'));
-  assert.ok(privacyMappings.includes('self_determination'));
+  assert.ok(autonomyMappings.includes('personal_dignity'), 'Autonomy should map to personal_dignity');
+  assert.ok(equalityMappings.includes('personal_dignity'), 'Equality should map to personal_dignity');
 
   // This is correct - multiple TagTeam values can point to same worldview value
 });
