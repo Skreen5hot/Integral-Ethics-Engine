@@ -5,8 +5,8 @@
 
 	// Initialize worldviews on app startup
 	onMount(() => {
-		// Load all Material-Empirical worldviews (Phase 1)
-		worldviewManager.actions.loadMaterialEmpiricalWorldviews();
+		// Load all 12 worldviews across all clusters
+		worldviewManager.actions.loadAllWorldviews();
 		console.log('Worldviews loaded:', Object.keys(worldviewManager.state.worldviews));
 	});
 </script>

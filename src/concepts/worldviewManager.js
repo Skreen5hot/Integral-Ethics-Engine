@@ -345,6 +345,125 @@ export const worldviewManager = {
     },
 
     /**
+     * Loads all 12 worldviews across all clusters.
+     */
+    loadAllWorldviews() {
+      const self = worldviewManager;
+
+      const worldviews = [
+        // Material-Empirical Cluster (4)
+        {
+          name: 'materialism',
+          metaphysics: {
+            foundation: 'matter',
+            primacy: 'physical_reality',
+            epistemology: 'empirical_observation'
+          }
+        },
+        {
+          name: 'sensationalism',
+          metaphysics: {
+            foundation: 'sensation',
+            primacy: 'immediate_experience',
+            epistemology: 'sensory_perception'
+          }
+        },
+        {
+          name: 'phenomenalism',
+          metaphysics: {
+            foundation: 'phenomena',
+            primacy: 'lived_experience',
+            epistemology: 'phenomenological_reduction'
+          }
+        },
+        {
+          name: 'realism',
+          metaphysics: {
+            foundation: 'entities',
+            primacy: 'objective_reality',
+            epistemology: 'critical_realism'
+          }
+        },
+        // Vitalist-Organic Cluster (2)
+        {
+          name: 'dynamism',
+          metaphysics: {
+            foundation: 'force',
+            primacy: 'dynamic_becoming',
+            epistemology: 'process_observation'
+          }
+        },
+        {
+          name: 'monadism',
+          metaphysics: {
+            foundation: 'individual',
+            primacy: 'unique_substance',
+            epistemology: 'individual_perspective'
+          }
+        },
+        // Mental-Rational Cluster (2)
+        {
+          name: 'idealism',
+          metaphysics: {
+            foundation: 'consciousness',
+            primacy: 'mind_over_matter',
+            epistemology: 'introspection'
+          }
+        },
+        {
+          name: 'rationalism',
+          metaphysics: {
+            foundation: 'reason',
+            primacy: 'logical_necessity',
+            epistemology: 'rational_intuition'
+          }
+        },
+        // Depth-Spiritual Cluster (3)
+        {
+          name: 'psychism',
+          metaphysics: {
+            foundation: 'psyche',
+            primacy: 'unconscious_depth',
+            epistemology: 'archetypal_insight'
+          }
+        },
+        {
+          name: 'pneumatism',
+          metaphysics: {
+            foundation: 'living_spirit',
+            primacy: 'immanent_divinity',
+            epistemology: 'shamanic_encounter'
+          }
+        },
+        {
+          name: 'spiritualism',
+          metaphysics: {
+            foundation: 'transcendent_spirit',
+            primacy: 'divine_revelation',
+            epistemology: 'mystical_experience'
+          }
+        },
+        // Formal-Abstract Cluster (1)
+        {
+          name: 'mathematism',
+          metaphysics: {
+            foundation: 'form',
+            primacy: 'mathematical_structure',
+            epistemology: 'formal_proof'
+          }
+        }
+      ];
+
+      worldviews.forEach(({ name, metaphysics }) => {
+        self.actions.loadWorldview(name, metaphysics);
+        self.actions.activateWorldview(name);
+      });
+
+      self.state.loaded = true;
+      self.notify('allWorldviewsLoaded', { count: worldviews.length });
+    },
+
+    /**
      * Resets all state (for testing).
      */
     reset() {
