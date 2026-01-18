@@ -40,6 +40,6 @@ declare module "$app/types" {
 		};
 		Pathname(): "/" | "/deliberate" | "/deliberate/" | "/history" | "/history/" | "/settings" | "/settings/" | "/worldviews" | "/worldviews/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/favicon.png" | "/icon-192.png" | "/icon-512.png" | "/lib/tagteam.js" | "/manifest.json" | string & {};
+		Asset(): "/favicon.png" | "/icon-192.png" | "/icon-512.png" | "/lib/tagteam.js" | "/lib/tagteam.v2.0.backup.js" | "/manifest.json" | string & {};
 	}
 }

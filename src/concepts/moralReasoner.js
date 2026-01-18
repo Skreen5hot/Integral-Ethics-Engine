@@ -260,13 +260,22 @@ export function detectValueConflicts(relevantValues, scenario) {
  * @returns {string} Judgment: 'right', 'wrong', 'neutral', 'complex'
  */
 export function evaluateAgainstValues(action, relevantValues) {
+  console.log('🔍 [MoralReasoner] evaluateAgainstValues called');
+  console.log('   Total relevant values:', relevantValues.length);
+
   if (relevantValues.length === 0) {
+    console.log('   → EARLY RETURN: neutral (no relevant values)');
     return 'neutral'; // No relevant values = no strong judgment
   }
 
   const terminalValues = relevantValues.filter(v => v.type === 'terminal');
+  console.log('   Terminal values:', terminalValues.length);
+  terminalValues.forEach(v => {
+    console.log(`     - ${v.value}: polarity=${v.polarity}, salience=${v.salience}`);
+  });
 
   if (terminalValues.length === 0) {
+    console.log('   → EARLY RETURN: neutral (no terminal values)');
     return 'neutral'; // Only instrumental values = contextual
   }
 
@@ -275,20 +284,31 @@ export function evaluateAgainstValues(action, relevantValues) {
   const neutralValues = terminalValues.filter(v => v.polarity === 0);
   const allHavePolarity = terminalValues.every(v => v.polarity !== undefined);
 
+  console.log('   Values with non-zero polarity:', valuesWithPolarity.length);
+  console.log('   Neutral values (polarity=0):', neutralValues.length);
+  console.log('   All have polarity defined:', allHavePolarity);
+
   // CASE 1: We have clear positive or negative polarities
   if (valuesWithPolarity.length > 0) {
+    console.log('   📊 CASE 1: Non-zero polarities detected');
     const upheld = valuesWithPolarity.filter(v => v.polarity === 1);
     const violated = valuesWithPolarity.filter(v => v.polarity === -1);
 
+    console.log('     Upheld (+1):', upheld.length, upheld.map(v => v.value));
+    console.log('     Violated (-1):', violated.length, violated.map(v => v.value));
+
     if (violated.length > 0 && upheld.length === 0) {
+      console.log('   ✅ JUDGMENT: wrong (only violations)');
       return 'wrong'; // Only violations, no upholding
     }
 
     if (upheld.length > 0 && violated.length === 0) {
+      console.log('   ✅ JUDGMENT: right (only upholding, no violations)');
       return 'right'; // Only upholding, no violations
     }
 
     if (violated.length > 0 && upheld.length > 0) {
+      console.log('   ✅ JUDGMENT: complex (mixed - some upheld, some violated)');
       return 'complex'; // Mixed - some values upheld, others violated
     }
   }
@@ -296,28 +316,38 @@ export function evaluateAgainstValues(action, relevantValues) {
   // CASE 2: All values have polarity 0 (neutral) - values are engaged but direction unclear
   // This is common in TagTeam when the action involves values but doesn't clearly uphold/violate them
   if (allHavePolarity && neutralValues.length === terminalValues.length) {
+    console.log('   📊 CASE 2: All values neutral (polarity=0)');
     // Values are relevant but neutral - treat as 'complex' rather than ignoring them
     if (terminalValues.length >= 2) {
+      console.log('   ✅ JUDGMENT: complex (multiple neutral values)');
       return 'complex'; // Multiple values engaged neutrally = requires deliberation
     }
     // Single neutral value = uncertain
+    console.log('   ✅ JUDGMENT: neutral (single neutral value)');
     return 'neutral';
   }
 
   // CASE 3: Fallback - no polarity information at all (keyword matching only)
   // Infer that action engages values, generally in positive way unless context suggests otherwise
+  console.log('   📊 CASE 3: Fallback (no polarity info or mixed)');
   const highSalience = terminalValues.filter(v => v.salience === 'high');
   const mediumSalience = terminalValues.filter(v => v.salience === 'medium');
 
+  console.log('     High salience:', highSalience.length);
+  console.log('     Medium salience:', mediumSalience.length);
+
   if (highSalience.length === 0 && mediumSalience.length === 0) {
+    console.log('   ✅ JUDGMENT: neutral (no significant salience)');
     return 'neutral'; // No significant salience = unclear
   }
 
   if (highSalience.length === 1 && mediumSalience.length === 0) {
+    console.log('   ✅ JUDGMENT: right (single high salience value)');
     return 'right'; // Single clear value engaged = generally permissible
   }
 
   // Multiple values engaged or medium salience = requires careful consideration
+  console.log('   ✅ JUDGMENT: complex (multiple values or medium salience)');
   return 'complex';
 }
 

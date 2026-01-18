@@ -497,7 +497,9 @@ function mapJudgmentToPermissibility(judgment) {
     'neutral': 'uncertain'
   };
 
-  return mapping[judgment] || 'uncertain';
+  const result = mapping[judgment] || 'uncertain';
+  console.log(`🔄 [DeliberationOrchestrator] Mapping judgment: '${judgment}' → '${result}'`);
+  return result;
 }
 
 export default deliberationOrchestrator;

@@ -44,7 +44,8 @@
       "Bash(wc:*)",
       "Bash(start \"\" \"c:\\\\Users\\\\aaron\\\\OneDrive\\\\Documents\\\\Integral-Ethics-Engine\\\\testing\\\\frameworks\\\\integration-tests\\\\full-deliberation-test.html\")",
       "Bash(npx http-server:*)",
-      "Bash(npm audit:*)"
+      "Bash(npm audit:*)",
+      "Bash(git status:*)"
     ]
   }
 }
