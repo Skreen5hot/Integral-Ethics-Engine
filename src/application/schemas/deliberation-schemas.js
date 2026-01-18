@@ -86,7 +86,7 @@ export const WorldviewEvaluationSchema = {
     },
     judgment: {
       type: 'string',
-      enum: ['permissible', 'impermissible', 'uncertain']
+      enum: ['permissible', 'impermissible', 'problematic', 'uncertain']
     },
     confidence: {
       type: 'number',
@@ -164,7 +164,7 @@ export const DeliberationResultSchema = {
     },
     judgment: {
       type: 'string',
-      enum: ['permissible', 'impermissible', 'uncertain']
+      enum: ['permissible', 'impermissible', 'problematic', 'uncertain']
     },
     confidence: {
       type: 'number',
