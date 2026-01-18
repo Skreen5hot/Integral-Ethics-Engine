@@ -446,7 +446,7 @@ export function validateWorldviewEvaluation(evaluation) {
   }
 
   // Required: judgment
-  const validJudgments = ['permissible', 'impermissible', 'uncertain'];
+  const validJudgments = ['permissible', 'impermissible', 'problematic', 'uncertain'];
   if (!evaluation.judgment) {
     errors.push('Judgment is required');
   } else if (!validJudgments.includes(evaluation.judgment)) {
@@ -547,7 +547,7 @@ export function validateDeliberationResult(result) {
   }
 
   // Validate judgment
-  const validJudgments = ['permissible', 'impermissible', 'uncertain'];
+  const validJudgments = ['permissible', 'impermissible', 'problematic', 'uncertain'];
   if (result.judgment && !validJudgments.includes(result.judgment)) {
     errors.push(`Invalid judgment: ${result.judgment}`);
   }
