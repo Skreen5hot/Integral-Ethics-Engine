@@ -11,6 +11,8 @@
  * - Events: evaluationStarted, worldviewConsulted, evaluationCompleted
  */
 
+import { findWorldviewMatches, mapSalienceToLevel } from './valueMapper.js';
+
 // ============================================================================
 // PURE UTILITY FUNCTIONS
 // These are deterministic, testable, and have no side effects
@@ -18,19 +20,46 @@
 
 /**
  * Matches scenario elements to relevant values from a worldview.
+ * Enhanced with TagTeam semantic analysis for high-confidence value detection.
  * PURE FUNCTION - same inputs always produce same outputs.
  *
  * @param {Object} scenario - The moral scenario
  * @param {Object} values - Value hierarchy from a worldview
+ * @param {Object} [tagteamResult] - Optional TagTeam semantic analysis result
  * @returns {Array} Relevant values for this scenario
  */
-export function matchScenarioToValues(scenario, values) {
+export function matchScenarioToValues(scenario, values, tagteamResult = null) {
   const relevant = [];
+  const tagteamDetectedValues = new Set();
+
+  // PRIORITY 1: Use TagTeam's detected values for high-confidence matches
+  if (tagteamResult?.ethicalProfile?.values && Array.isArray(tagteamResult.ethicalProfile.values)) {
+    for (const detectedValue of tagteamResult.ethicalProfile.values) {
+      const matches = findWorldviewMatches(detectedValue.name, values);
+
+      for (const match of matches) {
+        tagteamDetectedValues.add(match.value);
+
+        relevant.push({
+          value: match.value,
+          type: match.type,
+          salience: mapSalienceToLevel(detectedValue.salience),
+          source: 'semantic_detection',
+          tagteamValue: detectedValue.name,
+          tagteamSalience: detectedValue.salience,
+          polarity: detectedValue.polarity,
+          evidence: detectedValue.evidence || [],
+          matchQuality: match.matchQuality
+        });
+      }
+    }
+  }
 
   // Extract scenario components
   const { action, context, agents, artifacts } = scenario;
   const actionLower = action?.toLowerCase() || '';
 
+  // PRIORITY 2: Keyword-based matching for values NOT detected by TagTeam
   // Match terminal values - EXPANDED for comprehensive coverage
   if (values.terminal) {
     values.terminal.forEach(value => {
@@ -157,17 +186,19 @@ export function matchScenarioToValues(scenario, values) {
         }
       }
 
-      // Add if matched
-      if (matched) {
-        relevant.push({ value, type: 'terminal', salience });
+      // Add if matched AND not already detected by TagTeam
+      if (matched && !tagteamDetectedValues.has(value)) {
+        relevant.push({ value, type: 'terminal', salience, source: 'keyword_inference' });
       }
     });
   }
 
-  // Always include instrumental values as lower salience
+  // Always include instrumental values as lower salience (if not detected by TagTeam)
   if (values.instrumental) {
     values.instrumental.forEach(value => {
-      relevant.push({ value, type: 'instrumental', salience: 'low' });
+      if (!tagteamDetectedValues.has(value)) {
+        relevant.push({ value, type: 'instrumental', salience: 'low', source: 'keyword_inference' });
+      }
     });
   }
 
@@ -317,9 +348,9 @@ export function calculateConfidence(relevantValues, context) {
  * @param {string} worldviewName - Name of worldview
  * @returns {Object} Judgment with reasoning
  */
-export function applyWorldviewToScenario(worldviewValues, scenario, worldviewName) {
-  // Match scenario to relevant values
-  const relevantValues = matchScenarioToValues(scenario, worldviewValues);
+export function applyWorldviewToScenario(worldviewValues, scenario, worldviewName, tagteamResult = null) {
+  // Match scenario to relevant values (with optional TagTeam enhancement)
+  const relevantValues = matchScenarioToValues(scenario, worldviewValues, tagteamResult);
 
   // Detect any value conflicts
   const conflicts = detectValueConflicts(relevantValues, scenario);

@@ -20,21 +20,45 @@ import { validateScenarioInput, validateDeliberationResult } from './schemas/del
 import { parseScenario } from '../concepts/scenarioParser.js';
 import { worldviewManager } from '../concepts/worldviewManager.js';
 import { applyWorldviewToScenario } from '../concepts/moralReasoner.js';
+import { semanticAnalyzer } from '../concepts/semanticAnalyzer.js';
 
 // ============================================================================
 // PURE FUNCTIONS - Domain Detection and Formatting
 // ============================================================================
 
 /**
- * Detect domain from scenario text using keyword analysis
+ * Detect domain from scenario text using TagTeam semantic analysis (if available)
+ * or keyword matching as fallback
+ *
  * @param {string} scenarioText - Scenario description
- * @returns {string} Detected domain
+ * @param {Object} [tagteamResult] - Optional TagTeam semantic analysis result
+ * @returns {string} Detected domain (healthcare|spiritual|education|vocational|environmental|interpersonal|intellectual|general)
  */
-export function detectDomain(scenarioText) {
+export function detectDomain(scenarioText, tagteamResult = null) {
   if (!scenarioText || typeof scenarioText !== 'string') {
     return 'general';
   }
 
+  // PRIORITY 1: Use TagTeam's domain suggestion if available
+  if (tagteamResult?.ethicalProfile?.dominantDomain) {
+    const tagteamDomain = tagteamResult.ethicalProfile.dominantDomain;
+
+    // Map TagTeam's 5 domains to IEE's 7 domains
+    const domainMap = {
+      'Care': 'healthcare',        // Bodily/medical care
+      'Dignity': 'healthcare',     // Often healthcare context (bodily autonomy, medical dignity)
+      'Virtue': 'intellectual',    // Character development, intellectual virtues
+      'Community': 'interpersonal', // Social relationships
+      'Transcendence': 'spiritual'  // Religious, spiritual, existential
+    };
+
+    const mappedDomain = domainMap[tagteamDomain];
+    if (mappedDomain) {
+      return mappedDomain;
+    }
+  }
+
+  // FALLBACK: Keyword-based detection
   const text = scenarioText.toLowerCase();
 
   // Healthcare keywords
@@ -135,13 +159,13 @@ export function selectWorldviews(scenario, domain, options = {}) {
  * @param {Object} scenario - Original scenario input
  * @returns {Object} Formatted deliberation result
  */
-export function formatDeliberationResult(resolution, evaluations, domain, scenario) {
+export function formatDeliberationResult(resolution, evaluations, domain, scenario, tagteamResult = null) {
   // Extract step names from step objects (valueConflictResolver returns objects)
   const stepNames = Array.isArray(resolution.steps)
     ? resolution.steps.map(step => typeof step === 'string' ? step : step.name)
     : [];
 
-  return {
+  const result = {
     id: resolution.id,
     timestamp: resolution.timestamp,
     scenario: {
@@ -170,9 +194,31 @@ export function formatDeliberationResult(resolution, evaluations, domain, scenar
       evaluationsCount: evaluations.length,
       conflictsCount: resolution.conflicts,
       minorityViewsCount: resolution.minorityViews.length,
-      completedAt: resolution.timestamp
+      completedAt: resolution.timestamp,
+      semanticAnalysisUsed: !!tagteamResult
     }
   };
+
+  // Add semantic analysis metadata if available
+  if (tagteamResult) {
+    result.semanticAnalysis = {
+      source: tagteamResult.source,
+      version: tagteamResult.version,
+      agent: tagteamResult.agent,
+      action: tagteamResult.action,
+      patient: tagteamResult.patient,
+      semanticFrame: tagteamResult.semanticFrame,
+      contextIntensity: tagteamResult.contextIntensity,
+      detectedValues: tagteamResult.detectedValues,
+      dominantDomain: tagteamResult.dominantDomain,
+      suggestedIEEDomain: tagteamResult.suggestedIEEDomain,
+      valueConflicts: tagteamResult.valueConflicts,
+      conflictScore: tagteamResult.conflictScore,
+      confidence: tagteamResult.confidence
+    };
+  }
+
+  return result;
 }
 
 // ============================================================================
@@ -212,29 +258,54 @@ export const deliberationOrchestrator = {
           throw new Error(`Invalid scenario input: ${validationResult.errors.join(', ')}`);
         }
 
-        // Step 2: Detect or use provided domain
-        const domain = scenario.domain || detectDomain(scenario.description);
-        deliberationOrchestrator.emit('domainDetected', { domain });
+        // Step 1.5: Run TagTeam semantic analysis (if enabled)
+        let tagteamResult = null;
+        if (options.useSemanticAnalysis !== false) {
+          tagteamResult = await semanticAnalyzer.actions.analyzeScenario(
+            scenario.description,
+            {
+              confidenceThreshold: options.semanticConfidenceThreshold || 0.3,
+              includeMetadata: true,
+              cache: true
+            }
+          );
+
+          if (tagteamResult) {
+            deliberationOrchestrator.emit('semanticAnalysisCompleted', {
+              valuesDetected: tagteamResult.detectedValues?.length || 0,
+              dominantDomain: tagteamResult.dominantDomain,
+              confidence: tagteamResult.confidence
+            });
+          }
+        }
+
+        // Step 2: Detect or use provided domain (enhanced with TagTeam)
+        const domain = scenario.domain || detectDomain(scenario.description, tagteamResult);
+        deliberationOrchestrator.emit('domainDetected', { domain, semanticSuggestion: tagteamResult?.suggestedIEEDomain });
 
         // Step 3: Select worldviews to consult
         const worldviews = selectWorldviews(scenario, domain, options);
         deliberationOrchestrator.emit('worldviewsSelected', { worldviews, count: worldviews.length });
 
-        // Step 4: Generate worldview evaluations using real moralReasoner
-        const evaluations = generateRealEvaluations(worldviews, scenario, domain);
-        deliberationOrchestrator.emit('evaluationsGenerated', { count: evaluations.length });
+        // Step 4: Generate worldview evaluations using real moralReasoner (enhanced with TagTeam)
+        const evaluations = generateRealEvaluations(worldviews, scenario, domain, tagteamResult);
+        deliberationOrchestrator.emit('evaluationsGenerated', {
+          count: evaluations.length,
+          semanticAnalysisUsed: !!tagteamResult
+        });
 
-        // Step 5: Resolve conflicts using valueConflictResolver
+        // Step 5: Resolve conflicts using valueConflictResolver (enhanced with TagTeam)
         valueConflictResolver.actions.setDomain(domain);
         const resolution = valueConflictResolver.actions.resolveConflict(evaluations, {
           scenarioId: scenario.id || `scenario_${Date.now()}`,
           description: scenario.description,
-          domain: domain
+          domain: domain,
+          tagteamResult: tagteamResult
         });
         deliberationOrchestrator.emit('conflictsResolved', { resolution });
 
-        // Step 6: Format complete result
-        const result = formatDeliberationResult(resolution, evaluations, domain, scenario);
+        // Step 6: Format complete result (include semantic metadata)
+        const result = formatDeliberationResult(resolution, evaluations, domain, scenario, tagteamResult);
 
         // Validate formatted result
         const resultValidation = validateDeliberationResult(result);
@@ -297,14 +368,16 @@ export const deliberationOrchestrator = {
 
 /**
  * Generate real worldview evaluations using moralReasoner.
+ * Enhanced with TagTeam semantic analysis support.
  * Replaces the previous mock implementation.
  *
  * @param {string[]} worldviews - Worldviews to evaluate
  * @param {Object} scenario - Raw scenario (natural language)
  * @param {string} domain - Domain
+ * @param {Object} [tagteamResult] - Optional TagTeam semantic analysis result
  * @returns {Array} Real evaluations from moralReasoner
  */
-function generateRealEvaluations(worldviews, scenario, domain) {
+function generateRealEvaluations(worldviews, scenario, domain, tagteamResult = null) {
   // Step 1: Parse natural language scenario into structured format
   const structuredScenario = parseScenario({
     description: scenario.description,
@@ -336,11 +409,11 @@ function generateRealEvaluations(worldviews, scenario, domain) {
     };
   });
 
-  // Step 3: Apply each worldview to the structured scenario
+  // Step 3: Apply each worldview to the structured scenario (enhanced with TagTeam)
   const evaluations = worldviewsWithValues.map(({ name, values }) => {
     try {
-      // Use real moralReasoner logic
-      const judgment = applyWorldviewToScenario(values, structuredScenario, name);
+      // Use real moralReasoner logic (with optional TagTeam enhancement)
+      const judgment = applyWorldviewToScenario(values, structuredScenario, name, tagteamResult);
 
       // Map moralReasoner output format to deliberationOrchestrator expected format
       return {

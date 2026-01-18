@@ -34,11 +34,34 @@
 /**
  * Detect conflicts between worldview evaluations
  * @param {Array} evaluations - Array of worldview evaluations
+ * @param {Object} tagteamResult - Optional TagTeam semantic analysis result
  * @returns {Array} Detected conflicts
  */
-export function detectConflicts(evaluations) {
+export function detectConflicts(evaluations, tagteamResult = null) {
+  const conflicts = [];
+
+  // PRIORITY 1: Use TagTeam's pre-computed value conflicts if available
+  if (tagteamResult?.valueConflicts && Array.isArray(tagteamResult.valueConflicts)) {
+    for (const tagteamConflict of tagteamResult.valueConflicts) {
+      conflicts.push({
+        type: 'value',
+        source: 'semantic_detection',
+        value1: tagteamConflict.value1,
+        value2: tagteamConflict.value2,
+        tension: tagteamConflict.tension || tagteamConflict.severity || 'unknown',
+        description: tagteamConflict.description || `Conflict between ${tagteamConflict.value1} and ${tagteamConflict.value2}`,
+        evidence: tagteamConflict.evidence || [],
+        tagteamMetadata: {
+          conflictScore: tagteamResult.conflictScore || 0,
+          dominantDomain: tagteamResult.dominantDomain
+        }
+      });
+    }
+  }
+
+  // PRIORITY 2: IEE's worldview judgment conflicts
   if (!evaluations || evaluations.length < 2) {
-    return [];
+    return conflicts; // Return TagTeam conflicts even if no evaluations
   }
 
   // Group evaluations by judgment
@@ -51,13 +74,12 @@ export function detectConflicts(evaluations) {
     judgmentGroups[normalizedJudgment].push(evaluation.worldview);
   }
 
-  // If all worldviews agree, no conflicts
+  // If all worldviews agree, no IEE judgment conflicts
   if (Object.keys(judgmentGroups).length === 1) {
-    return [];
+    return conflicts; // Return TagTeam conflicts even if worldviews agree
   }
 
   // Build conflict structure with positions
-  const conflicts = [];
   const judgments = Object.keys(judgmentGroups);
 
   // Identify conflicting judgments
@@ -72,6 +94,7 @@ export function detectConflicts(evaluations) {
 
     conflicts.push({
       type: 'judgment',
+      source: 'worldview_evaluation',
       worldviews: worldviews,
       positions: positions,
       description: `Worldviews disagree on judgment: ${judgments.join(' vs ')}`
@@ -649,12 +672,13 @@ export const valueConflictResolver = {
     /**
      * Resolve value conflict using 7-step integration procedure
      * @param {Array} evaluations - Worldview evaluations
-     * @param {Object} context - Scenario context (domain, etc.)
+     * @param {Object} context - Scenario context (domain, tagteamResult, etc.)
      * @returns {Object} Resolution result
      */
     resolveConflict(evaluations, context = {}) {
       const domain = context.domain || valueConflictResolver.state.currentDomain;
       const weights = getDomainWeights(domain);
+      const tagteamResult = context.tagteamResult || null;
 
       // Track the 7-step procedure
       const steps = [];
@@ -662,8 +686,8 @@ export const valueConflictResolver = {
       // Step 1: Gather perspectives (already have evaluations)
       steps.push({ name: 'gather_perspectives', completed: true, result: `Gathered ${evaluations.length} worldview evaluations` });
 
-      // Step 2: Identify conflicts
-      const conflicts = detectConflicts(evaluations);
+      // Step 2: Identify conflicts (use TagTeam if available)
+      const conflicts = detectConflicts(evaluations, tagteamResult);
       steps.push({ name: 'identify_conflicts', completed: true, result: `Detected ${conflicts.length} conflicts` });
 
       // Step 3: Contextualize by domain (get weights)
