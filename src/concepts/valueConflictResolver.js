@@ -370,7 +370,8 @@ export function integrateJudgments(evaluations, weights) {
 
   // CRITICAL FIX: Separate definitive judgments from uncertain ones
   // "uncertain" means "I don't know" - it shouldn't outvote definitive judgments
-  const definitiveJudgments = ['permissible', 'impermissible', 'obligatory'];
+  // "problematic" is a DEFINITIVE judgment about genuine ethical tension
+  const definitiveJudgments = ['permissible', 'impermissible', 'problematic', 'obligatory'];
   const definitiveCategories = {};
   const uncertainEvaluations = judgmentCategories['uncertain'] || [];
 
@@ -391,11 +392,16 @@ export function integrateJudgments(evaluations, weights) {
 
   // Find judgment with highest weighted score among definitive judgments
   let maxScore = 0;
+  let secondMaxScore = 0;
   let integratedJudgment = 'uncertain'; // Default to uncertain if no definitive judgments
-  for (const [judgment, score] of Object.entries(weightedScores)) {
-    if (score > maxScore) {
-      maxScore = score;
-      integratedJudgment = judgment;
+
+  // Sort scores to find top two
+  const sortedScores = Object.entries(weightedScores).sort((a, b) => b[1] - a[1]);
+
+  if (sortedScores.length > 0) {
+    [integratedJudgment, maxScore] = sortedScores[0];
+    if (sortedScores.length > 1) {
+      secondMaxScore = sortedScores[1][1];
     }
   }
 
@@ -403,10 +409,20 @@ export function integrateJudgments(evaluations, weights) {
   // (i.e., those with definitive judgments)
   const totalDefinitiveWeight = Object.values(weightedScores).reduce((sum, score) => sum + score, 0);
   let confidence = 0;
+  let margin = 0;
+  let isContested = false;
 
   if (totalDefinitiveWeight > 0) {
     // Confidence = (winning score) / (total weight of worldviews with opinions)
     confidence = maxScore / totalDefinitiveWeight;
+
+    // Calculate margin between top two judgments (if applicable)
+    margin = maxScore - secondMaxScore;
+    const marginPercent = margin / totalDefinitiveWeight;
+
+    // Flag as "contested" if top two judgments are within 15% of each other
+    // This prevents "tyranny of narrow majority" - a 51/49 split is a CRISIS, not a win
+    isContested = sortedScores.length > 1 && marginPercent < 0.15;
 
     // Penalize confidence based on proportion of uncertain worldviews
     const totalUncertainWeight = uncertainEvaluations.reduce((sum, evaluation) => {
@@ -419,6 +435,12 @@ export function integrateJudgments(evaluations, weights) {
     // If 50% of worldviews are uncertain, reduce confidence by 50%
     // This ensures significant uncertainty lowers confidence meaningfully
     confidence = confidence * (1 - uncertaintyProportion);
+
+    // Further reduce confidence if contested (narrow margin between top judgments)
+    if (isContested) {
+      confidence = confidence * 0.7; // 30% penalty for contested judgments
+    }
+
     confidence = Math.max(confidence, 0.1); // Minimum confidence if we have any definitive judgment
   } else {
     // NO definitive judgments - all worldviews are uncertain
@@ -438,7 +460,12 @@ export function integrateJudgments(evaluations, weights) {
     supportingWorldviews: supportingEvals.map(e => e.worldview),
     contributingWorldviews: evaluations.map(e => e.worldview),
     weightedScore: maxScore,
-    totalWeight: totalDefinitiveWeight + (uncertainEvaluations.reduce((sum, e) => sum + (weights[e.worldview] || 0.5), 0))
+    totalWeight: totalDefinitiveWeight + (uncertainEvaluations.reduce((sum, e) => sum + (weights[e.worldview] || 0.5), 0)),
+    // Tension/margin metadata to detect contested judgments
+    margin: Math.round(margin * 100) / 100,
+    isContested: isContested,
+    secondPlace: sortedScores.length > 1 ? sortedScores[1][0] : null,
+    secondPlaceScore: Math.round(secondMaxScore * 100) / 100
   };
 }
 

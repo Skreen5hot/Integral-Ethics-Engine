@@ -3,6 +3,6 @@
 export const index = 6;
 let component_cache;
 export const component = async () => component_cache ??= (await import('../entries/pages/worldviews/_page.svelte.js')).default;
-export const imports = ["_app/immutable/nodes/6.D78t99hl.js"];
+export const imports = ["_app/immutable/nodes/6.CbH_R0is.js"];
 export const stylesheets = [];
 export const fonts = [];

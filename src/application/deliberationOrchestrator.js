@@ -449,7 +449,11 @@ function generateRealEvaluations(worldviews, scenario, domain, tagteamResult = n
 /**
  * Maps moralReasoner judgment types to permissibility categories.
  * moralReasoner uses: 'right', 'wrong', 'neutral', 'complex'
- * UI expects: 'permissible', 'impermissible', 'uncertain'
+ * UI expects: 'permissible', 'impermissible', 'problematic', 'uncertain'
+ *
+ * IMPORTANT: 'complex' maps to 'problematic', NOT 'uncertain'
+ * - 'complex' = genuine ethical tension (values in conflict) → 'problematic'
+ * - 'neutral' = no clear engagement or judgment → 'uncertain'
  *
  * @param {string} judgment - moralReasoner judgment
  * @returns {string} Mapped judgment
@@ -458,8 +462,8 @@ function mapJudgmentToPermissibility(judgment) {
   const mapping = {
     'right': 'permissible',
     'wrong': 'impermissible',
-    'neutral': 'uncertain',
-    'complex': 'uncertain'
+    'complex': 'problematic',  // FIXED: complex is NOT uncertain - it's a definitive "this has tensions"
+    'neutral': 'uncertain'
   };
 
   return mapping[judgment] || 'uncertain';
