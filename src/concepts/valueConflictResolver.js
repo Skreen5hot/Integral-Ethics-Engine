@@ -368,18 +368,30 @@ export function integrateJudgments(evaluations, weights) {
   // Categorize judgments
   const judgmentCategories = categorizeJudgments(evaluations);
 
-  // Calculate weighted scores for each judgment type
-  const weightedScores = {};
+  // CRITICAL FIX: Separate definitive judgments from uncertain ones
+  // "uncertain" means "I don't know" - it shouldn't outvote definitive judgments
+  const definitiveJudgments = ['permissible', 'impermissible', 'obligatory'];
+  const definitiveCategories = {};
+  const uncertainEvaluations = judgmentCategories['uncertain'] || [];
+
   for (const [judgment, evals] of Object.entries(judgmentCategories)) {
+    if (definitiveJudgments.includes(judgment)) {
+      definitiveCategories[judgment] = evals;
+    }
+  }
+
+  // Calculate weighted scores ONLY for definitive judgments
+  const weightedScores = {};
+  for (const [judgment, evals] of Object.entries(definitiveCategories)) {
     weightedScores[judgment] = evals.reduce((sum, evaluation) => {
       const weight = weights[evaluation.worldview] || 0.5;
       return sum + weight;
     }, 0);
   }
 
-  // Find judgment with highest weighted score
+  // Find judgment with highest weighted score among definitive judgments
   let maxScore = 0;
-  let integratedJudgment = 'Unresolved';
+  let integratedJudgment = 'uncertain'; // Default to uncertain if no definitive judgments
   for (const [judgment, score] of Object.entries(weightedScores)) {
     if (score > maxScore) {
       maxScore = score;
@@ -387,9 +399,32 @@ export function integrateJudgments(evaluations, weights) {
     }
   }
 
-  // Calculate total weight for confidence
-  const totalWeight = Object.values(weightedScores).reduce((sum, score) => sum + score, 0);
-  const confidence = totalWeight > 0 ? maxScore / totalWeight : 0;
+  // Calculate confidence based on agreement among OPINIONATED worldviews
+  // (i.e., those with definitive judgments)
+  const totalDefinitiveWeight = Object.values(weightedScores).reduce((sum, score) => sum + score, 0);
+  let confidence = 0;
+
+  if (totalDefinitiveWeight > 0) {
+    // Confidence = (winning score) / (total weight of worldviews with opinions)
+    confidence = maxScore / totalDefinitiveWeight;
+
+    // Penalize confidence based on proportion of uncertain worldviews
+    const totalUncertainWeight = uncertainEvaluations.reduce((sum, evaluation) => {
+      return sum + (weights[evaluation.worldview] || 0.5);
+    }, 0);
+    const totalWeight = totalDefinitiveWeight + totalUncertainWeight;
+    const uncertaintyProportion = totalUncertainWeight / totalWeight;
+
+    // Reduce confidence by uncertainty proportion
+    // If 50% of worldviews are uncertain, reduce confidence by 50%
+    // This ensures significant uncertainty lowers confidence meaningfully
+    confidence = confidence * (1 - uncertaintyProportion);
+    confidence = Math.max(confidence, 0.1); // Minimum confidence if we have any definitive judgment
+  } else {
+    // NO definitive judgments - all worldviews are uncertain
+    integratedJudgment = 'uncertain';
+    confidence = 0.1; // Low confidence because nobody has an opinion
+  }
 
   // Generate integrated reasoning
   const supportingEvals = judgmentCategories[integratedJudgment] || [];
@@ -403,7 +438,7 @@ export function integrateJudgments(evaluations, weights) {
     supportingWorldviews: supportingEvals.map(e => e.worldview),
     contributingWorldviews: evaluations.map(e => e.worldview),
     weightedScore: maxScore,
-    totalWeight
+    totalWeight: totalDefinitiveWeight + (uncertainEvaluations.reduce((sum, e) => sum + (weights[e.worldview] || 0.5), 0))
   };
 }
 
