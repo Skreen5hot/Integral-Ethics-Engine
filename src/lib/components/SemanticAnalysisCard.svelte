@@ -68,6 +68,17 @@
 				intensity
 			}));
 	}
+
+	// Extract text from TagTeam semantic role objects
+	function extractRoleText(role) {
+		if (!role) return 'Unknown';
+		if (typeof role === 'string') return role;
+		if (typeof role === 'object') {
+			// TagTeam returns objects like { text: "...", lemma: "...", ... }
+			return role.text || role.lemma || role.word || JSON.stringify(role);
+		}
+		return String(role);
+	}
 </script>
 
 {#if semanticAnalysis}
@@ -98,15 +109,15 @@
 			<div class="semantic-roles">
 				<div class="role-item">
 					<span class="role-label">Agent:</span>
-					<span class="role-value">{semanticAnalysis.agent || 'Unknown'}</span>
+					<span class="role-value">{extractRoleText(semanticAnalysis.agent)}</span>
 				</div>
 				<div class="role-item">
 					<span class="role-label">Action:</span>
-					<span class="role-value">{semanticAnalysis.action || 'Unknown'}</span>
+					<span class="role-value">{extractRoleText(semanticAnalysis.action)}</span>
 				</div>
 				<div class="role-item">
 					<span class="role-label">Patient:</span>
-					<span class="role-value">{semanticAnalysis.patient || 'Unknown'}</span>
+					<span class="role-value">{extractRoleText(semanticAnalysis.patient)}</span>
 				</div>
 				<div class="role-item">
 					<span class="role-label">Frame:</span>

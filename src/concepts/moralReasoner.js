@@ -270,11 +270,13 @@ export function evaluateAgainstValues(action, relevantValues) {
     return 'neutral'; // Only instrumental values = contextual
   }
 
-  // Count values by polarity (if available from TagTeam)
+  // Separate values by polarity (if available from TagTeam)
   const valuesWithPolarity = terminalValues.filter(v => v.polarity !== undefined && v.polarity !== 0);
+  const neutralValues = terminalValues.filter(v => v.polarity === 0);
+  const allHavePolarity = terminalValues.every(v => v.polarity !== undefined);
 
+  // CASE 1: We have clear positive or negative polarities
   if (valuesWithPolarity.length > 0) {
-    // Use TagTeam polarity for judgment
     const upheld = valuesWithPolarity.filter(v => v.polarity === 1);
     const violated = valuesWithPolarity.filter(v => v.polarity === -1);
 
@@ -291,19 +293,31 @@ export function evaluateAgainstValues(action, relevantValues) {
     }
   }
 
-  // Fallback: no polarity information (keyword matching only)
-  // Infer that action engages values, generally in positive way unless context suggests otherwise
-  const highSalience = terminalValues.filter(v => v.salience === 'high');
-
-  if (highSalience.length === 0) {
-    return 'neutral'; // No high-salience values = unclear
+  // CASE 2: All values have polarity 0 (neutral) - values are engaged but direction unclear
+  // This is common in TagTeam when the action involves values but doesn't clearly uphold/violate them
+  if (allHavePolarity && neutralValues.length === terminalValues.length) {
+    // Values are relevant but neutral - treat as 'complex' rather than ignoring them
+    if (terminalValues.length >= 2) {
+      return 'complex'; // Multiple values engaged neutrally = requires deliberation
+    }
+    // Single neutral value = uncertain
+    return 'neutral';
   }
 
-  if (highSalience.length === 1) {
+  // CASE 3: Fallback - no polarity information at all (keyword matching only)
+  // Infer that action engages values, generally in positive way unless context suggests otherwise
+  const highSalience = terminalValues.filter(v => v.salience === 'high');
+  const mediumSalience = terminalValues.filter(v => v.salience === 'medium');
+
+  if (highSalience.length === 0 && mediumSalience.length === 0) {
+    return 'neutral'; // No significant salience = unclear
+  }
+
+  if (highSalience.length === 1 && mediumSalience.length === 0) {
     return 'right'; // Single clear value engaged = generally permissible
   }
 
-  // Multiple high-salience values = potential conflict
+  // Multiple values engaged or medium salience = requires careful consideration
   return 'complex';
 }
 
