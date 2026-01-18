@@ -36,27 +36,9 @@ export function matchScenarioToValues(scenario, values, tagteamResult = null) {
   // semanticAnalyzer returns values in detectedValues array (not ethicalProfile.values)
   const tagteamValues = tagteamResult?.detectedValues || tagteamResult?.ethicalProfile?.values;
 
-  // DEBUG LOGGING
-  if (tagteamResult) {
-    console.log('[moralReasoner] TagTeam result received:', {
-      hasDetectedValues: !!tagteamResult.detectedValues,
-      detectedValuesCount: tagteamResult.detectedValues?.length,
-      hasEthicalProfile: !!tagteamResult.ethicalProfile,
-      ethicalProfileValuesCount: tagteamResult.ethicalProfile?.values?.length,
-      tagteamValuesUsed: tagteamValues?.length || 0,
-      sampleValues: tagteamValues?.slice(0, 3).map(v => v.name)
-    });
-  }
-
   if (tagteamValues && Array.isArray(tagteamValues)) {
     for (const detectedValue of tagteamValues) {
       const matches = findWorldviewMatches(detectedValue.name, values);
-
-      console.log('[moralReasoner] TagTeam value matching:', {
-        tagteamValue: detectedValue.name,
-        matchesFound: matches.length,
-        matchedValues: matches.map(m => m.value)
-      });
 
       for (const match of matches) {
         tagteamDetectedValues.add(match.value);
@@ -235,13 +217,6 @@ export function matchScenarioToValues(scenario, values, tagteamResult = null) {
       relevant.push({ value: personalValue, type: 'terminal', salience: 'medium' });
     }
   }
-
-  // DEBUG LOGGING - show what we're returning
-  console.log('[moralReasoner] matchScenarioToValues returning:', {
-    totalValues: relevant.length,
-    sources: [...new Set(relevant.map(v => v.source || 'keyword_matching'))],
-    values: relevant.map(v => ({ value: v.value, type: v.type, source: v.source || 'keyword' }))
-  });
 
   return relevant;
 }
