@@ -180,6 +180,14 @@ export const tagteamToWorldviewValueMap = {
     'nurturing'
   ],
 
+  'Generosity': [
+    'benevolence',
+    'charity',
+    'giving',
+    'altruism',
+    'kindness'
+  ],
+
   // ==========================================
   // Virtue Domain (10 values)
   // ==========================================
@@ -257,6 +265,14 @@ export const tagteamToWorldviewValueMap = {
     'moral_excellence',
     'ethos',
     'integrity'
+  ],
+
+  'Patience': [
+    'forbearance',
+    'endurance',
+    'tolerance',
+    'perseverance',
+    'restraint'
   ],
 
   // ==========================================
@@ -610,11 +626,19 @@ export function getMappingStatistics() {
 
   // Count values by domain (based on order in mapping)
   const valueNames = Object.keys(tagteamToWorldviewValueMap);
-  stats.byDomain.Dignity = 10;  // First 10
-  stats.byDomain.Care = 10;  // Next 10
-  stats.byDomain.Virtue = 10;  // Next 10
-  stats.byDomain.Community = 10;  // Next 10
-  stats.byDomain.Transcendence = 10;  // Last 10
+
+  // Domain boundaries (based on actual order in tagteamToWorldviewValueMap)
+  let dignityEnd = 10;
+  let careEnd = dignityEnd + 11;  // 11 values (added Generosity)
+  let virtueEnd = careEnd + 11;   // 11 values (added Patience)
+  let communityEnd = virtueEnd + 10;
+  let transcendenceEnd = communityEnd + 10;
+
+  stats.byDomain.Dignity = dignityEnd;
+  stats.byDomain.Care = careEnd - dignityEnd;
+  stats.byDomain.Virtue = virtueEnd - careEnd;
+  stats.byDomain.Community = communityEnd - virtueEnd;
+  stats.byDomain.Transcendence = transcendenceEnd - communityEnd;
 
   // Calculate averages
   let totalWorldviewValues = 0;
@@ -633,8 +657,8 @@ export function getMappingStatistics() {
 // Module metadata
 export const metadata = {
   module: 'valueMapper',
-  version: '1.0.0',
-  description: 'Maps TagTeam 50-value ontology to IEE worldview values',
+  version: '1.1.0',
+  description: 'Maps TagTeam value ontology to IEE worldview values',
   tagteamVersion: '2.0.0',
   totalMappings: Object.keys(tagteamToWorldviewValueMap).length,
   domains: ['Dignity', 'Care', 'Virtue', 'Community', 'Transcendence']

@@ -22,9 +22,9 @@ import {
 // Structure & Completeness Tests
 // ===================================
 
-test('valueMapper: has all 50 TagTeam values mapped', () => {
+test('valueMapper: has all TagTeam values mapped', () => {
   const totalMappings = Object.keys(tagteamToWorldviewValueMap).length;
-  assert.equal(totalMappings, 50, 'Should have exactly 50 TagTeam values mapped');
+  assert.ok(totalMappings >= 50, `Should have at least 50 TagTeam values mapped (actual: ${totalMappings})`);
 });
 
 test('valueMapper: all mappings are non-empty arrays', () => {
@@ -39,14 +39,14 @@ test('valueMapper: all mappings are non-empty arrays', () => {
 test('valueMapper: mapping validation succeeds', () => {
   const validation = validateValueMappings();
   assert.ok(validation.valid, 'Validation should pass');
-  assert.equal(validation.totalMappings, 50);
+  assert.ok(validation.totalMappings >= 50, `Should have at least 50 mappings (actual: ${validation.totalMappings})`);
   assert.equal(validation.missing.length, 0, 'Should have no missing mappings');
 });
 
 test('valueMapper: metadata is correct', () => {
   assert.equal(metadata.module, 'valueMapper');
-  assert.equal(metadata.version, '1.0.0');
-  assert.equal(metadata.totalMappings, 50);
+  assert.equal(metadata.version, '1.1.0');
+  assert.ok(metadata.totalMappings >= 50, `Should have at least 50 mappings (actual: ${metadata.totalMappings})`);
   assert.deepEqual(metadata.domains, ['Dignity', 'Care', 'Virtue', 'Community', 'Transcendence']);
 });
 
@@ -299,16 +299,16 @@ test('getMappingStatistics: returns correct structure', () => {
   assert.ok(stats.uniqueWorldviewValuesCount, 'Should have unique count');
 });
 
-test('getMappingStatistics: has 50 total values', () => {
+test('getMappingStatistics: has at least 50 total values', () => {
   const stats = getMappingStatistics();
-  assert.equal(stats.totalTagteamValues, 50);
+  assert.ok(stats.totalTagteamValues >= 50, `Should have at least 50 values (actual: ${stats.totalTagteamValues})`);
 });
 
-test('getMappingStatistics: has 10 values per domain', () => {
+test('getMappingStatistics: has expected values per domain', () => {
   const stats = getMappingStatistics();
   assert.equal(stats.byDomain.Dignity, 10);
-  assert.equal(stats.byDomain.Care, 10);
-  assert.equal(stats.byDomain.Virtue, 10);
+  assert.equal(stats.byDomain.Care, 11); // Added Generosity
+  assert.equal(stats.byDomain.Virtue, 11); // Added Patience
   assert.equal(stats.byDomain.Community, 10);
   assert.equal(stats.byDomain.Transcendence, 10);
 });

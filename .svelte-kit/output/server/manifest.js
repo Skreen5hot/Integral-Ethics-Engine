@@ -7,10 +7,10 @@ function __memo(fn) {
 return {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["collaborations/tagteam/dist/tagteam.js","favicon.png","icon-192.png","icon-512.png","manifest.json"]),
-	mimeTypes: {".js":"text/javascript",".png":"image/png",".json":"application/json"},
+	assets: new Set(["favicon.png","icon-192.png","icon-512.png","lib/tagteam.js","manifest.json"]),
+	mimeTypes: {".png":"image/png",".js":"text/javascript",".json":"application/json"},
 	_: {
-		client: {start:"_app/immutable/entry/start.DYdMZh09.js",app:"_app/immutable/entry/app.CK47aysi.js",imports:["_app/immutable/entry/start.DYdMZh09.js","_app/immutable/chunks/CymLBvZG.js","_app/immutable/chunks/DoHTLkW9.js","_app/immutable/chunks/7iofg56s.js","_app/immutable/chunks/Bp4liEdJ.js","_app/immutable/chunks/2rQ4z31m.js","_app/immutable/entry/app.CK47aysi.js","_app/immutable/chunks/DoHTLkW9.js","_app/immutable/chunks/CLB9YTXT.js","_app/immutable/chunks/6je7jFEO.js","_app/immutable/chunks/2rQ4z31m.js","_app/immutable/chunks/BJiw7fV6.js","_app/immutable/chunks/CWSxt2h6.js","_app/immutable/chunks/Ms0FWifF.js","_app/immutable/chunks/7iofg56s.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.Be0msCu0.js",app:"_app/immutable/entry/app.CHHK1mfY.js",imports:["_app/immutable/entry/start.Be0msCu0.js","_app/immutable/chunks/CWT5WWfL.js","_app/immutable/chunks/DimSMWNs.js","_app/immutable/chunks/36oPrS4e.js","_app/immutable/chunks/DAan-7yV.js","_app/immutable/chunks/DPPzBaZK.js","_app/immutable/entry/app.CHHK1mfY.js","_app/immutable/chunks/DimSMWNs.js","_app/immutable/chunks/Ccunq4lf.js","_app/immutable/chunks/KzInidiX.js","_app/immutable/chunks/DPPzBaZK.js","_app/immutable/chunks/CQlUKc8l.js","_app/immutable/chunks/BM0enYAg.js","_app/immutable/chunks/D0GrLqM-.js","_app/immutable/chunks/36oPrS4e.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js'))
