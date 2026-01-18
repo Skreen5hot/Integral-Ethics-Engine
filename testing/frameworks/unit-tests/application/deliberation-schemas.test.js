@@ -175,7 +175,7 @@ describe('validateScenarioInput', () => {
 describe('validateWorldviewEvaluation', () => {
   it('should accept valid evaluation with all fields', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 0.85,
       reasoning: 'Physical autonomy is paramount in healthcare decisions.',
@@ -191,7 +191,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should accept valid evaluation with only required fields', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 0.85,
       reasoning: 'Physical autonomy is paramount in healthcare decisions.'
@@ -232,18 +232,18 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should accept all valid worldviews', () => {
     const validWorldviews = [
-      'Materialism',
-      'Sensationalism',
-      'Phenomenalism',
-      'Realism',
-      'Dynamism',
-      'Monadism',
-      'Idealism',
-      'Rationalism',
-      'Psychism',
-      'Pneumatism',
-      'Spiritualism',
-      'Mathematism'
+      'materialism',
+      'sensationalism',
+      'phenomenalism',
+      'realism',
+      'dynamism',
+      'monadism',
+      'idealism',
+      'rationalism',
+      'psychism',
+      'pneumatism',
+      'spiritualism',
+      'mathematism'
     ];
 
     for (const worldview of validWorldviews) {
@@ -262,7 +262,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation with invalid judgment', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'maybe',
       confidence: 0.85,
       reasoning: 'Some reasoning here.'
@@ -279,7 +279,7 @@ describe('validateWorldviewEvaluation', () => {
 
     for (const judgment of validJudgments) {
       const evaluation = {
-        worldview: 'Materialism',
+        worldview: 'materialism',
         judgment: judgment,
         confidence: 0.85,
         reasoning: 'Valid reasoning for this judgment.'
@@ -293,7 +293,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation without confidence', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       reasoning: 'Some reasoning here.'
     };
@@ -306,7 +306,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation with non-number confidence', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: '0.85',
       reasoning: 'Some reasoning here.'
@@ -320,7 +320,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation with confidence < 0', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: -0.1,
       reasoning: 'Some reasoning here.'
@@ -334,7 +334,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation with confidence > 1', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 1.1,
       reasoning: 'Some reasoning here.'
@@ -348,14 +348,14 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should accept confidence at boundaries (0 and 1)', () => {
     const evaluation0 = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 0,
       reasoning: 'Some reasoning here.'
     };
 
     const evaluation1 = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 1,
       reasoning: 'Some reasoning here.'
@@ -367,7 +367,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation with too short reasoning', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 0.85,
       reasoning: 'Too short'
@@ -381,7 +381,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation with non-array values', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 0.85,
       reasoning: 'Some reasoning here.',
@@ -396,7 +396,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation with non-string values in array', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 0.85,
       reasoning: 'Some reasoning here.',
@@ -411,7 +411,7 @@ describe('validateWorldviewEvaluation', () => {
 
   it('should reject evaluation with invalid weight', () => {
     const evaluation = {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 0.85,
       reasoning: 'Some reasoning here.',
@@ -444,7 +444,7 @@ describe('validateDeliberationResult', () => {
     confidenceLevel: 'moderate',
     worldviews: [
       {
-        worldview: 'Materialism',
+        worldview: 'materialism',
         judgment: 'permissible',
         confidence: 0.85,
         reasoning: 'Physical autonomy is paramount.',
@@ -693,7 +693,7 @@ describe('validateDeliberationOptions', () => {
 
   it('should accept valid worldviews array', () => {
     const options = {
-      worldviews: ['Materialism', 'Spiritualism']
+      worldviews: ['materialism', 'spiritualism']
     };
 
     const result = validateDeliberationOptions(options);
@@ -704,7 +704,7 @@ describe('validateDeliberationOptions', () => {
 
   it('should reject invalid worldview names', () => {
     const options = {
-      worldviews: ['Materialism', 'InvalidWorldview']
+      worldviews: ['materialism', 'InvalidWorldview']
     };
 
     const result = validateDeliberationOptions(options);
@@ -796,7 +796,7 @@ describe('validateDeliberationOptions', () => {
 
   it('should accept options with multiple valid fields', () => {
     const options = {
-      worldviews: ['Materialism', 'Spiritualism'],
+      worldviews: ['materialism', 'spiritualism'],
       customWeights: {
         'Materialism': 0.8
       },
