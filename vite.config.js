@@ -15,6 +15,12 @@ export default defineConfig({
 		minify: 'esbuild'
 	},
 
+	// SSR configuration - exclude TagTeam (browser-only UMD bundle)
+	ssr: {
+		noExternal: [],
+		external: ['../../../collaborations/tagteam/dist/tagteam.js']
+	},
+
 	// Development server
 	server: {
 		port: 5173,

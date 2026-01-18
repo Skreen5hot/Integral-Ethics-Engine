@@ -65,12 +65,18 @@ export const semanticAnalyzer = {
           return null;
         }
 
-        // Get TagTeam (browser global or Node.js import)
+        // Get TagTeam (browser global only - SSR not supported)
         let TagTeam;
         if (typeof window !== 'undefined' && window.TagTeam) {
           TagTeam = window.TagTeam;
+        } else if (typeof window === 'undefined') {
+          // SSR environment - TagTeam not available
+          console.warn('TagTeam requires browser environment (window.TagTeam)');
+          return null;
         } else {
-          TagTeam = await import('../../../collaborations/tagteam/dist/tagteam.js');
+          // Browser but TagTeam not loaded
+          console.warn('TagTeam not found on window object');
+          return null;
         }
 
         // Run semantic parsing
@@ -176,22 +182,21 @@ export const semanticAnalyzer = {
     /**
      * Check if TagTeam is available in the environment
      *
-     * @returns {Promise<boolean>} True if TagTeam can be imported
+     * @returns {Promise<boolean>} True if TagTeam is available (browser only)
      */
     async checkTagteamAvailability() {
-      // In browser, TagTeam is loaded as global via UMD bundle
+      // TagTeam is browser-only (UMD bundle loaded via <script> tag)
       if (typeof window !== 'undefined' && window.TagTeam && typeof window.TagTeam.parse === 'function') {
         return true;
       }
 
-      // In Node.js, try dynamic import
-      try {
-        const TagTeam = await import('../../../collaborations/tagteam/dist/tagteam.js');
-        return typeof TagTeam.parse === 'function';
-      } catch (error) {
-        console.warn('TagTeam bundle not found:', error.message);
-        return false;
+      // SSR or browser without TagTeam loaded
+      if (typeof window === 'undefined') {
+        console.warn('TagTeam requires browser environment (not available in SSR)');
+      } else {
+        console.warn('TagTeam not loaded on window.TagTeam');
       }
+      return false;
     },
 
     /**
