@@ -125,20 +125,20 @@ export function detectDomain(scenarioText, tagteamResult = null) {
  * @returns {string[]} Array of worldview names
  */
 export function selectWorldviews(scenario, domain, options = {}) {
-  // Default: all 12 worldviews
+  // Default: all 12 worldviews (lowercase to match worldviewManager)
   const allWorldviews = [
-    'Materialism',
-    'Sensationalism',
-    'Phenomenalism',
-    'Realism',
-    'Dynamism',
-    'Monadism',
-    'Idealism',
-    'Rationalism',
-    'Psychism',
-    'Pneumatism',
-    'Spiritualism',
-    'Mathematism'
+    'materialism',
+    'sensationalism',
+    'phenomenalism',
+    'realism',
+    'dynamism',
+    'monadism',
+    'idealism',
+    'rationalism',
+    'psychism',
+    'pneumatism',
+    'spiritualism',
+    'mathematism'
   ];
 
   // If user specified custom worldviews, use those

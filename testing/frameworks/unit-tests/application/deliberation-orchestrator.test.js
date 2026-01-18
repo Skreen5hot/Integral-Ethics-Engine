@@ -105,39 +105,39 @@ describe('selectWorldviews', () => {
   it('should return all 12 worldviews by default', () => {
     const worldviews = selectWorldviews(scenario, domain);
     assert.equal(worldviews.length, 12);
-    assert.ok(worldviews.includes('Materialism'));
-    assert.ok(worldviews.includes('Sensationalism'));
-    assert.ok(worldviews.includes('Phenomenalism'));
-    assert.ok(worldviews.includes('Realism'));
-    assert.ok(worldviews.includes('Dynamism'));
-    assert.ok(worldviews.includes('Monadism'));
-    assert.ok(worldviews.includes('Idealism'));
-    assert.ok(worldviews.includes('Rationalism'));
-    assert.ok(worldviews.includes('Psychism'));
-    assert.ok(worldviews.includes('Pneumatism'));
-    assert.ok(worldviews.includes('Spiritualism'));
-    assert.ok(worldviews.includes('Mathematism'));
+    assert.ok(worldviews.includes('materialism'));
+    assert.ok(worldviews.includes('sensationalism'));
+    assert.ok(worldviews.includes('phenomenalism'));
+    assert.ok(worldviews.includes('realism'));
+    assert.ok(worldviews.includes('dynamism'));
+    assert.ok(worldviews.includes('monadism'));
+    assert.ok(worldviews.includes('idealism'));
+    assert.ok(worldviews.includes('rationalism'));
+    assert.ok(worldviews.includes('psychism'));
+    assert.ok(worldviews.includes('pneumatism'));
+    assert.ok(worldviews.includes('spiritualism'));
+    assert.ok(worldviews.includes('mathematism'));
   });
 
   it('should return custom worldviews when specified', () => {
     const options = {
-      worldviews: ['Materialism', 'Spiritualism', 'Rationalism']
+      worldviews: ['materialism', 'spiritualism', 'rationalism']
     };
     const worldviews = selectWorldviews(scenario, domain, options);
     assert.equal(worldviews.length, 3);
-    assert.ok(worldviews.includes('Materialism'));
-    assert.ok(worldviews.includes('Spiritualism'));
-    assert.ok(worldviews.includes('Rationalism'));
+    assert.ok(worldviews.includes('materialism'));
+    assert.ok(worldviews.includes('spiritualism'));
+    assert.ok(worldviews.includes('rationalism'));
   });
 
   it('should filter out invalid worldview names', () => {
     const options = {
-      worldviews: ['Materialism', 'InvalidWorldview', 'Spiritualism']
+      worldviews: ['materialism', 'InvalidWorldview', 'spiritualism']
     };
     const worldviews = selectWorldviews(scenario, domain, options);
     assert.equal(worldviews.length, 2);
-    assert.ok(worldviews.includes('Materialism'));
-    assert.ok(worldviews.includes('Spiritualism'));
+    assert.ok(worldviews.includes('materialism'));
+    assert.ok(worldviews.includes('spiritualism'));
     assert.ok(!worldviews.includes('InvalidWorldview'));
   });
 
@@ -176,14 +176,14 @@ describe('formatDeliberationResult', () => {
 
   const evaluations = [
     {
-      worldview: 'Materialism',
+      worldview: 'materialism',
       judgment: 'permissible',
       confidence: 0.85,
       reasoning: 'Physical autonomy is paramount.',
       values: ['bodily_autonomy', 'minimize_suffering']
     },
     {
-      worldview: 'Spiritualism',
+      worldview: 'spiritualism',
       judgment: 'impermissible',
       confidence: 0.90,
       reasoning: 'Life is sacred.',
@@ -198,23 +198,23 @@ describe('formatDeliberationResult', () => {
     confidence: 0.75,
     confidenceLevel: 'moderate',
     weights: {
-      'Materialism': 0.8,
-      'Spiritualism': 0.6
+      'materialism': 0.8,
+      'spiritualism': 0.6
     },
     conflictDetails: [
       {
-        worldviews: ['Materialism', 'Spiritualism'],
+        worldviews: ['materialism', 'spiritualism'],
         judgments: ['permissible', 'impermissible']
       }
     ],
     minorityViews: [
       {
-        worldview: 'Spiritualism',
+        worldview: 'spiritualism',
         judgment: 'impermissible',
         reasoning: 'Life is sacred.'
       }
     ],
-    supportingWorldviews: ['Materialism'],
+    supportingWorldviews: ['materialism'],
     justification: 'The integrated judgment balances autonomy with respect for life.',
     steps: [
       'gather_perspectives',
@@ -252,7 +252,7 @@ describe('formatDeliberationResult', () => {
 
     assert.equal(result.worldviews.length, 2);
 
-    const materialism = result.worldviews.find(wv => wv.worldview === 'Materialism');
+    const materialism = result.worldviews.find(wv => wv.worldview === 'materialism');
     assert.ok(materialism);
     assert.equal(materialism.judgment, 'permissible');
     assert.equal(materialism.confidence, 0.85);
@@ -260,7 +260,7 @@ describe('formatDeliberationResult', () => {
     assert.deepEqual(materialism.values, ['bodily_autonomy', 'minimize_suffering']);
     assert.equal(materialism.weight, 0.8);
 
-    const spiritualism = result.worldviews.find(wv => wv.worldview === 'Spiritualism');
+    const spiritualism = result.worldviews.find(wv => wv.worldview === 'spiritualism');
     assert.ok(spiritualism);
     assert.equal(spiritualism.weight, 0.6);
   });
@@ -269,7 +269,7 @@ describe('formatDeliberationResult', () => {
     const result = formatDeliberationResult(resolution, evaluations, domain, scenario);
 
     assert.equal(result.conflicts.length, 1);
-    assert.deepEqual(result.conflicts[0].worldviews, ['Materialism', 'Spiritualism']);
+    assert.deepEqual(result.conflicts[0].worldviews, ['materialism', 'spiritualism']);
     assert.deepEqual(result.conflicts[0].judgments, ['permissible', 'impermissible']);
   });
 
@@ -277,14 +277,14 @@ describe('formatDeliberationResult', () => {
     const result = formatDeliberationResult(resolution, evaluations, domain, scenario);
 
     assert.equal(result.minorityViews.length, 1);
-    assert.equal(result.minorityViews[0].worldview, 'Spiritualism');
+    assert.equal(result.minorityViews[0].worldview, 'spiritualism');
     assert.equal(result.minorityViews[0].judgment, 'impermissible');
   });
 
   it('should include supporting worldviews and justification', () => {
     const result = formatDeliberationResult(resolution, evaluations, domain, scenario);
 
-    assert.deepEqual(result.supportingWorldviews, ['Materialism']);
+    assert.deepEqual(result.supportingWorldviews, ['materialism']);
     assert.equal(result.justification, 'The integrated judgment balances autonomy with respect for life.');
   });
 
@@ -323,7 +323,7 @@ describe('formatDeliberationResult', () => {
     const evaluationsWithExtra = [
       ...evaluations,
       {
-        worldview: 'Realism',
+        worldview: 'realism',
         judgment: 'uncertain',
         confidence: 0.60,
         reasoning: 'Need more evidence.',
@@ -333,7 +333,7 @@ describe('formatDeliberationResult', () => {
 
     const result = formatDeliberationResult(resolution, evaluationsWithExtra, domain, scenario);
 
-    const realism = result.worldviews.find(wv => wv.worldview === 'Realism');
+    const realism = result.worldviews.find(wv => wv.worldview === 'realism');
     assert.ok(realism);
     assert.equal(realism.weight, 0.5); // Default weight
   });
@@ -394,15 +394,15 @@ describe('deliberationOrchestrator.actions.deliberateOnScenario', () => {
     };
 
     const options = {
-      worldviews: ['Materialism', 'Spiritualism']
+      worldviews: ['materialism', 'spiritualism']
     };
 
     const result = await deliberationOrchestrator.actions.deliberateOnScenario(scenario, options);
 
     assert.equal(result.worldviews.length, 2);
     const worldviewNames = result.worldviews.map(wv => wv.worldview);
-    assert.ok(worldviewNames.includes('Materialism'));
-    assert.ok(worldviewNames.includes('Spiritualism'));
+    assert.ok(worldviewNames.includes('materialism'));
+    assert.ok(worldviewNames.includes('spiritualism'));
   });
 
   it('should update state during deliberation', async () => {

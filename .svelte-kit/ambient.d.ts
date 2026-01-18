@@ -47,8 +47,6 @@ declare module '$env/static/private' {
 	export const EDITOR: string;
 	export const ELECTRON_RUN_AS_NODE: string;
 	export const EXEPATH: string;
-	export const FPS_BROWSER_APP_PROFILE_STRING: string;
-	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GIT_EDITOR: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
@@ -89,7 +87,6 @@ declare module '$env/static/private' {
 	export const npm_package_name: string;
 	export const npm_package_version: string;
 	export const NUMBER_OF_PROCESSORS: string;
-	export const OLDPWD: string;
 	export const OneDrive: string;
 	export const OneDriveConsumer: string;
 	export const OnlineServices: string;
@@ -118,6 +115,7 @@ declare module '$env/static/private' {
 	export const RegionCode: string;
 	export const SESSIONNAME: string;
 	export const SHELL: string;
+	export const SHELLOPTS: string;
 	export const SHLVL: string;
 	export const SSH_ASKPASS: string;
 	export const SYSTEMDRIVE: string;
@@ -192,8 +190,6 @@ declare module '$env/dynamic/private' {
 		EDITOR: string;
 		ELECTRON_RUN_AS_NODE: string;
 		EXEPATH: string;
-		FPS_BROWSER_APP_PROFILE_STRING: string;
-		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GIT_EDITOR: string;
 		HOME: string;
 		HOMEDRIVE: string;
@@ -234,7 +230,6 @@ declare module '$env/dynamic/private' {
 		npm_package_name: string;
 		npm_package_version: string;
 		NUMBER_OF_PROCESSORS: string;
-		OLDPWD: string;
 		OneDrive: string;
 		OneDriveConsumer: string;
 		OnlineServices: string;
@@ -263,6 +258,7 @@ declare module '$env/dynamic/private' {
 		RegionCode: string;
 		SESSIONNAME: string;
 		SHELL: string;
+		SHELLOPTS: string;
 		SHLVL: string;
 		SSH_ASKPASS: string;
 		SYSTEMDRIVE: string;

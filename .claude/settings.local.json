@@ -41,7 +41,10 @@
       "Bash(BASE_PATH=/Integral-Ethics-Engine node:*)",
       "Bash(export BASE_PATH=/Integral-Ethics-Engine)",
       "Bash(MSYS_NO_PATHCONV=1 BASE_PATH=/Integral-Ethics-Engine npm run build:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(start \"\" \"c:\\\\Users\\\\aaron\\\\OneDrive\\\\Documents\\\\Integral-Ethics-Engine\\\\testing\\\\frameworks\\\\integration-tests\\\\full-deliberation-test.html\")",
+      "Bash(npx http-server:*)",
+      "Bash(npm audit:*)"
     ]
   }
 }
