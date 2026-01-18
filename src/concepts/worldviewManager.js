@@ -379,7 +379,7 @@ export const worldviewManager = {
         {
           name: 'realism',
           metaphysics: {
-            foundation: 'entities',
+            foundation: 'reality_itself',
             primacy: 'objective_reality',
             epistemology: 'critical_realism'
           }
@@ -388,7 +388,7 @@ export const worldviewManager = {
         {
           name: 'dynamism',
           metaphysics: {
-            foundation: 'force',
+            foundation: 'becoming',
             primacy: 'dynamic_becoming',
             epistemology: 'process_observation'
           }
@@ -396,7 +396,7 @@ export const worldviewManager = {
         {
           name: 'monadism',
           metaphysics: {
-            foundation: 'individual',
+            foundation: 'individual_monad',
             primacy: 'unique_substance',
             epistemology: 'individual_perspective'
           }
