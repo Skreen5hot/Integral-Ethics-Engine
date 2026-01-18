@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 2a Validation - Context Intensity Analysis</title>
+  <style>
+    body {
+      font-family: 'Consolas', 'Monaco', monospace;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      line-height: 1.6;
+    }
+    h1 { color: #4ec9b0; border-bottom: 2px solid #4ec9b0; padding-bottom: 10px; }
+    h2 { color: #569cd6; margin-top: 30px; }
+    h3 { color: #dcdcaa; }
+    .scenario {
+      background: #252526;
+      border: 1px solid #3e3e42;
+      border-radius: 6px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .dimension-group {
+      margin: 15px 0;
+      padding: 10px;
+      background: #2d2d30;
+      border-radius: 4px;
+    }
+    .dimension {
+      padding: 5px 0;
+      font-family: monospace;
+    }
+    .pass { color: #4ec9b0; }
+    .fail { color: #f48771; }
+    .summary {
+      background: #1a1a1a;
+      border: 2px solid #4ec9b0;
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 8px;
+    }
+    .summary.fail { border-color: #f48771; }
+    button {
+      background: #0e639c;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    button:hover { background: #1177bb; }
+    button:disabled { background: #666; cursor: not-allowed; }
+    .loading { color: #ce9178; font-style: italic; }
+    pre { background: #1e1e1e; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    .metric { font-size: 24px; font-weight: bold; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>🎯 Week 2a Validation - Context Intensity Analysis</h1>
+  <p>Trust but verify! Validating TagTeam's claim of 100% accuracy on context dimensions.</p>
+
+  <button id="runTest" onclick="runValidation()">▶️ Run Full Validation</button>
+
+  <div id="status" class="loading" style="display:none;">Running validation...</div>
+  <div id="results"></div>
+
+  <script src="../deliverables/week2/tagteam.js"></script>
+
+  <script>
+    // Test corpus - first 5 scenarios as specified in WEEK2A_COMPLETE.md
+    const testCorpus = {
+      "scenarios": [
+        {
+          "id": "healthcare-001",
+          "title": "End of Life Decision",
+          "testSentence": "The family must decide whether to continue treatment",
+          "expectedOutput": {
+            "contextIntensity": {
+              "temporal": { "urgency": 0.8, "duration": 1.0, "reversibility": 1.0 },
+              "relational": { "intimacy": 1.0, "powerDifferential": 0.3, "trust": 0.7 },
+              "consequential": { "harmSeverity": 1.0, "benefitMagnitude": 0.4, "scope": 0.1 },
+              "epistemic": { "certainty": 0.4, "informationCompleteness": 0.5, "expertise": 0.3 }
+            }
+          }
+        },
+        {
+          "id": "healthcare-002",
+          "title": "Triage in Resource Scarcity",
+          "testSentence": "The doctor must allocate the last ventilator between two critically ill patients",
+          "expectedOutput": {
+            "contextIntensity": {
+              "temporal": { "urgency": 1.0, "duration": 1.0, "reversibility": 1.0 },
+              "relational": { "intimacy": 0.2, "powerDifferential": 0.9, "trust": 0.8 },
+              "consequential": { "harmSeverity": 1.0, "benefitMagnitude": 1.0, "scope": 0.2 },
+              "epistemic": { "certainty": 0.6, "informationCompleteness": 0.7, "expertise": 0.9 }
+            }
+          }
+        },
+        {
+          "id": "spiritual-001",
+          "title": "Leaving Faith Community",
+          "testSentence": "I am questioning core doctrines",
+          "expectedOutput": {
+            "contextIntensity": {
+              "temporal": { "urgency": 0.3, "duration": 0.8, "reversibility": 0.5 },
+              "relational": { "intimacy": 0.9, "powerDifferential": 0.4, "trust": 0.4 },
+              "consequential": { "harmSeverity": 0.6, "benefitMagnitude": 0.7, "scope": 0.2 },
+              "epistemic": { "certainty": 0.3, "informationCompleteness": 0.6, "expertise": 0.6 }
+            }
+          }
+        },
+        {
+          "id": "vocational-001",
+          "title": "Whistleblowing Decision",
+          "testSentence": "I discovered that my company is falsifying safety reports",
+          "expectedOutput": {
+            "contextIntensity": {
+              "temporal": { "urgency": 0.8, "duration": 0.8, "reversibility": 0.6 },
+              "relational": { "intimacy": 0.3, "powerDifferential": 0.8, "trust": 0.1 },
+              "consequential": { "harmSeverity": 0.9, "benefitMagnitude": 0.9, "scope": 0.6 },
+              "epistemic": { "certainty": 0.9, "informationCompleteness": 0.8, "expertise": 0.7 }
+            }
+          }
+        },
+        {
+          "id": "interpersonal-001",
+          "title": "Friend's Infidelity",
+          "testSentence": "My best friend is cheating on their spouse",
+          "expectedOutput": {
+            "contextIntensity": {
+              "temporal": { "urgency": 0.5, "duration": 0.7, "reversibility": 0.6 },
+              "relational": { "intimacy": 0.9, "powerDifferential": 0.1, "trust": 0.8 },
+              "consequential": { "harmSeverity": 0.8, "benefitMagnitude": 0.7, "scope": 0.1 },
+              "epistemic": { "certainty": 1.0, "informationCompleteness": 0.8, "expertise": 0.7 }
+            }
+          }
+        }
+      ]
+    };
+
+    const TOLERANCE = 0.2;
+
+    function withinTolerance(actual, expected) {
+      return Math.abs(actual - expected) <= TOLERANCE;
+    }
+
+    function formatScore(actual, expected, passed) {
+      const diff = (actual - expected).toFixed(2);
+      const diffStr = diff >= 0 ? `+${diff}` : diff;
+      const className = passed ? 'pass' : 'fail';
+      const symbol = passed ? '✅' : '❌';
+      return `<span class="${className}">${symbol} ${actual.toFixed(2)}</span> (expected ${expected.toFixed(2)}, diff ${diffStr})`;
+    }
+
+    function validateScenario(scenario) {
+      const result = TagTeam.parse(scenario.testSentence);
+
+      if (!result.contextIntensity) {
+        return {
+          id: scenario.id,
+          passed: 0,
+          failed: 12,
+          html: '<p class="fail">❌ ERROR: No contextIntensity property in result!</p>'
+        };
+      }
+
+      const expected = scenario.expectedOutput.contextIntensity;
+      const actual = result.contextIntensity;
+
+      let passed = 0;
+      let failed = 0;
+      let html = `
+        <div class="scenario">
+          <h3>${scenario.id} - ${scenario.title}</h3>
+          <p><strong>Sentence:</strong> "${scenario.testSentence}"</p>
+      `;
+
+      // Validate each dimension category
+      const categories = [
+        { name: 'Temporal', key: 'temporal', dims: ['urgency', 'duration', 'reversibility'] },
+        { name: 'Relational', key: 'relational', dims: ['intimacy', 'powerDifferential', 'trust'] },
+        { name: 'Consequential', key: 'consequential', dims: ['harmSeverity', 'benefitMagnitude', 'scope'] },
+        { name: 'Epistemic', key: 'epistemic', dims: ['certainty', 'informationCompleteness', 'expertise'] }
+      ];
+
+      categories.forEach(cat => {
+        html += `<div class="dimension-group"><strong>${cat.name} Context:</strong>`;
+
+        cat.dims.forEach(dim => {
+          const exp = expected[cat.key][dim];
+          const act = actual[cat.key] ? actual[cat.key][dim] : undefined;
+
+          if (act === undefined) {
+            html += `<div class="dimension fail">  ❌ ${dim}: MISSING</div>`;
+            failed++;
+          } else {
+            const isPassing = withinTolerance(act, exp);
+            html += `<div class="dimension">  ${formatScore(act, exp, isPassing)} - ${dim}</div>`;
+            if (isPassing) {
+              passed++;
+            } else {
+              failed++;
+            }
+          }
+        });
+
+        html += '</div>';
+      });
+
+      const percentage = ((passed / 12) * 100).toFixed(1);
+      const statusClass = passed === 12 ? 'pass' : 'fail';
+      html += `<p><strong>Result:</strong> <span class="${statusClass}">${passed}/12 dimensions (${percentage}%)</span></p>`;
+      html += '</div>';
+
+      return { id: scenario.id, passed, failed, html };
+    }
+
+    function runValidation() {
+      document.getElementById('runTest').disabled = true;
+      document.getElementById('status').style.display = 'block';
+      document.getElementById('results').innerHTML = '';
+
+      // Small delay to show loading state
+      setTimeout(() => {
+        const results = {
+          totalDimensions: 0,
+          passedDimensions: 0,
+          failedDimensions: 0,
+          scenarios: []
+        };
+
+        let allHtml = '<h2>📋 Detailed Results</h2>';
+
+        testCorpus.scenarios.forEach(scenario => {
+          const scenarioResult = validateScenario(scenario);
+          results.scenarios.push(scenarioResult);
+          results.totalDimensions += 12;
+          results.passedDimensions += scenarioResult.passed;
+          results.failedDimensions += scenarioResult.failed;
+          allHtml += scenarioResult.html;
+        });
+
+        const accuracy = (results.passedDimensions / results.totalDimensions) * 100;
+        const TARGET = 80;
+        const passed = accuracy >= TARGET;
+
+        const summaryClass = passed ? 'summary' : 'summary fail';
+        const summaryHtml = `
+          <div class="${summaryClass}">
+            <h2>📊 VALIDATION SUMMARY</h2>
+            <div class="metric">Accuracy: <span class="${passed ? 'pass' : 'fail'}">${accuracy.toFixed(1)}%</span></div>
+            <p><strong>Total Dimensions:</strong> ${results.totalDimensions}</p>
+            <p><strong>Passed:</strong> <span class="pass">${results.passedDimensions} ✅</span></p>
+            <p><strong>Failed:</strong> <span class="fail">${results.failedDimensions} ❌</span></p>
+            <p><strong>Target:</strong> ≥${TARGET}%</p>
+            <hr style="border-color: #3e3e42; margin: 20px 0;">
+            ${passed ?
+              '<h3 class="pass">🎉 SUCCESS - Week 2a Deliverable VALIDATED ✅</h3>' :
+              '<h3 class="fail">❌ FAILED - Below target threshold</h3>'
+            }
+            <h3>Scenario Breakdown:</h3>
+            <ul>
+              ${results.scenarios.map(s => {
+                const pct = ((s.passed / 12) * 100).toFixed(1);
+                const cls = s.passed === 12 ? 'pass' : 'fail';
+                return `<li><span class="${cls}">${s.id}: ${s.passed}/12 (${pct}%)</span></li>`;
+              }).join('')}
+            </ul>
+          </div>
+        `;
+
+        document.getElementById('results').innerHTML = summaryHtml + allHtml;
+        document.getElementById('status').style.display = 'none';
+        document.getElementById('runTest').disabled = false;
+      }, 100);
+    }
+
+    // Auto-run on load
+    window.addEventListener('load', () => {
+      console.log('TagTeam.js loaded! Version:', TagTeam.version);
+      console.log('Ready to validate Week 2a deliverable');
+    });
+  </script>
+</body>
+</html>
