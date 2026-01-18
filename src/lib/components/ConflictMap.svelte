@@ -26,17 +26,17 @@
 	const clusters = [
 		{
 			name: 'Material-Empirical',
-			worldviews: ['Materialism', 'Sensationalism', 'Phenomenalism', 'Realism'],
+			worldviews: ['materialism', 'sensationalism', 'phenomenalism', 'realism'],
 			color: '#10b981'
 		},
 		{
 			name: 'Process-Individual',
-			worldviews: ['Dynamism', 'Monadism', 'Idealism', 'Rationalism'],
+			worldviews: ['dynamism', 'monadism', 'idealism', 'rationalism'],
 			color: '#3b82f6'
 		},
 		{
 			name: 'Depth-Spiritual',
-			worldviews: ['Psychism', 'Pneumatism', 'Spiritualism', 'Mathematism'],
+			worldviews: ['psychism', 'pneumatism', 'spiritualism', 'mathematism'],
 			color: '#8b5cf6'
 		}
 	];
@@ -48,11 +48,11 @@
 		uncertain: '#6b7280' // Gray (Ambiguous)
 	};
 
-	// Worldview order (fixed positions)
+	// Worldview order (fixed positions) - lowercase to match worldviewManager
 	const worldviewOrder = [
-		'Materialism', 'Sensationalism', 'Phenomenalism', 'Realism', // Material-Empirical
-		'Dynamism', 'Monadism', 'Idealism', 'Rationalism', // Process-Individual
-		'Psychism', 'Pneumatism', 'Spiritualism', 'Mathematism' // Depth-Spiritual
+		'materialism', 'sensationalism', 'phenomenalism', 'realism', // Material-Empirical
+		'dynamism', 'monadism', 'idealism', 'rationalism', // Process-Individual
+		'psychism', 'pneumatism', 'spiritualism', 'mathematism' // Depth-Spiritual
 	];
 
 	function renderChart() {
@@ -97,8 +97,11 @@
 
 		// Draw worldview arcs
 		worldviews.forEach((wv, idx) => {
-			const worldviewIdx = worldviewOrder.indexOf(wv.worldview);
-			if (worldviewIdx === -1) return;
+			const worldviewIdx = worldviewOrder.indexOf(wv.worldview.toLowerCase());
+			if (worldviewIdx === -1) {
+				console.warn(`Worldview ${wv.worldview} not found in worldviewOrder`);
+				return;
+			}
 
 			const angle = worldviewIdx * angleStep - Math.PI / 2;
 			const nextAngle = (worldviewIdx + 1) * angleStep - Math.PI / 2;
