@@ -8,8 +8,8 @@ unit-test-results.json
 .claude/
 
 # SvelteKit generated files
-.svelte-kit/generated/
-.svelte-kit/ambient.d.ts
+.svelte-kit/
+build/
 
 # Temporary files
 nul
