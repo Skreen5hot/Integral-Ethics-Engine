@@ -229,6 +229,7 @@
 									weight={evaluation.weight}
 									reasoning={evaluation.reasoning}
 									values={evaluation.values || []}
+									conflicts={evaluation.conflicts || []}
 									isExpanded={false}
 								/>
 							{/each}
@@ -252,6 +253,7 @@
 											weight={evaluation.weight}
 											reasoning={evaluation.reasoning}
 											values={evaluation.values || []}
+											conflicts={evaluation.conflicts || []}
 											isExpanded={true}
 										/>
 									{/each}

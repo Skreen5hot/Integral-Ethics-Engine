@@ -76,7 +76,7 @@ Today I'll show you:
 
 "Notice the interface is clean and straightforward. Let me enter this scenario:
 
-*'A hospital must decide whether to give a scarce donor organ to a 25-year-old patient with excellent long-term survival odds, or a 65-year-old patient who has been on the waiting list longer and lives locally. Both patients have equal medical urgency.'*
+*'A physician seeks permission from the patient and obtains informed consent before treatment. The doctor helps the patient understand risks, respects their wishes, and promotes their welfare while ensuring safety.'*
 
 I'll select 'Healthcare' as the domain."
 
@@ -89,11 +89,11 @@ I'll select 'Healthcare' as the domain."
 "Watch this—the system is now analyzing the text and automatically detecting ethical values...
 
 See here? It found:
-- ✅ **Justice** (fairness in organ allocation)
-- ✅ **Beneficence** (maximizing patient benefit)
-- ✅ **Life/Survival** (preserving life)
-- ✅ **Equality** (treating patients equally)
-- ✅ **Community Connection** (local patient consideration)
+- ✅ **Consent** (seeking permission, informed agreement)
+- ✅ **Autonomy** (respecting patient wishes)
+- ✅ **Beneficence** (promoting welfare, helping)
+- ✅ **Non-maleficence** (ensuring safety)
+- ✅ **Respect for Persons** (honoring patient perspective)
 
 This happened automatically by reading the scenario. Six months ago, we would have had to manually tag these."
 
@@ -103,33 +103,35 @@ This happened automatically by reading the scenario. Six months ago, we would ha
 
 **[Point to different worldview cards]**
 
-- **Materialism** says: 'Permitted' - Focus on measurable outcomes, younger patient has more life-years to gain
-- **Spiritualism** says: 'Problematic' - Reducing human worth to age violates transcendent dignity
-- **Realism** says: 'Permitted' - Objective criteria (age, survival odds) provide defensible basis
-- **Idealism** says: 'Problematic' - Both patients have equal consciousness and meaning-making potential
+- **Monadism** says: 'Permissible' - Patient autonomy and individual dignity are honored
+- **Materialism** says: 'Permissible' - Physical welfare is promoted, safety ensured
+- **Realism** says: 'Permissible' - Objective standards of informed consent are met
+- **Idealism** says: 'Permissible' - Patient consciousness and understanding are respected
 
-Notice they disagree! This isn't a bug—it's showing you the genuine philosophical tension."
+Notice they agree! This scenario represents a clear ethical best practice—informed consent with patient welfare at the center."
 
-**3. Conflict Detection**
+**3. Value Analysis**
 
-"Scroll down to the conflicts section...
+"Scroll down to the value analysis...
 
-The system has identified that **Justice** and **Beneficence** are in tension:
-- Justice says: Honor the waiting list (first-come, first-served)
-- Beneficence says: Maximize medical benefit (better long-term outcomes)
+The system shows all values are being upheld (+1 polarity):
+- Consent is obtained properly
+- Autonomy is respected
+- Beneficence guides the treatment decision
+- Safety is prioritized
 
-This is the core dilemma, automatically surfaced for you."
+No conflicts detected—this is ethical healthcare at its best."
 
 **4. Integrated Judgment**
 
-"At the top, you see the overall consensus: **'Permitted with significant ethical concerns'**
+"At the top, you see the overall consensus: **'Permissible'**
 
 This tells you:
-- The decision can be ethically justified
-- But it's not simple or uncontroversial
-- You need to carefully consider the concerns raised
+- The action is ethically justified across all perspectives
+- No worldview found significant concerns
+- This represents a model for ethical medical practice
 
-The confidence meter shows medium certainty—meaning reasonable people will disagree."
+The confidence meter shows high certainty—all 12 philosophical perspectives agree."
 
 **5. Full Reasoning Chain**
 
@@ -142,6 +144,29 @@ See? Complete explanation:
 - What concerns remain
 
 Total transparency."
+
+### Bonus: Detecting Ethical Violations (If Time Permits)
+
+"Let me show you one more thing—what happens when the system encounters unethical behavior..."
+
+**[Enter new scenario]**
+
+*'A company coerces employees to work overtime without consent. They cause harm by ignoring safety concerns, discriminate in hiring, and refuse assistance to injured workers.'*
+
+**[Click Deliberate]**
+
+"Now look at the difference:
+
+**Values Detected** (all with NEGATIVE polarity):
+- ❌ **Autonomy** - violated (coercion)
+- ❌ **Consent** - violated (without consent)
+- ❌ **Non-maleficence** - violated (cause harm)
+- ❌ **Equality** - violated (discriminate)
+- ❌ **Beneficence** - violated (refuse assistance)
+
+**Integrated Judgment: IMPERMISSIBLE**
+
+The system correctly identifies this as unethical. Every worldview flags these violations. This demonstrates that the IEE can distinguish between ethical and unethical behavior—it's not just rubber-stamping everything as acceptable."
 
 ---
 
@@ -285,7 +310,7 @@ Thank you for your time. Questions?"
 ## Appendix: Common Questions & Answers
 
 ### Q: "How accurate is the automatic value detection?"
-**A**: "TagTeam (our semantic analysis engine) was trained on expert annotations and validated against human ethicists. In testing, it correctly identifies primary values about 85% of the time, and catches all major values. It may occasionally flag marginal values or miss subtle ones, but it's very reliable for core ethical analysis."
+**A**: "TagTeam (our semantic analysis engine) works best with clear ethical language—phrases like 'informed consent,' 'ensure safety,' or 'cause harm.' It's highly reliable for standard ethical scenarios. For nuanced or complex language, we're continuing to improve coverage. The key insight is that the system shows you what it detected, so you can verify and add context."
 
 ### Q: "Can I trust the philosophical perspectives?"
 **A**: "The worldviews are based on established philosophical traditions, not AI-generated opinions. Each worldview's value hierarchy comes from systematic philosophy—we're not inventing new ethics, we're representing existing schools of thought faithfully. That said, we're always refining to better represent each tradition."
@@ -314,29 +339,30 @@ Thank you for your time. Questions?"
 
 **Before the demo**:
 - Test the live site is working: https://skreen5hot.github.io/Integral-Ethics-Engine/
-- Have 2-3 scenarios prepared (use templates)
-- Know which worldviews will disagree on your scenario
+- Use the OPTIMIZED scenarios from `docs/demo/OPTIMIZED_DEMO_SCENARIOS.md`
+- These scenarios use TagTeam's exact phrase patterns for reliable detection
 - Clear browser cache/history if needed for clean demo
+
+**Recommended Scenario Flow**:
+1. **Lead with Medical Consent** (Scenario 1) - Clear permissible judgment, all values upheld
+2. **Show Ethical Violation** (Scenario 2) - Demonstrates impermissible detection
+3. **Optional: Mixed Dilemma** (Scenario 4) - Shows nuanced "problematic" with worldview disagreement
 
 **During value detection**:
 - Point out how fast it happens (1-2 seconds)
-- Highlight values that might not be obvious (e.g., "Community Connection")
+- Highlight the polarity: +1 means upheld, -1 means violated
 - Explain this used to require manual tagging
 
 **During worldview display**:
-- Pick 2-3 worldviews to deep-dive on
-- Show one that agrees and one that disagrees
+- For Scenario 1: Show how all worldviews agree (consensus)
+- For Scenario 2: Show how all worldviews flag violations
 - Expand reasoning to show transparency
-
-**During conflict section**:
-- Emphasize this is automatic detection
-- Connect conflicts back to the dilemma in the scenario
-- Show how this helps clarify the decision
 
 **Handling questions**:
 - Be honest about gaps and limitations
 - Redirect to roadmap when asked about missing features
 - Focus on current value, not future promises
+- If asked about complex scenarios: "The system works best with clear ethical language"
 
 **Recovery from issues**:
 - If site is slow: "The semantic analysis is very thorough"

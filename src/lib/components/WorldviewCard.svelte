@@ -12,6 +12,7 @@
 	export let confidence = 0.5;
 	export let reasoning = '';
 	export let values = [];
+	export let conflicts = []; // Value conflicts detected for this worldview
 	export let weight = 0.5; // Domain weight
 	export let cluster = ''; // Material-Empirical | Process-Individual | Depth-Spiritual
 	export let expanded = false;
@@ -130,6 +131,29 @@
 					<div class="values-list">
 						{#each values as value}
 							<span class="value-tag">{value.replace(/_/g, ' ')}</span>
+						{/each}
+					</div>
+				</div>
+			{/if}
+
+			<!-- Value Conflicts -->
+			{#if conflicts && conflicts.length > 0}
+				<div class="conflicts-section">
+					<h5>Value Conflicts to Resolve</h5>
+					<div class="conflicts-list">
+						{#each conflicts as conflict}
+							<div class="conflict-item">
+								<div class="conflict-values">
+									{#if conflict.values && conflict.values.length > 0}
+										{conflict.values.map(v => v.replace(/_/g, ' ')).join(' ↔ ')}
+									{:else}
+										{conflict.type || 'Unknown conflict'}
+									{/if}
+								</div>
+								{#if conflict.description}
+									<div class="conflict-description">{conflict.description}</div>
+								{/if}
+							</div>
 						{/each}
 					</div>
 				</div>
@@ -315,5 +339,46 @@
 		margin: 0;
 		font-size: var(--font-size-sm);
 		color: var(--color-text);
+	}
+
+	/* Value Conflicts Section */
+	.conflicts-section {
+		padding: var(--spacing-md);
+		background: rgba(239, 68, 68, 0.05);
+		border: 1px solid rgba(239, 68, 68, 0.3);
+		border-radius: var(--radius-md);
+	}
+
+	.conflicts-section h5 {
+		margin: 0 0 var(--spacing-sm) 0;
+		font-size: var(--font-size-base);
+		font-weight: var(--font-weight-semibold);
+		color: #dc2626;
+	}
+
+	.conflicts-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-sm);
+	}
+
+	.conflict-item {
+		padding: var(--spacing-sm);
+		background: white;
+		border-radius: var(--radius-sm);
+		border-left: 3px solid #ef4444;
+	}
+
+	.conflict-values {
+		font-weight: var(--font-weight-medium);
+		color: var(--color-text);
+		text-transform: capitalize;
+	}
+
+	.conflict-description {
+		font-size: var(--font-size-sm);
+		color: var(--color-text-muted);
+		margin-top: var(--spacing-xs);
+		font-style: italic;
 	}
 </style>
