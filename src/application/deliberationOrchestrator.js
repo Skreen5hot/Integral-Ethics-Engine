@@ -183,7 +183,7 @@ export function formatDeliberationResult(resolution, evaluations, domain, scenar
       confidence: evaluation.confidence,
       reasoning: evaluation.reasoning,
       values: evaluation.values || [],
-      conflicts: evaluation.conflicts || [],
+      conflicts: evaluation.meta?.conflicts || [],
       weight: resolution.weights[evaluation.worldview] || 0.5
     })),
     conflicts: resolution.conflictDetails,
